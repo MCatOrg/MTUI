@@ -5,7 +5,7 @@
 <template>
     <div class="container">
         <div>
-            <button class="mtui-btn" id="showPicker">点我</button>
+            <button class="mtui-btn" id="showPicker">这里</button>
             <button class="mtui-btn" id="showMyPopup" @click="showMyPopup">遮罩</button>
         </div>
         <div>
