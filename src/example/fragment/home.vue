@@ -11,6 +11,7 @@
         </li>
         <li>
           <router-link to="/icon">图标</router-link>
+          <router-link to="/icon">图标s</router-link>
         </li>
       </ul>
     </main>
