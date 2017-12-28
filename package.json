@@ -1,0 +1,48 @@
+{
+  "name": "MTUI",
+  "description": "A UI project",
+  "version": "1.0.0",
+  "author": "ChinaMCat",
+  "homepage":"http://",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && npm run mtuibuild",
+    "mtuibuild":"webpack --config ./webpack.mtui.js"
+  },
+  "dependencies": {
+    "vue": "^2.5.11",
+    "vue-router": "^3.0.1",
+    "object-assign": "^4.1.1",
+    "element-closest": "^2.0.2",
+    "balajs": "^1.0.7"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^7.2.3",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.4",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "postcss-loader": "^2.0.9",
+    "style-loader": "^0.19.1",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-zepto": "^0.0.1"
+  }
+}

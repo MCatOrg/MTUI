@@ -1,0 +1,59 @@
+
+// 用例：
+// div{
+//   &:after{
+//     .setTopLine; // 代替 border 设置元素 1 像素边框
+//   }
+// }
+
+.setTopLine(@c: #e5e5e5) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 0.01rem;
+    border-top: 0.01rem solid @c;
+    color: @c;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+}
+
+.setBottomLine(@c: #e5e5e5) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 0.01rem;
+    border-bottom: 0.01rem solid @c;
+    color: @c;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+}
+
+.setLeftLine(@c: #e5e5e5) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.01rem;
+    bottom: 0;
+    border-left: 0.01rem solid @c;
+    color: @c;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+}
+
+.setRightLine(@c: #e5e5e5) {
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0.01rem;
+    bottom: 0;
+    border-right: 0.01rem solid @c;
+    color: @c;
+    transform-origin: 100% 0;
+    transform: scaleX(0.5);
+}
