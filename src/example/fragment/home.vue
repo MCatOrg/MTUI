@@ -9,11 +9,10 @@
         <h3 class="group-header">表单组件</h3>
         <ul class="group-body">
           <li>
-            <router-link to="/button">按钮dfdfdf</router-link>
+            <router-link to="/button">按钮</router-link>
           </li>
           <li>
-            <router-link to="/icon">图标</router-link>
-            <router-link to="/icon">图标s</router-link>
+          <router-link to="/list">List</router-link>
           </li>
         </ul>
       </div>

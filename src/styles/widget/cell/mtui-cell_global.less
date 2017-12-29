@@ -1,0 +1,71 @@
+@import "../../base/fn";
+
+/*
+z-index:
+0: .mtui-swiped-btn
+1: .mtui-cell_swiped .mtui-cell__bd
+2: .mtui-cells和.mtui-cell的1px线
+*/
+
+.mtui-cells {
+  margin-top: @mtuiCellsMarginTop;
+  background-color: @mtuiCellBg;
+  font-size: @mtuiCellFontSize; //cell为弹性盒子布局
+  overflow: hidden; //因为每个cell的border是用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效
+  // onepx
+  position: relative;
+  &:before {
+    .setTopLine(@mtuiCellBorderColor);
+    z-index: 2;
+  }
+  &:after {
+    .setBottomLine(@mtuiCellBorderColor);
+    z-index: 2;
+  }
+}
+
+.mtui-cell {
+  padding: @mtuiCellGapH @mtuiCellLeft;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  &:before {
+    .setTopLine(@mtuiCellBorderColor);
+    left: @mtuiCellLeft;
+    z-index: 2;
+  }
+  &:first-child {
+    &:before {
+      display: none;
+    }
+  }
+}
+.mtui-cells__title{
+    margin-top: .77em; // 15px - 行高
+    margin-bottom: .3em; // 8px - 行高
+    padding-left: @mtuiCellLeft;
+    padding-right: @mtuiCellLeft;
+    color: @mtuiTextColorGray;
+    font-size: @mtuiCellTipsFontSize;
+    & + .mtui-cells {
+        margin-top: 0;
+    }
+}
+
+.mtui-cells__tips {
+  margin-top: .3em; // 8px - 行高
+  color: @mtuiTextColorTips;
+  padding-left: @mtuiCellLeft;
+  padding-right: @mtuiCellLeft;
+  font-size: @mtuiCellTipsFontSize;
+}
+
+.mtui-cell__bd{
+  flex:1;
+}
+
+.mtui-cell__ft {
+  text-align: right;
+  color: @mtuiTextColorGray;
+}

@@ -1,0 +1,21 @@
+@import "../../base/fn";
+
+.mtui-btn_disabled {
+    &.mtui-btn_default {
+        color:@mtuiBtnDefaultDisabledFontColor;
+        background-color: @mtuiBtnDefaultDisabledBg;
+    }
+    &.mtui-btn_primary {
+        background-color: @mtuiBtnPrimaryDisabledBg;
+    }
+    &.mtui-btn_warn {
+        background-color: @mtuiBtnwarnDisabledBg;
+    }
+    &.mtui-btn_out{
+      background-color: @mtuiBtnDefaultBg;
+      color:rgba(51, 51, 51, .2);
+      &:after{
+        border-color:rgba(51, 51, 51, .2);
+      }
+    }
+}
