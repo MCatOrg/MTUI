@@ -1,0 +1,14 @@
+@import "../../base/fn";
+.mtui-btn_out {
+  background-color: @mtuiBtnDefaultBg;
+  color: @mtuiBtnPrimaryBg;
+  &:not(.mtui-btn_disabled):active {
+    color: @mtuiBtnPrimaryDisabledBg;
+    &:after{
+      border-color:@mtuiBtnPrimaryDisabledBg;
+    }
+  }
+  &:after{
+    border-color:@mtuiBtnPrimaryActiveBg;
+  }
+}
