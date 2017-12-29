@@ -11,10 +11,16 @@ const router = new Router({
       require(['./example/fragment/home.vue'], resolve)
     }
   },{
-    path: '/button', //按钮
+    path: '/button', //Button
     name: 'button',
     component: function (resolve) {
       require(['./example/fragment/button.vue'], resolve)
+    }
+  },{
+    path: '/list', //List
+    name: 'list',
+    component: function (resolve) {
+      require(['./example/fragment/list.vue'], resolve)
     }
   }]
 })

@@ -6,8 +6,11 @@
     </header>
     <main>
       <ul>
-        <li class="mt-btu mt-btu-warm">
-          <router-link to="/button">按钮dfdfdf</router-link>
+        <li>
+          <router-link to="/button">Button</router-link>
+        </li>
+        <li>
+          <router-link to="/list">List</router-link>
         </li>
         <li>
           <router-link to="/icon">图标</router-link>
