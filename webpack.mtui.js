@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: './js/',
     filename: 'mtui.min.js',
-    library: 'weui',
+    library: 'mtui',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     libraryExport: "default"

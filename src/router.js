@@ -17,6 +17,10 @@ const router = new Router({
       require(['./example/fragment/button.vue'], resolve)
     }
   },{
+    path: '/Badge', //徽章
+    name: 'Badge',
+    component: function (resolve) {
+      require(['./example/fragment/Badge.vue'], resolve)
     path: '/list', //List
     name: 'list',
     component: function (resolve) {
