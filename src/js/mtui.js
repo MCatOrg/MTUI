@@ -16,6 +16,8 @@ import {picker, datePicker} from './picker/picker';
 import gallery from './gallery/gallery';
 import slider from './slider/slider';
 
+import step from './step/step';
+
 console.log('OKle ')
 
 export default {
@@ -33,5 +35,6 @@ export default {
     picker,
     datePicker,
     gallery,
-    slider
+    slider,
+    step
 };

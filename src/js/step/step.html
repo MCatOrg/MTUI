@@ -1,0 +1,34 @@
+<div class="mtui-steps <%= orient %>">
+    <% if(orient === 'horizon'){ %>
+        <% for(var i = 0; i < options.length; i++){ %>
+            <% if(options[i].status){ %>
+                <div class="mtui-step active">
+            <% }else{ %>
+                <div class="mtui-step">
+            <% } %>
+                <div class="mtui-step_chart">
+                    <span class="step-chart_dot"></span>
+                    <span class="step-chart_line"></span>
+                </div>
+                <p class="mtui-step_text"><%= options[i].cont %></p>
+            </div>
+        <% } %>
+    <% }else{ %>
+        <% for(var i = 0; i < options.length; i++){ %>
+            <% if(options[i].status){ %>
+                <div class="mtui-step active">
+            <% }else{ %>
+                <div class="mtui-step">
+            <% } %>
+                <div class="mtui-step_chart">
+                    <span class="step-chart_dot"></span>
+                    <span class="step-chart_line"></span>
+                </div>
+                <div class="mtui-step_cont">
+                    <h6 class="step-cont_title"><%= options[i].title %></h6>
+                    <p class="step-cont_info"><%= options[i].cont %></p>
+                </div>
+            </div>
+        <% } %>
+    <% } %>
+</div>

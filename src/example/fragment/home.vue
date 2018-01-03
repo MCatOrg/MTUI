@@ -14,6 +14,9 @@
           <li>
           <router-link to="/list">List</router-link>
           </li>
+          <li>
+          <router-link to="/switch">switch</router-link>
+          </li>
         </ul>
       </div>
       <div class="group">
@@ -21,6 +24,20 @@
         <ul class="group-body">
           <li>
             <router-link to="/Badge">Badge(徽章)</router-link>
+          </li>
+          <li>
+            <router-link to="/grid">Grid(九宫格)</router-link>
+          </li>
+          <li>
+            <router-link to="/step">step(步骤)</router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3 class="group-header">操作反馈</h3>
+        <ul class="group-body">
+          <li>
+            <router-link to="/picker">picker(多列选择器)</router-link>
           </li>
         </ul>
       </div>
@@ -56,13 +73,11 @@ header {
 main {
   padding-left: .3rem;
   padding-right: .3rem;
-  .group{margin-top: .3rem; font-size: .3rem;
-    .group-header{background-color: #F5F5F5; margin-bottom: .1rem; line-height: .6rem; color: @mtuiColorPrimary}
-  }
+  .group-body{font-size: .26rem;}
   li {
     line-height: .6rem;
     list-style: none;
-    padding-left: .2rem;
+    padding-left: .4rem;
   }
 }
 </style>

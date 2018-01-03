@@ -1,0 +1,73 @@
+@import '../../base/fn';
+.mtui-steps{display: flex;
+    //公共的
+    .mtui-step{display: flex; color: #B2B2B2;
+        .mtui-step_chart{position: relative;
+            .step-chart_dot{position: absolute; left: 0; right: 0; margin: auto; width: .28rem; height: .28rem; border-radius: 50%; background-color: #e5e5e5; z-index: 2;}
+            .step-chart_line{position: absolute; margin: auto; background-color: #e5e5e5;}
+        }
+        &.active{color: @mtuiColorPrimary;
+            .step-chart_dot{background-color: @mtuiColorPrimary;}
+            .step-chart_line{background-color: lighten(@mtuiColorPrimary, 15%);}
+        }
+    }
+    //水平的
+    &.horizon{justify-content: space-between;
+        .mtui-step:first-child{.step-chart_line{display: none;}}
+        .mtui-step{flex-direction: column; flex: 1;
+            .mtui-step_chart{height: .6rem; flex: 1;
+                .step-chart_dot{top: 0; bottom: 0;}
+                .step-chart_line{top: 0; bottom: 0; left: -50%; width: 100%; height: .08rem;}
+            }
+            .mtui-step_text{font-size: .24rem; text-align: center;}
+        }
+    }
+    //垂直的
+    &.vertical{flex-direction: column;
+        .mtui-step:first-child{margin-top: 0;}
+        .mtui-step:last-child{.step-chart_line{display: none;}}
+        .mtui-step{margin-top: .18rem;
+            .mtui-step_chart{width: 1rem; padding-top: .06rem; flex-shrink: 0;
+                .step-chart_line{left: 0; right: 0; width: .08rem; height: 100%; margin-top: .2rem;}
+            }
+            .mtui-step_cont{flex: 1; padding-right: .3rem;
+                .step-cont_title{font-size: .28rem; line-height: .42rem; color: #333333;}
+                .step-cont_info{font-size: .24rem; line-height: .4rem; word-wrap:break-word; word-break:break-all;}
+            }
+            &.active{
+                .step-cont_title{color: @mtuiColorPrimary;}
+            }
+        }
+    }
+    // &.horizon{justify-content: space-between;
+    //     .mtui-step{display: flex; flex-direction: column; flex: 1; color: #B2B2B2;
+    //         .mtui-step_chart{position: relative; height: .6rem; flex: 1;
+    //             .step-chart_dot{position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; width: .28rem; height: .28rem; border-radius: 50%; background-color: #e5e5e5; z-index: 2;}
+    //             .step-chart_line{position: absolute; top: 0; bottom: 0; left: -50%; margin: auto; width: 100%; height: .08rem; background-color: #e5e5e5;}
+    //         }
+    //         .mtui-step_text{font-size: .24rem; text-align: center;}
+    //         &.active{color: @mtuiColorPrimary;
+    //             .step-chart_dot{background-color: @mtuiColorPrimary;}
+    //             .step-chart_line{background-color: #ADBFD6;}
+    //         }
+    //     }
+    // }
+    // &.vertical{flex-direction: column;
+    //     .mtui-step:first-child{margin-top: 0;}
+    //     .mtui-step{display: flex; color: #B2B2B2; margin-top: .18rem;
+    //         .mtui-step_chart{width: 1rem; position: relative; padding-top: .06rem; flex-shrink: 0;
+    //             .step-chart_dot{position: absolute; left: 0; right: 0; margin: auto; width: .28rem; height: .28rem; border-radius: 50%; background-color: #E5E5E5; z-index: 2;}
+    //             .step-chart_line{position: absolute; left: 0; right: 0; margin: auto; width: .08rem; background-color: #E5E5E5; height: 100%; margin-top: .2rem;}
+    //         }
+    //         .mtui-step_cont{flex: 1; padding-right: .3rem;
+    //             .step-cont_title{font-size: .28rem; line-height: .42rem; color: #333333;}
+    //             .step-cont_info{font-size: .24rem; line-height: .4rem; word-wrap:break-word; word-break:break-all;}
+    //         }
+    //         &.active{color: @mtuiColorPrimary;
+    //             .step-chart_dot{background-color: @mtuiColorPrimary;}
+    //             .step-chart_line{background-color: #ADBFD6;}
+    //             .step-cont_title{color: @mtuiColorPrimary;}
+    //         }
+    //     }
+    // }
+}
