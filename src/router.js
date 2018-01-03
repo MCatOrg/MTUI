@@ -21,10 +21,36 @@ const router = new Router({
     name: 'Badge',
     component: function (resolve) {
       require(['./example/fragment/Badge.vue'], resolve)
+    }
+  },{
     path: '/list', //List
     name: 'list',
     component: function (resolve) {
       require(['./example/fragment/list.vue'], resolve)
+    }
+  },{
+    path: '/input', //List
+    name: 'input',
+    component: function (resolve) {
+      require(['./example/fragment/input.vue'], resolve)
+    }
+  },{
+    path: '/accordion', //List
+    name: 'accordion',
+    component: function (resolve) {
+      require(['./example/fragment/Accordion.vue'], resolve)
+    }
+  },{
+    path: '/slider', //List
+    name: 'slider',
+    component: function (resolve) {
+      require(['./example/fragment/Slider.vue'], resolve)
+    }
+  },{
+    path: '/uploader', //List
+    name: 'uploader',
+    component: function (resolve) {
+      require(['./example/fragment/Uploader.vue'], resolve)
     }
   }]
 })

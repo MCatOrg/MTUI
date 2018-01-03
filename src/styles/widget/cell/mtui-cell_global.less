@@ -30,6 +30,7 @@ z-index:
   align-items: center;
   position: relative;
   box-sizing: border-box;
+  color: #333;
   &:before {
     .setTopLine(@mtuiCellBorderColor);
     left: @mtuiCellLeft;
@@ -38,6 +39,12 @@ z-index:
   &:first-child {
     &:before {
       display: none;
+    }
+  }
+  & + .mtui-cells {
+    margin-top: 0;
+    &:before {
+      left: 0.3rem;
     }
   }
 }
@@ -54,13 +61,23 @@ z-index:
 }
 
 .mtui-cells__tips {
-  margin-top: .3em; // 8px - 行高
+  display: inline-block;
+  margin-top: .5em; // 8px - 行高
   color: @mtuiTextColorTips;
-  padding-left: @mtuiCellLeft;
-  padding-right: @mtuiCellLeft;
   font-size: @mtuiCellTipsFontSize;
 }
 
+.mtui-cell__hd{
+  margin-right: @mtuiCellsMarginTop;
+  img{
+    width: 0.58rem;
+    height: 0.58rem;
+  }
+  img.mtui-img_big{
+    width: 1rem;
+    height: 1rem;
+  }
+}
 .mtui-cell__bd{
   flex:1;
 }
