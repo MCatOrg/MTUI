@@ -12,10 +12,22 @@
             <router-link to="/button">按钮</router-link>
           </li>
           <li>
-          <router-link to="/list">List</router-link>
+            <router-link to="/list">List</router-link>
           </li>
           <li>
-          <router-link to="/switch">switch</router-link>
+            <router-link to="/switch">switch</router-link>
+          </li>
+          <li>
+          <router-link to="/input">Input</router-link>
+          </li>
+          <li>
+          <router-link to="/accordion">Accordion</router-link>
+          </li>
+          <li>
+          <router-link to="/slider">Slider</router-link>
+          </li>
+          <li>
+          <router-link to="/uploader">Uploader</router-link>
           </li>
         </ul>
       </div>

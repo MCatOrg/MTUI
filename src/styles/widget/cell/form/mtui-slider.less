@@ -1,0 +1,44 @@
+@import "../../../base/fn";
+
+.mtui-slider-box{
+  width: 7.5rem;
+  height: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
+}
+.mtui-slider__inner{
+  width: 6rem;
+  height: 0.04rem;
+  background-color: #b5b5b5;
+  border-radius: 0.02rem;
+  position: relative;
+}
+.mtui-slider__track{
+  height: 0.04rem;
+  background-color: @mtuiColorPrimary;
+  border-radius: 0.02rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.mtui-slider__handler{
+  height: 0.52rem;
+  width: 0.52rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.26rem;
+  margin-left: -0.26rem;
+  background-color: #fff;
+  border: 0.01rem solid @mtuiLineColorLight;
+  border-radius: 50%;
+  box-shadow: 0 0 0.06rem rgba(0,0,0,0.2);
+}
+.mtui-slider__value{
+  font-size: 0.28rem;
+  color: @mtuiTextColorGray;
+  text-align: center;
+  width: 0.7rem;
+}

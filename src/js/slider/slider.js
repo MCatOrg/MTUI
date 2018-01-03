@@ -1,19 +1,3 @@
-/*
-* Tencent is pleased to support the open source community by making WeUI.js available.
-* 
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-* 
-*       http://opensource.org/licenses/MIT
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
 import $ from '../util/util';
 
 /**
@@ -27,20 +11,20 @@ import $ from '../util/util';
  * @example
  * #### html
  * ```html
- * <div class="weui-slider-box">
- *     <div id="slider" class="weui-slider">
- *         <div class="weui-slider__inner">
- *             <div class="weui-slider__track"></div>
- *             <div class="weui-slider__handler"></div>
+ * <div class="mtui-slider-box">
+ *     <div id="slider" class="mtui-slider">
+ *         <div class="mtui-slider__inner">
+ *             <div class="mtui-slider__track"></div>
+ *             <div class="mtui-slider__handler"></div>
  *         </div>
  *     </div>
- *     <div id="sliderValue" class="weui-slider-box__value"></div>
+ *     <div id="sliderValue" class="mtui-slider-box__value"></div>
  * </div>
  * ```
  *
  * #### js
  * ```javascript
- * weui.slider('#slider', {
+ * mtui.slider('#slider', {
  *     step: 10,
  *     defaultValue: 40,
  *     onChange: function(percent){
@@ -69,9 +53,10 @@ function slider(selector, options = {}) {
 
     $eles.forEach((ele) => {
         const $slider = $(ele);
-        const $sliderInner = $slider.find('.weui-slider__inner');
-        const $sliderTrack = $slider.find('.weui-slider__track');
-        const $sliderHandler = $slider.find('.weui-slider__handler');
+        const $sliderInner = $slider.find('.mtui-slider__inner');
+        const $sliderTrack = $slider.find('.mtui-slider__track');
+        const $sliderHandler = $slider.find('.mtui-slider__handler');
+        const $sliderValue = $slider.find('.mtui-slider__value');
 
         const sliderLength = parseInt($.getStyle($sliderInner[0], 'width')); // slider的长度
         const sliderLeft = $sliderInner[0].offsetLeft; // slider相对于页面的offset
@@ -104,6 +89,7 @@ function slider(selector, options = {}) {
 
             $sliderTrack.css({ width: percent + '%'});
             $sliderHandler.css({ left: percent + '%'});
+            $sliderValue.text(percent);
             options.onChange.call(ele, percent);
         }
 

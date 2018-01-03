@@ -51,6 +51,28 @@ const router = new Router({
     name: 'picker',
     component: function (resolve) {
       require(['./example/fragment/picker.vue'], resolve)
+    path: '/input', //List
+    name: 'input',
+    component: function (resolve) {
+      require(['./example/fragment/input.vue'], resolve)
+    }
+  },{
+    path: '/accordion', //List
+    name: 'accordion',
+    component: function (resolve) {
+      require(['./example/fragment/Accordion.vue'], resolve)
+    }
+  },{
+    path: '/slider', //List
+    name: 'slider',
+    component: function (resolve) {
+      require(['./example/fragment/Slider.vue'], resolve)
+    }
+  },{
+    path: '/uploader', //List
+    name: 'uploader',
+    component: function (resolve) {
+      require(['./example/fragment/Uploader.vue'], resolve)
     }
   }]
 })
