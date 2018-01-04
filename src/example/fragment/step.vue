@@ -3,10 +3,7 @@
 </style>
 <template>
     <div class="container">
-        <header class="mt-header">
-            <h2 class="mt-header_title">Step</h2>
-            <p class="mt-header_info">步骤</p>
-        </header>
+        <mt-header :data="headerData"></mt-header>
         <main class="mt-body">
             <div class="group">
                 <div class="group-header">水平Step</div>
@@ -85,7 +82,19 @@
 </template>
 <script>
 import mtui from '../../js/mtui'
+import mtHeader from '../component/header'
 export default {
+    components: {
+        mtHeader,
+    },
+    data(){
+        return {
+            headerData:{
+                title: 'Step',
+                info: '步骤'
+            }
+        }
+    },
     mounted(){
         mtui.step({
             el: '#test',

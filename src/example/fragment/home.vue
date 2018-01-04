@@ -51,6 +51,9 @@
           <li>
             <router-link to="/picker">picker(多列选择器)</router-link>
           </li>
+          <li>
+            <router-link to="/stepper">stepper(数量加减器)</router-link>
+          </li>
         </ul>
       </div>
     </main>

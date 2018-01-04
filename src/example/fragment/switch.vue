@@ -3,10 +3,7 @@
 </style>
 <template>
     <div class="container">
-        <header class="mt-header">
-            <h2 class="mt-header_title">Switch</h2>
-            <p class="mt-header_info">开关</p>
-        </header>
+        <mt-header :data="headerData"></mt-header>
         <main class="mt-body">
             <div class="group">
                 <div class="group-header">全部开关</div>
@@ -39,7 +36,18 @@
     </div>
 </template>
 <script>
+import mtHeader from '../component/header'
 export default {
-
+    components: {
+        mtHeader,
+    },
+    data(){
+        return {
+            headerData:{
+                title: 'Switch',
+                info: '开关'
+            }
+        }
+    }
 }
 </script>

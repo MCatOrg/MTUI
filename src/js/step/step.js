@@ -33,13 +33,10 @@ import alert from '../alert/alert';
  */
 function step(options){
 
-
-    let tplOptions = {};
-    
-    tplOptions = $.extend({
+    let tplOptions = {
         orient: options.orient || 'horizon',
         options: options.option
-    }, tplOptions);
+    }
     
     $(options.el).append($($.render(chart, tplOptions)));
     

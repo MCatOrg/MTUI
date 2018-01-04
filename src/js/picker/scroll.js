@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making WeUI.js available.
+* Tencent is pleased to support the open source community by making mtui.js available.
 * 
 * Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
 * 
@@ -89,7 +89,7 @@ const getMin = (offset, rowHeight, length) => {
 $.fn.scroll = function (options) {
     const defaults = $.extend({
         items: [],                                  // 数据
-        scrollable: '.weui-picker__content',        // 滚动的元素
+        scrollable: '.mtui-picker__content',        // 滚动的元素
         offset: 3,                                  // 列表初始化时的偏移量（列表初始化时，选项是聚焦在中间的，通过offset强制往上挪3项，以达到初始选项是为顶部的那项）
         rowHeight: 34,                              // 列表每一行的高度
         onChange: $.noop,                           // onChange回调
@@ -97,11 +97,11 @@ $.fn.scroll = function (options) {
         bodyHeight: 7 * 34                          // picker的高度，用于辅助点击滚动的计算
     }, options);
     const items = defaults.items.map((item) => {
-        return `<div class="weui-picker__item${item.disabled ? ' weui-picker__item_disabled' : ''}">${typeof item == 'object' ? item.label : item}</div>`;
+        return `<div class="mtui-picker__item${item.disabled ? ' mtui-picker__item_disabled' : ''}">${typeof item == 'object' ? item.label : item}</div>`;
     }).join('');
     const $this = $(this);
 
-    $this.find('.weui-picker__content').html(items);
+    $this.find('.mtui-picker__content').html(items);
 
     let $scrollable = $this.find(defaults.scrollable);        // 可滚动的元素
     let start;                                                  // 保存开始按下的位置

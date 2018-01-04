@@ -51,6 +51,8 @@ const router = new Router({
     name: 'picker',
     component: function (resolve) {
       require(['./example/fragment/picker.vue'], resolve)
+    }
+  },{
     path: '/input', //List
     name: 'input',
     component: function (resolve) {
@@ -73,6 +75,12 @@ const router = new Router({
     name: 'uploader',
     component: function (resolve) {
       require(['./example/fragment/Uploader.vue'], resolve)
+    }
+  },{
+    path: '/stepper', //stepper
+    name: 'stepper',
+    component: function (resolve) {
+      require(['./example/fragment/stepper.vue'], resolve)
     }
   }]
 })
