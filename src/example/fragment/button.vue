@@ -1,36 +1,36 @@
 <template>
   <div class="button-view">
     <h2 class="lTitle">Button</h2>
-    <button class="mtui-btn mtui-btn_primary">主题按钮</button>
-    <button class="mtui-btn mtui-btn_primary mtui-btn_disabled">主题按钮</button>
+    <button class="mtui-btn mtui-btn__primary">主题按钮</button>
+    <button class="mtui-btn mtui-btn__primary mtui-btn__disabled">主题按钮</button>
 
 
-    <button class="mtui-btn mtui-btn_default">默认按钮</button>
-    <button class="mtui-btn mtui-btn_default mtui-btn_disabled">默认按钮</button>
+    <button class="mtui-btn mtui-btn__default">默认按钮</button>
+    <button class="mtui-btn mtui-btn__default mtui-btn__disabled">默认按钮</button>
 
 
-    <button class="mtui-btn mtui-btn_out">默认按钮</button>
-    <button class="mtui-btn mtui-btn_out mtui-btn_disabled">默认按钮</button>
+    <button class="mtui-btn mtui-btn__out">默认按钮</button>
+    <button class="mtui-btn mtui-btn__out mtui-btn__disabled">默认按钮</button>
 
 
-    <button class="mtui-btn mtui-btn_warn">警告按钮</button>
-    <button class="mtui-btn mtui-btn_warn mtui-btn_disabled">警告按钮</button>
+    <button class="mtui-btn mtui-btn__warn">警告按钮</button>
+    <button class="mtui-btn mtui-btn__warn mtui-btn__disabled">警告按钮</button>
 
 
-    <button class="mtui-btn mtui-btn_mini mtui-btn_primary">小主题按钮</button>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_primary mtui-btn_disabled">小主题按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__primary">小主题按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__primary mtui-btn__disabled">小主题按钮</button>
     <br>
     <br>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_default">默认按钮</button>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_default mtui-btn_disabled">小默认按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__default">默认按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__default mtui-btn__disabled">小默认按钮</button>
     <br>
     <br>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_warn">警告按钮</button>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_warn mtui-btn_disabled">警告按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__warn">警告按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__warn mtui-btn__disabled">警告按钮</button>
     <br>
     <br>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_out">小警告按钮</button>
-    <button class="mtui-btn mtui-btn_mini mtui-btn_out mtui-btn_disabled">小警告按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__out">小警告按钮</button>
+    <button class="mtui-btn mtui-btn__mini mtui-btn__out mtui-btn__disabled">小警告按钮</button>
   </div>
 </template>
 <style>

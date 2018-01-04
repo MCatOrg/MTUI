@@ -51,6 +51,18 @@
           <li>
             <router-link to="/picker">picker(多列选择器)</router-link>
           </li>
+          <li>
+            <router-link to="/actionSheet">ActionSheet</router-link>
+          </li>
+          <li>
+            <router-link to="/dialog">Dialog</router-link>
+          </li>
+          <li>
+            <router-link to="/toast">Toast</router-link>
+          </li>
+          <li>
+            <router-link to="/loading">Loading</router-link>
+          </li>
         </ul>
       </div>
     </main>

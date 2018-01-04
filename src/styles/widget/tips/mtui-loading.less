@@ -1,0 +1,81 @@
+@import "../../base/fn";
+[class*='mtui-loading'] {
+  display: flex;
+  align-items: center;
+}
+
+.mtui-loading_top {
+  width: 1rem;
+  flex-direction: column;
+  .mtui-loading__icon,
+  .mtui-loading__icon:after {
+    width: 0.56rem;
+    height: 0.56rem;
+  }
+}
+
+.mtui-loading_toast {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.09rem;
+  flex-direction: column;
+  justify-content: space-around;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  .mtui-loading__tips {
+    color: #ffffff;
+    margin-bottom: 0.1rem;
+  }
+  .mtui-loading__icon,
+  .mtui-loading__icon:after {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+}
+
+.mtui-loading__icon {
+  display: inline-block;
+  width: 0.34rem;
+  height: 0.34rem;
+  border: 0.04rem solid #cccccc;
+  border-radius: 50%;
+  background-color: transparent;
+  position: relative;
+  margin: 0.15rem;
+  &:after {
+    content: ' ';
+    width: 0.34rem;
+    height: 0.34rem;
+    border-top: 0.04rem solid @mtuiColorPrimary;
+    border-right: 0.04rem solid transparent;
+    border-bottom: 0.04rem solid transparent;
+    border-left: 0.04rem solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: -0.04rem;
+    left: -0.04rem;
+    transform: rotate(0deg);
+    animation: mtuiloading 1s linear infinite;
+  }
+}
+
+@keyframes mtuiloading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mtui-loading__tips {
+  font-size: 0.2rem;
+  color: @mtuiLoadingTipColor;
+  display: inline-block;
+  text-align: center;
+}
