@@ -54,6 +54,18 @@
           <li>
             <router-link to="/stepper">stepper(数量加减器)</router-link>
           </li>
+          <li>
+            <router-link to="/actionSheet">ActionSheet</router-link>
+          </li>
+          <li>
+            <router-link to="/dialog">Dialog</router-link>
+          </li>
+          <li>
+            <router-link to="/toast">Toast</router-link>
+          </li>
+          <li>
+            <router-link to="/loading">Loading</router-link>
+          </li>
         </ul>
       </div>
     </main>
