@@ -29,7 +29,7 @@ body {
 </style>
 <script>
 import $ from "webpack-zepto";
-
+import mtui from "../../js/mtui";
 export default {
   mounted() {
     var tmpl =

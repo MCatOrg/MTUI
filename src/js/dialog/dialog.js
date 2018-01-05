@@ -1,18 +1,3 @@
-/*
-* Tencent is pleased to support the open source community by making WeUI.js available.
-* 
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-* 
-*       http://opensource.org/licenses/MIT
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
 
 import $ from '../util/util';
 import tpl from './dialog.html';
@@ -33,7 +18,7 @@ let _sington;
  * @param {function} [options.buttons[].onClick=$.noop] 按钮的回调
  *
  * @example
- * weui.dialog({
+ * mtui.dialog({
  *     title: 'dialog标题',
  *     content: 'dialog内容',
  *     className: 'custom-classname',
@@ -47,9 +32,9 @@ let _sington;
  *         onClick: function () { alert('确定') }
  *     }]
  * });
- * 
+ *
  * // 主动关闭
- * var $dialog = weui.dialog({...});
+ * var $dialog = mtui.dialog({...});
  * $dialog.hide(function(){
  *      console.log('`dialog` has been hidden');
  * });
@@ -57,7 +42,6 @@ let _sington;
 function dialog(options = {}) {
     if(_sington) return _sington;
 
-    const isAndroid = $.os.android;
     options = $.extend({
         title: null,
         content: '',
@@ -67,19 +51,18 @@ function dialog(options = {}) {
             type: 'primary',
             onClick: $.noop
         }],
-        isAndroid: isAndroid
     }, options);
 
     const $dialogWrap = $($.render(tpl, options));
-    const $dialog = $dialogWrap.find('.weui-dialog');
-    const $mask = $dialogWrap.find('.weui-mask');
+    const $dialog = $dialogWrap.find('.mtui-dialog');
+    const $mask = $dialogWrap.find('.mtui-mask');
 
     function _hide(callback){
         _hide = $.noop; // 防止二次调用导致报错
 
-        $mask.addClass('weui-animate-fade-out');
+        $mask.addClass('mtui-animate-fade-out');
         $dialog
-            .addClass('weui-animate-fade-out')
+            .addClass('mtui-animate-fade-out')
             .on('animationend webkitAnimationEnd', function () {
                 $dialogWrap.remove();
                 _sington = false;
@@ -89,11 +72,11 @@ function dialog(options = {}) {
     function hide(callback){ _hide(callback); }
 
     $('body').append($dialogWrap);
-    // 不能直接把.weui-animate-fade-in加到$dialog，会导致mask的z-index有问题
-    $mask.addClass('weui-animate-fade-in');
-    $dialog.addClass('weui-animate-fade-in');
+    // 不能直接把.mtui-animate-fade-in加到$dialog，会导致mask的z-index有问题
+    $mask.addClass('mtui-animate-fade-in');
+    $dialog.addClass('mtui-animate-fade-in');
 
-    $dialogWrap.on('click', '.weui-dialog__btn', function (evt) {
+    $dialogWrap.on('click', '.mtui-dialog__btn', function (evt) {
         const index = $(this).index();
         if (options.buttons[index].onClick) {
             if (options.buttons[index].onClick.call(this, evt) !== false) hide();

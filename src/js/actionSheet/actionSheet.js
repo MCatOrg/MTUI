@@ -1,18 +1,3 @@
-/*
-* Tencent is pleased to support the open source community by making WeUI.js available.
-* 
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-* 
-*       http://opensource.org/licenses/MIT
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
 
 import $ from '../util/util';
 import tpl from './actionSheet.html';
@@ -34,7 +19,7 @@ let _sington;
  * @param {function=} [options.onClose] actionSheet关闭后的回调
  *
  * @example
- * weui.actionSheet([
+ * mtui.actionSheet([
  *     {
  *         label: '拍照',
  *         onClick: function () {
@@ -65,27 +50,26 @@ let _sington;
  *     }
  * });
  */
-function actionSheet(menus = [], actions = [], options = {}) {
+function actionSheet(title,menus = [], actions = [], options = {}) {
     if(_sington) return _sington;
 
-    const isAndroid = $.os.android;
     options = $.extend({
+        title:title,
         menus: menus,
         actions: actions,
         className: '',
-        isAndroid: isAndroid,
         onClose: $.noop
     }, options);
     const $actionSheetWrap = $($.render(tpl, options));
-    const $actionSheet = $actionSheetWrap.find('.weui-actionsheet');
-    const $actionSheetMask = $actionSheetWrap.find('.weui-mask');
+    const $actionSheet = $actionSheetWrap.find('.mtui-actionsheet');
+    const $actionSheetMask = $actionSheetWrap.find('.mtui-mask');
 
     function _hide(callback){
         _hide = $.noop; // 防止二次调用导致报错
 
-        $actionSheet.addClass(options.isAndroid ? 'weui-animate-fade-out' : 'weui-animate-slide-down');
+        $actionSheet.addClass('mtui-animate-slide-down');
         $actionSheetMask
-            .addClass('weui-animate-fade-out')
+            .addClass('mtui-animate-fade-out')
             .on('animationend webkitAnimationEnd', function () {
                 $actionSheetWrap.remove();
                 _sington = false;
@@ -100,16 +84,16 @@ function actionSheet(menus = [], actions = [], options = {}) {
     // 这里获取一下计算后的样式，强制触发渲染. fix IOS10下闪现的问题
     $.getStyle($actionSheet[0], 'transform');
 
-    $actionSheet.addClass(options.isAndroid ? 'weui-animate-fade-in' : 'weui-animate-slide-up');
+    $actionSheet.addClass('mtui-animate-slide-up');
     $actionSheetMask
-        .addClass('weui-animate-fade-in')
+        .addClass('mtui-animate-fade-in')
         .on('click', function () { hide(); });
-    $actionSheetWrap.find('.weui-actionsheet__menu').on('click', '.weui-actionsheet__cell', function (evt) {
+    $actionSheetWrap.find('.mtui-actionsheet__menu').on('click', '.mtui-actionsheet__cell', function (evt) {
         const index = $(this).index();
         menus[index].onClick.call(this, evt);
         hide();
     });
-    $actionSheetWrap.find('.weui-actionsheet__action').on('click', '.weui-actionsheet__cell', function (evt) {
+    $actionSheetWrap.find('.mtui-actionsheet__action').on('click', '.mtui-actionsheet__cell', function (evt) {
         const index = $(this).index();
         actions[index].onClick.call(this, evt);
         hide();

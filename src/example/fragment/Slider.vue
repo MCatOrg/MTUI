@@ -17,31 +17,16 @@ body {
 }
 </style>
 <script>
-import $ from "webpack-zepto";
+import mtui from "../../js/mtui";
 export default {
   mounted() {
-    var $sliderTrack = $(".mtui-slider__track"),
-      $sliderHandler = $(".mtui-slider__handler"),
-      $sliderValue = $(".mtui-slider__value");
-    var totalLen = $(".mtui-slider__inner").width(),
-      startLeft = 0,
-      startX = 0;
-
-    $sliderHandler
-      .on("touchstart", function(e) {
-        startLeft = parseInt($sliderHandler.css("left")) * totalLen / 100;
-        startX = e.changedTouches[0].clientX;
-      })
-      .on("touchmove", function(e) {
-        var dist = startLeft + e.changedTouches[0].clientX - startX, percent;
-        dist = dist < 0 ? 0 : dist > totalLen ? totalLen : dist;
-        percent = parseInt(dist / totalLen * 100);
-        $sliderTrack.css("width", percent + "%");
-        $sliderHandler.css("left", percent + "%");
-        $sliderValue.text(percent);
-        e.preventDefault();
-      });
-
+    mtui.slider("#slider", {
+      step: 10,        //每次移动的百分比，取值范围 [0-100]
+      defaultValue: 10, //slider的默认百分比值，取值范围 [0-100]
+      onChange: function(percent) {   //slider发生改变时返回对应的百分比，取值范围 [0-100]
+        console.log(percent);
+      }
+    });
   }
 };
 </script>

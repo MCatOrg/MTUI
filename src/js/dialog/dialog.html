@@ -1,13 +1,13 @@
 <div class="<%=className%>">
-    <div class="weui-mask"></div>
-    <div class="weui-dialog <% if(isAndroid){ %> weui-skin_android <% } %>">
+    <div class="mtui-mask"></div>
+    <div class="mtui-dialog">
         <% if(title){ %>
-        <div class="weui-dialog__hd"><strong class="weui-dialog__title"><%=title%></strong></div>
+        <div class="mtui-dialog__hd"><strong class="mtui-dialog__title"><%=title%></strong></div>
         <% } %>
-        <div class="weui-dialog__bd"><%=content%></div>
-        <div class="weui-dialog__ft">
+        <div class="mtui-dialog__bd"><%=content%></div>
+        <div class="mtui-dialog__ft">
             <% for(var i = 0; i < buttons.length; i++){ %>
-            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_<%=buttons[i]['type']%>"><%=buttons[i]['label']%></a>
+            <a href="javascript:;" class="mtui-dialog__btn mtui-dialog__btn_<%=buttons[i]['type']%>"><%=buttons[i]['label']%></a>
             <% } %>
         </div>
     </div>
