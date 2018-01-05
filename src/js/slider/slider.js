@@ -86,10 +86,9 @@ function slider(selector, options = {}) {
             dist = dist < 0 ? 0 : dist > sliderLength ? sliderLength : dist;
 
             percent =  100 * dist / sliderLength;
-
             $sliderTrack.css({ width: percent + '%'});
             $sliderHandler.css({ left: percent + '%'});
-            $sliderValue.text(percent);
+            $sliderValue.html(parseInt(percent));
             options.onChange.call(ele, percent);
         }
 

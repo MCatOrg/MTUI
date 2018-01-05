@@ -30,7 +30,6 @@ function _detect(ua){
     }
 }
 _detect.call($, navigator.userAgent);
-
 objectAssign($.fn, {
     /**
      * 只能是一个 HTMLElement 元素或者 HTMLElement 数组，不支持字符串

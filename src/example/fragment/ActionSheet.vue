@@ -2,24 +2,6 @@
   <div id="actionSheet-view">
     <h2 class="lTitle">ActionSheet</h2>
     <button id="showActionSheet" class="mtui-btn mtui-btn__default">ActionSheet</button>
-
-    <div>
-        <div class="mtui-mask" id="Mask" style="display: none"></div>
-        <div class="mtui-actionsheet" id="Actionsheet">
-            <div class="mtui-actionsheet__title">
-                <p class="mtui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</p>
-            </div>
-            <div class="mtui-actionsheet__menu">
-                <div class="mtui-actionsheet__cell">示例菜单</div>
-                <div class="mtui-actionsheet__cell">示例菜单</div>
-                <div class="mtui-actionsheet__cell">示例菜单</div>
-                <div class="mtui-actionsheet__cell">示例菜单</div>
-            </div>
-            <div class="mtui-actionsheet__action">
-                <div class="mtui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
-            </div>
-        </div>
-    </div>
   </div>
 </template>
 <style>
@@ -28,25 +10,60 @@ body {
 }
 </style>
 <script>
-// import $ from '../../js/util/util';
-import $ from "webpack-zepto";
-
+import mtui from "../../js/mtui";
+// *  主动关闭
+// * var $actionSheet = mtui.actionSheet({...});
+// * $actionSheet.hide(function(){
+// *      console.log('`actionSheet` has been hidden');
+// * });
 export default {
   mounted() {
-    var $iosActionsheet = $("#Actionsheet");
-    var $iosMask = $("#Mask");
-
-    function hideActionSheet() {
-      $iosActionsheet.removeClass("mtui-actionsheet_toggle");
-      $iosMask.hide(200);
-    }
-
-    $iosMask.on("click", hideActionSheet);
-    $("#iosActionsheetCancel").on("click", hideActionSheet);
-    $("#showActionSheet").on("click", function() {
-      $iosActionsheet.addClass("mtui-actionsheet_toggle");
-      $iosMask.show(200);
-    });
+    document
+      .getElementById("showActionSheet")
+      .addEventListener("click", function() {
+        var $actionSheet = mtui.actionSheet(
+          "这是一个标题",      //弹出菜单的title，默认无
+          [                    //弹出菜单的各个选项，数组
+            {
+              label: "拍照",
+              onClick: function() {
+                console.log("拍照");
+              }
+            },
+            {
+              label: "从相册选择",
+              onClick: function() {
+                console.log("从相册选择");
+              }
+            },
+            {
+              label: "其他",
+              onClick: function() {
+                console.log("其他");
+              }
+            }
+          ],
+          [                     //弹出菜单的底下操作按钮，数组
+            {
+              label: "取消",             //选择此项时的回调函数，同时会触发关闭的默认回调函数
+              onClick: function() {
+                console.log("取消");
+              }
+            }
+          ],
+          {                                 //弹出菜单的其它配置项
+            className: "Actionsheet-box",     //容器的class名
+            onClose: function() {           //关闭时的默认回调函数
+              console.log("关闭");
+            }
+          }
+        );
+        setTimeout(function(){
+          $actionSheet.hide(function(){
+            console.log('主动关闭')
+          })
+        },2000)
+      });
   }
 };
 </script>
