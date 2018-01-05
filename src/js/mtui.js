@@ -18,7 +18,6 @@ import slider from './slider/slider';
 
 import step from './step/step';
 
-console.log('OKle ')
 
 export default {
     dialog,
