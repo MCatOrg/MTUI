@@ -68,6 +68,14 @@
           </li>
         </ul>
       </div>
+      <div class="group">
+        <h3 class="group-header">导航相关</h3>
+        <ul class="group-body">
+          <li>
+            <router-link to="/tabs">Tabs(工具栏)</router-link>
+          </li>
+        </ul>
+      </div>
     </main>
   </div>
 </template>

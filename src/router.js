@@ -106,6 +106,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/Loading.vue'], resolve)
     }
+  },{
+    path: '/tabs', //tabs
+    name: 'tabs',
+    component: function (resolve) {
+      require(['./example/fragment/tabs.vue'], resolve)
+    }
   }]
 })
 

@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making WeUI.js available.
+* Tencent is pleased to support the open source community by making mtui.js available.
 * 
 * Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
 * 
@@ -28,8 +28,8 @@ let _sington;
  * @param {string=} options.className 自定义类名
  *
  * @example
- * weui.toast('操作成功', 3000);
- * weui.toast('操作成功', {
+ * mtui.toast('操作成功', 3000);
+ * mtui.toast('操作成功', {
  *     duration: 3000,
  *     className: 'custom-classname',
  *     callback: function(){ console.log('close') }
@@ -57,17 +57,17 @@ function toast(content = '', options = {}) {
     }, options);
 
     const $toastWrap = $($.render(tpl, options));
-    const $toast = $toastWrap.find('.weui-toast');
-    const $mask = $toastWrap.find('.weui-mask');
+    const $toast = $toastWrap.find('.mtui-toast');
+    const $mask = $toastWrap.find('.mtui-mask');
 
     $('body').append($toastWrap);
-    $toast.addClass('weui-animate-fade-in');
-    $mask.addClass('weui-animate-fade-in');
+    $toast.addClass('mtui-animate-fade-in');
+    $mask.addClass('mtui-animate-fade-in');
 
     setTimeout(() => {
-        $mask.addClass('weui-animate-fade-out');
+        $mask.addClass('mtui-animate-fade-out');
         $toast
-            .addClass('weui-animate-fade-out')
+            .addClass('mtui-animate-fade-out')
             .on('animationend webkitAnimationEnd', function () {
                 $toastWrap.remove();
                 _sington = false;

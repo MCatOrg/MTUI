@@ -17,6 +17,7 @@ import gallery from './gallery/gallery';
 import slider from './slider/slider';
 
 import step from './step/step';
+import stepper from './stepper/stepper';
 
 console.log('OKle ')
 
@@ -36,5 +37,6 @@ export default {
     datePicker,
     gallery,
     slider,
-    step
+    step,
+    stepper
 };

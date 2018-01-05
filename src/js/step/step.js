@@ -1,6 +1,5 @@
 import $ from '../util/util';
 import chart from './step.html';
-import alert from '../alert/alert';
 
 /**
  * 
