@@ -1,9 +1,12 @@
-<template>
-  <div id="accordion-view">
-    <h2 class="lTitle">Accordion</h2>
-
-    <div class="mtui-cells__title">折叠面板</div>
-    <ul class="mtui-cells_collapse">
+import $ from '../util/util';
+/**
+ * Accordion 折叠面板 可以在折叠面板中放置任何内容；折叠面板默认收缩，若希望某个面板默认展开，只需要在包含.mtui-collapse类的li节点上，增加.mtui-collapse__active类即可
+ * @param {string} selector Accordion的selector
+ *
+ * @example
+ * #### html
+ * ```html
+ * <ul class="mtui-cells_collapse" id="Accordion">
       <li class="mtui-cells mtui-collapse mtui-collapse__active">
         <a href="#" class="mtui-cell mtui-collapse__title">
           <div class="mtui-cell__bd">一级列表</div>
@@ -34,23 +37,25 @@
         </div>
       </li>
     </ul>
-  </div>
-</template>
-<style>
-body {
-  background-color: #fff;
+ *
+ * #### js
+ * ```javascript
+ * mtui.accordion("#Accordion")
+ */
+
+function accordion(selector) {
+  const $collapse__title = $(selector).find('.mtui-collapse__title');
+  $collapse__title.forEach((ele)=>{
+    $(ele).on('click',function(){
+      var li = this.parentNode;
+      if(li.className.indexOf('mtui-collapse__active')===-1){
+        $(li.parentNode).find('.mtui-collapse').removeClass('mtui-collapse__active')
+        $(li).addClass('mtui-collapse__active');
+      }else{
+        $(li).removeClass('mtui-collapse__active');
+      }
+    });
+  })
 }
-</style>
-<script>
-// import $ from '../../js/util/util';
-import $ from "webpack-zepto";
-import mtui from "../../js/mtui";
 
-export default {
-  mounted() {
-    console.log(mtui)
-    mtui.accordion(".mtui-cells_collapse");
-  }
-};
-</script>
-
+export default accordion;
