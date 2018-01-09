@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making WeUI.js available.
+* Tencent is pleased to support the open source community by making mtui.js available.
 * 
 * Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
 * 
@@ -55,7 +55,7 @@ let temp = {}; // temp 存在上一次滑动的位置
  *
  * @example
  * // 单列picker
- * weui.picker([
+ * mtui.picker([
  * {
  *     label: '飞机票',
  *     value: 0,
@@ -88,7 +88,7 @@ let temp = {}; // temp 存在上一次滑动的位置
  *
  * @example
  * // 多列picker
- * weui.picker([
+ * mtui.picker([
  *     {
  *         label: '1',
  *         value: '1'
@@ -123,7 +123,7 @@ let temp = {}; // temp 存在上一次滑动的位置
  *
  * @example
  * // 级联picker
- * weui.picker([
+ * mtui.picker([
  * {
  *     label: '飞机票',
  *     value: 0,
@@ -226,15 +226,15 @@ function picker() {
         // 这里获取一下计算后的样式，强制触发渲染. fix IOS10下闪现的问题
         $.getStyle($picker[0], 'transform');
 
-        $picker.find('.weui-mask').addClass('weui-animate-fade-in');
-        $picker.find('.weui-picker').addClass('weui-animate-slide-up');
+        $picker.find('.mtui-mask').addClass('mtui-animate-fade-in');
+        $picker.find('.mtui-picker').addClass('mtui-animate-slide-up');
     }
     function _hide(callback){
         _hide = $.noop; // 防止二次调用导致报错
 
-        $picker.find('.weui-mask').addClass('weui-animate-fade-out');
-        $picker.find('.weui-picker')
-            .addClass('weui-animate-slide-down')
+        $picker.find('.mtui-mask').addClass('mtui-animate-fade-out');
+        $picker.find('.mtui-picker')
+            .addClass('mtui-animate-slide-down')
             .on('animationend webkitAnimationEnd', function () {
                 $picker.remove();
                 _sington = false;
@@ -266,7 +266,7 @@ function picker() {
                 console.warn('Picker has not match defaultValue: ' + defaultVal);
             }
         }
-        $picker.find('.weui-picker__group').eq(level).scroll({
+        $picker.find('.mtui-picker__group').eq(level).scroll({
             items: items,
             temp: lineTemp[level],
             onChange: function (item, index) {
@@ -293,11 +293,11 @@ function picker() {
                      * 2. 所以，使用者的传进来onChange回调应该在最后一个子列表滑动时再call
                      */
                     if (item.children && item.children.length > 0) {
-                        $picker.find('.weui-picker__group').eq(level + 1).show();
+                        $picker.find('.mtui-picker__group').eq(level + 1).show();
                         !isMulti && scroll(item.children, level + 1); // 不是多列的情况下才继续处理children
                     } else {
                         //如果子列表test不通过，子孙列表都隐藏。
-                        const $items = $picker.find('.weui-picker__group');
+                        const $items = $picker.find('.mtui-picker__group');
                         $items.forEach((ele, index) => {
                             if (index > level) {
                                 $(ele).hide();
@@ -320,7 +320,7 @@ function picker() {
         groups += groupTpl;
     }
 
-    $picker.find('.weui-picker__bd').html(groups);
+    $picker.find('.mtui-picker__bd').html(groups);
     show();
 
     if (isMulti) {
@@ -332,9 +332,9 @@ function picker() {
     }
 
     $picker
-        .on('click', '.weui-mask', function () { hide(); })
-        .on('click', '.weui-picker__action', function () { hide(); })
-        .on('click', '#weui-picker-confirm', function () {
+        .on('click', '.mtui-mask', function () { hide(); })
+        .on('click', '.mtui-picker__action', function () { hide(); })
+        .on('click', '#mtui-picker-confirm', function () {
             defaults.onConfirm(result);
         });
 
@@ -357,7 +357,7 @@ function picker() {
  *
  *@example
  * // 示例1：
- * weui.datePicker({
+ * mtui.datePicker({
  *     start: 1990,
  *     end: 2000,
  *     defaultValue: [1991, 6, 9],
@@ -371,7 +371,7 @@ function picker() {
  * });
  *
  * // 示例2：
- * weui.datePicker({
+ * mtui.datePicker({
  *      start: new Date(), // 从今天开始
  *      end: 2030,
  *      defaultValue: [2020, 6, 9],
@@ -385,7 +385,7 @@ function picker() {
  *  });
  *
  *  // 示例3：
- * weui.datePicker({
+ * mtui.datePicker({
  *      start: new Date(), // 从今天开始
  *      end: 2030,
  *      cron: '* * 0,6',  // 每逢周日、周六
@@ -399,7 +399,7 @@ function picker() {
  *  });
  *
  *  // 示例4：
- * weui.datePicker({
+ * mtui.datePicker({
  *      start: new Date(), // 从今天开始
  *      end: 2030,
  *      cron: '1-10 * *',  // 每月1日-10日
@@ -483,7 +483,7 @@ function datePicker(options) {
     return picker(date, defaults);
 }
 
-export default {
+export {
     picker,
     datePicker
 };

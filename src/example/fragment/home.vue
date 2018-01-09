@@ -52,6 +52,9 @@
             <router-link to="/picker">picker(多列选择器)</router-link>
           </li>
           <li>
+            <router-link to="/stepper">stepper(数量加减器)</router-link>
+          </li>
+          <li>
             <router-link to="/actionSheet">ActionSheet</router-link>
           </li>
           <li>
@@ -62,6 +65,14 @@
           </li>
           <li>
             <router-link to="/loading">Loading</router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3 class="group-header">导航相关</h3>
+        <ul class="group-body">
+          <li>
+            <router-link to="/tabs">Tabs(工具栏)<i class="mtui-icon-search"></i></router-link>
           </li>
         </ul>
       </div>

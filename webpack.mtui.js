@@ -31,6 +31,13 @@ module.exports = {
           use: ['css-loader', 'postcss-loader','less-loader'],
           fallback: 'style-loader',
         }),
+      },
+      {
+        test: /\.(ttf)$/,
+        loader: 'url-loader',
+        options:{
+          limit:204800
+        }
       }
     ]
   },

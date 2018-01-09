@@ -76,6 +76,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/Uploader.vue'], resolve)
     }
+  },{
+    path: '/stepper', //stepper
+    name: 'stepper',
+    component: function (resolve) {
+      require(['./example/fragment/stepper.vue'], resolve)
+    }
   }, {
     path: '/actionSheet', //ActionSheet
     name: 'actionSheet',
@@ -99,6 +105,12 @@ const router = new Router({
     name: 'loading',
     component: function (resolve) {
       require(['./example/fragment/Loading.vue'], resolve)
+    }
+  },{
+    path: '/tabs', //tabs
+    name: 'tabs',
+    component: function (resolve) {
+      require(['./example/fragment/tabs.vue'], resolve)
     }
   }]
 })

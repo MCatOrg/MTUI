@@ -3,10 +3,7 @@
 </style>
 <template>
     <div class="container">
-        <header class="mt-header">
-            <h2 class="mt-header_title">Grid</h2>
-            <p class="mt-header_info">九宫格</p>
-        </header>
+        <mt-header :data="headerData"></mt-header>
         <main class="mt-body">
             <div class="group">
                 <div class="group-header">九宫格示例</div>
@@ -67,7 +64,18 @@
     </div>
 </template>
 <script>
+import mtHeader from '../component/header'
 export default {
-
+    components: {
+        mtHeader,
+    },
+    data(){
+        return {
+            headerData:{
+                title: 'Grid',
+                info: '九宫格'
+            }
+        }
+    }
 }
 </script>

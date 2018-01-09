@@ -266,6 +266,23 @@ objectAssign($.fn, {
       $element.setAttribute(arguments[0], arguments[1]);
     });
     return this;
+  },
+  removeAttr: function(){
+    if(typeof arguments[0] == 'object'){
+        for(let i of arguments[0]){
+            this[0].removeAttribute(i);
+        }
+        return this;
+    }
+
+    if(typeof arguments[0] == 'string' && arguments.length < 2){
+        return this[0].removeAttribute(arguments[0]);
+    }
+
+    for(let i of arguments){
+        this[0].removeAttribute(i);
+    }
+    return this;
   }
 });
 

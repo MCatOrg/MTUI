@@ -12,15 +12,17 @@ import searchBar from './searchBar/searchBar';
 import tab from './tab/tab';
 import form from './form/form';
 import uploader from './uploader/uploader';
-import pickerObj from './picker/picker';
+import {picker,datePicker} from './picker/picker';
 import gallery from './gallery/gallery';
 import slider from './slider/slider';
 import accordion from './Accordion/Accordion';
 
 import step from './step/step';
+import stepper from './stepper/stepper';
+import tabs from './tabs/tabs';
 
-const picker =pickerObj.picker;
-const datePicker = pickerObj.datePicker;
+// const picker =pickerObj.picker;
+// const datePicker = pickerObj.datePicker;
 export default {
     dialog,
     alert,
@@ -38,5 +40,7 @@ export default {
     gallery,
     slider,
     step,
-    accordion
+    accordion,
+    stepper,
+    tabs
 };

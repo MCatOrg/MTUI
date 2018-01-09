@@ -3,10 +3,7 @@
 </style>
 <template>
     <div class="container">
-        <header class="mt-header">
-            <h2 class="mt-header_title">Badge</h2>
-            <p class="mt-header_info">徽章</p>
-        </header>
+        <mt-header :data="headerData"></mt-header>
         <main class="mt-body">
             <div class="group">
                 <div class="group-header">所有徽章样式</div>
@@ -108,7 +105,18 @@
     </div>
 </template>
 <script>
+import mtHeader from '../component/header'
 export default {
-
+    components: {
+        mtHeader,
+    },
+    data(){
+        return {
+            headerData:{
+                title: 'Badge',
+                info: '徽章'
+            }
+        }
+    }
 }
 </script>
