@@ -20,7 +20,6 @@ import step from './step/step';
 import stepper from './stepper/stepper';
 import tabs from './tabs/tabs';
 
-console.log('OKle ')
 
 export default {
     dialog,
