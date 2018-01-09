@@ -8,19 +8,19 @@
             <div class="group">
                 <div class="group-header">单选列表</div>
                 <div class="group-body">
-                    <button class="mtui-btn mtui-btn_primary" @click="picker">单选列表</button>
+                    <button class="mtui-btn mtui-btn__primary" @click="picker">单选列表</button>
                 </div>
             </div>
             <div class="group">
                 <div class="group-header">多列列表</div>
                 <div class="group-body">
-                    <button class="mtui-btn mtui-btn_primary" @click="pickers">多列列表</button>
+                    <button class="mtui-btn mtui-btn__primary" @click="pickers">多列列表</button>
                 </div>
             </div>
             <div class="group">
                 <div class="group-header">时间列表</div>
                 <div class="group-body">
-                    <button class="mtui-btn mtui-btn_primary" @click="dataPicker">时间列表</button>
+                    <button class="mtui-btn mtui-btn__primary" @click="dataPicker">时间列表</button>
                 </div>
             </div>
         </main>

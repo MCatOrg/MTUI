@@ -1,5 +1,10 @@
 <style lang="less">
-
+// .step-chart_light{display: inline-block; background-color: #88b0e4; opacity: .6; transform: translate(-10%,-10%); border-radius: 50%;}
+// @keyframes myfirst
+// {
+//     from {width: 100%; height: 100%}
+//     to {width: 150%; height: 150%}
+// }
 </style>
 <template>
     <div class="container">
@@ -17,7 +22,9 @@
                         </div>
                         <div class="mtui-step active">
                             <div class="mtui-step_chart">
-                                <span class="step-chart_dot"></span>
+                                <span class="step-chart_dot">
+                                    <span class="step-chart_light"></span>
+                                </span>
                                 <span class="step-chart_line"></span>
                             </div>
                             <p class="mtui-step_text">步骤二</p>
@@ -39,7 +46,7 @@
                     <div class="mtui-steps vertical">
                         <div class="mtui-step active">
                             <div class="mtui-step_chart">
-                                <span class="step-chart_dot"></span>
+                                <span class="step-chart_dot"><span class="step-chart_light"></span></span>
                                 <span class="step-chart_line"></span>
                             </div>
                             <div class="mtui-step_cont">

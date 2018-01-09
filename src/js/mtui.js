@@ -18,6 +18,7 @@ import slider from './slider/slider';
 
 import step from './step/step';
 import stepper from './stepper/stepper';
+import tabs from './tabs/tabs';
 
 console.log('OKle ')
 
@@ -38,5 +39,6 @@ export default {
     gallery,
     slider,
     step,
-    stepper
+    stepper,
+    tabs
 };
