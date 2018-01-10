@@ -113,7 +113,7 @@ const router = new Router({
       require(['./example/fragment/tabs.vue'], resolve)
     }
   },{
-    path: '/searchbar', //search
+    path: '/searchbar', //searchbar
     name: 'searchbar',
     component: function (resolve) {
       require(['./example/fragment/searchbar.vue'], resolve)
