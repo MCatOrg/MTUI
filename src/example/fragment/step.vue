@@ -23,7 +23,7 @@
                         <div class="mtui-step active">
                             <div class="mtui-step_chart">
                                 <span class="step-chart_dot">
-                                    <span class="step-chart_light"></span>
+                                    <span class="step-chart_animate back"></span>
                                 </span>
                                 <span class="step-chart_line"></span>
                             </div>
@@ -46,7 +46,7 @@
                     <div class="mtui-steps vertical">
                         <div class="mtui-step active">
                             <div class="mtui-step_chart">
-                                <span class="step-chart_dot"><span class="step-chart_light"></span></span>
+                                <span class="step-chart_dot"><span class="step-chart_animate opacity"></span></span>
                                 <span class="step-chart_line"></span>
                             </div>
                             <div class="mtui-step_cont">
@@ -81,6 +81,12 @@
                 <div class="group-header">使用js渲染垂直Step</div>
                 <div class="group-body">
                     <div id="test2"></div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="group-header">使用js渲染垂直Step</div>
+                <div class="group-body">
+                    <div id="test3"></div>
                 </div>
             </div>
 
@@ -134,6 +140,29 @@ export default {
                     title: '步骤三',
                     cont: 'info info info info',
                     status: true
+                }
+            ]
+        })
+        mtui.step({
+            el: '#test3',
+            orient: 'vertical',
+            option: [
+                {
+                    title: '步骤一',
+                    cont: 'info info info info info info info',
+                    status: true,
+                },{
+                    title: '步骤二',
+                    cont: 'info info info info info',
+                    status: true
+                },{
+                    title: '步骤三',
+                    cont: 'info info info info',
+                    status: false
+                },{
+                    title: '步骤四',
+                    cont: 'info info info info',
+                    status: false
                 }
             ]
         })

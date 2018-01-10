@@ -74,6 +74,9 @@
           <li>
             <router-link to="/tabs">Tabs(工具栏)</router-link>
           </li>
+          <li>
+            <router-link to="/popover">Popover(弹出菜单)</router-link>
+          </li>
         </ul>
       </div>
     </main>

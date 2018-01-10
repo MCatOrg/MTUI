@@ -112,6 +112,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/tabs.vue'], resolve)
     }
+  },{
+    path: '/popover', //tabs
+    name: 'popover',
+    component: function (resolve) {
+      require(['./example/fragment/popover.vue'], resolve)
+    }
   }]
 })
 

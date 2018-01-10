@@ -19,6 +19,7 @@ import slider from './slider/slider';
 import step from './step/step';
 import stepper from './stepper/stepper';
 import tabs from './tabs/tabs';
+import popover from './popover/popover';
 
 
 export default {
@@ -39,5 +40,6 @@ export default {
     slider,
     step,
     stepper,
-    tabs
+    tabs,
+    popover
 };
