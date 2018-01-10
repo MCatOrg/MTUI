@@ -72,7 +72,7 @@
         <h3 class="group-header">导航相关</h3>
         <ul class="group-body">
           <li>
-            <router-link to="/tabs">Tabs(工具栏)</router-link>
+            <router-link to="/tabs">Tabs(工具栏)<i class="mtui-icon-search"></i></router-link>
           </li>
           <li>
             <router-link to="/popover">Popover(弹出菜单)</router-link>

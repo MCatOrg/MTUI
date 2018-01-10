@@ -1,18 +1,3 @@
-/*
-* Tencent is pleased to support the open source community by making WeUI.js available.
-* 
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-* 
-*       http://opensource.org/licenses/MIT
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
 
 import $ from '../util/util';
 import dialog from '../dialog/dialog';
@@ -27,18 +12,18 @@ import dialog from '../dialog/dialog';
  * @param {array=} options.buttons 按钮配置项，详情参考dialog
  *
  * @example
- * weui.alert('普通的alert');
- * weui.alert('带回调的alert', function(){ console.log('ok') });
- * var alertDom = weui.alert('手动关闭的alert', function(){
+ * mtui.alert('普通的alert');
+ * mtui.alert('带回调的alert', function(){ console.log('ok') });
+ * var alertDom = mtui.alert('手动关闭的alert', function(){
  *     return false; // 不关闭弹窗，可用alertDom.hide()来手动关闭
  * });
- * weui.alert('自定义标题的alert', { title: '自定义标题' });
- * weui.alert('带回调的自定义标题的alert', function(){
+ * mtui.alert('自定义标题的alert', { title: '自定义标题' });
+ * mtui.alert('带回调的自定义标题的alert', function(){
  *    console.log('ok')
  * }, {
  *    title: '自定义标题'
  * });
- * weui.alert('自定义按钮的alert', {
+ * mtui.alert('自定义按钮的alert', {
  *     title: '自定义按钮的alert',
  *     buttons: [{
  *         label: 'OK',
@@ -48,9 +33,9 @@ import dialog from '../dialog/dialog';
  * });
  *
  * // 多次使用
- * var alert = weui.alert('hello');
+ * var alert = mtui.alert('hello');
  * alert.hide(function(){
- *     weui.alert('world');
+ *     mtui.alert('world');
  * });
  */
 function alert(content = '', yes = $.noop, options) {

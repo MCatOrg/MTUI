@@ -3,6 +3,13 @@
   .mtui-cell__ft {
       padding-left: @mtuiCellLeft;
   }
+  .mtui-icon-checked {
+    &:before {
+        display: block;
+        color: #fff;
+        font-size: 0.16rem;
+    }
+  }
 }
 
 .mtui-check {
@@ -11,11 +18,7 @@
       &:checked {
           & + .mtui-icon-checked {
               &:before {
-                  display: block;
-                  content: '\F00C';
                   color: @mtuiColorPrimary;
-                  font-size: 0.16rem;
-                  font-family: FontAwesome;
               }
           }
       }
