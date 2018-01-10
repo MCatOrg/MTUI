@@ -112,6 +112,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/tabs.vue'], resolve)
     }
+  },{
+    path: '/searchbar', //search
+    name: 'searchbar',
+    component: function (resolve) {
+      require(['./example/fragment/searchbar.vue'], resolve)
+    }
   }]
 })
 

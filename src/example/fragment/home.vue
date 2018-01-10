@@ -74,6 +74,9 @@
           <li>
             <router-link to="/tabs">Tabs(工具栏)<i class="mtui-icon-search"></i></router-link>
           </li>
+          <li>
+            <router-link to="/searchbar">SearchBar(搜索栏)<i class="mtui-icon-search"></i></router-link>
+          </li>
         </ul>
       </div>
     </main>
