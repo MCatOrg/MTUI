@@ -77,6 +77,9 @@
           <li>
             <router-link to="/searchbar">SearchBar(搜索栏)<i class="mtui-icon-search"></i></router-link>
           </li>
+          <li>
+            <router-link to="/popover">Popover(弹出菜单)</router-link>
+          </li>
         </ul>
       </div>
     </main>
@@ -93,12 +96,14 @@ export default {
 };
 </script>
 <style lang="less">
-body{background-color: #F5F5F5;}
+body {
+  background-color: #f5f5f5;
+}
 </style>
 
 
 <style lang="less" scoped>
-@import '../../styles/base/fn';
+@import "../../styles/base/fn";
 header {
   display: flex;
   align-items: center;
@@ -109,13 +114,15 @@ header {
   }
 }
 main {
-  padding-left: .3rem;
-  padding-right: .3rem;
-  .group-body{font-size: .26rem;}
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  .group-body {
+    font-size: 0.26rem;
+  }
   li {
-    line-height: .6rem;
+    line-height: 0.6rem;
     list-style: none;
-    padding-left: .4rem;
+    padding-left: 0.4rem;
   }
 }
 </style>

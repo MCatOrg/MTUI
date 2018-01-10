@@ -118,6 +118,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/searchbar.vue'], resolve)
     }
+  },{
+    path: '/popover', //tabs
+    name: 'popover',
+    component: function (resolve) {
+      require(['./example/fragment/popover.vue'], resolve)
+    }
   }]
 })
 
