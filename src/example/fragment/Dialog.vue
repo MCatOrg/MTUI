@@ -5,7 +5,7 @@
     <button class="mtui-btn mtui-btn__default" id="showDialog2">Dialog样式二</button>
   </div>
 </template>
-<style>
+<style scoped>
 body {
   background-color: #fff;
 }

@@ -4,7 +4,7 @@
     <button id="showActionSheet" class="mtui-btn mtui-btn__default">ActionSheet</button>
   </div>
 </template>
-<style>
+<style scoped>
 body {
   background-color: #fff;
 }

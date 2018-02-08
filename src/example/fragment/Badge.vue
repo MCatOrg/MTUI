@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="less" scoped>
 .showBadge{padding-left: .3rem; padding-bottom: .3rem;}
 </style>
 <template>

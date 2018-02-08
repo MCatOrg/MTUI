@@ -5,7 +5,7 @@
     <button class="mtui-btn mtui-btn__default" id="showToast2">带回调函数调用法</button>
   </div>
 </template>
-<style>
+<style scoped>
 body {
   background-color: #fff;
 }

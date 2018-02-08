@@ -9,7 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: './js/',
     filename: 'mtui.min.js',
-    library: 'mtui',
+    library: {
+      root: "mtui",
+      amd: "mtui",
+      commonjs: "mtui"
+    },
     libraryTarget: 'umd',
     umdNamedDefine: true,
     libraryExport: "default"
@@ -28,15 +32,15 @@ module.exports = {
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
-          use: ['css-loader', 'postcss-loader','less-loader'],
+          use: ['css-loader', 'postcss-loader', 'less-loader'],
           fallback: 'style-loader',
         }),
       },
       {
         test: /\.(ttf)$/,
         loader: 'url-loader',
-        options:{
-          limit:204800
+        options: {
+          limit: 204800
         }
       }
     ]
