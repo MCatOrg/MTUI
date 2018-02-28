@@ -29,14 +29,32 @@ function popover(options){
     $obj.on('click',function(){
 
         $('body').append($popover)
+        let top = 0,
+            left = 0;
 
-        let tb_top = this.offsetTop + this.offsetHeight + 2,
-            lr_top = this.offsetTop + this.offsetHeight / 2,
-            bottom = window.outerHeight - this.offsetTop + 2,
-            right = window.outerWidth - this.offsetLeft + 6,
-            tb_left = this.offsetLeft + ( this.offsetWidth / 2 ),
-            lr_left = this.offsetLeft + this.offsetWidth + 6
+        function computeTop(doc){
+            top += doc.offsetTop;
+            if(doc.offsetParent != null) return computeTop(doc.offsetParent)
+            else return top;
+        }
+        function computeLeft(doc){
+            left += doc.offsetLeft;
+            if(doc.offsetParent != null) return computeLeft(doc.offsetParent)
+            else return left;
+        }
+        
+
+        let cTop = computeTop(this),
+            cLeft = computeLeft(this),
+            tb_top = cTop + this.offsetHeight + 2,
+            lr_top = cTop + this.offsetHeight / 2,
+            bottom = window.outerHeight - cTop + 2,
+            right = window.outerWidth - cLeft + 6,
+            tb_left = cLeft + this.offsetWidth / 2,
+            lr_left = cLeft + this.offsetWidth + 6
             ;
+            console.log(this.offsetLeft)
+            console.log(cLeft)
         
         if(position == 'bottom' || position == 'top'){
             if(position == 'bottom') $popover.css({'display':'block','top': tb_top + 'px','left':tb_left + 'px'});

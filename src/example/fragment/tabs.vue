@@ -1,5 +1,5 @@
-<style lang="less" scoped>
-
+<style lang="less">
+.red{color: red; border-color: red !important;}
 </style>
 <template>
     <div class="container">
@@ -90,6 +90,7 @@ export default {
 
         mtui.tabs({
             el: '.mtTabs',
+            color: '.red',
             list: [
                 {
                     text: '选项1',
@@ -109,6 +110,7 @@ export default {
         mtui.tabs({
             el: '.mtTabs2',
             active: 2,
+            color: '.red',
             list: [
                 {
                     text: '选项1',

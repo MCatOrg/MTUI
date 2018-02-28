@@ -59,9 +59,24 @@ export default {
     mounted(){
         var code = 'left';
         $('.test').on('click',function(){
+            let top = 0,
+                left = 0;
+
+
+            function computeTop(doc){
+                top += doc.offsetTop
+                if(doc.offsetParent != null) computeTop(doc.offsetParent)
+                else return top;
+            }
+            function computeLeft(doc){
+                left += doc.offsetLeft
+                if(doc.offsetParent != null) computeTop(doc.offsetParent)
+                else return left;
+            }
+
             let tb_top = this.offsetTop + this.offsetHeight + 2,
                 lr_top = this.offsetTop + this.offsetHeight / 2,
-                bottom = window.outerHeight - this.offsetTop + 2,
+                bottom = window.outerHeight - computeTop(this) + 2,
                 right = window.outerWidth - this.offsetLeft + 6,
                 tb_left = this.offsetLeft + ( this.offsetWidth / 2 ),
                 lr_left = this.offsetLeft + this.offsetWidth + 6,
@@ -105,7 +120,7 @@ export default {
 
         mtui.popover({
             el: '.test2',
-            position: 'bottom',
+            position: 'top',
             list: [
                 {
                     text: '选项一',

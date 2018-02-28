@@ -40,7 +40,7 @@ function step(options){
         }
         return {
             orient: options.orient || 'horizon',
-            animate: options.animate || 'opacity',
+            animate: options.animate == undefined ? 'opacity' : options.animate,
             options: options.option
         }
     }

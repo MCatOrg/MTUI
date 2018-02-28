@@ -7,6 +7,7 @@ import tabsOverflow from './tabsOverflow.html';
     options = {
         el: '#box',         //tabs容器，必须
         active: 0,          //初始是否选中，以list的索引为参考，默认0
+        color: 'red',       //样式类名、样式值
         list: [
             {
                 text: '选项1',    //tabs选项的文字
@@ -19,6 +20,8 @@ import tabsOverflow from './tabsOverflow.html';
 function tabs(options){
     var $container = $(options.el || 'body'),
         tabList = options.list,
+        colorClass = /^\./.test(options.color) ? options.color.replace('.','') : 'active',
+        colorValue = /^(#|rgb|rgba)/.test(options.color) ? options.color : false,
         listLen = tabList.length,
         active = options.active ? options.active > listLen - 1 ? listLen - 1 : options.active : 0,
         inputID = listLen > 5 ? options.el + Math.random() * 100 : false,
@@ -36,7 +39,9 @@ function tabs(options){
         return {
             inputID: inputID,
             active: active,
-            tabList: tabList
+            tabList: tabList,
+            colorClass: colorClass,
+            colorValue: colorValue,
         };
     }
     
@@ -51,8 +56,8 @@ function tabs(options){
     }
 
     $tab.on('click',function(){
-        $tab.removeClass('active');
-        $(this).addClass('active');
+        $tab.removeClass(colorClass);
+        $(this).addClass(colorClass);
         if($line){
             $line.css({'left' : $(this).index() * 1.5 + 0.15 + 'rem'});
         }

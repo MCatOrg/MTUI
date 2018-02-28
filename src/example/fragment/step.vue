@@ -5,6 +5,7 @@
 //     from {width: 100%; height: 100%}
 //     to {width: 150%; height: 150%}
 // }
+.red{color: red;}
 </style>
 <template>
     <div class="container">
@@ -127,6 +128,7 @@ export default {
         mtui.step({
             el: '#test2',
             orient: 'vertical',
+            color: '.red',
             option: [
                 {
                     title: '步骤一',
@@ -146,6 +148,7 @@ export default {
         mtui.step({
             el: '#test3',
             orient: 'vertical',
+            animate: 'back',
             option: [
                 {
                     title: '步骤一',
