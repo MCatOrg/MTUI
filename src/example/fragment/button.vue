@@ -33,7 +33,7 @@
     <button class="mtui-btn mtui-btn__mini mtui-btn__out mtui-btn__disabled">小警告按钮</button>
   </div>
 </template>
-<style>
+<style scoped>
 .button-view{
   background-color: #f5f5f5;
   padding-bottom: 0.2rem;

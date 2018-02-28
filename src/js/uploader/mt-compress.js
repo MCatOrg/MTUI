@@ -823,7 +823,6 @@ function compressor(opt) {
     console.log('调用微信');
     if (WxVision > '6.5.0' && !IsWinWechat) {
       console.log('调用微信接口......');
-      document.querySelector('.'+opt.inputBoxClass).getElementsByTagName('input')[0].setAttribute('type','text') //取出原生取图
       wxcompress(opt);
     } else {
       console.log('调用原生接口1');

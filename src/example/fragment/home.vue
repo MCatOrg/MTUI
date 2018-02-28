@@ -6,81 +6,100 @@
     </header>
     <main>
       <div class="group">
-        <h3 class="group-header">表单组件</h3>
-        <ul class="group-body">
-          <li>
-            <router-link to="/button">按钮</router-link>
-          </li>
-          <li>
-            <router-link to="/list">List</router-link>
-          </li>
-          <li>
-            <router-link to="/switch">switch</router-link>
-          </li>
-          <li>
-          <router-link to="/input">Input</router-link>
-          </li>
-          <li>
-          <router-link to="/accordion">Accordion</router-link>
-          </li>
-          <li>
-          <router-link to="/slider">Slider</router-link>
-          </li>
-          <li>
-          <router-link to="/uploader">Uploader</router-link>
-          </li>
-        </ul>
+        <div class="mtui-cells__title">表单组件</div>
+        <div class="mtui-cells">
+          <router-link to="/button" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Button</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/list" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">List</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/switch" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Switch</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/input" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Input</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/accordion" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Accordion</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/slider" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Slider</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/uploader" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Uploader</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+        </div>
       </div>
       <div class="group">
-        <h3 class="group-header">基本组件</h3>
-        <ul class="group-body">
-          <li>
-            <router-link to="/Badge">Badge(徽章)</router-link>
-          </li>
-          <li>
-            <router-link to="/grid">Grid(九宫格)</router-link>
-          </li>
-          <li>
-            <router-link to="/step">step(步骤)</router-link>
-          </li>
-        </ul>
+        <div class="mtui-cells__title">基本组件</div>
+        <div class="mtui-cells">
+          <router-link to="/Badge" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Badge(徽章)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/grid" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Grid(九宫格)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/step" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">step(步骤)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+        </div>
       </div>
       <div class="group">
-        <h3 class="group-header">操作反馈</h3>
-        <ul class="group-body">
-          <li>
-            <router-link to="/picker">picker(多列选择器)</router-link>
-          </li>
-          <li>
-            <router-link to="/stepper">stepper(数量加减器)</router-link>
-          </li>
-          <li>
-            <router-link to="/actionSheet">ActionSheet</router-link>
-          </li>
-          <li>
-            <router-link to="/dialog">Dialog</router-link>
-          </li>
-          <li>
-            <router-link to="/toast">Toast</router-link>
-          </li>
-          <li>
-            <router-link to="/loading">Loading</router-link>
-          </li>
-        </ul>
+        <div class="mtui-cells__title">操作反馈</div>
+        <div class="mtui-cells">
+          <router-link to="/picker" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">picker(多列选择器)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/stepper" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">stepper(数量加减器)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/actionSheet" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">ActionSheet</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/dialog" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Dialog</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/toast" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Toast</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/loading" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Loading</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+        </div>
       </div>
       <div class="group">
-        <h3 class="group-header">导航相关</h3>
-        <ul class="group-body">
-          <li>
-            <router-link to="/tabs">Tabs(工具栏)<i class="mtui-icon-search"></i></router-link>
-          </li>
-          <li>
-            <router-link to="/searchbar">SearchBar(搜索栏)<i class="mtui-icon-search"></i></router-link>
-          </li>
-          <li>
-            <router-link to="/popover">Popover(弹出菜单)</router-link>
-          </li>
-        </ul>
+        <div class="mtui-cells__title">导航相关</div>
+        <div class="mtui-cells">
+          <router-link to="/tabs" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Tabs(工具栏)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/searchbar" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">SearchBar(搜索栏)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+          <router-link to="/popover" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">Popover(弹出菜单)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
+        </div>
       </div>
     </main>
   </div>
