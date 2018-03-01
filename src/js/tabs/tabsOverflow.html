@@ -8,13 +8,13 @@
         <div class="mtui-tab_box">
             <% for(var i=0; i < tabList.length; i++){ %>
                 <% if(i == active){ %>
-                    <div class="mtui-tab active"><%= tabList[i].text %>
+                    <div class="mtui-tab <%= colorClass %>"><%= tabList[i].text %>
                 <% }else{ %>
                     <div class="mtui-tab"><%= tabList[i].text %>
                 <% } %>
                 </div>
             <% } %>
         </div>
-        <div class="mtui-tab_line"></div>
+        <div class="mtui-tab_line <%= colorClass  %>"></div>
     </div>
 </div>
