@@ -25,84 +25,77 @@ function popover(options){
         $mask = $popover.find('.mtui-mask'),
         $popoverItem = $popover.find('.popover-list')
         ;
-
-    $obj.on('click',function(){
-
-        $('body').append($popover)
-        let top = 0,
-            left = 0;
-
-        function computeTop(doc){
-            top += doc.offsetTop;
-            if(doc.offsetParent != null) return computeTop(doc.offsetParent)
-            else return top;
-        }
-        function computeLeft(doc){
-            left += doc.offsetLeft;
-            if(doc.offsetParent != null) return computeLeft(doc.offsetParent)
-            else return left;
-        }
+    for(let i of $obj){
+        if(!i.hasPopver){
+            i.hasPopver = true;
+            $(i).on('click',function(ev){
         
-
-        let cTop = computeTop(this),
-            cLeft = computeLeft(this),
-            tb_top = cTop + this.offsetHeight + 2,
-            lr_top = cTop + this.offsetHeight / 2,
-            bottom = window.outerHeight - cTop + 2,
-            right = window.outerWidth - cLeft + 6,
-            tb_left = cLeft + this.offsetWidth / 2,
-            lr_left = cLeft + this.offsetWidth + 6
-            ;
-            console.log(this.offsetLeft)
-            console.log(cLeft)
+                $('body').append($popover)
         
-        if(position == 'bottom' || position == 'top'){
-            if(position == 'bottom') $popover.css({'display':'block','top': tb_top + 'px','left':tb_left + 'px'});
-            else{
-                $popover.css({'display':'block','bottom': bottom + 'px','left': tb_left + 'px'})
-            }
-            
+                let cTop = ev.clientY - ev.offsetY,
+                    cLeft = ev.clientX - ev.offsetX,
+                    tb_top = cTop + this.offsetHeight + 2,
+                    lr_top = cTop + this.offsetHeight / 2,
+                    bottom = window.outerHeight - cTop + 2,
+                    right = window.outerWidth - cLeft + 6,
+                    tb_left = cLeft + this.offsetWidth / 2,
+                    lr_left = cLeft + this.offsetWidth + 6
+                    ;
+                
+                if(position == 'bottom' || position == 'top'){
+                    if(position == 'bottom') $popover.css({'display':'block','top': tb_top + 'px','left':tb_left + 'px'});
+                    else{
+                        $popover.css({'display':'block','bottom': bottom + 'px','left': tb_left + 'px'})
+                    }
+                    
+        
+                    //判断是否靠边
+                    if(tb_left < $popover[0].offsetWidth / 2){       //左靠边
+                        $('.popover-lists').css({'transform':'translateX(50%)','left': -15 + 'px'})
+                    }else if(window.outerWidth - tb_left < $popover[0].offsetWidth / 2){     //右靠边
+                        $('.popover-lists').css({'transform':'translateX(-50%)','left': 15 + 'px'})
+                    }
+                }
+                else if(position == 'right' || position == 'left'){
+                    if(position == 'right') $popover.css({'display':'block','top': lr_top + 'px','left':lr_left + 'px'})
+                    else $popover.css({'display':'block','top': lr_top + 'px','right':right + 'px'})
+        
+                    //判断是否靠边
+                    if(lr_top < $popover[0].offsetHeight / 2){       //上靠边
+                        $('.popover-lists').css({'transform':'translateY(50%)','top': -15 + 'px'})
+                    }else if(window.outerHeight - lr_top < $popover[0].offsetHeight / 2){     //下靠边
+                        $('.popover-lists').css({'transform':'translateX(-50%)','top': 15 + 'px'})
+                    }
+                }
+        
+                function hidePopover(){
+                    $popover.removeClass('active');
+                    setTimeout(function(){
+                        $popover.remove();
+                    },300)
+                }
+        
+                $popover.addClass('active')
 
-            //判断是否靠边
-            if(tb_left < $popover[0].offsetWidth / 2){       //左靠边
-                $('.popover-lists').css({'transform':'translateX(50%)','left': -15 + 'px'})
-            }else if(window.outerWidth - tb_left < $popover[0].offsetWidth / 2){     //右靠边
-                $('.popover-lists').css({'transform':'translateX(-50%)','left': 15 + 'px'})
-            }
+                $mask[0].addEventListener('touchmove', function(ev) {
+                    let oEvent = ev || event;
+                    oEvent.preventDefault();
+                }, false);
+
+                $mask[0].onclick = function(){
+                    hidePopover()
+                }
+        
+                for(let i of $popoverItem){
+                    i.onclick = function(){
+                        hidePopover()
+                        if(options.click) options.click(options.list[$(this).index()])
+                    }
+                }
+        
+            })
         }
-        else if(position == 'right' || position == 'left'){
-            if(position == 'right') $popover.css({'display':'block','top': lr_top + 'px','left':lr_left + 'px'})
-            else $popover.css({'display':'block','top': lr_top + 'px','right':right + 'px'})
-
-            //判断是否靠边
-            if(lr_top < $popover[0].offsetHeight / 2){       //上靠边
-                $('.popover-lists').css({'transform':'translateY(50%)','top': -15 + 'px'})
-            }else if(window.outerHeight - lr_top < $popover[0].offsetHeight / 2){     //下靠边
-                $('.popover-lists').css({'transform':'translateX(-50%)','top': 15 + 'px'})
-            }
-        }
-
-        function hidePopover(){
-            $popover.removeClass('active');
-            setTimeout(function(){
-                $popover.remove();
-            },300)
-        }
-
-        $popover.addClass('active')
-
-        $mask[0].onclick = function(){
-            hidePopover()
-        }
-
-        for(let i of $popoverItem){
-            i.onclick = function(){
-                hidePopover()
-                if(options.click) options.click(options.list[$(this).index()])
-            }
-        }
-
-    })
+    }
     
     return $popover[0];
 

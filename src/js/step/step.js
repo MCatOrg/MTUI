@@ -41,7 +41,8 @@ function step(options){
         return {
             orient: options.orient || 'horizon',
             animate: options.animate == undefined ? 'opacity' : options.animate,
-            options: options.option
+            options: options.option,
+            color: options.color || ''
         }
     }
     
