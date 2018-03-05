@@ -5,8 +5,8 @@
 //     from {width: 100%; height: 100%}
 //     to {width: 150%; height: 150%}
 // }
-.red{color: red;}
-.bg-red{background-color: red;}
+.red{color: red !important;}
+.bg-red{background-color: red !important;}
 </style>
 <template>
     <div class="container">
@@ -114,7 +114,7 @@ export default {
         mtui.step({
             el: '#test',
             textColor: '.red',
-            dotColor: '.red',
+            dotColor: '.bg-red',
             option: [
                 {
                     cont: '步骤一',
@@ -131,6 +131,8 @@ export default {
         mtui.step({
             el: '#test2',
             orient: 'vertical',
+            textColor: '.red',
+            dotColor: '.bg-red',
             option: [
                 {
                     title: '步骤一',
@@ -151,6 +153,8 @@ export default {
             el: '#test3',
             orient: 'vertical',
             animate: 'back',
+            textColor: '.red',
+            dotColor: '.bg-red',
             option: [
                 {
                     title: '步骤一',

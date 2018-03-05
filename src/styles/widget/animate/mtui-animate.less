@@ -55,3 +55,39 @@
 .mtui-animate-fade-out {
     animation: fadeOut ease .3s forwards;
 }
+
+@keyframes slideTopIn {
+    from {transform: translate3d(0, -100%, 0);}
+    to {transform: translate3d(0, 0, 0);}
+}
+.mtui-animate-slide-top-in {animation: slideTopIn ease .3s forwards;}
+
+@keyframes slideTopOut {
+    from {transform: translate3d(0, 0, 0);}
+    to {transform: translate3d(0, -100%, 0);}
+}
+.mtui-animate-slide-top-out {animation: slideTopOut ease .3s forwards;}
+
+@keyframes slideLeftIn {
+    from {transform: translate3d(-100%, 0, 0);}
+    to {transform: translate3d(0, 0, 0);}
+}
+.mtui-animate-slide-left-in {animation: slideLeftIn ease .3s forwards;}
+
+@keyframes slideLeftOut {
+    from {transform: translate3d(0, 0, 0);}
+    to {transform: translate3d(-100%, 0, 0);}
+}
+.mtui-animate-slide-left-out {animation: slideLeftOut ease .3s forwards;}
+
+@keyframes slideRightIn {
+    from {transform: translate3d(100%, 0, 0);}
+    to {transform: translate3d(0, 0, 0);}
+}
+.mtui-animate-slide-right-in {animation: slideRightIn ease .3s forwards;}
+
+@keyframes slideRightOut {
+    from {transform: translate3d(0, 0, 0);}
+    to {transform: translate3d(100%, 0, 0);}
+}
+.mtui-animate-slide-right-out {animation: slideRightOut ease .3s forwards;}

@@ -21,6 +21,7 @@ import step from './step/step';
 import stepper from './stepper/stepper';
 import tabs from './tabs/tabs';
 import popover from './popover/popover';
+import popup from './popup/popup';
 
 // const picker =pickerObj.picker;
 // const datePicker = pickerObj.datePicker;
@@ -44,5 +45,6 @@ export default {
     accordion,
     stepper,
     tabs,
-    popover
+    popover,
+    popup
 };
