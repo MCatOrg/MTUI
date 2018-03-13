@@ -61,7 +61,7 @@
                 <div class="group-header">初始值为10，增加减少区间为2,最小值为8</div>
                 <div class="group-body_pad3">
                     <div class="stepperBox s2">
-                        <div class="mtui-stepper" mt-value="10" mt-interval="2" mt-min="8"></div>
+                        <div class="mtui-stepper" mt-index="10" mt-value="10" mt-interval="2" mt-min="8"></div>
                     </div>
                 </div>
             </div>
@@ -93,10 +93,11 @@ export default {
         }
     },
     mounted(){
-        mtui.stepper('.s')
-        mtui.stepper('.s1')
-        mtui.stepper('.s2')
-        mtui.stepper('.s3')
+        mtui.stepper({
+            onChange: function(value){
+                console.log(value)
+            }
+        })
     },
     methods:{
     }

@@ -34,27 +34,35 @@ import chart from './step.html';
  */
 function step(options){
 
+    let textColor = !!options.textColor ? options.textColor.replace(".","") : 'active',
+        dotColor = !!options.dotColor ? options.dotColor.replace(".","") : false,
+        orient = !!options.orient ? options.orient == 'vertical' ? 'vertical' : 'horizon' : 'horizon';
+
     function setOption(){
         for(let i=0; i<options.option.length; i++){
             if(!options.option[i].status && i != 0) if(options.option[i-1].status) options.option[i-1].animate = true;
         }
         return {
-            orient: options.orient || 'horizon',
+            orient: orient,
             animate: options.animate == undefined ? 'opacity' : options.animate,
             options: options.option,
-            color: options.color || ''
+            textColor: textColor,
         }
     }
-    
 
-    // let tplOptions = {
-    //     orient: options.orient || 'horizon',
-    //     options: options.option
-    // }
+    let $step = $($.render(chart, setOption()));
 
-    console.log(setOption())
-    
-    $(options.el).append($($.render(chart, setOption())));
+    if(dotColor){
+        $step.find(".mtui-step."+textColor+" .step-chart_dot").addClass(dotColor)
+        $step.find(".mtui-step."+textColor+" .step-chart_line").addClass(dotColor).css({"opacity":'.6'})
+        $step.find(".mtui-step."+textColor+" .step-chart_animate").addClass(dotColor)
+    }
+
+    if(orient == 'vertical') $step.find(".mtui-step."+textColor+" .step-cont_title").addClass(textColor)
+
+
+
+    $(options.el).append($step);
     
 }
 export default step;

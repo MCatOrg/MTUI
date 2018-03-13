@@ -2,7 +2,7 @@
     <% if(orient === 'horizon'){ %>
         <% for(var i = 0; i < options.length; i++){ %>
             <% if(options[i].status){ %>
-                <div class="mtui-step active">
+                <div class="mtui-step <%= textColor %>">
             <% }else{ %>
                 <div class="mtui-step">
             <% } %>
@@ -20,7 +20,7 @@
     <% }else{ %>
         <% for(var i = 0; i < options.length; i++){ %>
             <% if(options[i].status){ %>
-                <div class="mtui-step active">
+                <div class="mtui-step <%= textColor %>">
             <% }else{ %>
                 <div class="mtui-step">
             <% } %>

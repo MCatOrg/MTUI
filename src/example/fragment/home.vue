@@ -53,6 +53,10 @@
             <div class="mtui-cell__bd">step(步骤)</div>
             <div class="mtui-cell__ft"></div>
           </router-link>
+          <router-link to="/popup" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">popup(弹窗)</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
         </div>
       </div>
       <div class="group">

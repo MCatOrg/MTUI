@@ -130,6 +130,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/popover.vue'], resolve)
     }
+  },{
+    path: '/popup', //popup
+    name: 'popup',
+    component: function (resolve) {
+      require(['./example/fragment/popup.vue'], resolve)
+    }
   }]
 })
 
