@@ -45,6 +45,7 @@ function dialog(options = {}) {
     options = $.extend({
         title: null,
         content: '',
+        prompt:false,  //是否带输入框的弹窗
         className: '',
         buttons: [{
             label: '确定',
@@ -52,7 +53,7 @@ function dialog(options = {}) {
             onClick: $.noop
         }],
     }, options);
-
+    console.log(options)
     const $dialogWrap = $($.render(tpl, options));
     const $dialog = $dialogWrap.find('.mtui-dialog');
     const $mask = $dialogWrap.find('.mtui-mask');
@@ -79,7 +80,12 @@ function dialog(options = {}) {
     $dialogWrap.on('click', '.mtui-dialog__btn', function (evt) {
         const index = $(this).index();
         if (options.buttons[index].onClick) {
+          if(options.prompt){
+            console.log($("#prompt").val())
+            if (options.buttons[index].onClick.call(this, $("#prompt").val(),options.buttons[index].type) !== false) hide();
+          }else{
             if (options.buttons[index].onClick.call(this, evt) !== false) hide();
+          }
         } else {
             hide();
         }

@@ -4,7 +4,13 @@
         <% if(title){ %>
         <div class="mtui-dialog__hd"><strong class="mtui-dialog__title"><%=title%></strong></div>
         <% } %>
-        <div class="mtui-dialog__bd"><%=content%></div>
+        <% if(prompt){ %>
+          <div class="mtui-dialog__bd">
+            <input type="text" id="prompt" class="mtui-prompt">
+          </div>
+        <% }else{ %>
+          <div class="mtui-dialog__bd"><%=content%></div>
+        <% }%>
         <div class="mtui-dialog__ft">
             <% for(var i = 0; i < buttons.length; i++){ %>
             <a href="javascript:;" class="mtui-dialog__btn mtui-dialog__btn_<%=buttons[i]['type']%>"><%=buttons[i]['label']%></a>

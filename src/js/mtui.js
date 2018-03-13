@@ -4,6 +4,7 @@ import '../styles/mtui.less';
 import dialog from './dialog/dialog';
 import alert from './alert/alert';
 import confirm from './confirm/confirm';
+import prompt from './prompt/prompt';
 import toast from './toast/toast';
 import loading from './loading/loading';
 import actionSheet from './actionSheet/actionSheet';
@@ -44,5 +45,6 @@ export default {
     accordion,
     stepper,
     tabs,
-    popover
+    popover,
+    prompt
 };

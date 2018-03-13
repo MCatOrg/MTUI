@@ -119,6 +119,12 @@ const router = new Router({
       require(['./example/fragment/searchbar.vue'], resolve)
     }
   },{
+    path: '/prompt', //searchbar
+    name: 'prompt',
+    component: function (resolve) {
+      require(['./example/fragment/prompt.vue'], resolve)
+    }
+  },{
     path: '/popover', //tabs
     name: 'popover',
     component: function (resolve) {
