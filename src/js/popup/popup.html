@@ -2,9 +2,9 @@
     <div class="mtui-mask"></div>
     <div class="popup <%= position %>">
     <% if(showClose){ %>
-        <div class="popup-content hasClose">
+        <div class="popup-content hasClose <%= bgColor.replace('.','') %>">
     <% }else{ %>
-        <div class="popup-content">
+        <div class="popup-content <%= bgColor.replace('.','') %>">
     <% } %>
             <div class="popup-content_html"></div>
         </div>

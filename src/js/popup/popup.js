@@ -18,12 +18,14 @@ function popup(options = {}) {
 
     let width = options.width ? options.width.toString().indexOf('px') > -1 ? options.width : options.width.toString().indexOf('%') > -1 ? options.width : options.width + '%' : false,
         height = options.height ? options.height.toString().indexOf('px') > -1 ? options.height : options.height.toString().indexOf('%') > -1 ? options.height : options.height + '%' : false,
-        position = options.position || 'bottom';
+        position = options.position || 'bottom',
+        bgColor = options.bgColor || '';
 
     options = $.extend({
         position: position,
         showClose: options.showClose || false,
-        closeLabel: options.closeLabel || '关闭'
+        closeLabel: options.closeLabel || '关闭',
+        bgColor: bgColor,
     }, options);
 
     const $popupWrap = $($.render(chart, options));

@@ -2,9 +2,10 @@ import $ from '../util/util';
 import chart from './stepper.html';
 import toast from '../toast/toast';
 
-function stepper(selector='body'){
+function stepper(options = {}){
 
-    var $aSteppers = $(selector).find('.mtui-stepper')
+    var $aSteppers = $(options.box || 'body').find('.mtui-stepper'),
+        onChange = options.onChange
         ;
 
     //获取所有mt-自定义属性
@@ -98,39 +99,58 @@ function stepper(selector='body'){
             }
         }
         for(let i=0; i<$aSteppers.length; i++){
-            interval = Number(mtAttr[i].interval) || 1;
-            max = Number(mtAttr[i].max) || false;
-            min = Number(mtAttr[i].min) || interval;
-            tplOption = {
-                value: mtAttr[i].value || 1
+            if($aSteppers[i].innerHTML == ''){
+                interval = Number(mtAttr[i].interval) || 1;
+                max = Number(mtAttr[i].max) || false;
+                min = Number(mtAttr[i].min) || interval;
+                tplOption = {
+                    value: mtAttr[i].value || 1
+                }
+                
+                $tpl = $($.render(chart, tplOption));
+    
+                $reduce = $tpl.find('.mtui-stepper_reduce'),
+                $add = $tpl.find('.mtui-stepper_add'),
+                $input = $tpl.find('.mtui-stepper_input');
+                
+                //初始化时如果input的数量等于最小数量，减功能键将变灰
+                if($input.val() <= min) $reduce.addClass('disable')
+    
+                //将min，max，interval加入$reduce和$add
+                $reduce[0].mtmin = min;
+                $reduce[0].mtmax = max;
+                $reduce[0].mtinterval = interval;
+                $add[0].mtmin = min;
+                $add[0].mtmax = max;
+                $add[0].mtinterval = interval;
+                $input[0].mtmin = min;
+                $input[0].mtmax = max;
+                $input[0].mtinterval = interval;
+    
+                $reduce[0].addEventListener('click',reduce)
+                $reduce[0].addEventListener('click',function(e){
+                    if(onChange) onChange({
+                        index: mtAttr[i].index || i,
+                        value: e.target.nextElementSibling.value
+                    })
+                })
+                $add[0].addEventListener('click',add)
+                $add[0].addEventListener('click',function(e){
+                    if(onChange) onChange({
+                        index: mtAttr[i].index || i,
+                        value: e.target.previousElementSibling.value
+                    })
+                })
+                $input[0].addEventListener('input',input)
+                $input[0].addEventListener('input',function(e){
+                    if(onChange) onChange({
+                        index: mtAttr[i].index || i,
+                        value: e.target.value
+                    })
+                })
+    
+                $($aSteppers[i]).append($tpl);
             }
-            
-            $tpl = $($.render(chart, tplOption));
-
-            $reduce = $tpl.find('.mtui-stepper_reduce'),
-            $add = $tpl.find('.mtui-stepper_add'),
-            $input = $tpl.find('.mtui-stepper_input');
-            
-            //初始化时如果input的数量等于最小数量，减功能键将变灰
-            if($input.val() <= min) $reduce.addClass('disable')
-
-            //将min，max，interval加入$reduce和$add
-            $reduce[0].mtmin = min;
-            $reduce[0].mtmax = max;
-            $reduce[0].mtinterval = interval;
-            $add[0].mtmin = min;
-            $add[0].mtmax = max;
-            $add[0].mtinterval = interval;
-            $input[0].mtmin = min;
-            $input[0].mtmax = max;
-            $input[0].mtinterval = interval;
-
-            $reduce.on('click',reduce)
-            $add.on('click',add)
-            $input.on('input',input)
-
-            $($aSteppers[i]).append($tpl);
-
         }
     }
 
