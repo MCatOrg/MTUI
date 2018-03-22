@@ -90,6 +90,10 @@
             <div class="mtui-cell__bd">Prompt</div>
             <div class="mtui-cell__ft"></div>
           </router-link>
+          <router-link to="/confirm" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">confirm</div>
+            <div class="mtui-cell__ft"></div>
+          </router-link>
         </div>
       </div>
       <div class="group">

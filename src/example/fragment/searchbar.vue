@@ -14,8 +14,8 @@
             </label>
         </form>
         <a href="javascript:" class="mtui-search-bar__cancel-btn" id="searchCancel">取消</a>
-    </div>
-       <div class="mtui-cells searchbar-result" id="searchResult">
+      </div>
+        <div class="mtui-cells searchbar-result" id="searchResult">
             <div class="mtui-cell mtui-cell_access">
                 <div class="mtui-cell__bd mtui-cell_primary">
                     <p>实时搜索文本</p>
@@ -40,65 +40,24 @@
   </div>
 </template>
 <script>
-  import $ from "webpack-zepto";
-  import mtHeader from '../component/header'
-  export default{
-    components: {
-        mtHeader,
-    },
-    data(){
-        return {
-            headerData:{
-                title: '搜索导航',
-                info: 'searchbar'
-            }
-        }
-    },
-    mounted (){
-        $(function(){
-        var $searchBar = $('#searchBar'),
-            $searchResult = $('#searchResult'),
-            $searchText = $('#searchText'),
-            $searchInput = $('#searchInput'),
-            $searchClear = $('#searchClear'),
-            $searchCancel = $('#searchCancel');
-            hideSearchResult();
-        function hideSearchResult(){
-            $searchResult.hide();
-            $searchInput.val('');
-        }
-        function cancelSearch(){
-            hideSearchResult();
-            $searchBar.removeClass('mtui-search-bar_focusing');
-            $searchText.show();
-        }
-
-        $searchText.on('click', function(){
-            $searchBar.addClass('mtui-search-bar_focusing');
-            $searchInput.focus();
-        });
-        $searchInput
-            .on('blur', function () {
-                if(!this.value.length) cancelSearch();
-            })
-            .on('input', function(){
-                if(this.value.length) {
-                    $searchResult.show();
-                } else {
-                    $searchResult.hide();
-                }
-            })
-        ;
-        $searchClear.on('click', function(){
-            hideSearchResult();
-            $searchInput.focus();
-        });
-        $searchCancel.on('click', function(){
-            cancelSearch();
-            $searchInput.blur();
-        });
-    });
-    }
+import $ from "webpack-zepto";
+import mtHeader from "../component/header";
+import mtui from "../../js/mtui";
+export default {
+  components: {
+    mtHeader
+  },
+  data() {
+    return {
+      headerData: {
+        title: "搜索导航",
+        info: "searchbar"
+      }
+    };
+  },
+  mounted() {
+    mtui.searchBar("#searchBar");
   }
+};
 </script>
 

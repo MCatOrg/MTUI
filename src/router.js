@@ -136,6 +136,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/popup.vue'], resolve)
     }
+  },{
+    path: '/confirm', //popup
+    name: 'confirm',
+    component: function (resolve) {
+      require(['./example/fragment/confirm.vue'], resolve)
+    }
   }]
 })
 

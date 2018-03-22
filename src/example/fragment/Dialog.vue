@@ -37,7 +37,8 @@ export default {
             label: "主操作",
             type: "primary",     //按钮的类型 [primary, default,..] 默认 primary .mtui-dialog__btn_primary
             onClick: function() {
-              console.log("主操作");
+              mtui.confirm('hello')
+              console.log(mtui.confirm);
             }
           }
         ]

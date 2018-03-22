@@ -1,25 +1,6 @@
-/*
-* Tencent is pleased to support the open source community by making mtui available.
-* 
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-* 
-*       http://opensource.org/licenses/MIT
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
 
 @import "../../base/fn";
 
-.mtui-cell_switch{
-    padding-top: (@mtuiCellHeight - @mtuiSwitchHeight) / 2;
-    padding-bottom: (@mtuiCellHeight - @mtuiSwitchHeight) / 2;
-}
 .mtui-switch{
     -webkit-appearance: none;
     appearance: none;
@@ -27,11 +8,11 @@
 .mtui-switch,
 .mtui-switch-cp__box{
     position: relative;
-    width: 52px;
+    width: 0.52rem;
     height: @mtuiSwitchHeight;
-    border: 1px solid #DFDFDF;
+    border: 0.01rem solid #DFDFDF;
     outline: 0;
-    border-radius: 16px;
+    border-radius: 0.16rem;
     box-sizing: border-box;
     background-color: #DFDFDF;
     transition: background-color .1s, border .1s;
@@ -41,9 +22,9 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 50px;
-        height: @mtuiSwitchHeight - 2;
-        border-radius: 15px;
+        width: 0.5rem;
+        height: @mtuiSwitchHeight - 0.02;
+        border-radius: 0.15rem;
         background-color: #FDFDFD;
         transition:transform .35s cubic-bezier(0.45, 1, 0.4, 1);
     }
@@ -52,11 +33,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: @mtuiSwitchHeight - 2;
-        height: @mtuiSwitchHeight - 2;
-        border-radius: 15px;
+        width: @mtuiSwitchHeight - 0.02;
+        height: @mtuiSwitchHeight - 0.02;
+        border-radius: 0.15rem;
         background-color: #FFFFFF;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0.01rem 0.03rem rgba(0, 0, 0, 0.4);
         transition:transform .35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
     }
 }
@@ -68,14 +49,14 @@
         transform: scale(0);
     }
     &:after {
-        transform: translateX(20px);
+        transform: translateX(0.2rem);
     }
 }
 
 // 兼容IE Edge的版本
 .mtui-switch-cp__input{
     position: absolute;
-    left: -9999px;
+    left: -99.99rem;
 }
 .mtui-switch-cp__box{
     display: block;

@@ -1,4 +1,3 @@
-
 import $ from '../util/util';
 import tpl from './dialog.html';
 
@@ -40,59 +39,63 @@ let _sington;
  * });
  */
 function dialog(options = {}) {
-    if(_sington) return _sington;
+  console.log('_sington',_sington)
+  if (_sington) return _sington;
+  console.log(22222)
 
-    options = $.extend({
-        title: null,
-        content: '',
-        prompt:false,  //是否带输入框的弹窗
-        className: '',
-        buttons: [{
-            label: '确定',
-            type: 'primary',
-            onClick: $.noop
-        }],
-    }, options);
-    console.log(options)
-    const $dialogWrap = $($.render(tpl, options));
-    const $dialog = $dialogWrap.find('.mtui-dialog');
-    const $mask = $dialogWrap.find('.mtui-mask');
+  options = $.extend({
+    title: null,
+    content: '',
+    prompt: false, //是否带输入框的弹窗
+    className: '',
+    buttons: [{
+      label: '确定',
+      type: 'primary',
+      onClick: $.noop
+    }],
+  }, options);
+  const $dialogWrap = $($.render(tpl, options));
+  const $dialog = $dialogWrap.find('.mtui-dialog');
+  const $mask = $dialogWrap.find('.mtui-mask');
 
-    function _hide(callback){
-        _hide = $.noop; // 防止二次调用导致报错
+  function _hide(callback) {
+    _hide = $.noop; // 防止二次调用导致报错
+    $mask.addClass('mtui-animate-fade-out');
+    $dialog
+      .addClass('mtui-animate-fade-out')
+      .on('animationend webkitAnimationEnd', function () {
+        $dialogWrap.remove();
+        _sington = false;
+        callback && callback();
+      });
+  }
 
-        $mask.addClass('mtui-animate-fade-out');
-        $dialog
-            .addClass('mtui-animate-fade-out')
-            .on('animationend webkitAnimationEnd', function () {
-                $dialogWrap.remove();
-                _sington = false;
-                callback && callback();
-            });
+  function hide(callback) {
+    _hide(callback);
+  }
+
+  $('body').append($dialogWrap);
+  // 不能直接把.mtui-animate-fade-in加到$dialog，会导致mask的z-index有问题
+  $mask.addClass('mtui-animate-fade-in');
+  $dialog.addClass('mtui-animate-fade-in');
+
+  $dialogWrap.on('click', '.mtui-dialog__btn', function (evt) {
+    const index = $(this).index();
+    _sington = false;  //解决在对话框的回调中再调用对话框无效的问题
+    if (options.buttons[index].onClick) {
+      if (options.prompt) {
+        console.log($("#prompt").val())
+        if (options.buttons[index].onClick.call(this, $("#prompt").val(), options.buttons[index].type) !== false) hide();
+      } else {
+        if (options.buttons[index].onClick.call(this, evt) !== false) hide();
+      }
+    } else {
+      hide();
     }
-    function hide(callback){ _hide(callback); }
+  });
 
-    $('body').append($dialogWrap);
-    // 不能直接把.mtui-animate-fade-in加到$dialog，会导致mask的z-index有问题
-    $mask.addClass('mtui-animate-fade-in');
-    $dialog.addClass('mtui-animate-fade-in');
-
-    $dialogWrap.on('click', '.mtui-dialog__btn', function (evt) {
-        const index = $(this).index();
-        if (options.buttons[index].onClick) {
-          if(options.prompt){
-            console.log($("#prompt").val())
-            if (options.buttons[index].onClick.call(this, $("#prompt").val(),options.buttons[index].type) !== false) hide();
-          }else{
-            if (options.buttons[index].onClick.call(this, evt) !== false) hide();
-          }
-        } else {
-            hide();
-        }
-    });
-
-    _sington = $dialogWrap[0];
-    _sington.hide = hide;
-    return _sington;
+  _sington = $dialogWrap[0];
+  _sington.hide = hide;
+  return _sington;
 }
 export default dialog;
