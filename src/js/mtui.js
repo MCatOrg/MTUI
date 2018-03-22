@@ -23,6 +23,7 @@ import stepper from './stepper/stepper';
 import tabs from './tabs/tabs';
 import popover from './popover/popover';
 import popup from './popup/popup';
+import showBigPicture from './showBigPicture/showBigPicture';
 
 // const picker =pickerObj.picker;
 // const datePicker = pickerObj.datePicker;
@@ -48,5 +49,6 @@ export default {
     tabs,
     popover,
     prompt,
-    popup
+    popup,
+    showBigPicture
 };

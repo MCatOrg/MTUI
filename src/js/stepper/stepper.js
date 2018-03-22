@@ -61,7 +61,7 @@ function stepper(options = {}){
                 ;
             if(this.mtmax){                  //设置最大值
                 if(addQuantity > this.mtmax){
-                    toast('数量已达到库存量了',2000)
+                    toast('数量已达到最大值了')
                 }else{
                     $(input).val(addQuantity)
                 }
@@ -82,7 +82,7 @@ function stepper(options = {}){
                 }
             }else if(quantity < this.mtmin){
                 this.onblur = null;
-                toast('数量不能少于'+this.mtmin,2000);
+                toast('数量不能少于'+this.mtmin);
                 $(this).val(this.mtmin)
                 $(this.previousElementSibling).addClass('disable')
             }else if(quantity == this.mtmin){
@@ -91,7 +91,7 @@ function stepper(options = {}){
                 this.onblur = null;
                 if(this.mtmax){
                     if(quantity > this.mtmax) {
-                        toast('数量已达到库存量了',2000);
+                        toast('数量已达到最大值了');
                         $(this).val(this.mtmax)
                     }
                 }

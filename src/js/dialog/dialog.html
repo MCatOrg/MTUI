@@ -6,7 +6,11 @@
         <% } %>
         <% if(prompt){ %>
           <div class="mtui-dialog__bd">
-            <input type="text" id="prompt" class="mtui-prompt">
+            <% if(textarea){ %>
+              <textarea id="prompt" class="mtui-prompt_textarea"></textarea>
+            <% }else{ %>
+              <input type="text" id="prompt" class="mtui-prompt">
+            <% } %>
           </div>
         <% }else{ %>
           <div class="mtui-dialog__bd"><%=content%></div>

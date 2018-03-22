@@ -136,6 +136,12 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/popup.vue'], resolve)
     }
+  },{
+    path: '/showBigPicture', //展示大图
+    name: 'showBigPicture',
+    component: function (resolve) {
+      require(['./example/fragment/showBigPicture.vue'], resolve)
+    }
   }]
 })
 

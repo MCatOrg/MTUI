@@ -46,6 +46,7 @@ function dialog(options = {}) {
         title: null,
         content: '',
         prompt:false,  //是否带输入框的弹窗
+        textarea:false, //带输入框的弹窗是input还是textarea
         className: '',
         buttons: [{
             label: '确定',
