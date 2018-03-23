@@ -57,7 +57,7 @@
   font-size: .28rem;
   padding-left: .3rem;
   display: none;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 0.01rem solid #E5E5E5;
 }
 .mtui-tabs.overflow .mtui-tabs_list .mtui-tab_box {
   overflow: hidden;
@@ -126,7 +126,7 @@
   border-style: solid;
   transform: matrix(-0.71, 0.71, -0.71, -0.71, 0, 0);
   position: relative;
-  top: -3px;
+  top: -0.03rem;
   content: " ";
 }
 .mtui-tabs.overflow input:checked + .mtui-tab_arrow + .mtui-tabs_list {
@@ -136,7 +136,7 @@
 .mtui-tabs.overflow input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_box {
   width: auto !important;
   position: absolute;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 0.01rem solid #E5E5E5;
   padding-bottom: .2rem;
   background-color: white;
 }
@@ -145,11 +145,11 @@
   background-color: #f8f8f8;
   border-radius: .64rem;
   margin: .2rem .1875rem 0;
-  border: 1px solid #F8F8F8;
+  border: 0.01rem solid #F8F8F8;
 }
 .mtui-tabs.overflow input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab.active {
   background-color: transparent;
-  border: 1px solid #4A87D6;
+  border: 0.01rem solid #4A87D6;
 }
 .mtui-tabs.overflow input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_title {
   display: block;

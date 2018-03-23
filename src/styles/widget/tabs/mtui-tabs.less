@@ -10,7 +10,7 @@
 
     &.overflow{display: block; width: 100%; position: relative;
         .mtui-tabs_list{width: 6.62rem; overflow-x: scroll; position: relative; padding-bottom: .06rem;
-            .mtui-tab_title{line-height: .81rem; font-size: .28rem; padding-left: .3rem; display: none; border-bottom: 1px solid #E5E5E5;}
+            .mtui-tab_title{line-height: .81rem; font-size: .28rem; padding-left: .3rem; display: none; border-bottom: 0.01rem solid #E5E5E5;}
             .mtui-tab_box{overflow: hidden; width: 10.5rem;
                 .mtui-tab{width: 1.5rem; float: left; line-height: .82rem; box-sizing: border-box; overflow: hidden;
     text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;}
@@ -26,9 +26,9 @@
         input + .mtui-tab_arrow:after{.setArrow(down, .14rem, #666, .02rem); content: " ";}
 
         input:checked + .mtui-tab_arrow + .mtui-tabs_list{width: 7.5rem; overflow: visible;}
-        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_box{width: auto !important; position: absolute; border-bottom: 1px solid #E5E5E5; padding-bottom: .2rem; background-color: white;}
-        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab{line-height: .64rem; background-color: #f8f8f8; border-radius: .64rem; margin: .2rem .1875rem 0; border: 1px solid #F8F8F8; border-color: #F8F8F8;
-            &.active{background-color: transparent; border: 1px solid transparent; border-color: inherit;}
+        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_box{width: auto !important; position: absolute; border-bottom: 0.01rem solid #E5E5E5; padding-bottom: .2rem; background-color: white;}
+        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab{line-height: .64rem; background-color: #f8f8f8; border-radius: .64rem; margin: .2rem .1875rem 0; border: 0.01rem solid #F8F8F8; border-color: #F8F8F8;
+            &.active{background-color: transparent; border: 0.01rem solid transparent; border-color: inherit;}
         }
         input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_title{display: block;}
         input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_line{display: none;}
