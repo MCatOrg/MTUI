@@ -92,6 +92,9 @@
           </router-link>
           <router-link to="/confirm" class="mtui-cell mtui-cell__link">
             <div class="mtui-cell__bd">confirm</div>
+          </router-link>
+          <router-link to="/showBigPicture" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">showBigPicture</div>
             <div class="mtui-cell__ft"></div>
           </router-link>
         </div>

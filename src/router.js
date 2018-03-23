@@ -76,7 +76,7 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/Uploader.vue'], resolve)
     }
-  },{
+  }, {
     path: '/stepper', //stepper
     name: 'stepper',
     component: function (resolve) {
@@ -94,53 +94,59 @@ const router = new Router({
     component: function (resolve) {
       require(['./example/fragment/Dialog.vue'], resolve)
     }
-  },{
+  }, {
     path: '/toast', //Toast
     name: 'toast',
     component: function (resolve) {
       require(['./example/fragment/Toast.vue'], resolve)
     }
-  },{
+  }, {
     path: '/loading', //Loading
     name: 'loading',
     component: function (resolve) {
       require(['./example/fragment/Loading.vue'], resolve)
     }
-  },{
+  }, {
     path: '/tabs', //tabs
     name: 'tabs',
     component: function (resolve) {
       require(['./example/fragment/tabs.vue'], resolve)
     }
-  },{
+  }, {
     path: '/searchbar', //searchbar
     name: 'searchbar',
     component: function (resolve) {
       require(['./example/fragment/searchbar.vue'], resolve)
     }
-  },{
+  }, {
     path: '/prompt', //searchbar
     name: 'prompt',
     component: function (resolve) {
       require(['./example/fragment/prompt.vue'], resolve)
     }
-  },{
+  }, {
     path: '/popover', //tabs
     name: 'popover',
     component: function (resolve) {
       require(['./example/fragment/popover.vue'], resolve)
     }
-  },{
+  }, {
     path: '/popup', //popup
     name: 'popup',
     component: function (resolve) {
       require(['./example/fragment/popup.vue'], resolve)
     }
-  },{
+  }, {
     path: '/confirm', //popup
     name: 'confirm',
     component: function (resolve) {
       require(['./example/fragment/confirm.vue'], resolve)
+    }
+  }, {
+    path: '/showBigPicture', //展示大图
+    name: 'showBigPicture',
+    component: function (resolve) {
+      require(['./example/fragment/showBigPicture.vue'], resolve)
     }
   }]
 })

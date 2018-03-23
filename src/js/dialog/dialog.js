@@ -39,7 +39,7 @@ let _sington;
  * });
  */
 function dialog(options = {}) {
-  console.log('_sington',_sington)
+  console.log('_sington', _sington)
   if (_sington) return _sington;
   console.log(22222)
 
@@ -47,6 +47,7 @@ function dialog(options = {}) {
     title: null,
     content: '',
     prompt: false, //是否带输入框的弹窗
+    textarea: false, //带输入框的弹窗是input还是textarea
     className: '',
     buttons: [{
       label: '确定',
@@ -54,6 +55,7 @@ function dialog(options = {}) {
       onClick: $.noop
     }],
   }, options);
+  console.log(options)
   const $dialogWrap = $($.render(tpl, options));
   const $dialog = $dialogWrap.find('.mtui-dialog');
   const $mask = $dialogWrap.find('.mtui-mask');
@@ -81,7 +83,7 @@ function dialog(options = {}) {
 
   $dialogWrap.on('click', '.mtui-dialog__btn', function (evt) {
     const index = $(this).index();
-    _sington = false;  //解决在对话框的回调中再调用对话框无效的问题
+    _sington = false; //解决在对话框的回调中再调用对话框无效的问题
     if (options.buttons[index].onClick) {
       if (options.prompt) {
         console.log($("#prompt").val())

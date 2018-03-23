@@ -5,8 +5,8 @@
   }
   .mtui-icon-checked {
     &:before {
-        display: block;
-        color: #fff;
+        display: none;
+        color: @mtuiColorPrimary;
         font-size: 0.16rem;
     }
   }
@@ -18,7 +18,7 @@
       &:checked {
           & + .mtui-icon-checked {
               &:before {
-                  color: @mtuiColorPrimary;
+                    display: block;
               }
           }
       }

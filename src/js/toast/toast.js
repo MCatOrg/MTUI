@@ -36,7 +36,7 @@ function toast(content = '', options = {}) {
 
     options = $.extend({
         content: content,
-        time: 3000,
+        time: 1000,
         callback: $.noop,
         className: ''
     }, options);
