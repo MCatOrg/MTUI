@@ -320,7 +320,7 @@ var Base64StringToImage = function (opt) {
  * @param {Object} opt
  */
 var wxcompress = function (opt) {
-  console.log('微信取土')
+  console.log('微信取图')
   var inputBoxClass = opt.inputBoxClass;
   var afterWidth = opt.afterWidth;
   var callback = opt.callback;
@@ -778,6 +778,7 @@ function setWatermark(opt) {
   }
 }
 
+
 /**
  * @param {string} serverUrl  上传图片的URL（必选）
  * @param {string} inputBoxId  input:file的父元素的id（必选）
@@ -818,7 +819,7 @@ function compressor(opt) {
     console.log('添加方法容器');
     var divMark = document.createElement('div');
     divMark.setAttribute('style', "position: fixed;top: 0;bottom: 0;left: 0;right: 0;background-color: rgba(0, 0, 0, .5);display: none;z-index: 99;");
-    divMark.innerHTML = '<div id="enlarge" style="width: 90%;margin: 30px auto;position: relative;"><img src="" alt="" style="display: block;width:100%;height:' + (window.screen.height - (window.screen.height*0.1)) + 'px;"><span id="del" style="position: absolute;bottom: -22px;width: 50%;text-align: center;cursor: pointer;color: #333;border-radius: 5px;left: 0;background-color: #EB5757;">删除</span><span id="revise" style="position: absolute;bottom: -22px;width: 50%;text-align: center;cursor: pointer;color: #333;border-radius: 5px;right: 0;background-color: #4A87D6;">修改<input type="file" accept="image/*" style="opacity:  0;position:  absolute;left:  0;right:  0;top: 0;bottom:  0;width:  100%;height:  100%;"></span></div>';
+    divMark.innerHTML = '<div id="enlarge" style="width: 80%;margin: 30px auto;position: relative;"><img src="" alt="" style="display: block;width:100%;height:' + (window.screen.height - 200) + 'px;"><span id="del" style="position: absolute;bottom: -22px;width: 50%;text-align: center;cursor: pointer;color: #333;border-radius: 5px;left: 0;background-color: rgb(250, 125, 42);">删除</span><span id="revise" style="position: absolute;bottom: -22px;width: 50%;text-align: center;cursor: pointer;color: #333;border-radius: 5px;right: 0;background-color: rgb(115, 255, 0);">修改<input type="file" accept="image/*" style="opacity:  0;position:  absolute;left:  0;right:  0;top: 0;bottom:  0;width:  100%;height:  100%;"></span></div>';
     document.body.appendChild(divMark);
     var inputBoxList = document.getElementsByClassName(opt.inputBoxClass);
     divMark.addEventListener('click', function (e) {
@@ -891,7 +892,6 @@ function compressor(opt) {
     console.log('调用微信');
     if (WxVision > '6.5.0' && !IsWinWechat) {
       console.log('调用微信接口......');
-      document.querySelector('.'+opt.inputBoxClass).getElementsByTagName('input')[0].setAttribute('type','text') //取出原生取图
       wxcompress(opt);
     } else {
       console.log('调用原生接口1');
@@ -902,5 +902,4 @@ function compressor(opt) {
     localcompress(opt);
   }
 }
-
-export default compressor
+// export default compressor
