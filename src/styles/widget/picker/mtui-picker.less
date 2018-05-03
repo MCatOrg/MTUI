@@ -32,18 +32,20 @@
 .mtui-picker__hd {
     display: flex;
     padding: 9px 15px;
+    justify-content: space-between;
     background-color: #fff;
     position: relative;
     text-align: center;
     font-size: 17px;
-    &:after {
-        .setBottomLine(@mtuiLineColorLight);
-    }
+    border-bottom: 1px solid #F6F6F6;
+    // &:after {
+    //     .setBottomLine(@mtuiLineColorLight);
+    // }
 }
 
 .mtui-picker__action {
     display: block;
-    flex: 1;
+    // flex: 1;
     color: @mtuiColorPrimary;
 
     &:first-child {
@@ -54,6 +56,8 @@
         text-align: right;
     }
 }
+.mtui-picker__searchBox{background-color: white; padding: 5px 15px; border-bottom: 1px solid #F6F6F6;}
+.mtui-picker__search{width: 100%; border: 0; height: .4rem; text-align: center; line-height: .4rem;}
 
 .mtui-picker__bd {
     display: flex;
@@ -80,7 +84,7 @@
     z-index: 3;
     background: linear-gradient(180deg, hsla(0, 0%, 100%, .95), hsla(0, 0%, 100%, .6)), linear-gradient(0deg, hsla(0, 0%, 100%, .95), hsla(0, 0%, 100%, .6));
     background-position: top, bottom;
-    background-size: 100% 1.02rem;
+    background-size: 100% 2rem;
     background-repeat: no-repeat;
     transform: translateZ(0);
 }
@@ -92,12 +96,14 @@
     left: 0;
     top: 102px;
     z-index: 3;
-    &:before {
-        .setTopLine(@mtuiLineColorLight);
-    }
-    &:after {
-        .setBottomLine(@mtuiLineColorLight);
-    }
+    border-bottom: 1px solid #F6F6F6;
+    border-top: 1px solid#F6F6F6;
+    // &:before {
+    //     .setTopLine(@mtuiLineColorLight);
+    // }
+    // &:after {
+    //     .setBottomLine(@mtuiLineColorLight);
+    // }
 }
 
 .mtui-picker__content {

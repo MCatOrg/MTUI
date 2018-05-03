@@ -189,10 +189,13 @@ function picker() {
 
     // 配置项
     const options = arguments[arguments.length - 1];
+    console.log("1234",options)
     const defaults = $.extend({
         id: 'default',
         className: '',
         container: 'body',
+        search: false,
+        searchPlaceholder: '筛选',
         onChange: $.noop,
         onConfirm: $.noop,
         onClose: $.noop
@@ -332,6 +335,25 @@ function picker() {
     }
 
     $picker
+        .on('input',".mtui-picker__search",function(ev){
+            let that = this,
+                itemss = [];
+            items.map((item) => {
+                let value = typeof item == 'object' ? item.label : item;
+                if(value.indexOf(that.value) > -1){
+                    itemss.push(item);
+                }
+            });
+            if(this.value != ''){
+                if(itemss.length > 0){
+                    scroll(itemss,0)
+                }else{
+                    scroll([{label:''}],0)
+                }
+            }else{
+                scroll(items,0)
+            }
+        })
         .on('click', '.mtui-mask', function () { hide(); })
         .on('click', '.mtui-picker__action', function () { hide(); })
         .on('click', '#mtui-picker-confirm', function () {

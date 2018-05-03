@@ -8,7 +8,7 @@ z-index:
 */
 
 .mtui-cells {
-  margin-top: @mtuiCellsMarginTop;
+  margin-bottom: @mtuiCellsMarginTop;
   background-color: @mtuiCellBg;
   font-size: @mtuiCellFontSize; //cell为弹性盒子布局
   overflow: hidden; //因为每个cell的border是用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效
@@ -42,7 +42,7 @@ z-index:
     }
   }
   & + .mtui-cells {
-    margin-top: 0;
+    margin-bottom: 0;
     &:before {
       left: 0.3rem;
     }
@@ -56,7 +56,7 @@ z-index:
     color: @mtuiTextColorGray;
     font-size: @mtuiCellTipsFontSize;
     & + .mtui-cells {
-        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -69,12 +69,16 @@ z-index:
 
 .mtui-cell__hd{
   margin-right: @mtuiCellsMarginTop;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img{
     width: 0.58rem;
   }
   img.mtui-img_big{
     width: 1rem;
   }
+  img.mtui-img_small{width: .44rem;}
 }
 .mtui-cell__bd{
   flex:1;

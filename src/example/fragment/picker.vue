@@ -66,7 +66,8 @@ export default {
                 },
                 onConfirm: function (result) {
                     console.log(result);
-                }
+                },
+                search: true,
             });
         },
         //多列列表
@@ -119,7 +120,8 @@ export default {
                 },
                 onConfirm: function (result) {
                     console.log(result);
-                }
+                },
+                search: true,
             });
         },
         //时间列表

@@ -8,11 +8,11 @@
 .mtui-switch,
 .mtui-switch-cp__box{
     position: relative;
-    width: 0.52rem;
+    width: 1.04rem;
     height: @mtuiSwitchHeight;
     border: 0.01rem solid #DFDFDF;
     outline: 0;
-    border-radius: 0.16rem;
+    border-radius: 0.32rem;
     box-sizing: border-box;
     background-color: #DFDFDF;
     transition: background-color .1s, border .1s;
@@ -22,9 +22,9 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 0.5rem;
+        width: 1rem;
         height: @mtuiSwitchHeight - 0.02;
-        border-radius: 0.15rem;
+        border-radius: 0.3rem;
         background-color: #FDFDFD;
         transition:transform .35s cubic-bezier(0.45, 1, 0.4, 1);
     }
@@ -35,7 +35,7 @@
         left: 0;
         width: @mtuiSwitchHeight - 0.02;
         height: @mtuiSwitchHeight - 0.02;
-        border-radius: 0.15rem;
+        border-radius: 0.3rem;
         background-color: #FFFFFF;
         box-shadow: 0 0.01rem 0.03rem rgba(0, 0, 0, 0.4);
         transition:transform .35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
@@ -49,7 +49,7 @@
         transform: scale(0);
     }
     &:after {
-        transform: translateX(0.2rem);
+        transform: translateX(0.4rem);
     }
 }
 

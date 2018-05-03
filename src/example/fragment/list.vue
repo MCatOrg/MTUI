@@ -4,6 +4,9 @@
     <div class="mtui-cells__title">单选列表项</div>
     <div class="mtui-cells mtui-cells_radio">
       <label class="mtui-cell mtui-check__label" for="mt1">
+        <div class="mtui-cell__hd">
+          <img src="../images/logo.png" alt="列表图标">
+        </div>
         <div class="mtui-cell__bd">单项选择1</div>
         <div class="mtui-cell__ft">
           <input type="radio" class="mtui-check" name="radio1" id="mt1" checked="checked">
@@ -11,6 +14,9 @@
         </div>
       </label>
       <label class="mtui-cell mtui-check__label" for="mt2">
+        <div class="mtui-cell__hd">
+          <img src="../images/logo.png" alt="列表图标">
+        </div>
         <div class="mtui-cell__bd">单项选择2</div>
         <div class="mtui-cell__ft">
           <input type="radio" class="mtui-check" name="radio1" id="mt2">
@@ -71,7 +77,7 @@
     <div class="mtui-cells">
       <a href="#" class="mtui-cell mtui-cell__link">
         <div class="mtui-cell__hd">
-          <img src="../images/logo.png" alt="列表图标">
+          <img class="mtui-img_small" src="../images/logo.png" alt="列表图标">
         </div>
         <div class="mtui-cell__bd">单项跳转列表</div>
         <div class="mtui-cell__ft">详情信息</div>

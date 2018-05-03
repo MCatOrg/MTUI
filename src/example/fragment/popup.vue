@@ -27,7 +27,7 @@ export default {
             height: 80,
             // showClose: true,
             // closeLabel: '返回',
-            bgColor: '.bgcolor'
+            // bgColor: '.bgcolor'
         })
     },
     methods:{
