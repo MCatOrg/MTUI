@@ -62,7 +62,9 @@ function step(options){
 
 
 
-    $(options.el).append($step);
+    // $(options.el).append($step);
+    $(options.el).html($step[0].outerHTML);
+    // console.dir($(options.el))
     
 }
 export default step;

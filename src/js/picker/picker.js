@@ -189,7 +189,6 @@ function picker() {
 
     // 配置项
     const options = arguments[arguments.length - 1];
-    console.log("1234",options)
     const defaults = $.extend({
         id: 'default',
         className: '',
