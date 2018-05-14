@@ -1,0 +1,26 @@
+@import "../../../base/fn";
+.mtui-cells_radio{
+  .mtui-cell__ft {
+      padding-left: @mtuiCellLeft;
+  }
+  .mtui-icon-checked {
+    &:before {
+        display: none;
+        color: @mtuiColorPrimary;
+        font-size: 0.16rem;
+    }
+  }
+}
+
+.mtui-check {
+  // radio
+  .mtui-cells_radio & {
+      &:checked {
+          & + .mtui-icon-checked {
+              &:before {
+                    display: block;
+              }
+          }
+      }
+  }
+}

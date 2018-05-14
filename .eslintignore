@@ -1,0 +1,9 @@
+/build/
+/config/
+/dist/
+/*.js
+/test/unit/coverage/
+rem.js
+karma.conf.js
+*.spec.js
+/MTUI/

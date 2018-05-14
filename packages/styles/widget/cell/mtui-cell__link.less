@@ -1,0 +1,17 @@
+@import "../../base/fn";
+.mtui-cell__link {
+  // color: inherit;
+  &:active {
+    background-color: #ededed;
+  }
+  .mtui-cell__ft {
+    padding-right: @mtuiCellLeft;
+    &:after {
+      content: " ";
+      .setArrow(right, 0.16rem, #C8C8CD, 0.02rem);
+      position: absolute;
+      top: 50%;
+      margin-top: -0.09rem;
+    }
+  }
+}

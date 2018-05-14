@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="mtui-icon-"],
+[class*=" mtui-icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  &:before {
+    // 平滑升级
+    display: inline-block;
+    margin-left: .2em;
+    margin-right: .2em;
+  }
+}
+
+.mtui-icon-checked:before {content: '\F00C';}
+.mtui-icon-search:before {content: '\F002';}

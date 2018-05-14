@@ -1,0 +1,46 @@
+@import '../../base/fn';
+.mtui-popover{display: none; position: fixed; color: #666;
+    .mtui-mask{opacity: 0; transition: all .3s; background: black;}
+    &.active{
+        .mtui-mask{opacity: .6;}
+
+    }
+
+
+    .popover{position: relative; z-index: 1003; opacity: 0; transition: all .3s;}
+    .popover-triangle{position: absolute; z-index: 1001;}
+    .popover-triangle span{.setArrow(top, 0.42rem, white, 0.06rem); border: 0; background-color: white; border-radius: 0.05rem;}
+    .popover-lists{background-color: white; border-radius: 0.04rem; z-index: 1002; position: relative; padding-top: 0.01rem; padding-bottom: 0.01rem;
+            .popover-list{line-height: 1rem; font-size: 0.32rem; min-width: 0.8rem; text-align: center; padding-left: 0.2rem; padding-right: 0.2rem; position: relative; display: block;
+                &::after{.setBottomLine(); width: 80%; left: 10%;}
+            }
+            .popover-list:last-child:after{border: 0;}
+            .popover-list:active{background-color: #DEDEDE}
+        }
+
+
+    &.top{
+        &.active .popover{opacity: 1; top: 0;}
+        .popover{transform: translateX(-50%); top: 0.2rem;}
+        .popover-triangle{bottom: 0; left: 50%; transform: translateX(-50%)}
+        .popover-lists{top: -0.09rem;}
+    }
+    &.bottom{
+        &.active .popover{opacity: 1; top: 0;}
+        .popover{transform: translateX(-50%); top: -0.2rem;}
+        .popover-triangle{left: 50%; transform: translateX(-50%);}
+        .popover-lists{top: 0.08rem;}
+    }
+    &.right{
+        &.active .popover{opacity: 1; left: 0;}
+        .popover{transform: translateY(-50%); left: -0.2rem;}
+        .popover-triangle{top: 50%; transform: translateY(-50%);}
+        .popover-lists{left: 0.05rem;}
+    }
+    &.left{
+        &.active .popover{opacity: 1; left: 0;}
+        .popover{transform: translateY(-50%); left: 0.2rem;}
+        .popover-triangle{right: 0; top: 50%; transform: translateY(-50%);}
+        .popover-lists{left: -0.05rem;}
+    }
+}

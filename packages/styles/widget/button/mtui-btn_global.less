@@ -1,0 +1,37 @@
+@import "../../base/fn.less";
+
+.mtui-btn {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.14rem;
+    padding-right: 0.14rem;
+    box-sizing: border-box;
+    font-size: @mtuiBtnFontSize;
+    text-align: center;
+    text-decoration: none;
+    color: @mtuiBtnFontColor;
+    line-height: @mtuiBtnHeight;
+    border-radius: @mtuiBtnBorderRadius;
+    .setTapColor();
+    overflow: hidden;
+    border-width: 0;
+    width: @mtuiBtnWidth;
+    &:after {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: .02rem solid rgba(0, 0, 0, .2);
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @mtuiBtnBorderRadius*2;
+    }
+    &:focus{
+      outline:0;
+    }
+}
