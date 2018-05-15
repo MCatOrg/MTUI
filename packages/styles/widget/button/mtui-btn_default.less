@@ -1,0 +1,20 @@
+
+@import "../../base/fn";
+
+.mtui-btn__default {
+    color: @mtuiBtnDefaultFontColor;
+    background-color: @mtuiBtnDefaultBg;
+    &:not(.mtui-btn__disabled):visited {
+        color: @mtuiBtnDefaultFontColor;
+    }
+    &:not(.mtui-btn__disabled):active {
+        color: @mtuiBtnDefaultActiveFontColor;
+        background-color: @mtuiBtnDefaultActiveBg;
+    }
+    &.is-plain {
+        border: 1px solid #5a5a5a;
+        background-color: transparent;
+        box-shadow: none;
+        color: #5a5a5a
+    }
+}
