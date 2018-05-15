@@ -1,0 +1,20 @@
+<div class="mtui-tabs overflow">
+    <div class="mtui-tab_acbox"><div class="mtui-tab_action"></div></div>
+    <input type="checkbox" id="<%= inputID %>">
+    <label for="<%= inputID %>" class="mtui-tab_arrow"></label>
+    
+    <div class="mtui-tabs_list">
+        <div class="mtui-tab_title">全部</div>
+        <div class="mtui-tab_box">
+            <% for(var i=0; i < tabList.length; i++){ %>
+                <% if(i == active){ %>
+                    <div class="mtui-tab <%= colorClass %>"><%= tabList[i].text %>
+                <% }else{ %>
+                    <div class="mtui-tab"><%= tabList[i].text %>
+                <% } %>
+                </div>
+            <% } %>
+        </div>
+        <div class="mtui-tab_line <%= colorClass  %>"></div>
+    </div>
+</div>

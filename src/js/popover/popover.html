@@ -1,0 +1,15 @@
+<div class="mtui-popover <%= position %>">
+    <div class="mtui-mask"></div>
+    <div class="popover">
+        <div class="popover-triangle">
+            <span></span>
+        </div>
+        <div class="popover-lists">
+            <% for(var i=0; i < list.length; i++){ %>
+                <a href="<%= list[i].href ? list[i].href : 'javascript:void(0)' %>" class="popover-list">
+                    <%= list[i].text %>
+                </a>
+            <% } %>
+        </div>
+    </div>
+</div>

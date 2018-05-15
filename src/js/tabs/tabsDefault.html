@@ -1,0 +1,11 @@
+<div class="mtui-tabs">
+    <% for(var i=0; i < tabList.length; i++){ %>
+        <% if(i == active){ %>
+            <div class="mtui-tab <%= colorClass  %>" data-value="<%= tabList[i].value %>">
+        <% }else{ %>
+            <div class="mtui-tab" data-value="<%= tabList[i].value %>">
+        <% } %>
+            <span class="mtui-tab_text"><%= tabList[i].text %></span>
+        </div>
+    <% } %>
+</div>

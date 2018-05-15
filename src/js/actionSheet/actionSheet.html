@@ -1,0 +1,20 @@
+<div class="<%= className %>">
+    <div class="mtui-mask"></div>
+    <div class="mtui-actionsheet">
+        <% if(!!title){%>
+        <div class="mtui-actionsheet__title">
+            <p class="mtui-actionsheet__title-text"><%= title %></p>
+        </div>
+        <% } %>
+        <div class="mtui-actionsheet__menu">
+            <% for(var i = 0; i < menus.length; i++){ %>
+            <div class="mtui-actionsheet__cell"><%= menus[i].label %></div>
+            <% } %>
+        </div>
+        <div class="mtui-actionsheet__action">
+            <% for(var j = 0; j < actions.length; j++){ %>
+            <div class="mtui-actionsheet__cell"><%= actions[j].label %></div>
+            <% } %>
+        </div>
+    </div>
+</div>
