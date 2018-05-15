@@ -34,4 +34,10 @@
     &:focus{
       outline:0;
     }
+    &:not(.is-disabled):active::after {
+        opacity: .4
+    }
+    &.is-disabled {
+        opacity: .6
+    }
 }
