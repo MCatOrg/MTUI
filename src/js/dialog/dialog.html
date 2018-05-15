@@ -1,0 +1,24 @@
+<div class="<%=className%>">
+    <div class="mtui-mask"></div>
+    <div class="mtui-dialog">
+        <% if(title){ %>
+        <div class="mtui-dialog__hd"><strong class="mtui-dialog__title"><%=title%></strong></div>
+        <% } %>
+        <% if(prompt){ %>
+          <div class="mtui-dialog__bd">
+            <% if(textarea){ %>
+              <textarea id="prompt" class="mtui-prompt_textarea"></textarea>
+            <% }else{ %>
+              <input type="text" id="prompt" class="mtui-prompt">
+            <% } %>
+          </div>
+        <% }else{ %>
+          <div class="mtui-dialog__bd"><%=content%></div>
+        <% }%>
+        <div class="mtui-dialog__ft">
+            <% for(var i = 0; i < buttons.length; i++){ %>
+            <a href="javascript:;" class="mtui-dialog__btn mtui-dialog__btn_<%=buttons[i]['type']%>"><%=buttons[i]['label']%></a>
+            <% } %>
+        </div>
+    </div>
+</div>
