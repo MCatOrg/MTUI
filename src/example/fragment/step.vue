@@ -117,14 +117,18 @@ export default {
             dotColor: '.bg-red',
             option: [
                 {
+                    title: 'T步骤一',
                     cont: '步骤一',
-                    status: true,
+                    // status: true,
                 },{
+                    title: 'T步骤一',
                     cont: '步骤二',
-                    status: true
+                    // status: true
                 },{
+                    title: 'T步骤一',
                     cont: '步骤三',
-                    status: false
+                    animate: true,
+                    // status: true
                 }
             ]
         })
