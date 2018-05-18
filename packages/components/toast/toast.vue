@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="fade" v-on:after-leave="afterLeave">
     <div :class="className" v-show="visible">
       <div class="mtui-mask_transparent"></div>
       <div class="mtui-toast">
@@ -19,6 +19,14 @@ export default {
       content: '',
       visible: false,
     };
+  },
+  methods: {
+    afterLeave() {
+      this.callback = null;
+      this.time = 2 * 1000;
+      this.className = '';
+      this.content = '';
+    },
   },
 };
 </script>

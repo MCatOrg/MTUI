@@ -2,16 +2,11 @@ import Vue from 'vue';
 import Toast from './toast';
 
 // this.$Toast('操作成功', 3000);
-const removeDom = (event) => {
-  if (event.target.parentNode) {
-    event.target.parentNode.removeChild(event.target);
-  }
-};
 function configOptions(ag) {
   let options = {};
   const len = ag.length;
   if (len === 0) {
-    throw Error('$Toast必训传入一个字符串作为参数');
+    throw Error('$Toast必须传入一个字符串作为参数');
   }
   if (len === 2) {
     if (typeof ag[1] === 'object') {
@@ -31,36 +26,42 @@ function configOptions(ag) {
   }
   return options;
 }
+let tc;
 const ToastConstructor = Vue.extend(Toast);
-ToastConstructor.prototype.config = function (options) {
-  Object.keys(options).forEach((key) => {
-    this[key] = options[key];
-  });
-  this.callback = this.callback || function () {};
-};
-ToastConstructor.prototype.show = function (options) {
-  this.config(options);
-  this.vm = this.$mount();
-  document.body.appendChild(this.vm.$el);
-  this.visible = true;
-  this.timeOut = setTimeout(() => {
-    this.close();
-    this.callback();
-  }, this.time);
-};
 ToastConstructor.prototype.close = function () {
   if (this.timeOut) {
     clearTimeout(this.timeOut);
+    this.timeOut = undefined;
   }
-  this.$el.addEventListener('transitionend', removeDom);
   this.visible = false;
 };
+function config(options) {
+  Object.keys(options).forEach((key) => {
+    tc[key] = options[key];
+  });
+  tc.callback = tc.callback || function () {};
+}
 
+function show(options) {
+  config(options);
+  const vm = tc.$mount();
+  document.body.appendChild(vm.$el);
+  tc.visible = true;
+  tc.timeOut = setTimeout(() => {
+    tc.close();
+    tc.callback();
+  }, tc.time);
+}
 
 function MtToast(...ag) {
   const options = configOptions(ag);
-  const tc = new ToastConstructor();
-  tc.show(options);
+  if (!tc) {
+    tc = new ToastConstructor();
+  }
+  if (tc.timeOut) {
+    return tc;
+  }
+  show(options);
   return tc;
 }
 

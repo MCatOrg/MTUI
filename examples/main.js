@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import MTUI from '../packages/index';
+import { install } from '../packages/index';
 
-Vue.use(MTUI.install); // 载入MTUI
+Vue.use(install); // 载入MTUI
 
 Vue.config.productionTip = false;
 
