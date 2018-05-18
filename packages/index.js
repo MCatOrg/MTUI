@@ -2,11 +2,13 @@ import './util/rem';
 import Toast from './components/toast';
 import mtActionsheet from './components/action-sheet';
 import mtMessageBox from './components/message-box';
+import mtSpinner from './components/spinner';
 import './styles/mtui.less';
 
 const components = [
   Toast,
   mtActionsheet,
+  mtSpinner,
 ];
 const version = '1.0.0';
 const install = (Vue) => {
@@ -28,6 +30,7 @@ export default {
   Toast,
   mtActionsheet,
   mtMessageBox,
+  mtSpinner,
 };
 export {
   install,

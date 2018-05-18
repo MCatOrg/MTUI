@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import index from '@/pages/index';
 import actionSheet from '@/pages/action-sheet';
 import messageBox from '@/pages/message-box';
+import spinner from '@/pages/spinner';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/messageBox',
       name: 'messageBox',
       component: messageBox,
+    },
+    {
+      path: '/spinner',
+      name: 'spinner',
+      component: spinner,
     },
   ],
 });
