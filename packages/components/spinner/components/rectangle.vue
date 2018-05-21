@@ -1,13 +1,9 @@
 <template>
-  <div class="spinner">
-  <div :class="[`rect${i}`]" v-for="i in sideCount" :key="i"
-  :style="{backgroundColor:spinnerColor}"></div>
-  <!-- <div class="rect1"></div>
-  <div class="rect2"></div>
-  <div class="rect3"></div>
-  <div class="rect4"></div>
-  <div class="rect5"></div> -->
-</div>
+  <div class="spinner" :style="{'width':`${1*spinnerSize}rem`,
+     'height':`${1.2*spinnerSize}rem`,'font-size': `${0.2*spinnerSize}rem`}">
+    <div :class="[`rect${i}`]" v-for="i in sideCount" :key="i"
+    :style="{backgroundColor:spinnerColor,'width':`${0.12*spinnerSize}rem`}"></div>
+  </div>
 </template>
 <script>
 import common from './common';
@@ -23,15 +19,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .spinner {
-  width: 50px;
-  height: 60px;
   text-align: center;
-  font-size: 10px;
 }
 
 .spinner > div {
   height: 100%;
-  width: 6px;
   display: inline-block;
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
   animation: stretchdelay 1.2s infinite ease-in-out;

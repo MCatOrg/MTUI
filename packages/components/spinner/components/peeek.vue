@@ -26,8 +26,8 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0.1rem;

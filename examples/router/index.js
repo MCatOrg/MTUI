@@ -4,6 +4,8 @@ import index from '@/pages/index';
 import actionSheet from '@/pages/action-sheet';
 import messageBox from '@/pages/message-box';
 import spinner from '@/pages/spinner';
+import loading from '@/pages/loading';
+import loadmore from '@/pages/loadmore';
 
 Vue.use(Router);
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/spinner',
       name: 'spinner',
       component: spinner,
+    },
+    {
+      path: '/loading',
+      name: 'loading',
+      component: loading,
+    },
+    {
+      path: '/loadmore',
+      name: 'loadmore',
+      component: loadmore,
     },
   ],
 });
