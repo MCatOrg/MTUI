@@ -20,7 +20,11 @@
   </div>
 </template>
 <style lang="less">
+.mt-loadmore{
+  width: 100%;
+}
 .mt-loadmore-content{
+  width: 100%;
   border-top: 0.01rem solid #e5e5e5;
   &.is-dropped{
     transition: .5s ease-out;
@@ -32,6 +36,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   .mt-loadmore-top{
     margin-top: -50px;
@@ -245,7 +250,6 @@ export default {
       }
     },
     handleTouchMove(event) {
-      console.log(event);
       const $elRect = this.$el.getBoundingClientRect();
       if (this.startY < $elRect.top && this.startY > $elRect.bottom) {
         return;
@@ -270,7 +274,7 @@ export default {
       }
 
       if (this.direction === 'up') {
-        this.bottomReached = this.bottomReached || this.checkBottomReached();
+        this.bottomReached = this.checkBottomReached() || this.bottomReached;
       }
       if (typeof this.bottomMethod === 'function' && this.direction === 'up' &&
       this.bottomReached && this.bottomStatus !== 'loading' && !this.bottomAllLoaded) {

@@ -31,8 +31,28 @@ export default {
       source: ['https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4'],
       row: ['https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
+        'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4',
         'https://avatars3.githubusercontent.com/u/19727413?s=40&v=4'],
@@ -90,6 +110,7 @@ export default {
   }
 }
 .page-loadmore-wrapper{
+  width: 7.5rem;
   overflow-y: scroll;
 }
 </style>
