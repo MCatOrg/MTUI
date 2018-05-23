@@ -6,6 +6,8 @@ import messageBox from '@/pages/message-box';
 import spinner from '@/pages/spinner';
 import loading from '@/pages/loading';
 import loadmore from '@/pages/loadmore';
+import tabContainer from '@/pages/tab-container';
+import lazyload from '@/pages/lazyload';
 
 Vue.use(Router);
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/loadmore',
       name: 'loadmore',
       component: loadmore,
+    },
+    {
+      path: '/tabContainer',
+      name: 'tabContainer',
+      component: tabContainer,
+    },
+    {
+      path: '/lazyload',
+      name: 'lazyload',
+      component: lazyload,
     },
   ],
 });
