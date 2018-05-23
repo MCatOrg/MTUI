@@ -23,7 +23,8 @@
 .mt-loadmore-content{
   border-top: 0.01rem solid #e5e5e5;
   &.is-dropped{
-    transition: .2s;
+    transition: .5s ease-out;
+    -webkit-transition: .5s ease-out;
   }
   .mt-loadmore-top,.mt-loadmore-bottom{
     height: 50px;
@@ -60,7 +61,7 @@ export default {
     },
     distanceIndex: {
       type: Number,
-      default: 2,
+      default: 1.5,
     },
     topMethod: Function,
     topDistance: {
@@ -164,7 +165,7 @@ export default {
         this.$nextTick(() => {
           this.fillContainer();
         });
-      }, 200);
+      }, 500);
     },
     onBottomLoaded() {
       this.bottomStatus = 'pull';
@@ -196,7 +197,7 @@ export default {
       return window;
     },
     fillContainer() {
-      if (this.autoFill) {
+      if (this.autoFill && typeof this.bottomMethod === 'function') {
         if (this.scrollEventTarget === window) {
           this.containerFilled = this.$el.getBoundingClientRect().bottom >=
           document.documentElement.getBoundingClientRect().bottom;
@@ -244,6 +245,7 @@ export default {
       }
     },
     handleTouchMove(event) {
+      console.log(event);
       const $elRect = this.$el.getBoundingClientRect();
       if (this.startY < $elRect.top && this.startY > $elRect.bottom) {
         return;
