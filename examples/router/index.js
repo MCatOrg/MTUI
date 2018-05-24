@@ -8,6 +8,7 @@ import loading from '@/pages/loading';
 import loadmore from '@/pages/loadmore';
 import tabContainer from '@/pages/tab-container';
 import lazyload from '@/pages/lazyload';
+import swipe from '@/pages/swipe';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/lazyload',
       name: 'lazyload',
       component: lazyload,
+    },
+    {
+      path: '/swipe',
+      name: 'swipe',
+      component: swipe,
     },
   ],
 });
