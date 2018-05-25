@@ -1,19 +1,35 @@
 <template>
 <div>
-  <div class="mtui-cells__title">{{title}}</div>
-    <div class="mtui-cells" v-for="(cell, i) in cells" :key="i">
-      <a class="mtui-cell mtui-cell__link" :href="href">
-      <div class="mtui-cell__hd" v-if="cell.title || cell.imgs">
+    <div class="mtui-cells">
+      <a class="mtui-cell"
+      :class="{'mtui-cell__link':isLink}"
+      :href="href">
+      <div class="mtui-cell__hd">
         <slot name="icon">
-          <img v-if="cell.imgs" :src="cell.imgs" alt="列表图标" :class="['mtui-img_' + icons]">
+          <img v-if="img" :src="img" alt="列表图标" :class="['mtui-img_' + icons]">
         </slot>
-          {{cell.title}}
+        <slot name="title">
+          <span v-text="title"></span>
+        </slot>
       </div>
-      <div class="mtui-cell__bd">
-        <p>{{cell.leftText}}</p>
-        <span class="mtui-cells__tips">{{cell.tips}}</span>
-      </div>
-      <div class="mtui-cell__ft">{{cell.rightText}}</div>
+      <slot name="leftBlock">
+        <div class="mtui-cell__bd">
+          <slot name="leftText">
+            <p v-text="leftText"></p>
+          </slot>
+          <slot name="tips">
+            <span class="mtui-cells__tips">
+              <span v-text="tips"></span>
+            </span>
+          </slot>
+        </div>
+      </slot>
+      <slot name="rightBlock">
+        <div class="mtui-cell__ft">
+          <slot></slot>
+          <span v-text="rightText"></span>
+        </div>
+      </slot>
     </a>
   </div>
 </div>
@@ -31,7 +47,7 @@
  * @param {string} [rightText] - 备注信息
  * @param {boolean} [is-link=false] - 可点击的链接
  * @param {string} [value] - 右侧显示文字
- * @param {slot} [icon] - 可插入元素标签，用于添加字体图标或图片, 会覆盖cell.img，用于传入本地图片
+ * @param {slot} [icon] - 可插入元素标签，用于添加字体图标或图片, 会覆盖img，用于传入本地图片
  * @param {string} [icons] - 设置图片样式大小，可选small和big
  * @param 不想要右边的箭头，可以手动把伪元素设置为display:none
  *
@@ -48,18 +64,15 @@ export default {
 
   props: {
     to: [String, Object],
-    icon: String,
-    title: String,
-    label: String,
     isLink: Boolean,
-    value: {},
-    cells: {
-      type: Array,
-      required: true,
-    },
+    icon: String,
+    img: String,
+    title: String,
     leftText: String,
     rightText: String,
     tips: String,
+    label: String,
+    value: {},
     icons: {
       type: String,
       default: 'small',
