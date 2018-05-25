@@ -1,5 +1,4 @@
 <template>
-<!-- :class="[btnClass,cname]" -->
   <button
     class="mtui-btn"
     :type="nativeType"
@@ -7,7 +6,6 @@
       'is-disabled': disabled,
       'is-plain': plain
     }]"
-    @click="handleClick"
     :disabled="disabled">
     <label class="mtui-button-text"><slot></slot></label>
   </button>
@@ -19,7 +17,7 @@
 // }
 
 /**
- * mt-header
+ * mt-button
  * @module components/button
  * @desc 按钮
  * @param {string} [type=default] - 显示类型，接受 default, primary, danger
@@ -35,14 +33,7 @@
  * <mt-button size="large" icon="back" type="primary">按钮</mt-button>
  */
 export default {
-  name: 'MtuiButton',
-
-  methods: {
-    handleClick(evt) {
-      this.$emit('click', evt);
-    }
-  },
-
+  name: 'mt-button',
   props: {
       nativeType: String,
       disabled: Boolean,
@@ -55,22 +46,22 @@ export default {
           'default',
           'warn',
           'out',
-          'primary'
+          'primary',
         ].indexOf(value) > -1;
-      }
+      },
     },
     size: {
       type: String,
       default: 'normal',
-      validator(value) {// Prop 验证
+      validator(value) { // Prop 验证
         return [
-          'small',
+          'mini',
           'normal',
-          'large'
+          'large',
         ].indexOf(value) > -1;// 必须是数组内的元素
-      }
+      },
     },
- }
-}
+ },
+};
 </script>
 

@@ -25,6 +25,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    "linebreak-style": [0 ,"error", "windows"],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
@@ -40,6 +41,7 @@ module.exports = {
     //     'e' // for e.returnvalue
     //   ]
     // }],
+    "indent":[0,2],
     'no-param-reassign':0,
     "no-console":"off",
     "func-names": ["error", "never"],

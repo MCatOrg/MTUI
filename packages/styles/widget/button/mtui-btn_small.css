@@ -1,0 +1,25 @@
+.mt-body {
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+}
+.group {
+  margin-bottom: .2rem;
+  background-color: white;
+}
+.group .group-header {
+  margin-bottom: .1rem;
+  color: #999999;
+  font-size: .28rem;
+  line-height: .4rem;
+  padding-left: .3rem;
+}
+.group .group-body_pad3 {
+  padding-left: .3rem;
+}
+.mtui-btn__small {
+  display: inline-block;
+  width: auto;
+  font-size: 0.24rem;
+  padding: 0 12px;
+  line-height: 0.6rem;
+}

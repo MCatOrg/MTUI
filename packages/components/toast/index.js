@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Toast from './toast';
 
 // this.$Toast('操作成功', 3000);
+// 删除当前目标
 const removeDom = (event) => {
   if (event.target.parentNode) {
     event.target.parentNode.removeChild(event.target);
