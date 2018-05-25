@@ -14,6 +14,8 @@
   </div>
 </template>
 <script>
+import { once, on, off } from '../../util/domUtil';
+
 export default {
   name: 'mt-tab-container',
   props: {
@@ -50,6 +52,10 @@ export default {
     this.pageWidth = this.wrap.clientWidth;
     this.minWidthWithPage = this.pageWidth / 4;
   },
+  destroyed() {
+    off(document.documentElement, 'mousemove', this.onDrag);
+    off(document.documentElement, 'mouseup', this.endDrag);
+  },
   methods: {
     swipeLeaveTransition(lastIndex = 0) {
       if (typeof this.index !== 'number') {
@@ -79,6 +85,10 @@ export default {
       this.dragging = true;
       this.start.x = evt.pageX;
       this.start.y = evt.pageY;
+      if (!evt.changedTouches) {
+        on(document.documentElement, 'mousemove', this.onDrag);
+        once(document.documentElement, 'mouseup', this.endDrag);
+      }
     },
     onDrag(evt) {
       if (!this.dragging) return;
@@ -103,7 +113,8 @@ export default {
       this.index = index;
       this.swipeMove(offset);
     },
-    endDrag() {
+    endDrag(evt) {
+      console.log('松开');
       if (!this.swiping) return;
       this.dragging = false;
       const direction = this.offsetLeft > 0 ? -1 : 1;
@@ -118,6 +129,9 @@ export default {
         }
       }
       this.swipeLeaveTransition();
+      if (!evt.changedTouches) {
+        off(document.documentElement, 'mousemove', this.onDrag);
+      }
     },
   },
 };

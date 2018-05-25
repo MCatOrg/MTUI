@@ -9,6 +9,7 @@ import loadmore from '@/pages/loadmore';
 import tabContainer from '@/pages/tab-container';
 import lazyload from '@/pages/lazyload';
 import swipe from '@/pages/swipe';
+import touchRipple from '@/pages/touchRipple';
 
 Vue.use(Router);
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/swipe',
       name: 'swipe',
       component: swipe,
+    },
+    {
+      path: '/touchRipple',
+      name: 'touchRipple',
+      component: touchRipple,
     },
   ],
 });

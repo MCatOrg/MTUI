@@ -6,17 +6,17 @@
       </li>
     </ul>
     <mt-tab-container v-model="selected">
-      <mt-tab-container-item id="1">
-        <div v-for="n in 8" :key="n">1</div>
+      <mt-tab-container-item id="1" class="cell">
+        <div v-for="n in 8" :key="n"></div>
       </mt-tab-container-item>
-      <mt-tab-container-item id="2">
-        <div v-for="n in 10" :key="n">2</div>
+      <mt-tab-container-item id="2" class="cell">
+        <div v-for="n in 10" :key="n"></div>
       </mt-tab-container-item>
-      <mt-tab-container-item id="3">
-        <div v-for="n in 5" :key="n">3</div>
+      <mt-tab-container-item id="3" class="cell">
+        <div v-for="n in 5" :key="n"></div>
       </mt-tab-container-item>
-      <mt-tab-container-item id="4">
-        <div v-for="n in 5" :key="n">44444</div>
+      <mt-tab-container-item id="4" class="cell">
+        <div v-for="n in 5" :key="n"></div>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -44,6 +44,28 @@ export default {
     justify-content: space-around;
     button{
       padding: 0.2rem;
+    }
+  }
+  .cell{
+    >div{
+      height: 0.5rem;
+      margin: 0.1rem 0;
+      background-color: #e5e5e5;
+    }
+    &:nth-of-type(1){
+      >div{
+        background-color: red;
+      }
+    }
+    &:nth-of-type(2){
+      >div{
+        background-color: yellow;
+      }
+    }
+    &:nth-of-type(3){
+      >div{
+        background-color: burlywood;
+      }
     }
   }
 }

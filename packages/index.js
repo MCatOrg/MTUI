@@ -10,6 +10,7 @@ import mtTabContainerItem from './components/tab-container-item';
 import mtLazyload from './components/lazyload';
 import mtSwipe from './components/swipe';
 import mtSwipeItem from './components/swipe-item';
+import mtTouchRipple from './components/touchRipple';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -25,6 +26,7 @@ const components = [
   mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
+  mtTouchRipple,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -59,6 +61,7 @@ export default {
   mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
+  mtTouchRipple,
 };
 export {
   install,
@@ -72,4 +75,5 @@ export {
   mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
+  mtTouchRipple,
 };
