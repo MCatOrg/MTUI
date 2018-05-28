@@ -20,7 +20,7 @@
                 type="radio"
                 class="mtui-check"
                 v-model="currentValue"
-                :value="option.value"
+                :value="option.value || option"
                 :name="option.name"
                 :id="option.id"/>
             <i class="mtui-icon-checked"></i>
@@ -78,8 +78,6 @@ export default {
       currentValue: this.value,
     };
   },
-  mounted() {
-  },
 
   watch: {
     value(val) {
@@ -96,13 +94,5 @@ export default {
 <style>
 .mtui-cells__title, .mtui-cell__bd {
   text-align: left;
-}
-
-</style>
-
-<style>
-.mtui-radio, .mtui-radio-label{
-  display: block;
-  width: 100%;
 }
 </style>

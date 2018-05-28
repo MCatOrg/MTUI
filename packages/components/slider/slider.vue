@@ -18,9 +18,8 @@
  * @module components/slider
  * @param {Number} [step] - 进度条位置
  * @param {Number} [defaultValue] - 滑块位置
- * @param {Number} [currentValue] - 滑动百分比值
+ * @param {Number} [value] - 滑动百分比值
  * @param {null} [mtDefault] - 初始化函数
- * @param {boolean} [value] - 不可直接修改prop
  *
  * @example
  * <mt-slider :step=10 :defaultValue=10 :currentValue=10></mt-slider>
@@ -40,14 +39,15 @@ export default {
       type: Number,
       default: 50,
     },
-    currentValue: Number,
+    value: Number,
   },
   data() {
     return {
+      currentValue: this.value,
       mtPosition: {
         left: this.step,
         now: this.defaultValue,
-        val: this.currentValue,
+        val: this.value,
       },
       mtDefault: null,
     };
@@ -61,6 +61,7 @@ export default {
 
     // 给val赋值
     let mtWidth = this.step;
+    this.mtPosition.now = mtWidth;
     this.mtPosition.val = mtWidth;
 
     if (this.step !== undefined) {
@@ -99,10 +100,17 @@ export default {
 
         sliderHandler.style.left = `${sliderWidth}%`;
         sliderTrack.style.width = `${sliderWidth}%`;
-        this.$emit('change', this.mtPosition.val);
+        this.currentValue = this.mtPosition.val;
+        // _this.$emit('change', this.currentValue);
         // e.preventDefault();
     });
     this.mtDefault();
+  },
+  watch: {
+    currentValue(val) {
+      this.$emit('change', val); // 传入值
+      console.log(val);
+    },
   },
 };
 </script>

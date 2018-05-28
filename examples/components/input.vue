@@ -1,26 +1,17 @@
 <template>
   <div>
-    <mt-input title="循环多列输入" val="我是预设" :inputs="yo"></mt-input>
-    <mt-input title="不循环单列输入" :inputs="[{value: 'yoyo',name: 'yo'}]" validate></mt-input>
+    <mt-input title="我是标题" placeholder="请输入用户名" label="用户名" v-model="test"></mt-input>
+    <mt-input placeholder="请输入密码" label="密码"></mt-input>
+    <mt-input title="我是标题" placeholder="请输入验证码" label="验证码" validate></mt-input>
+    {{test}}
   </div>
 </template>
 <script>
-
 export default {
-
-  created() {
-    this.yo = [{
-      value: 'yoyo',
-      name: 'yo',
-      ifor: 'yo1',
-      type: 'number',
-    }, {
-      value: 'yoyo',
-      name: 'yoo',
-      ifor: 'yo2',
-      type: 'number',
-    },
-    ];
+  data() {
+    return {
+      test: '',
+    };
   },
 };
 </script>
