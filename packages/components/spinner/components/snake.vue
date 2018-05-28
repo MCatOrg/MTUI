@@ -21,7 +21,7 @@ export default {
 <style lang="css">
   .mint-spinner-snake {
     animation: mt-spinner-rotate 0.8s infinite linear;
-    border: 4px solid transparent;
+    border: 0.04rem solid transparent;
     border-radius: 50%;
   }
 

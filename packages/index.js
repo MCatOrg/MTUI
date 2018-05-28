@@ -11,6 +11,11 @@ import mtLazyload from './components/lazyload';
 import mtSwipe from './components/swipe';
 import mtSwipeItem from './components/swipe-item';
 import mtTouchRipple from './components/touchRipple';
+import mtButton from './components/button';
+import mtCell from './components/cell';
+import mtCellG from './components/cell-g';
+import mtRadio from './components/radio';
+import mtChecklist from './components/checklist';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -27,6 +32,11 @@ const components = [
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
+  mtButton,
+  mtCell,
+  mtCellG,
+  mtRadio,
+  mtChecklist,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -48,7 +58,7 @@ const install = (Vue, config = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-export default {
+const MTUI = {
   install,
   version,
   Toast,
@@ -62,7 +72,13 @@ export default {
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
+  mtButton,
+  mtCell,
+  mtCellG,
+  mtRadio,
+  mtChecklist,
 };
+export default MTUI;
 export {
   install,
   version,
@@ -76,4 +92,9 @@ export {
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
+  mtButton,
+  mtCell,
+  mtCellG,
+  mtRadio,
+  mtChecklist,
 };

@@ -2,7 +2,9 @@
 
 .mtui-btn {
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0.14rem;
@@ -12,25 +14,15 @@
     text-align: center;
     text-decoration: none;
     color: @mtuiBtnFontColor;
-    line-height: @mtuiBtnHeight;
+    height: @mtuiBtnHeight;
     border-radius: @mtuiBtnBorderRadius;
-    .setTapColor();
+    // .setTapColor();
     overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
     border-width: 0;
     width: @mtuiBtnWidth;
-    &:after {
-        content: " ";
-        width: 200%;
-        height: 200%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border: .02rem solid rgba(0, 0, 0, .2);
-        transform: scale(.5);
-        transform-origin: 0 0;
-        box-sizing: border-box;
-        border-radius: @mtuiBtnBorderRadius*2;
-    }
+    border: .02rem solid rgba(0, 0, 0, .2);
+    user-select: none;
     &:focus{
       outline:0;
     }

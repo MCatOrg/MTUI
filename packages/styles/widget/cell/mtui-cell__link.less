@@ -1,17 +1,20 @@
 @import "../../base/fn";
 .mtui-cell__link {
   // color: inherit;
+  -webkit-tap-highlight-color:transparent;
   &:active {
-    background-color: #ededed;
+    background-color: transparent;
   }
   .mtui-cell__ft {
     padding-right: @mtuiCellLeft;
+    position: relative;
     &:after {
       content: " ";
       .setArrow(right, 0.16rem, #C8C8CD, 0.02rem);
       position: absolute;
       top: 50%;
       margin-top: -0.09rem;
+      right: 0;
     }
   }
 }

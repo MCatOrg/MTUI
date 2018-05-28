@@ -10,6 +10,10 @@ import tabContainer from '@/pages/tab-container';
 import lazyload from '@/pages/lazyload';
 import swipe from '@/pages/swipe';
 import touchRipple from '@/pages/touchRipple';
+import button from '@/pages/button';
+import cell from '@/pages/cell';
+import radio from '@/pages/radio';
+import checklist from '@/pages/checklist';
 
 Vue.use(Router);
 
@@ -64,6 +68,26 @@ export default new Router({
       path: '/touchRipple',
       name: 'touchRipple',
       component: touchRipple,
+    },
+    {
+      path: '/button',
+      name: 'button',
+      component: button,
+    },
+    {
+      path: '/cell',
+      name: 'cell',
+      component: cell,
+    },
+    {
+      path: '/radio',
+      name: 'radio',
+      component: radio,
+    },
+    {
+      path: '/checklist',
+      name: 'checklist',
+      component: checklist,
     },
   ],
 });
