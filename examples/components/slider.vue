@@ -8,8 +8,11 @@
 export default {
   data() {
     return {
-      value1: 0,
+      value1: 1,
     };
+  },
+  mounted() {
+    console.log(this.value1);
   },
 };
 </script>

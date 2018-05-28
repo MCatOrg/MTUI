@@ -4,19 +4,9 @@
         <label v-text="title"></label>
         <mt-cell class="mtui-cells_checkbox" v-for="(option,i) in options"
         :key="i">
-          <label
-            :for="option.id"
-            class="mtui-cell__bd"
-            slot="leftBlock">
-            <span>
-              <img v-if="option.img" :src="option.img">
-            </span>
-
-            <span class="mtui-checkbox-label" v-text="option.label || option"></span>
-
-          </label>
-          <div slot="rightBlock" class="mtui-cell__ft">
-            <input
+          <label class="mtui-cell mtui-check__label" slot="cell" :for="option.id">
+            <div class="mtui-cell__hd" slot="titleBlock">
+              <input
                 type="checkbox"
                 class="mtui-check"
                 v-model="currentValue"
@@ -24,10 +14,14 @@
                 :disabled="option.disabled"
                 :name="option.name"
                 :id="option.id"/>
-            <i class="mtui-icon-checked"></i>
+              <i class="mtui-icon-checked"></i>
+            </div>
+            <div slot="leftBlock" class="mtui-cell__bd">
+            <span class="mtui-checkbox-label" v-text="option.label || option"></span>
           </div>
-        </mt-cell>
-    </div>
+          </label>
+          </mt-cell>
+        </div>
   </div>
 </template>
 <script>
@@ -36,8 +30,7 @@ import mtCell from '../cell/cell';
 
 /**
  * mt-checkbox
- * @module components/cell
-* @module components/cell
+ * @module components/checkbox
  * @desc 单元格
  * @param {string} [title] - 标题文本
  * @param {string} [img] - 图标，填写链接地址
@@ -107,5 +100,4 @@ export default {
 .mtui-cells__title, .mtui-cell__bd {
   text-align: left;
 }
-
 </style>

@@ -1,36 +1,39 @@
 <template>
 <div>
     <div class="mtui-cells">
-      <a class="mtui-cell"
-      :class="{'mtui-cell__link':isLink}"
-      :href="href">
-      <div class="mtui-cell__hd">
-        <slot name="icon">
-          <img v-if="img" :src="img" alt="列表图标" :class="['mtui-img_' + icons]">
+      <slot name="cell">
+        <a class="mtui-cell"
+        :class="{'mtui-cell__link':isLink}"
+        :href="href">
+        <slot name="titleBlock">
+          <div class="mtui-cell__hd">
+            <slot name="icon">
+              <img v-if="img" :src="img" alt="列表图标" :class="['mtui-img_' + icons]">
+            </slot>
+            <slot name="title">
+              <span v-text="title"></span>
+            </slot>
+          </div>
         </slot>
-        <slot name="title">
-          <span v-text="title"></span>
+        <slot name="leftBlock">
+          <div class="mtui-cell__bd">
+            <slot name="leftText">
+              <p v-text="leftText"></p>
+            </slot>
+            <slot name="tips">
+              <span class="mtui-cells__tips">
+                <span v-text="tips"></span>
+              </span>
+            </slot>
+          </div>
         </slot>
-      </div>
-      <slot name="leftBlock">
-        <div class="mtui-cell__bd">
-          <slot name="leftText">
-            <p v-text="leftText"></p>
-          </slot>
-          <slot name="tips">
-            <span class="mtui-cells__tips">
-              <span v-text="tips"></span>
-            </span>
-          </slot>
-        </div>
-      </slot>
-      <slot name="rightBlock">
-        <div class="mtui-cell__ft">
-          <slot></slot>
-          <span v-text="rightText"></span>
-        </div>
-      </slot>
-    </a>
+        <slot name="rightBlock">
+          <div class="mtui-cell__ft">
+            <span v-text="rightText"></span>
+          </div>
+        </slot>
+      </a>
+    </slot>
   </div>
 </div>
 </template>
