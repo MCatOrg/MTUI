@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" v-on:after-leave="afterLeave">
-    <div :class="className" v-show="visible">
+    <div class="mtui-toast-box" :class="className" v-show="visible">
       <div class="mtui-mask_transparent"></div>
       <div class="mtui-toast">
           <i class="mtui-icon_toast mtui-icon-success-no-circle"></i>
@@ -30,3 +30,9 @@ export default {
   },
 };
 </script>
+<style lang="less">
+.mtui-toast-box{
+  position: relative;
+  z-index: 50;
+}
+</style>

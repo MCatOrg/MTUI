@@ -1,6 +1,6 @@
 <template>
   <div class="mtui-cell-g">
-    <div class="mtui-cells__title">{{title}}</div>
+    <div class="mtui-cells__title" v-if="title">{{title}}</div>
     <div class="mtui-cells">
       <slot></slot>
     </div>

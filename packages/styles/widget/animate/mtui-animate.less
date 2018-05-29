@@ -136,3 +136,44 @@
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+.scale-enter-active, .scale-leave-active {
+  transition: all .5s ease-in-out;
+}
+.scale-enter {
+  transform: scale(2);
+}
+.scale-leave-to{
+  opacity: 0;
+  transform: scale(0);
+}
+
+.bottomScale-enter-active, .bottomScale-leave-active {
+  transition: all .5s ease-in-out;
+}
+.bottomScale-enter {
+  transform: scale(0);
+}
+.bottomScale-leave-to{
+  opacity: 0;
+  transform: scale(0);
+}
+
+
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

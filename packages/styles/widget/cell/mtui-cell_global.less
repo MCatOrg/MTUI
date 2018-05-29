@@ -12,7 +12,7 @@ z-index:
   margin-bottom: @mtuiCellsMarginTop;
   background-color: @mtuiCellBg;
   font-size: @mtuiCellFontSize; //cell为弹性盒子布局
-  overflow: hidden; //因为每个cell的border是用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效
+  // overflow: hidden; //因为每个cell的border是用before元素left搞的，ie下伪元素的containing block估计跟标准不同，在cell上用oh不生效
   // onepx
   position: relative;
   &:before {
@@ -22,6 +22,11 @@ z-index:
   &:after {
     .setBottomLine(@mtuiCellBorderColor);
     z-index: 20;
+  }
+  >.mtui-cells{
+    &:after{
+      content: none;
+    }
   }
 }
 .mtui-disabled{
@@ -48,7 +53,7 @@ z-index:
     }
   }
 }
-.mtui-cells .mtui-cell:first-child{
+.mtui-cells .mtui-cell:first-child,.mtui-cells .mtui-cell:last-child{
   &:before {
     display: none;
   }
@@ -59,9 +64,6 @@ z-index:
     left: @mtuiCellLeft;
     z-index: 15;
   }
-}
-.mtui-cells .mtui-cell:last-child{
-  &:after{display: none;}
 }
 .mtui-cells__title{
     margin-top: 0.16rem;
@@ -100,9 +102,19 @@ z-index:
 }
 .mtui-cell__bd{
   flex:1;
+  position: relative;
+}
+.mtui-vcode-img{
+  display: block;
+  width: 1.7rem;
+  height: 0.75rem;
 }
 
 .mtui-cell__ft {
   text-align: right;
   color: @mtuiTextColorGray;
+  position: relative;
+}
+.mtui-cell-error{
+  color: #F55840;
 }

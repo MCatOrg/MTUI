@@ -14,6 +14,9 @@ import button from '@/pages/button';
 import cell from '@/pages/cell';
 import radio from '@/pages/radio';
 import checklist from '@/pages/checklist';
+import accordion from '@/pages/accordion';
+import input from '@/pages/input';
+import slider from '@/pages/slider';
 
 Vue.use(Router);
 
@@ -88,6 +91,21 @@ export default new Router({
       path: '/checklist',
       name: 'checklist',
       component: checklist,
+    },
+    {
+      path: '/accordion',
+      name: 'accordion',
+      component: accordion,
+    },
+    {
+      path: '/input',
+      name: 'input',
+      component: input,
+    },
+    {
+      path: '/slider',
+      name: 'slider',
+      component: slider,
     },
   ],
 });

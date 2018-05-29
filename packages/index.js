@@ -16,6 +16,9 @@ import mtCell from './components/cell';
 import mtCellG from './components/cell-g';
 import mtRadio from './components/radio';
 import mtChecklist from './components/checklist';
+import mtAccordion from './components/accordion';
+import mtInput from './components/input';
+import mtSlider from './components/slider';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -37,6 +40,9 @@ const components = [
   mtCellG,
   mtRadio,
   mtChecklist,
+  mtAccordion,
+  mtInput,
+  mtSlider,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -77,6 +83,9 @@ const MTUI = {
   mtCellG,
   mtRadio,
   mtChecklist,
+  mtAccordion,
+  mtInput,
+  mtSlider,
 };
 export default MTUI;
 export {
@@ -97,4 +106,7 @@ export {
   mtCellG,
   mtRadio,
   mtChecklist,
+  mtAccordion,
+  mtInput,
+  mtSlider,
 };

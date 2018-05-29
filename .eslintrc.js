@@ -42,6 +42,7 @@ module.exports = {
     // }],
     'no-param-reassign':0,
     "no-console":"off",
+    "no-useless-escape":0,
     "func-names": ["error", "never"],
     "no-unused-expressions": ["error", { "allowShortCircuit": true,"allowTernary":true,"allowTaggedTemplates":true}],
     // allow optionalDependencies
