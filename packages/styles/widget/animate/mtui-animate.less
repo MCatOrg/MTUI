@@ -131,7 +131,7 @@
 
 // vue  过渡
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .4s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
@@ -149,14 +149,11 @@
 }
 
 .bottomScale-enter-active, .bottomScale-leave-active {
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in;
 }
-.bottomScale-enter {
-  transform: scale(0);
-}
-.bottomScale-leave-to{
+.bottomScale-enter,.bottomScale-leave-to{
   opacity: 0;
-  transform: scale(0);
+  transform: scale(0.2);
 }
 
 

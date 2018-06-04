@@ -16,6 +16,7 @@
     "vbuild": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js"
   },
   "dependencies": {
+    "exif-js": "^2.3.0",
     "vue": "^2.5.2",
     "vue-lazyload": "^1.2.3",
     "vue-router": "^3.0.1"

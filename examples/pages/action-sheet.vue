@@ -30,6 +30,7 @@ export default {
       }, {
         text: '菜单二',
         fn: this.twoMenu,
+        color: 'red',
       }],
       showAS: false,
       showUnCancel: false,

@@ -17,10 +17,12 @@ import checklist from '@/pages/checklist';
 import accordion from '@/pages/accordion';
 import input from '@/pages/input';
 import slider from '@/pages/slider';
+import uploader from '@/pages/uploader';
+import bigPicture from '@/pages/bigPicture';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -107,5 +109,17 @@ export default new Router({
       name: 'slider',
       component: slider,
     },
+    {
+      path: '/uploader',
+      name: 'uploader',
+      component: uploader,
+    },
+    {
+      path: '/bigPicture',
+      name: 'bigPicture',
+      component: bigPicture,
+    },
   ],
 });
+
+export default router;

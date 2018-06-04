@@ -7,3 +7,7 @@ rem.js
 karma.conf.js
 *.spec.js
 /MTUI/
+exif.js
+jpeg_encoder_basic.js
+MegaPixImage.js
+parseURL.js

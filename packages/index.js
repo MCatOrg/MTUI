@@ -19,6 +19,8 @@ import mtChecklist from './components/checklist';
 import mtAccordion from './components/accordion';
 import mtInput from './components/input';
 import mtSlider from './components/slider';
+import mtUploader from './components/uploader';
+import mtBigPicture from './components/bigPicture';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -43,6 +45,8 @@ const components = [
   mtAccordion,
   mtInput,
   mtSlider,
+  mtUploader,
+  mtBigPicture,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -86,6 +90,8 @@ const MTUI = {
   mtAccordion,
   mtInput,
   mtSlider,
+  mtUploader,
+  mtBigPicture,
 };
 export default MTUI;
 export {
@@ -109,4 +115,6 @@ export {
   mtAccordion,
   mtInput,
   mtSlider,
+  mtUploader,
+  mtBigPicture,
 };

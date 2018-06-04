@@ -8,7 +8,7 @@
               </div>
               <div class="mtui-actionsheet__menu">
                 <div class="mtui-actionsheet__cell" v-for="(menu,i) in menus" :key="i"
-                @click.stop="itemClick(menu,i)">
+                @click.stop="itemClick(menu,i)" :style="{color:menu.color?menu.color:'initial'}">
                   {{menu.text}}
                 </div>
               </div>

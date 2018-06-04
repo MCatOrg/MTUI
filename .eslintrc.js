@@ -43,13 +43,15 @@ module.exports = {
     'no-param-reassign':0,
     "no-console":"off",
     "no-useless-escape":0,
+    "no-plusplus":0,
+    "camelcase":0,
+    "no-bitwise":0,
     "func-names": ["error", "never"],
     "no-unused-expressions": ["error", { "allowShortCircuit": true,"allowTernary":true,"allowTaggedTemplates":true}],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       optionalDependencies: ['test/unit/index.js']
     }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
