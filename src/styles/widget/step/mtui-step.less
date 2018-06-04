@@ -3,7 +3,9 @@
     //公共的
     .mtui-step{display: flex; color: #B2B2B2;
         .mtui-step_chart{position: relative;
-            .step-chart_dot{position: absolute; left: 0; right: 0; margin: auto; width: .28rem; height: .28rem; border-radius: 50%; background-color: #e5e5e5; z-index: 2;}
+            .step-chart_dot{position: absolute; left: 0; right: 0; margin: auto; width: .28rem; height: .28rem; border-radius: 50%; background-color: #e5e5e5; z-index: 2;
+                &.cur{background-color: @mtuiColorPrimary;}
+            }
             .step-chart_animate{display: inline-block; background-color: @mtuiColorPrimary; transform: translate(-50%,-50%); margin-left: 50%; margin-top: 50%; border-radius: 50%;
                 &.opacity{animation: outOpacity .9s linear .2s infinite normal;}
                 &.back{animation: outBack .5s linear .2s infinite alternate; opacity: .3;}
