@@ -1,10 +1,24 @@
 {
-  "name": "hymtui",
+  "name": "imcat-ui",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Mobile UI for Vue2.0",
+  "keyword": [
+    "component",
+    "vue",
+    "mobile",
+    "imcat"
+  ],
+  "repository":{
+    "type": "git",
+    "url": "git+https://github.com/MCatOrg/MTUI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MCatOrg/MTUI/issues"
+  },
+  "main":"lib/mtui.min.js",
+  "style":"lib/mtui.min.css",
   "author": "mt",
-  "homepage": "http://",
-  "private": true,
+  "homepage": "https://github.com/MCatOrg/MTUI/blob/dev-vue/README.md",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

@@ -27,7 +27,6 @@ const loadingImg = require('./assets/img.svg');
 const errorImg = require('./assets/error-sign.svg');
 
 const components = [
-  Toast,
   mtActionsheet,
   mtSpinner,
   loading,

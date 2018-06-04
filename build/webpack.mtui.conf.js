@@ -1,12 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
+const utils = require('./utils')
 const pkg = require('../package.json')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
 module.exports = {
   entry: path.resolve(__dirname, '../packages/index.js'),
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../lib'),
     publicPath: './js/',
     filename: 'mtui.min.js',
     library: {
@@ -42,12 +43,13 @@ module.exports = {
         }),
       },
       {
-        test: /\.(ttf)$/,
+        test: /\.(png|jpe?g|gif|svg|ttf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 204800
+          limit: 204800,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
-      }
+      },
     ]
   },
   resolve: {
