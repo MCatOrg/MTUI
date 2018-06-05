@@ -1,6 +1,6 @@
 {
   "name": "imcat-ui",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Mobile UI for Vue2.0",
   "keyword": [
     "component",
@@ -15,8 +15,8 @@
   "bugs": {
     "url": "https://github.com/MCatOrg/MTUI/issues"
   },
-  "main":"lib/mtui.min.js",
-  "style":"lib/mtui.min.css",
+  "main":"lib/mtui.js",
+  "style":"lib/index.css",
   "author": "mt",
   "homepage": "https://github.com/MCatOrg/MTUI/blob/dev-vue/README.md",
   "license": "MIT",
@@ -27,7 +27,8 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue examples test/unit",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.mtui.conf.js",
-    "vbuild": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js"
+    "vbuild": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js",
+    "pub":"npm run build&&npm publish"
   },
   "dependencies": {
     "exif-js": "^2.3.0",

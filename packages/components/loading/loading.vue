@@ -8,7 +8,7 @@
   </transition>
 </template>
 <script>
-import Spinner from '../spinner';
+import mtSpinner from '../spinner';
 
 export default {
   name: 'mt-loading',
@@ -24,7 +24,7 @@ export default {
     };
   },
   components: {
-    Spinner,
+    mtSpinner,
   },
   methods: {
     afterLeave() {
