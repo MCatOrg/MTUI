@@ -17,7 +17,7 @@
       </div>
     </div>
 </template>
-<style scoped>
+<style>
 .loader-inner {
   height: 0.6rem;
   position: relative;

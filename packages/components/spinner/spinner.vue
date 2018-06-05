@@ -55,7 +55,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .mt-spinner{
   display: inline-block;
 }

@@ -38,7 +38,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .mt-loading{
   position: fixed;
   top: 0;

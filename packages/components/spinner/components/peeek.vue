@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 #peekBox {
   position: absolute;
   top: 0;

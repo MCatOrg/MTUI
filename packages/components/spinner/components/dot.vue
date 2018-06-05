@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .dot {
   width: 0.24rem;
   height: 0.24rem;
