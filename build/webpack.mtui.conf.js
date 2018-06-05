@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../lib'),
     publicPath: './js/',
-    filename: 'mtui.min.js',
+    filename: 'mtui.js',
     library: {
       root: "mtui",
       amd: "mtui",
@@ -65,7 +65,7 @@ module.exports = {
     ].join('\n')),
     // 生成mtui.css
     new ExtractTextPlugin({
-      filename: './mtui.min.css',
+      filename: './index.css',
       disable: false,
       allChunks: true,
     }),
