@@ -30,6 +30,14 @@
             <div class="mtui-cell__bd">slider</div>
             <div class="mtui-cell__ft">滑动条</div>
     </router-link>
+    <router-link to="/picker" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">picker</div>
+            <div class="mtui-cell__ft">选择器</div>
+    </router-link>
+    <router-link to="/steps" class="mtui-cell mtui-cell__link">
+            <div class="mtui-cell__bd">steps</div>
+            <div class="mtui-cell__ft">步骤</div>
+    </router-link>
   </div>
 </template>
 <script>

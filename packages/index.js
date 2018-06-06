@@ -7,6 +7,9 @@ import mtRadio from './components/radio';
 import mtCheckbox from './components/checkbox';
 import mtInput from './components/input';
 import mtSlider from './components/slider';
+import mtPicker from './components/picker/picker.js';
+import mtDatePicker from './components/picker/datePicker.js';
+import mtSteps from './components/steps';
 
 import './styles/mtui.less';
 
@@ -19,6 +22,9 @@ const components = [
   mtInput,
   mtAccordion,
   mtSlider,
+  mtPicker,
+  mtDatePicker,
+  mtSteps,
 ];
 const version = '1.0.0';
 const install = (Vue) => {
@@ -28,6 +34,8 @@ const install = (Vue) => {
     return component;
   });
   Vue.prototype.$Toast = Toast;
+  Vue.prototype.$Picker = mtPicker;
+  Vue.prototype.$datePicker = mtDatePicker;
 };
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
@@ -36,12 +44,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   version,
-  Toast,
-  mtButton,
-  mtCell,
-  mtRadio,
-  mtCheckbox,
-  mtInput,
-  mtAccordion,
-  mtSlider,
+  ...components,
 };

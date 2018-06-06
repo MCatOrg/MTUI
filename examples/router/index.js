@@ -8,6 +8,8 @@ import Cell from '@/components/cell';
 import Input from '@/components/input';
 import Accordion from '@/components/accordion';
 import Slider from '@/components/slider';
+import Picker from '@/components/picker';
+import Steps from '@/components/steps';
 
 Vue.use(Router);
 
@@ -45,6 +47,14 @@ export default new Router({
       path: '/slider', // Slider
       name: 'Slider',
       component: Slider,
+    }, {
+      path: '/picker', // Slider
+      name: 'Picker',
+      component: Picker,
+    }, {
+      path: '/steps', // steps
+      name: 'Steps',
+      component: Steps,
     },
   ],
 });
