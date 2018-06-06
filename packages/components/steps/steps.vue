@@ -74,8 +74,10 @@ export default {
             for(let i=0; i<this.lists.length; i++){
                 if(!this.lists[i].status && i != 0){
                     if(this.lists[i-1].status) this.lists[i-1].animate = true
+                    else this.lists[i-1].animate = false;
                 }else this.lists[i].animate = false;
             }
+            console.log(this.lists)
             return this.lists;
         },
         computedColor(){
