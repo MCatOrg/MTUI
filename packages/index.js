@@ -21,6 +21,9 @@ import mtInput from './components/input';
 import mtSlider from './components/slider';
 import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
+import mtSteps from './components/steps';
+import mtPicker from './components/picker/picker';
+import mtDatePicker from './components/picker/datePicker';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -46,6 +49,9 @@ const components = [
   mtSlider,
   mtUploader,
   mtBigPicture,
+  mtSteps,
+  mtPicker,
+  mtDatePicker
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -62,6 +68,8 @@ const install = (Vue, config = {}) => {
   Vue.prototype.$messagebox = mtMessageBox;
   Vue.prototype.$Toast = Toast;
   Vue.prototype.$loading = loading;
+  Vue.prototype.$Picker = mtPicker;
+  Vue.prototype.$datePicker = mtDatePicker;
 };
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
@@ -91,6 +99,9 @@ const MTUI = {
   mtSlider,
   mtUploader,
   mtBigPicture,
+  mtSteps,
+  mtPicker,
+  mtDatePicker
 };
 export default MTUI;
 export {
@@ -116,4 +127,7 @@ export {
   mtSlider,
   mtUploader,
   mtBigPicture,
+  mtSteps,
+  mtPicker,
+  mtDatePicker
 };

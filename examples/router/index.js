@@ -19,6 +19,8 @@ import input from '@/pages/input';
 import slider from '@/pages/slider';
 import uploader from '@/pages/uploader';
 import bigPicture from '@/pages/bigPicture';
+import picker from '@/pages/picker';
+import steps from '@/pages/steps';
 
 Vue.use(Router);
 
@@ -118,6 +120,16 @@ const router = new Router({
       path: '/bigPicture',
       name: 'bigPicture',
       component: bigPicture,
+    },
+    {
+      path: '/picker',
+      name: 'picker',
+      component: picker,
+    },
+    {
+      path: '/steps',
+      name: 'steps',
+      component: steps,
     },
   ],
 });
