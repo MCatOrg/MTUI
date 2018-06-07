@@ -1,61 +1,93 @@
 <style lang="less" scoped>
-.mtui-search_box{display: flex; transition: all .3s;}
-.mtui-search{background-color: #F2F2F2; border-radius: .08rem; line-height: .6rem; display: flex; justify-content: flex-end; flex: 1;}
-.mtui-search.circle{border-radius: .3rem; padding-left: .1rem; padding-right: .1rem;}
-.mtui-search_icon{width: .6rem; height: .6rem; display: flex; justify-content: center; align-items: center; color: #666;}
-.mtui-search_icon .mtui-icon-close{color: #999;}
-.mtui-search_inputBox{flex: 1;}
-.mtui-search_input{width: 100%; border: 0; background-color: transparent; height: .6rem; line-height: .6rem;}
-
-.mtui-search_cancel{width: 1rem; line-height: .6rem; text-align: center; color: #666; font-size: .24rem;}
+.searchbox{font-size: .24rem; line-height: .44rem; transition: all .3s; z-index: 2;}
+.searchbox.cur{position: fixed; top: 0; left: 0; width: 100%; padding: .3rem; background-color: white; box-sizing: border-box; height: 100%;}
+// .searchbox.cur .mt-search{position: relative; z-index: 2; padding: .3rem; background-color: white;}
+// .mt-search-mask{width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, .6);}
+.mt-search-close{position: absolute; width: 100%; line-height: .88rem; border-top: 1px solid #E5E5E5; bottom: 0; left: 0; text-align: center;}
 </style>
 
 <template>
-    <div>
-        <div class="mtui-search_box">
-            <div class="mtui-search">
-                <!-- icon -->
-                <div class="mtui-search_icon">
-                    <i class="mtui-icon-search"></i>
-                </div>
-                <div class="mtui-search_inputBox">
-                    <input @focus="onFocus = true" @blur="onFocus = false;" class="mtui-search_input" v-model="key" placeholder="搜索" type="text">
-                </div>
-                <div class="mtui-search_icon" v-if="!!key">
-                    <i class="mtui-icon-close"></i>
-                </div>
+    <div style="padding-left:.3rem; padding-right: .3rem; text-align: left;">
+        <p>默认</p>
+        <mt-searchbar @onsearch="search"></mt-searchbar>
+         <br>
+        <p>圆角</p>
+        <mt-searchbar @onsearch="search" :circle="true"></mt-searchbar>
+        <br>
+        <p>除去action</p>
+        <mt-searchbar @onsearch="search" :hasAction="false"></mt-searchbar>
+        <br>
+        <p>自定义placeholder</p>
+        <mt-searchbar @onsearch="search" placeholder="输入你想要的关键词"></mt-searchbar>
+        <br>
+        <p>onfocus和oninput和oncancel用例</p>
+        <div :class="['searchbox',searchFocus?'cur':'']">
+            <div class="mt-search">
+                <mt-searchbar @onsearch="search" @onsearchBlur="onsearchBlur" @onsearchFocus="onsearchFocus" @onsearchInput="onsearchInput" placeholder="输入你想要的水果" @oncancle="oncancle" :historys="historys"></mt-searchbar>
             </div>
-            <div v-if="onFocus" class="mtui-search_cancel" @click="action(!!key)">{{!!key?'搜索':'取消'}}</div>
+            <div v-if="searchFocus" @click="searchFocus = false" class="mt-search-close">关闭</div>
         </div>
+        <br>
+        <p>history功能</p>
+        <mt-searchbar @onsearch="search" :historys="historys" placeholder="输入你想要的水果"></mt-searchbar>
     </div>
 </template>
 <script>
 export default {
     data(){
         return {
-            key: '',
-            onFocus: false,
+            searchKey: '',
+            searchFocus: false,
+            historys: [
+                {
+                    title: '苹果',
+                    url: '###',
+                },{
+                    title: '香蕉',
+                    url: '###',
+                },{
+                    title: '柠檬',
+                    url: '###',
+                },{
+                    title: '火龙果',
+                    url: '###',
+                },{
+                    title: '雪梨',
+                    url: '###',
+                },{
+                    title: '菠萝',
+                    url: '###',
+                }
+            ],
         }
     },
     methods: {
-        action(code){
-            if(code){       //搜索
-                console.log('搜索')
-            }else{          //取消
-                this.onFocus = false;
-                this.key = '';
-            }
+        search(value){
+            console.log(value)
+            this.$Toast("你搜索了: "+value)
+        },
+        onsearchFocus(){
+            console.log("focus")
+            this.searchFocus = true;
+        },
+        onsearchBlur(){
+            console.log("searchbar had blur")
+        },
+        oncancle(){
+            this.searchFocus = false;
+        },
+        onsearchInput(value){
+            console.log("input event log: ",value)
+            this.searchKey = value;
+        }
+    },
+    computed: {
+        historyList(){
+            let that = this;
+            return this.historys.map(function(value){
+                return value.title.indexOf(that.searchKey) !== -1 && that.searchKey !== '' ? value : false;
+            })
         }
     }
-    // props: {
-    //     key: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     placeholder: {
-    //         type: String,
-    //         default: '搜索'
-    //     },
-    // }
 }
 </script>

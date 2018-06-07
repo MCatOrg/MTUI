@@ -24,6 +24,7 @@ import mtBigPicture from './components/bigPicture';
 import mtSteps from './components/steps';
 import mtPicker from './components/picker/picker';
 import mtDatePicker from './components/picker/datePicker';
+import mtSearchbar from './components/searchbar';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -50,8 +51,7 @@ const components = [
   mtUploader,
   mtBigPicture,
   mtSteps,
-  mtPicker,
-  mtDatePicker
+  mtSearchbar,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -80,6 +80,8 @@ const MTUI = {
   version,
   Toast,
   loading,
+  mtPicker,
+  mtDatePicker,
   mtActionsheet,
   mtMessageBox,
   mtSpinner,
@@ -100,8 +102,7 @@ const MTUI = {
   mtUploader,
   mtBigPicture,
   mtSteps,
-  mtPicker,
-  mtDatePicker
+  mtSearchbar,
 };
 export default MTUI;
 export {
@@ -109,6 +110,8 @@ export {
   version,
   Toast,
   loading,
+  mtPicker,
+  mtDatePicker,
   mtActionsheet,
   mtMessageBox,
   mtLoadMore,
@@ -128,6 +131,5 @@ export {
   mtUploader,
   mtBigPicture,
   mtSteps,
-  mtPicker,
-  mtDatePicker
+  mtSearchbar,
 };
