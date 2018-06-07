@@ -21,6 +21,8 @@ import mtInput from './components/input';
 import mtSlider from './components/slider';
 import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
+import Vconsole from './components/v-console';
+import mtPicker from './components/picker';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -46,6 +48,8 @@ const components = [
   mtSlider,
   mtUploader,
   mtBigPicture,
+  Vconsole,
+  mtPicker,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -91,6 +95,8 @@ const MTUI = {
   mtSlider,
   mtUploader,
   mtBigPicture,
+  Vconsole,
+  mtPicker,
 };
 export default MTUI;
 export {
@@ -116,4 +122,6 @@ export {
   mtSlider,
   mtUploader,
   mtBigPicture,
+  Vconsole,
+  mtPicker,
 };

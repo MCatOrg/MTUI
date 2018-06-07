@@ -1,129 +1,133 @@
-/*
-* Tencent is pleased to support the open source community by making mtui available.
-*
-* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-*
-* Licensed under the MIT License (the "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
-*
-*       http://opensource.org/licenses/MIT
-*
-* Unless required by applicable law or agreed to in writing, software distributed under the License is
-* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-* either express or implied. See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-@import "../../base/fn";
-
-@pickerItemHeight: 34px;
 .mtui-picker {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    z-index: 5000;
-    backface-visibility: hidden;
-    transform: translate(0, 100%);
-    //slide up animation
-    transition: transform .3s;
+  overflow: hidden;
 }
 
-.mtui-picker__hd {
-    display: flex;
-    padding: 9px 15px;
-    justify-content: space-between;
-    background-color: #fff;
-    position: relative;
-    text-align: center;
-    font-size: 17px;
-    border-bottom: 1px solid #F6F6F6;
-    // &:after {
-    //     .setBottomLine(@mtuiLineColorLight);
-    // }
+.mtui-picker-toolbar {
+  height: 0.88rem;
+  position: relative;
 }
 
-.mtui-picker__action {
+.mtui-picker-items {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  text-align: right;
+  font-size: 0.36rem;
+  position: relative;
+}
+
+.mtui-picker-center-highlight {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 50%;
+  pointer-events: none;
+  border-top:0.015rem solid ;
+  border-bottom:0.015rem solid ;
+  z-index: -1;
+}
+
+.mtui-picker-search{
+  width: 100%;
+  height: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.015rem solid #e5e5e5;
+  >input{
     display: block;
-    // flex: 1;
-    color: @mtuiColorPrimary;
-
-    &:first-child {
-        text-align: left;
-        color: #888;
-    }
-    &:last-child {
-        text-align: right;
-    }
-}
-.mtui-picker__searchBox{background-color: white; padding: 5px 15px; border-bottom: 1px solid #F6F6F6;}
-.mtui-picker__search{width: 100%; border: 0; height: .4rem; text-align: center; line-height: .4rem;}
-
-.mtui-picker__bd {
-    display: flex;
-    position: relative;
-    background-color: #fff;
-    height: 238px;
-    overflow: hidden;
-}
-
-.mtui-picker__group {
-    flex: 1;
-    position: relative;
-    height: 100%;
-    //-webkit-mask-box-image: -webkit-linear-gradient(bottom,transparent,transparent 5%,#fff 50%,#fff 50%,transparent 95%,transparent);
-}
-
-.mtui-picker__mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    z-index: 3;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, .95), hsla(0, 0%, 100%, .6)), linear-gradient(0deg, hsla(0, 0%, 100%, .95), hsla(0, 0%, 100%, .6));
-    background-position: top, bottom;
-    background-size: 100% 2rem;
-    background-repeat: no-repeat;
-    transform: translateZ(0);
-}
-
-.mtui-picker__indicator {
-    width: 100%;
-    height: @pickerItemHeight;
-    position: absolute;
-    left: 0;
-    top: 102px;
-    z-index: 3;
-    border-bottom: 1px solid #F6F6F6;
-    border-top: 1px solid#F6F6F6;
-    // &:before {
-    //     .setTopLine(@mtuiLineColorLight);
-    // }
-    // &:after {
-    //     .setBottomLine(@mtuiLineColorLight);
-    // }
-}
-
-.mtui-picker__content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.mtui-picker__item {
-    padding: 0;
-    height: @pickerItemHeight;
-    line-height: @pickerItemHeight;
+    outline: none;
+    border: 0.015rem solid #e5e5e5;
+    height: 0.6rem;
+    line-height: 0.6rem;
     text-align: center;
-    color: #000;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    width: 85%;
+    border-radius: 0.1rem;
+  }
 }
 
-.mtui-picker__item_disabled {
-    color: @mtuiTextColorGray;
+// picker-slot
+.picker-slot {
+  font-size: 0.36rem;
+  overflow: hidden;
+  position: relative;
+  max-height: 100%
+}
+
+.picker-slot.picker-slot-left {
+  text-align: left;
+}
+
+.picker-slot.picker-slot-center {
+  text-align: center;
+}
+
+.picker-slot.picker-slot-right {
+  text-align: right;
+}
+
+.picker-slot.picker-slot-divider {
+  color: #000;
+  display: flex;
+  align-items: center
+}
+
+.picker-slot-wrapper {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  backface-visibility: hidden;
+}
+
+.picker-slot-wrapper.dragging,
+.picker-slot-wrapper.dragging .picker-item {
+  transition-duration: 0s;
+}
+
+.picker-item {
+  padding: 0 0.2rem;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #707274;
+  left: 0;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition-duration: .3s;
+  backface-visibility: hidden;
+}
+
+.picker-slot-absolute .picker-item {
+  position: absolute;
+}
+
+.picker-item.picker-item-far {
+  pointer-events: none;
+}
+
+.picker-item.picker-selected {
+  transform: translate3d(0, 0, 0) rotateX(0);
+}
+
+.picker-3d .picker-items {
+  overflow: hidden;
+  perspective: 700px;
+}
+
+.picker-3d .picker-item,
+.picker-3d .picker-slot,
+.picker-3d .picker-slot-wrapper {
+  transform-style: preserve-3d
+}
+
+.picker-3d .picker-slot {
+  overflow: visible
+}
+
+.picker-3d .picker-item {
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition-timing-function: ease-out
 }

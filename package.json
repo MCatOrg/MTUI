@@ -8,15 +8,15 @@
     "mobile",
     "imcat"
   ],
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/MCatOrg/MTUI.git"
   },
   "bugs": {
     "url": "https://github.com/MCatOrg/MTUI/issues"
   },
-  "main":"lib/mtui.js",
-  "style":"lib/index.css",
+  "main": "lib/mtui.js",
+  "style": "lib/index.css",
   "author": "mt",
   "homepage": "https://github.com/MCatOrg/MTUI/blob/dev-vue/README.md",
   "license": "MIT",
@@ -28,15 +28,16 @@
     "lint": "eslint --ext .js,.vue examples test/unit",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.mtui.conf.js",
     "vbuild": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js",
-    "pub":"npm run build&&npm publish"
+    "pub": "npm run build&&npm publish"
   },
   "dependencies": {
     "exif-js": "^2.3.0",
+    "raf.js": "^0.0.4",
     "vue": "^2.5.2",
-    "vue-lazyload": "^1.2.3",
-    "vue-router": "^3.0.1"
+    "vue-lazyload": "^1.2.3"
   },
   "devDependencies": {
+    "vue-router": "^3.0.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
