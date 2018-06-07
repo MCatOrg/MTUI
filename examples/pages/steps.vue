@@ -5,7 +5,11 @@
 <template>
     <div>
         <div class="aa">
-            <mt-steps :lists="lists" :color="color" :orient="orient"></mt-steps>
+            <mt-steps :lists="lists" :animate="animate" :color="color" :orient="orient"></mt-steps>
+        </div>
+        <div>
+            <button @click="animate = 'opacity'">动画一(默认)</button>
+            <button @click="animate = 'back'">动画二</button>
         </div>
         <div>
             <button @click="orient = 'horizon'">水平</button>
@@ -32,6 +36,7 @@
 export default {
     data(){
         return {
+            animate: 'opacity',
             orient: 'horizon',
             color: '#EB5757',
             lists: [
