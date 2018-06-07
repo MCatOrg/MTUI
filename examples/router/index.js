@@ -21,6 +21,7 @@ import uploader from '@/pages/uploader';
 import bigPicture from '@/pages/bigPicture';
 import picker from '@/pages/picker';
 import steps from '@/pages/steps';
+import search from '@/pages/search';
 
 Vue.use(Router);
 
@@ -130,6 +131,11 @@ const router = new Router({
       path: '/steps',
       name: 'steps',
       component: steps,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: search,
     },
   ],
 });
