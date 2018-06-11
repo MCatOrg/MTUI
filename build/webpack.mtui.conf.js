@@ -4,6 +4,9 @@ const utils = require('./utils')
 const pkg = require('../package.json')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 module.exports = {
   entry: path.resolve(__dirname, '../packages/index.js'),
   output: {
