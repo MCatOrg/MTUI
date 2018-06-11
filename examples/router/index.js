@@ -131,6 +131,31 @@ const router = new Router({
       name: 'picker',
       component: picker,
     },
+    {
+      path: '/badge',
+      name: 'badge',
+      component: () => import('../pages/badge.vue'),
+    },
+    {
+      path: '/grid',
+      name: 'grid',
+      component: () => import('../pages/grid.vue'),
+    },
+    {
+      path: '/stepper',
+      name: 'stepper',
+      component: () => import('../pages/stepper.vue'),
+    },
+    {
+      path: '/switch',
+      name: 'switch',
+      component: () => import('../pages/switch.vue'),
+    },
+    {
+      path: '/tabbar',
+      name: 'tabbar',
+      component: () => import('../pages/tabbar.vue'),
+    },
   ],
 });
 

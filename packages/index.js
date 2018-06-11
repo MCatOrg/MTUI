@@ -23,6 +23,11 @@ import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
 import Vconsole from './components/v-console';
 import mtPicker from './components/picker';
+import mtBadge from './components/badge';
+import mtGrid from './components/grid';
+import mtStepper from './components/stepper';
+import mtSwitch from './components/switch';
+import mtTabBar from './components/tabbar';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -50,6 +55,11 @@ const components = [
   mtBigPicture,
   Vconsole,
   mtPicker,
+  mtBadge,
+  mtGrid,
+  mtStepper,
+  mtSwitch,
+  mtTabBar,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -97,6 +107,11 @@ const MTUI = {
   mtBigPicture,
   Vconsole,
   mtPicker,
+  mtBadge,
+  mtGrid,
+  mtStepper,
+  mtSwitch,
+  mtTabBar,
 };
 export default MTUI;
 export {
@@ -124,4 +139,9 @@ export {
   mtBigPicture,
   Vconsole,
   mtPicker,
+  mtBadge,
+  mtGrid,
+  mtStepper,
+  mtSwitch,
+  mtTabBar,
 };
