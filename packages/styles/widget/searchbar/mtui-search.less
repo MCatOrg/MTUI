@@ -1,0 +1,23 @@
+.mtui-search_box{display: flex; position: relative;}
+.mtui-search{background-color: #F2F2F2; border-radius: .08rem; line-height: .6rem; display: flex; flex: 1; transition: all .3s;}
+.mtui-search.circle{border-radius: .3rem; padding-left: .1rem; padding-right: .1rem;}
+.mtui-search_icon{width: .6rem; height: .6rem; display: flex; justify-content: center; align-items: center; color: #666;}
+.mtui-search_icon .mtui-icon-close{color: #999;}
+.mtui-search_inputBox{flex: 1;}
+.mtui-search_input{width: 100%; border: 0; background-color: transparent; height: .6rem; line-height: .6rem;}
+
+.mtui-search_cancel{width: 0; transition: all .3s; line-height: .6rem; text-align: center; color: #666; font-size: .24rem; overflow: hidden; white-space:nowrap;}
+.mtui-search_cancel.cur{width: 1rem;}
+
+// 历史
+.mtui-search_history{position: absolute; width: 100%; top: .7rem; left: 0; padding: .1rem .3rem .2rem; background-color: white; line-height: .44rem; font-size: .24rem; box-sizing: border-box; animation-name: history; animation-duration: .3s;}
+.history-tips{color: #666; text-align: center;}
+.lists-item{border-bottom: 1px solid #f6f6f6; line-height: .6rem;}
+.lists-item:last-child{border-bottom: 0;}
+.lists-item_cont{display: block;}
+
+@keyframes history
+{
+    from {opacity: 0; transform: translateY(10px)}
+    to {opacity: 1; transform: translateY(0)}
+}

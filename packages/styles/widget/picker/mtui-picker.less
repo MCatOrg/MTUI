@@ -1,0 +1,133 @@
+.mtui-picker {
+  overflow: hidden;
+}
+
+.mtui-picker-toolbar {
+  height: 0.88rem;
+  position: relative;
+}
+
+.mtui-picker-items {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  text-align: right;
+  font-size: 0.36rem;
+  position: relative;
+}
+
+.mtui-picker-center-highlight {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 50%;
+  pointer-events: none;
+  border-top:0.015rem solid ;
+  border-bottom:0.015rem solid ;
+  z-index: -1;
+}
+
+.mtui-picker-search{
+  width: 100%;
+  height: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.015rem solid #e5e5e5;
+  >input{
+    display: block;
+    outline: none;
+    border: 0.015rem solid #e5e5e5;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    width: 85%;
+    border-radius: 0.1rem;
+  }
+}
+
+// picker-slot
+.picker-slot {
+  font-size: 0.36rem;
+  overflow: hidden;
+  position: relative;
+  max-height: 100%
+}
+
+.picker-slot.picker-slot-left {
+  text-align: left;
+}
+
+.picker-slot.picker-slot-center {
+  text-align: center;
+}
+
+.picker-slot.picker-slot-right {
+  text-align: right;
+}
+
+.picker-slot.picker-slot-divider {
+  color: #000;
+  display: flex;
+  align-items: center
+}
+
+.picker-slot-wrapper {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  backface-visibility: hidden;
+}
+
+.picker-slot-wrapper.dragging,
+.picker-slot-wrapper.dragging .picker-item {
+  transition-duration: 0s;
+}
+
+.picker-item {
+  padding: 0 0.2rem;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #707274;
+  left: 0;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition-duration: .3s;
+  backface-visibility: hidden;
+}
+
+.picker-slot-absolute .picker-item {
+  position: absolute;
+}
+
+.picker-item.picker-item-far {
+  pointer-events: none;
+}
+
+.picker-item.picker-selected {
+  transform: translate3d(0, 0, 0) rotateX(0);
+}
+
+.picker-3d .picker-items {
+  overflow: hidden;
+  perspective: 700px;
+}
+
+.picker-3d .picker-item,
+.picker-3d .picker-slot,
+.picker-3d .picker-slot-wrapper {
+  transform-style: preserve-3d
+}
+
+.picker-3d .picker-slot {
+  overflow: visible
+}
+
+.picker-3d .picker-item {
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition-timing-function: ease-out
+}
