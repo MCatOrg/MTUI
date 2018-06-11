@@ -1,0 +1,51 @@
+
+@import "../../base/fn";
+/*徽章样式 START*/
+.mtui-badge(){
+    display: inline-block;
+    height: .32rem;
+    border-radius: .32rem;
+    vertical-align: middle;
+    background-color: #FF3B30;
+    color: #FFFFFF;
+}
+.mtui-badge_text {
+    .mtui-badge();
+    font-size: .14rem;
+    line-height: .3rem;
+    text-align: center;
+    height: .32rem;
+    min-width: .12rem;
+    padding-left: .1rem;
+    padding-right: .1rem;
+}
+.mtui-badge_circle{
+    .mtui-badge();
+    font-size: .14rem;
+    line-height: .3rem;
+    text-align: center;
+    height: .32rem;
+    width: .32rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.mtui-badge_dot {
+    display: inline-block;
+    border-radius: .2rem;
+    background-color: #FF3B30;
+    height: .2rem;
+    width: .2rem;
+    vertical-align: middle;
+}
+.mtui-badge_more{
+    .mtui-badge();
+    padding-left: .14rem;
+    padding-right: .14rem;
+    min-width: .2rem;
+    line-height: .12rem;
+    font-size: .32rem;
+}
+.mtui-badge_more::before{
+    content: "...";
+}

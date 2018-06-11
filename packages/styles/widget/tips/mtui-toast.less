@@ -1,0 +1,38 @@
+@import "../../base/fn";
+
+.mtui-toast {
+    position: fixed;
+    z-index: 5000;
+    width: 2.4rem;
+    min-height: 0.72rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -1.2rem;
+    margin-top: -0.46rem;
+    background: rgba(0,0,0,0.7);
+    text-align: center;
+    border-radius: 0.1rem;
+    color: #FFFFFF;
+    z-index: 99;
+}
+.mtui-icon_toast {
+    margin: 0.3rem 0 0;
+    display: block;
+    &.mtui-icon-success-no-circle{
+      &:before {
+          color: #FFFFFF;
+          font-size: 0.36rem;
+      }
+    }
+    &.mtui-loading{
+      margin:0.3rem 0 0;
+      width:0.7rem;
+      height:0.7rem;
+      vertical-align: baseline;
+    }
+}
+
+.mtui-toast__content {
+    margin: 0 0 0.15rem;
+    margin-bottom: 0.3rem;
+}

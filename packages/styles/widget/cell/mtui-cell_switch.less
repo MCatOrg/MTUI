@@ -1,0 +1,63 @@
+
+@import "../../base/fn";
+
+.mtui-switch{
+    -webkit-appearance: none;
+    appearance: none;
+}
+.mtui-switch,
+.mtui-switch-cp__box{
+    position: relative;
+    width: 1.04rem;
+    height: @mtuiSwitchHeight;
+    border: 0.01rem solid #DFDFDF;
+    outline: 0;
+    border-radius: 0.32rem;
+    box-sizing: border-box;
+    background-color: #DFDFDF;
+    transition: background-color .1s, border .1s;
+
+    &:before{
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1rem;
+        height: @mtuiSwitchHeight - 0.02;
+        border-radius: 0.3rem;
+        background-color: #FDFDFD;
+        transition:transform .35s cubic-bezier(0.45, 1, 0.4, 1);
+    }
+    &:after{
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: @mtuiSwitchHeight - 0.02;
+        height: @mtuiSwitchHeight - 0.02;
+        border-radius: 0.3rem;
+        background-color: #FFFFFF;
+        box-shadow: 0 0.01rem 0.03rem rgba(0, 0, 0, 0.4);
+        transition:transform .35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+    }
+}
+.mtui-switch:checked,
+.mtui-switch-cp__input:checked ~ .mtui-switch-cp__box{
+    border-color: @mtuiColorPrimary;
+    background-color: @mtuiColorPrimary;
+    &:before {
+        transform: scale(0);
+    }
+    &:after {
+        transform: translateX(0.4rem);
+    }
+}
+
+// 兼容IE Edge的版本
+.mtui-switch-cp__input{
+    position: absolute;
+    left: -99.99rem;
+}
+.mtui-switch-cp__box{
+    display: block;
+}
