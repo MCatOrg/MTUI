@@ -54,6 +54,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': resolve('examples'),
+      '~': resolve('packages')
+    }
   },
   // devtool: '#source-map',
   plugins: [
