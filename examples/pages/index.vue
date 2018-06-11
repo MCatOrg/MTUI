@@ -26,6 +26,8 @@
             <mt-cell title="touchRipple" tips="触摸涟漪" value="查看示例" to="/touchRipple"></mt-cell>
             <mt-cell title="uploader" tips="图片上传" value="查看示例" to="/uploader"></mt-cell>
             <mt-cell title="picker" tips="picker" value="查看示例" to="/picker"></mt-cell>
+            <mt-cell title="steps" tips="步骤" value="查看示例" to="/steps"></mt-cell>
+            <mt-cell title="search" tips="搜索" value="查看示例" to="/search"></mt-cell>
           </mt-cell-g>
       </div>
     </main>

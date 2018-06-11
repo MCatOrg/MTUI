@@ -28,6 +28,8 @@ import mtGrid from './components/grid';
 import mtStepper from './components/stepper';
 import mtSwitch from './components/switch';
 import mtTabBar from './components/tabbar';
+import mtSteps from './components/steps';
+import mtSearchbar from './components/searchbar';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -60,6 +62,8 @@ const components = [
   mtStepper,
   mtSwitch,
   mtTabBar,
+  mtSteps,
+  mtSearchbar,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -112,6 +116,8 @@ const MTUI = {
   mtStepper,
   mtSwitch,
   mtTabBar,
+  mtSteps,
+  mtSearchbar,
 };
 export default MTUI;
 export {
@@ -144,4 +150,6 @@ export {
   mtStepper,
   mtSwitch,
   mtTabBar,
+  mtSteps,
+  mtSearchbar,
 };
