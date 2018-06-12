@@ -11,7 +11,7 @@ module.exports = {
   entry: path.resolve(__dirname, '../packages/index.js'),
   output: {
     path: path.resolve(__dirname, '../lib'),
-    publicPath: './js/',
+    publicPath: './',
     filename: 'mtui.js',
     library: {
       root: "mtui",
@@ -46,11 +46,19 @@ module.exports = {
         }),
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ttf)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 204800,
+          limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(ttf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
     ]

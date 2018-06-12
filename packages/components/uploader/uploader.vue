@@ -46,8 +46,7 @@ import toast from '../toast';
 import mtBigPicture from '../bigPicture';
 import mtActionsheet from '../action-sheet';
 import mtMessageBox from '../message-box';
-
-const { EXIF } = require('./Plug/exif.js');
+import EXIF from './Plug/exif.js';
 
 export default {
   name: 'mt-uploader',

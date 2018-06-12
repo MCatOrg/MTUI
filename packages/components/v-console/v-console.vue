@@ -2,8 +2,8 @@
   <div id="openVconsole" @click="openVconsole"></div>
 </template>
 <script>
-const { VConsole } = require('./plugs/vconsole.min.js');
-
+import  './plugs/vconsole.min.js';
+console.log(window)
 let openVconsoleCount = 0;
 let timeVconsole;
 export default {

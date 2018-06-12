@@ -22,7 +22,6 @@
             <mt-cell title="spinner" tips="加载动画" value="查看示例" to="/spinner"></mt-cell>
             <mt-cell title="swipe" tips="轮播图" value="查看示例" to="/swipe"></mt-cell>
             <mt-cell title="tabContainer" value="查看示例" to="/tabContainer"></mt-cell>
-            <mt-cell title="VConsole" tips="隐藏VConsole" value="查看示例" to="/VConsole"></mt-cell>
             <mt-cell title="touchRipple" tips="触摸涟漪" value="查看示例" to="/touchRipple"></mt-cell>
             <mt-cell title="uploader" tips="图片上传" value="查看示例" to="/uploader"></mt-cell>
             <mt-cell title="picker" tips="picker" value="查看示例" to="/picker"></mt-cell>
