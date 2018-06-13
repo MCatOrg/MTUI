@@ -13,7 +13,7 @@
         </li>
         <li class="mtui-uploader__file"
         :style="{'background-image':`url(${loadingSrc})`}" v-show="isShowLoading"></li>
-      <li class="mtui-uploader__input-box" v-if="uploadList.length<maxCount">
+      <li class="mtui-uploader__input-box" v-show="uploadList.length<maxCount">
         <input class="mtui-uploader__input"
         type='text' v-if="useWx" @click="wxcompress"/>
         <input class="mtui-uploader__input"
@@ -261,7 +261,12 @@ export default {
       return true;
     },
     checkMax() {
-      if (this.uploadList.length === this.maxCount) {
+      if (this.isChangeImg) {
+        if (this.uploadList.length === this.maxCount + 1) {
+          toast(`最多只能上传${this.maxCount}张图片`);
+          return false;
+        }
+      } else if (this.uploadList.length === this.maxCount) {
         toast(`最多只能上传${this.maxCount}张图片`);
         return false;
       }

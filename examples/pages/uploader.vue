@@ -5,7 +5,7 @@
     serverUrl="http://192.168.3.71:8058/ServiceAPI/usercenter/Manager.aspx"
     viewClickEvent="enlarge"
     :prefix="`fileData`"
-    :maxCount="5"
+    :maxCount="1"
     :afterWidth="1000"
     :IsWeixinClientRequest="false"
     :IsUseWeiXinSDKUpdatePic="false"
@@ -33,10 +33,10 @@ export default {
         getLocalImgData: true,
       },
       defaultFileList: [
-        {
-          url: 'http://192.168.3.222:8024/Upload/test/20180529/201805291858323395522.jpg',
-          name: 'fileData0',
-        },
+        // {
+        //   url: 'http://192.168.3.222:8024/Upload/test/20180529/201805291858323395522.jpg',
+        //   name: 'fileData0',
+        // },
       ],
       waterMarkConfig: {
         watermark: '猫态科技',
