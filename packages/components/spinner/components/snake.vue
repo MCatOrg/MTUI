@@ -13,7 +13,6 @@ import common from './common';
 
 export default {
   name: 'snake',
-
   mixins: [common],
 };
 </script>

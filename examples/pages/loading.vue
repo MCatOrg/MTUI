@@ -4,6 +4,7 @@
     <button @click="showRainbowLoading">（rainbow）Loading</button>
     <button @click="showPeeekLoading">（peeek）Loading</button>
     <button @click="showSnakeLoading">（snake）Loading</button>
+    <button @click="toast">toast</button>
   </div>
 </template>
 <script>
@@ -50,6 +51,9 @@ export default {
       setTimeout(() => {
         this.$loading.close();
       }, 3000);
+    },
+    toast() {
+      this.$Toast('hello');
     },
   },
 };

@@ -2,7 +2,7 @@
   <transition name="fade" v-on:after-leave="afterLeave">
     <div class="mt-loading" v-show="visible"
     :style="{'background-color':showModal?'rgba(0,0,0,0.3)':''}">
-      <mt-spinner :type="spinnerType" :color="color" :size="size"></mt-spinner>
+      <mt-spinner :type="spinnerType" :color="color" :size="size"/>
       <span class="mt-loading-span" :style="{color:fontColor}">{{text}}</span>
     </div>
   </transition>
@@ -12,6 +12,9 @@ import mtSpinner from '../spinner';
 
 export default {
   name: 'mt-loading',
+  components: {
+    mtSpinner,
+  },
   data() {
     return {
       visible: false, // 控制显示隐藏
@@ -19,12 +22,9 @@ export default {
       fontColor: 'rgb(105, 195, 236)', // 默认文本颜色
       showModal: false, // 是否显示半透明黑色记载框
       spinnerType: 'dot',
-      color: '',
+      color: '#ccc',
       size: 1,
     };
-  },
-  components: {
-    mtSpinner,
   },
   methods: {
     afterLeave() {
@@ -32,7 +32,7 @@ export default {
       this.fontColor = 'rgb(105, 195, 236)';
       this.showModal = false;
       this.spinnerType = 'dot';
-      this.color = '';
+      this.color = '#ccc';
       this.size = 1;
     },
   },

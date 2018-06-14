@@ -15,14 +15,14 @@ const parseSpinner = function (index) {
   if ({}.toString.call(index) === '[object Number]') {
     if (SPINNERS.length <= index) {
       console.warn(`'${index}' spinner not found, use the default spinner.`);
-      index = 0;
+      return SPINNERS[0];
     }
     return SPINNERS[index];
   }
 
   if (SPINNERS.indexOf(index) === -1) {
     console.warn(`'${index}' spinner not found, use the default spinner.`);
-    index = SPINNERS[0];
+    return SPINNERS[0];
   }
   return index;
 };
