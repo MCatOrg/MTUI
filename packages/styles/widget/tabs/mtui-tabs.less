@@ -1,9 +1,9 @@
 @import '../../base/fn';
 .mtui-tabs{display: flex;
     .mtui-tab{font-size: .26rem; border-color: transparent;
-        .mtui-tab_text{padding-right: .15rem; padding-left: .15rem; line-height: .82rem; height: .82rem; display: inline-block; border-bottom: .06rem solid transparent;}
+        .mtui-tab_text{padding-right: .15rem; padding-left: .15rem; line-height: .82rem; height: .82rem; display: inline-block; border-bottom: .06rem solid transparent; border-color: inherit; position: relative;}
         &.active{color: @mtuiColorPrimary; border-color: @mtuiColorPrimary;}
-        .mtui-tab_text{border-bottom: .06rem solid transparent; border-color: inherit;}
+        .mtui-tab_badeg{position: absolute; display: inline-block; font-size: .2rem; background-color: white; border-radius: .2rem; padding-left: .08rem; padding-right: .08rem; top: 0; right: -20%; line-height: .3rem; border: 1px solid @mtuiColorPrimary; color: @mtuiColorPrimary;}
     }
 
     .mtui-tab{flex: 1; text-align: center;}
@@ -12,8 +12,8 @@
         .mtui-tabs_list{width: 6.62rem; overflow-x: scroll; position: relative; padding-bottom: .06rem;
             .mtui-tab_title{line-height: .81rem; font-size: .28rem; padding-left: .3rem; display: none; border-bottom: 0.01rem solid #E5E5E5;}
             .mtui-tab_box{overflow: hidden; width: 10.5rem;
-                .mtui-tab{width: 1.5rem; float: left; line-height: .82rem; box-sizing: border-box; overflow: hidden;
-    text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;}
+                .mtui-tab{width: 1.5rem; float: left; line-height: .82rem; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal; position: relative;}
+                .mtui-tab_badeg{right: 0;}
             }
         }
         .mtui-tab_line{position: absolute; left: .15rem; width: 1.2rem; border-bottom: .06rem solid transparent; border-color: @mtuiColorPrimary; transition: left .3s cubic-bezier(0.69,-0.39, 0.45, 1.41);}

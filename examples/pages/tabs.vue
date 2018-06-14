@@ -5,7 +5,7 @@
     <div>
         <mt-tabs :list="list" @onclick="onclick"></mt-tabs>
         <br />
-        <mt-tabs :list="list2" @onclick="onclick2"></mt-tabs>
+        <mt-tabs :list="list2" color="#DFB559" @onclick="onclick2"></mt-tabs>
     </div>
 </template>
 <script>
@@ -15,9 +15,11 @@ export default {
             list: [
                 {
                     text: '选项1',    //tabs选项的文字
+                    badeg: 100,
                 },
                 {
                     text: '选项2',    //tabs选项的文字
+                    badeg: 11,
                 },
                 {
                     text: '选项3',    //tabs选项的文字
@@ -30,15 +32,19 @@ export default {
                 {
                     text: '选项1',    //tabs选项的文字
                     value: '自定义value',
+                    badeg: 100,
                 },
                 {
                     text: '选项2',    //tabs选项的文字
+                    badeg: 12,
                 },
                 {
                     text: '选项3',    //tabs选项的文字
+                    badeg: 123,
                 },
                 {
                     text: '选项4',    //tabs选项的文字
+                    badeg: 'new',
                 },
                 {
                     text: '选项5',    //tabs选项的文字
