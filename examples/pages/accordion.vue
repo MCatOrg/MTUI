@@ -9,12 +9,7 @@
       </mt-cell-g>
 
       <mt-radio :slot="1" v-model="valueIcon" :options="optionsIcon"></mt-radio>
-      <mt-checklist
-      :slot="2"
-      v-model="value3"
-      :options="options3"
-      align="right"
-    ></mt-checklist>
+      <mt-checklist :slot="2" v-model="value3" :options="options3" align="right"></mt-checklist>
     </mt-accordion>
   </div>
 </template>

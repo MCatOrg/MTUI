@@ -28,6 +28,7 @@
             <mt-cell title="picker" tips="picker" value="查看示例" to="/picker"></mt-cell>
             <mt-cell title="steps" tips="步骤" value="查看示例" to="/steps"></mt-cell>
             <mt-cell title="search" tips="搜索" value="查看示例" to="/search"></mt-cell>
+            <mt-cell title="tabs" tips="tabs" value="查看示例" to="/tabs"></mt-cell>
           </mt-cell-g>
       </div>
     </main>

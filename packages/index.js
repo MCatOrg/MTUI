@@ -30,6 +30,7 @@ import mtSwitch from './components/switch';
 import mtTabBar from './components/tabbar';
 import mtSteps from './components/steps';
 import mtSearchbar from './components/searchbar';
+import mtTabs from './components/tabs';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -64,6 +65,7 @@ const components = [
   mtTabBar,
   mtSteps,
   mtSearchbar,
+  mtTabs,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -118,6 +120,7 @@ const MTUI = {
   mtTabBar,
   mtSteps,
   mtSearchbar,
+  mtTabs,
 };
 export default MTUI;
 export {
@@ -152,4 +155,5 @@ export {
   mtTabBar,
   mtSteps,
   mtSearchbar,
+  mtTabs,
 };
