@@ -22,6 +22,7 @@ import bigPicture from '@/pages/bigPicture';
 import picker from '@/pages/picker';
 import steps from '@/pages/steps';
 import search from '@/pages/search';
+import tabs from '@/pages/tabs';
 
 Vue.use(Router);
 
@@ -161,6 +162,11 @@ const router = new Router({
       path: '/search',
       name: 'search',
       component: search,
+    },
+    {
+      path: '/tabs',
+      name: 'tabs',
+      component: tabs,
     },
   ],
 });
