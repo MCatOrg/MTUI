@@ -16,6 +16,13 @@
     <h4>多列</h4>
     <br>
     <mt-picker :slots="list2" @change="onValuesChange" highlightBorderColor="#DFB559"/>
+
+    <br>
+    <h4>js调用picker</h4>
+    <button @click="jsPicker">picker</button>
+    <br>
+    <h4>js调用datePicker</h4>
+    <button @click="jsDatePicker">js调用datePicker</button>
   </div>
 </template>
 <script>
@@ -55,6 +62,45 @@ export default {
       console.log('data', vm);
       console.log('value', value);
     },
+    jsPicker(){
+      this.$picker([{
+        label: '飞机票',
+        value: 0
+      }, {
+        label: '火车票',
+        value: 1
+      }, {
+        label: '的士票',
+        value: 2
+      },{
+        label: '公交票 (disabled)',
+        disabled: true,
+        value: 3
+      }, {
+        label: '其他',
+        value: 4
+      }], {
+        onChange: function (result) {
+            console.log(result);
+        },
+        onConfirm: function (result) {
+            console.log(result);
+        },
+        search: true,
+      })
+    },
+    jsDatePicker(){
+      this.$datePicker({
+          start: 1990,
+          end: new Date().getFullYear(),
+          onChange: function (result) {
+              console.log(result);
+          },
+          onConfirm: function (result) {
+              console.log(result);
+          }
+      })
+    }
   },
 };
 </script>

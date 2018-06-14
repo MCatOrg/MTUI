@@ -46,6 +46,7 @@ export default {
         },
         color: {
             type: String,
+            default: window.MTtheme && window.MTtheme.primary || ''
         },
         active: {
             type: Number,
@@ -64,7 +65,8 @@ export default {
             })
         },
         computedColor(){
-            if(this.color){
+            console.log(this.color)
+            if(this.color != ''){
                 return {
                     color: this.color,
                     borderColor: this.color

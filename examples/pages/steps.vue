@@ -38,7 +38,7 @@ export default {
     return {
       animate: 'opacity',
       orient: 'horizon',
-      color: '#EB5757',
+      color: '',
       lists: [
         {
           title: '步骤一',

@@ -49,11 +49,8 @@ export default {
       type: String,
     },
     color: {
-      // type: String
-      validator(value) {
-        if (typeof value !== 'string' || value === '') return false;
-        return value.indexOf('#') !== -1;
-      },
+      type: String,
+      default: window.MTtheme && window.MTtheme.primary || ''
     },
     orient: {
       type: String,
