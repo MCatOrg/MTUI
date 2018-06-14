@@ -2,7 +2,7 @@
     <div :class="['mtui-steps',orient,className]">
         <!-- 水平 -->
         <template v-if="orient === 'horizon'">
-            <template v-for="(value,index) in lists">
+            <template v-for="(value,index) in computedLists">
                 <div :class="['mtui-step',value.status?'active':'']"
                 :style="value.status ? computedTextColor:''" :key="index">
                     <div class="mtui-step_chart">
@@ -22,7 +22,7 @@
         </template>
         <!-- 垂直 -->
         <template v-else>
-            <div v-for="(value,index) in lists"
+            <div v-for="(value,index) in computedLists"
             :key="index" :class="['mtui-step',value.status?'active':'']">
                 <div class="mtui-step_chart">
                     <span class="step-chart_dot" :style="value.status ? computedColor:''">
@@ -83,6 +83,21 @@ export default {
       if (this.color) return { color: this.color };
       return null;
     },
+    computedLists(){
+      for (let i = 0; i < this.lists.length; i++) {
+        if (!this.lists[i].status && i !== 0) {
+          if (this.lists[i - 1].status) {
+            this.lists[i - 1].animate = true;
+          } else {
+            this.lists[i - 1].animate = false;
+          }
+        } else {
+          this.lists[i].animate = false;
+        }
+      }
+      console.log(this.lists);
+      return this.lists;
+    }
   },
   created() {
     for (let i = 0; i < this.lists.length; i++) {
@@ -96,7 +111,6 @@ export default {
         this.lists[i].animate = false;
       }
     }
-    console.log(this.lists);
   },
 };
 </script>
