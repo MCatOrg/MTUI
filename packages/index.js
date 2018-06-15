@@ -31,6 +31,8 @@ import mtTabBar from './components/tabbar';
 import mtSteps from './components/steps';
 import mtSearchbar from './components/searchbar';
 import mtTabs from './components/tabs';
+import datePicker from './components/js-picker/datePicker';
+import picker from './components/js-picker/picker';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -67,6 +69,7 @@ const components = [
   mtSearchbar,
   mtTabs,
 ];
+console.log(picker)
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
   if (install.installed) return;
@@ -82,6 +85,8 @@ const install = (Vue, config = {}) => {
   Vue.prototype.$messagebox = mtMessageBox;
   Vue.prototype.$Toast = Toast;
   Vue.prototype.$loading = loading;
+  Vue.prototype.$datePicker = datePicker;
+  Vue.prototype.$picker = picker;
 };
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {

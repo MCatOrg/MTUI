@@ -24,6 +24,7 @@
       </mt-cell>
     </mt-cell-g>
     <mt-cell to="cell" title="标题" tips="详细信息"></mt-cell>
+    <mt-cell title="标题" tips="详细信息" :showArrow="true" @click="hello"></mt-cell>
   </div>
 </template>
 <script>
@@ -37,6 +38,11 @@ export default {
     setTimeout(() => {
       this.showLoading = false;
     }, 3000);
+  },
+  methods: {
+    hello() {
+      console.log('hello');
+    },
   },
 };
 </script>

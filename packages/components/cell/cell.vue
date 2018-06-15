@@ -1,5 +1,8 @@
 <template>
-  <a :href="href" class="mtui-cell" :class="{'mtui-cell__link':setArrow}">
+  <div
+  class="mtui-cell"
+  @click="handleClick"
+  :class="{'mtui-cell__link':setArrow}">
     <div class="mtui-cell__hd" v-if="showHead">
       <slot name="head">
         <img :src="icon" alt="图标" v-if="icon">
@@ -20,16 +23,15 @@
     <div class="mtui-cell__ft">
       <slot name="footer">{{value}}</slot>
     </div>
-    <mt-touch-ripple v-if="to"></mt-touch-ripple>
+    <mt-touch-ripple v-if="setArrow"></mt-touch-ripple>
     <transition name="fade">
       <div class="mtui-cells__loading" v-if="showLoading">
         <mt-spinner :type="loadingType" :color="loadingColor" :size="0.5"></mt-spinner>
       </div>
     </transition>
-  </a>
+  </div>
 </template>
 <script>
-import { on } from '../../util/domUtil';
 import touchRipple from '../touchRipple';
 import Spinner from '../spinner';
 
@@ -42,7 +44,7 @@ export default {
   props: {
     title: [String, Number],
     value: [String, Number],
-    to: [String, Number],
+    to: [String, Number, Object],
     tips: [String, Number],
     icon: String,
     loadingColor: {
@@ -57,21 +59,25 @@ export default {
       type: Boolean,
       default: false,
     },
+    showArrow: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
-    href() {
-      if (this.to && this.$router) {
-        const resolved = this.$router.match(this.to);
-        if (!resolved.matched.length) return this.to;
-        this.$nextTick(() => {
-          on(this.$el, 'click', this.handleClick);
-        });
-        return resolved.fullPath || resolved.path;
-      }
-      return this.to;
-    },
+    // href() {
+    //   if (this.to && this.$router) {
+    //     const resolved = this.$router.match(this.to);
+    //     if (!resolved.matched.length) return this.to;
+    //     this.$nextTick(() => {
+    //       on(this.$el, 'click', this.handleClick);
+    //     });
+    //     return resolved.fullPath || resolved.path;
+    //   }
+    //   return this.to;
+    // },
     setArrow() {
-      if (this.to !== undefined && this.to !== '') {
+      if ((this.to !== undefined && this.to !== '') || this.showArrow) {
         return true;
       }
       return false;
@@ -84,9 +90,12 @@ export default {
     },
   },
   methods: {
-    handleClick(event) {
-      event.preventDefault();
-      this.$router.push(this.href);
+    handleClick() {
+      if (this.to) {
+        this.$router.push(this.to);
+      } else {
+        this.$emit('click');
+      }
     },
   },
 };
