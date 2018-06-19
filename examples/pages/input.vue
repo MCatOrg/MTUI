@@ -31,7 +31,9 @@
       :required="true" v-model="pwd" placeholder='请输入你的密码'></mt-input>
 
       <mt-input label="确认密码" :isType="recheckPwd" type="password"
-      :required="true" v-model="repwd" placeholder='请再次输入你的密码'></mt-input>
+      :required="true" v-model="repwd" placeholder='请再次输入你的密码'>
+        <div slot="footer"><i class="mtui-icon-search"></i></div>
+      </mt-input>
 
       <mt-input label="短信验证码" v-model="code" placeholder='请输入你的验证码'
       @rightBtnClick="getCode"
@@ -75,6 +77,7 @@ export default {
       console.log('获取验证码');
     },
     checkPwd(val) {
+
       if (val.length < 8) {
         return {
           valid: false,

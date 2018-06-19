@@ -31,10 +31,11 @@
       </transition>
     </div>
     <div class="mtui-cell__ft">
-      <slot name="footer">
+      <div v-if="getCode">
         <button class="mtui-vcode-btn" v-if="getCode" @click="clickHandleEvent">获取验证码</button>
         <img v-if="showCode" :src="codeImg" class="mtui-vcode-img" @click="clickHandleEvent"/>
-      </slot>
+      </div>
+      <slot name="footer" v-else></slot>
     </div>
   </div>
 </template>
