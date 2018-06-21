@@ -22,6 +22,7 @@ import mtSlider from './components/slider';
 import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
 // import Vconsole from './components/v-console';
+import mtDirectives from './components/directives';
 import mtPicker from './components/picker';
 import mtBadge from './components/badge';
 import mtGrid from './components/grid';
@@ -69,7 +70,6 @@ const components = [
   mtSearchbar,
   mtTabs,
 ];
-console.log(picker)
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
   if (install.installed) return;
@@ -87,6 +87,8 @@ const install = (Vue, config = {}) => {
   Vue.prototype.$loading = loading;
   Vue.prototype.$datePicker = datePicker;
   Vue.prototype.$picker = picker;
+  // 全局添加自定义指令
+  Object.keys(mtDirectives).forEach(k => Vue.directive(k, mtDirectives[k]));
 };
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
@@ -126,6 +128,7 @@ const MTUI = {
   mtSteps,
   mtSearchbar,
   mtTabs,
+  mtDirectives,
 };
 export default MTUI;
 export {
@@ -161,4 +164,5 @@ export {
   mtSteps,
   mtSearchbar,
   mtTabs,
+  mtDirectives,
 };

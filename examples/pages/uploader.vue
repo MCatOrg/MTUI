@@ -5,7 +5,7 @@
     serverUrl="http://192.168.3.71:8058/ServiceAPI/usercenter/Manager.aspx"
     viewClickEvent="enlarge"
     :prefix="`fileData`"
-    :maxCount="1"
+    :maxCount="5"
     :afterWidth="1000"
     :IsWeixinClientRequest="false"
     :IsUseWeiXinSDKUpdatePic="false"
@@ -18,6 +18,8 @@
     :IsImageServer="false"
     :onError="onError"
     :onSuccess="success"
+    :onDelete="deleteEvent"
+    :onUploadListChange="onChange"
     :beforeUpload="beforeUpload"
     :defaultFileList="defaultFileList"
     :setWatermark="false"
@@ -54,6 +56,12 @@ export default {
     },
     onError(error) {
       console.log(error);
+    },
+    deleteEvent(index) {
+      console.log(index);
+    },
+    onChange(index) {
+      console.log(index);
     },
   },
 };

@@ -28,6 +28,8 @@
             <mt-cell title="steps" tips="步骤" value="查看示例" to="/steps"></mt-cell>
             <mt-cell title="search" tips="搜索" value="查看示例" to="/search"></mt-cell>
             <mt-cell title="tabs" tips="tabs" value="查看示例" to="/tabs"></mt-cell>
+            <mt-cell title="directives" tips="全局自定义指令" value="查看示例" to="/directives"></mt-cell>
+            <mt-cell title="stepper" tips="加减" value="查看示例" to="/stepper"></mt-cell>
           </mt-cell-g>
       </div>
     </main>

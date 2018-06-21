@@ -154,6 +154,11 @@ const router = new Router({
       component: () => import('../pages/tabbar.vue'),
     },
     {
+      path: '/directives',
+      name: 'directives',
+      component: () => import('../pages/directives.vue'),
+    },
+    {
       path: '/steps',
       name: 'steps',
       component: steps,

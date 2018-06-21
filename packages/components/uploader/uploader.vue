@@ -46,7 +46,7 @@ import toast from '../toast';
 import mtBigPicture from '../bigPicture';
 import mtActionsheet from '../action-sheet';
 import mtMessageBox from '../message-box';
-import EXIF from './Plug/exif.js';
+import EXIF from './Plug/exif';
 
 export default {
   name: 'mt-uploader',
@@ -137,6 +137,18 @@ export default {
       },
     },
     onSuccess: { // 文件上传成功钩子，返回一个对象，包含图片链接
+      type: Function,
+      default() {
+        return function () {};
+      },
+    },
+    onDelete: { // 删除已经上传的文件的钩子，返回被删除的文件在上传数组中的索引
+      type: Function,
+      default() {
+        return function () {};
+      },
+    },
+    onUploadListChange: { // 修改更换已经上传的文件的钩子，返回被删除的文件在上传数组中的索引
       type: Function,
       default() {
         return function () {};
@@ -555,6 +567,10 @@ export default {
           name: `${this.prefix}${this.uploadList.length}`,
         });
         this.isChangeImg = false;
+        this.onUploadListChange({
+          index: this.bigImgIndex,
+          uploadList: this.uploadList,
+        });
       } else {
         this.uploadList.push({
           url,
@@ -633,6 +649,10 @@ export default {
       mtMessageBox.confirm('确定删除已上传的图片？').then((action) => {
         if (action === 'confirm') {
           this.uploadList.splice(this.bigImgIndex, 1);
+          this.onDelete({
+            index: this.bigImgIndex,
+            uploadList: this.uploadList,
+          });
           this.hideBigImg();
           toast('删除成功');
         }
