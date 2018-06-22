@@ -1,115 +1,149 @@
 <template>
-    <input
-      :class="['mt-switch', 'mt-'+type]"
-      :disabled="disabled"
-      v-model="currentValue"
-      type="checkbox"
-      checked/>
+      <div class="mt-switch"
+      @click="changeStatus"
+      :class="{'mt-switch-active':currentValue,
+      'mtui-switch-disabled':disabled,[className]:true}"
+      :style="{
+        'background-color':currentValue?color:'transparent',
+        'height':`${height}rem`,
+        'line-height':`${height}rem`,
+        'width':`${width}rem`,
+        'border-radius':`${width/2}rem`
+      }"
+      >
+        <template v-if="textList">{{textList[0]}}</template>
+        <span class="mt-switch-before"
+        :style="{
+          'color':color,
+          'height':`${height-0.02}rem`,
+          'line-height':`${height-0.02}rem`,
+          'width':`${width-0.02}rem`,
+          'border-radius':`${width/2}rem`
+        }">
+          <template v-if="textList">{{textList[1]}}</template>
+        </span>
+        <span class="mt-switch-after"
+        :style="{
+          height:`${height}rem`,
+          width:`${height}rem`,
+          transform: currentValue?`translateX(${translateX}rem)`:'',
+          'border-radius':`${width/2}rem`
+        }"></span>
+      </div>
 </template>
 <script>
 export default {
   name: 'mt-switch',
   props: {
     value: Boolean,
+    className: String,
     disabled: {
       type: Boolean,
       default: false,
     },
-    type: {
+    color: {
       type: String,
-      default: 'primary',
+      default: '#4a87d6',
+    },
+    height: {
+      type: Number,
+      default: 0.5,
+    },
+    width: {
+      type: Number,
+      default: 1.04,
+    },
+    translateX: {
+      type: Number,
+      default: 0.76,
+    },
+    textList: {
+      type: Array,
+      validator(val) {
+        if (val.length !== 2) {
+          console.error('textList必须是长度为2的数组');
+          return false;
+        } else if (typeof val[0] !== 'string' || typeof val[1] !== 'string') {
+          console.error('textListd的子项必须是一个字符串');
+          return false;
+        }
+        return true;
+      },
     },
   },
-  computed: {
-    currentValue: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        this.$emit('on-change', val);
-      },
+  data() {
+    return {
+      currentValue: this.value,
+    };
+  },
+  watch: {
+    currentValue(val) {
+      this.$emit('input', val);
+    },
+    value(val) {
+      this.currentValue = val;
+    },
+  },
+  methods: {
+    changeStatus() {
+      if (this.disabled) return false;
+      this.currentValue = !this.currentValue;
+      this.$emit('on-change', this.currentValue);
+      return true;
     },
   },
 };
 </script>
 
 <style lang='less'>
-@mtSwitchHeight: 0.5rem;
-@mtColorPrimary: #4a87d6; //主题颜色
-@mtColorWarn: #eb5757; //警告色
-@mtColorSuccess: #3cc51f; // 成功色
 
 .mt-switch {
-  -webkit-appearance: none;
-  appearance: none;
-}
-.mt-switch,
-.mt-switch-cp__box {
   position: relative;
-  width: 1rem;
-  height: @mtSwitchHeight;
-  border: 0.01rem solid #dfdfdf;
+  width: 1.04rem;
+  border: 0.02rem solid #dfdfdf;
   outline: 0;
   border-radius: 0.32rem;
-  box-sizing: border-box;
-  background-color: #dfdfdf;
   transition: background-color 0.1s, border 0.1s;
-
-  &:before {
-    content: " ";
+  color: #fff;
+  text-align: left;
+  // box-sizing: border-box;
+  padding-left: 0.2rem;
+  .mt-switch-before {
     position: absolute;
     top: 0;
     left: 0;
     width: 0.986rem;
-    height: @mtSwitchHeight - 0.02;
     border-radius: 0.3rem;
     background-color: #fdfdfd;
     transition: transform 0.35s cubic-bezier(0.45, 1, 0.4, 1);
+    text-align: right;
+    // box-sizing: border-box;
+    padding-right: 0.2rem;
   }
-  &:after {
-    content: " ";
+  .mt-switch-after {
     position: absolute;
     top: 0;
     left: 0;
-    width: @mtSwitchHeight - 0.036;
-    height: @mtSwitchHeight - 0.02;
     border-radius: 0.3rem;
     background-color: #ffffff;
     box-shadow: 0 0.01rem 0.03rem rgba(0, 0, 0, 0.4);
     transition: transform 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
   }
-}
-.mt-switch:checked,
-.mt-switch-cp__input:checked ~ .mt-switch-cp__box {
-  // border-color: @mtColorPrimary;
-  // background-color: @mtColorPrimary;
-  &:before {
-    transform: scale(0);
+  &.mtui-switch-disabled{
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.2);
+    .mt-switch-before{
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    .mt-switch-after{
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
-  &:after {
-    transform: translateX(0.56rem);
+}
+.mt-switch-active{
+  .mt-switch-before{
+    transform: scale(0) !important;
   }
-}
-.mt-primary {
-  // border-color: @mtColorPrimary;
-  background-color: @mtColorPrimary;
-}
-.mt-warn {
-  // border-color: @mtColorWarn;
-  background-color: @mtColorWarn;
-}
-.mt-success {
-  // border-color: @mtColorSuccess;
-  background-color: @mtColorSuccess;
-}
-
-// 兼容IE Edge的版本
-.mt-switch-cp__input {
-  position: absolute;
-  left: -99.99rem;
-}
-.mt-switch-cp__box {
-  display: block;
 }
 </style>
 

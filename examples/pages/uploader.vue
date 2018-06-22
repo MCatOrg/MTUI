@@ -3,7 +3,8 @@
     <h2>图片上传</h2>
     <mt-uploader
     serverUrl="http://192.168.3.71:8058/ServiceAPI/usercenter/Manager.aspx"
-    viewClickEvent="enlarge"
+    :canChangeImg="false"
+    :canDeteleImg="false"
     :prefix="`fileData`"
     :maxCount="5"
     :afterWidth="1000"

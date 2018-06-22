@@ -26,11 +26,11 @@
     :imgSrc="bigImgSrc"
     v-model="showBigImg"/>
     <div class="mtui-img-handle" v-show="showBigImg">
-      <div @click="deleteImg">
+      <div @click="deleteImg" v-if="canDeteleImg">
         <img src="./images/delete_img_icon.png" alt="">
         <span>删除图片</span>
       </div>
-      <div @click="changeImg">
+      <div @click="changeImg" v-if="canChangeImg">
         <img src="./images/change_img_icon.png" alt="">
         <span>更换图片</span>
       </div>
@@ -55,6 +55,14 @@ export default {
     mtActionsheet,
   },
   props: {
+    canChangeImg: { // 查看图片是是否显示更换图片按钮
+      type: Boolean,
+      default: true,
+    },
+    canDeteleImg: { // 查看图片是是否显示删除图片按钮
+      type: Boolean,
+      default: true,
+    },
     serverUrl: { // 上传图片的URL（必选）
       type: String,
       required: true,
@@ -131,6 +139,18 @@ export default {
       default: '#111',
     },
     beforeUpload: { // 文件上传前的钩子，,显式返回false的话，则中断上传，若要修改上传的数据，则需要显示返回需要上传的数据，目前只支出 base64
+      type: Function,
+      default() {
+        return function () {};
+      },
+    },
+    beforeChange: { // 更换文件前的钩子，,显式返回false的话，则中断上传
+      type: Function,
+      default() {
+        return function () {};
+      },
+    },
+    beforeDelete: { // 删除文件前的钩子，,显式返回false的话，则中断上传
       type: Function,
       default() {
         return function () {};
@@ -646,6 +666,9 @@ export default {
       }
     },
     deleteImg() {
+      if (this.beforeDelete() === false) {
+        return false;
+      }
       mtMessageBox.confirm('确定删除已上传的图片？').then((action) => {
         if (action === 'confirm') {
           this.uploadList.splice(this.bigImgIndex, 1);
@@ -657,8 +680,12 @@ export default {
           toast('删除成功');
         }
       });
+      return true;
     },
     changeImg() {
+      if (this.beforeChange() === false) {
+        return false;
+      }
       this.isChangeImg = true;
       if (this.useWx) {
         this.wxcompress();
@@ -666,6 +693,7 @@ export default {
         this.$refs.uploader__input.click();
         this.hideBigImg();
       }
+      return true;
     },
   },
   filters: {
