@@ -43,6 +43,12 @@ export default {
       type: Boolean,
       default: true,
     },
+    index: Number,
+  },
+  data() {
+    return {
+      tabBarIndex: 0,
+    };
   },
   watch: {
     tabBarData: {
@@ -65,12 +71,17 @@ export default {
   },
   methods: {
     init() {
-      if (this.$refs.tabBar && this.$refs.tabBar.length) {
-        this.$refs.tabBar.forEach((item) => {
-          item.style = `color:${this.color}`;
-        });
+      if (this.index) {
+        this.tabBarIndex = this.index;
+        this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
+      } else {
+        if (this.$refs.tabBar && this.$refs.tabBar.length) {
+          this.$refs.tabBar.forEach((item) => {
+            item.style = `color:${this.color}`;
+          });
+        }
+        this.$refs.tabBar[0].style = `color:${this.activeColor}`;
       }
-      this.$refs.tabBar[0].style = `color:${this.activeColor}`;
     },
     changeItem(index) {
       if (this.$refs.tabBar && this.$refs.tabBar.length) {
@@ -78,9 +89,14 @@ export default {
           item.style = `color:${this.color}`;
         });
       }
-      this.$refs.tabBar[index].style = `color:${this.activeColor}`;
+      if (this.index) {
+        this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
+      } else {
+        this.$refs.tabBar[index].style = `color:${this.activeColor}`;
+      }
     },
     itemClick(index) {
+      this.tabBarIndex = index;
       this.changeItem(index);
     },
   },

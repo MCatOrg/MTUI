@@ -23,6 +23,7 @@ import picker from '@/pages/picker';
 import steps from '@/pages/steps';
 import search from '@/pages/search';
 import tabs from '@/pages/tabs';
+import tabbar from '@/pages/tabbar';
 
 Vue.use(Router);
 
@@ -172,6 +173,11 @@ const router = new Router({
       path: '/tabs',
       name: 'tabs',
       component: tabs,
+    },
+    {
+      path: '/tabbar',
+      name: 'tabbar',
+      component: tabbar,
     },
   ],
 });
