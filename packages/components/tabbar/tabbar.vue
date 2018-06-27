@@ -3,7 +3,7 @@
     <div class="mt-tabbar"
     v-for="(item,index) in tabBarData" :key="index"
     @click="itemClick(index)"  ref="tabBar">
-      <router-link :to="item.to" tag="div">
+      <router-link :to="{'name': item.to}" tag="div">
           <div class="mt-tabbar_icon">
             <i
               v-if="item.fontIcon"
@@ -23,31 +23,31 @@
 </template>
 <script>
 export default {
-  name: 'mt-tabBar',
+  name: "mt-tabBar",
   props: {
     color: {
       type: String,
-      default: '#B3B3B3',
+      default: "#B3B3B3"
     },
     activeColor: {
       type: String,
-      default: '#4A87D6',
+      default: "#4A87D6"
     },
     tabBarData: {
       type: Array,
       default() {
         return [];
-      },
+      }
     },
     fixed: {
       type: Boolean,
-      default: true,
+      default: true
     },
-    index: Number,
+    index: Number
   },
   data() {
     return {
-      tabBarIndex: 0,
+      tabBarIndex: 0
     };
   },
   watch: {
@@ -55,19 +55,29 @@ export default {
       handler() {
         if (this.tabBarData && this.tabBarData.length > 0) {
           this.tabBarData.forEach((item, index) => {
-            this.tabBarData[index].img = item.img ? item.img : 'http://192.168.3.93/img/icon_tabbar.png';
-            this.tabBarData[index].imgWidth = item.imgWidth ? `${item.imgWidth / 100}rem` : `${50 / 100}rem`;
-            this.tabBarData[index].imgHeight = item.imgHeight ? `${item.imgHeight / 100}rem` : `${50 / 100}rem`;
-            this.tabBarData[index].fontIcon = item.fontIcon ? item.fontIcon : '';
-            this.tabBarData[index].fontIconSize = item.fontIconSize ? `${item.fontIconSize / 100}rem` : `${38 / 100}rem`;
-            this.tabBarData[index].text = item.text ? item.text : '首页';
-            this.tabBarData[index].to = item.to ? item.to : '/';
+            this.tabBarData[index].img = item.img
+              ? item.img
+              : "http://192.168.3.93/img/icon_tabbar.png";
+            this.tabBarData[index].imgWidth = item.imgWidth
+              ? `${item.imgWidth / 100}rem`
+              : `${50 / 100}rem`;
+            this.tabBarData[index].imgHeight = item.imgHeight
+              ? `${item.imgHeight / 100}rem`
+              : `${50 / 100}rem`;
+            this.tabBarData[index].fontIcon = item.fontIcon
+              ? item.fontIcon
+              : "";
+            this.tabBarData[index].fontIconSize = item.fontIconSize
+              ? `${item.fontIconSize / 100}rem`
+              : `${38 / 100}rem`;
+            this.tabBarData[index].text = item.text ? item.text : "首页";
+            this.tabBarData[index].to = item.to ? item.to : "/";
           });
         }
       },
       immediate: true,
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     init() {
@@ -76,7 +86,7 @@ export default {
         this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
       } else {
         if (this.$refs.tabBar && this.$refs.tabBar.length) {
-          this.$refs.tabBar.forEach((item) => {
+          this.$refs.tabBar.forEach(item => {
             item.style = `color:${this.color}`;
           });
         }
@@ -85,7 +95,7 @@ export default {
     },
     changeItem(index) {
       if (this.$refs.tabBar && this.$refs.tabBar.length) {
-        this.$refs.tabBar.forEach((item) => {
+        this.$refs.tabBar.forEach(item => {
           item.style = `color:${this.color}`;
         });
       }
@@ -98,11 +108,11 @@ export default {
     itemClick(index) {
       this.tabBarIndex = index;
       this.changeItem(index);
-    },
+    }
   },
   mounted() {
     this.init();
-  },
+  }
 };
 </script>
 
@@ -115,7 +125,7 @@ export default {
   height: 0.88rem;
   display: flex;
   align-items: center;
-  padding-top: .1rem;
+  padding-top: 0.1rem;
   justify-content: space-around;
   position: relative;
   background: #fff;
@@ -138,31 +148,31 @@ export default {
 }
 .mt-tabbar {
   flex: 1;
-  margin: 0 .2rem;
-  color:#B3B3B3;
+  margin: 0 0.2rem;
+  color: #b3b3b3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .mt-tabbar_label {
-  font-size:0.24rem;
+  font-size: 0.24rem;
   text-align: center;
-  height: .36rem;
-  line-height: .36rem;
+  height: 0.36rem;
+  line-height: 0.36rem;
 }
 .mt-tabbar_icon {
   overflow: hidden;
   // width: .52rem;
-  height: .52rem;
+  height: 0.52rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: .02rem;
+  padding-bottom: 0.02rem;
   img {
     display: block;
-    width: .52rem;
-    height: .52rem;
+    width: 0.52rem;
+    height: 0.52rem;
   }
 }
 
@@ -171,7 +181,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 9;
 }
 </style>
 
