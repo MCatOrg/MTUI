@@ -3,7 +3,7 @@
     <div class="mt-tabbar"
     v-for="(item,index) in tabBarData" :key="index"
     @click="itemClick(index)"  ref="tabBar">
-      <router-link :to="{'name': item.to}" tag="div">
+      <router-link :to="item.to">
           <div class="mt-tabbar_icon">
             <i
               v-if="item.fontIcon"
@@ -23,31 +23,31 @@
 </template>
 <script>
 export default {
-  name: "mt-tabBar",
+  name: 'mt-tabBar',
   props: {
     color: {
       type: String,
-      default: "#B3B3B3"
+      default: '#B3B3B3',
     },
     activeColor: {
       type: String,
-      default: "#4A87D6"
+      default: '#4A87D6',
     },
     tabBarData: {
       type: Array,
       default() {
         return [];
-      }
+      },
     },
     fixed: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    index: Number
+    index: Number,
   },
   data() {
     return {
-      tabBarIndex: 0
+      tabBarIndex: 0,
     };
   },
   watch: {
@@ -57,7 +57,7 @@ export default {
           this.tabBarData.forEach((item, index) => {
             this.tabBarData[index].img = item.img
               ? item.img
-              : "http://192.168.3.93/img/icon_tabbar.png";
+              : 'http://192.168.3.93/img/icon_tabbar.png';
             this.tabBarData[index].imgWidth = item.imgWidth
               ? `${item.imgWidth / 100}rem`
               : `${50 / 100}rem`;
@@ -66,18 +66,18 @@ export default {
               : `${50 / 100}rem`;
             this.tabBarData[index].fontIcon = item.fontIcon
               ? item.fontIcon
-              : "";
+              : '';
             this.tabBarData[index].fontIconSize = item.fontIconSize
               ? `${item.fontIconSize / 100}rem`
               : `${38 / 100}rem`;
-            this.tabBarData[index].text = item.text ? item.text : "首页";
-            this.tabBarData[index].to = item.to ? item.to : "/";
+            this.tabBarData[index].text = item.text ? item.text : '首页';
+            this.tabBarData[index].to = item.to ? item.to : '/';
           });
         }
       },
       immediate: true,
-      deep: true
-    }
+      deep: true,
+    },
   },
   methods: {
     init() {
@@ -86,7 +86,7 @@ export default {
         this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
       } else {
         if (this.$refs.tabBar && this.$refs.tabBar.length) {
-          this.$refs.tabBar.forEach(item => {
+          this.$refs.tabBar.forEach((item) => {
             item.style = `color:${this.color}`;
           });
         }
@@ -95,7 +95,7 @@ export default {
     },
     changeItem(index) {
       if (this.$refs.tabBar && this.$refs.tabBar.length) {
-        this.$refs.tabBar.forEach(item => {
+        this.$refs.tabBar.forEach((item) => {
           item.style = `color:${this.color}`;
         });
       }
@@ -108,15 +108,15 @@ export default {
     itemClick(index) {
       this.tabBarIndex = index;
       this.changeItem(index);
-    }
+    },
   },
   mounted() {
     this.init();
-  }
+  },
 };
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 @import "../../styles/base/fn";
 @import "../../styles/base/variable/color";
 
@@ -154,6 +154,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  a{
+    width: 100%;
+    height: 100%;
+  }
 }
 .mt-tabbar_label {
   font-size: 0.24rem;

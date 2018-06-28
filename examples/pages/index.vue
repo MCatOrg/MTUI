@@ -6,7 +6,13 @@
     <main>
       <div class="group">
           <mt-cell-g title="表单组件">
-            <mt-cell title="accordion" tips="折叠列表" value="查看示例" to="/accordion"></mt-cell>
+            <mt-cell
+            v-for="(router,index) in routerList" :key="index"
+            :title="router.name"
+            :tips="router.name"
+            value="查看示例"
+            :to="router.path"/>
+            <!-- <mt-cell title="accordion" tips="折叠列表" value="查看示例" to="/accordion"></mt-cell>
             <mt-cell title="actionsheet" tips="上拉列表" value="查看示例" to="/actionsheet"></mt-cell>
             <mt-cell title="bigPicture" tips="查看大图" value="查看示例" to="/bigPicture"></mt-cell>
             <mt-cell title="button" tips="按钮" value="查看示例" to="/button"></mt-cell>
@@ -30,7 +36,7 @@
             <mt-cell title="tabs" tips="tabs" value="查看示例" to="/tabs"></mt-cell>
             <mt-cell title="directives" tips="全局自定义指令" value="查看示例" to="/directives"></mt-cell>
             <mt-cell title="stepper" tips="加减" value="查看示例" to="/stepper"></mt-cell>
-            <mt-cell title="switch" tips="开关" value="查看示例" to="/switch"></mt-cell>
+            <mt-cell title="switch" tips="开关" value="查看示例" to="/switch"></mt-cell> -->
           </mt-cell-g>
       </div>
     </main>
@@ -42,7 +48,11 @@ export default {
   data() {
     return {
       msg: 'Hello MTUI',
+      routerList: this.$router.options.routes,
     };
+  },
+  mounted() {
+    console.log(this.$router);
   },
 };
 </script>
