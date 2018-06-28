@@ -160,6 +160,14 @@ const router = new Router({
       component: () => import('../pages/directives.vue'),
     },
     {
+      path: '/nothing',
+      name: 'nothing',
+      meta: {
+        title: '缺省页',
+      },
+      component: () => import('../pages/nothing.vue'),
+    },
+    {
       path: '/steps',
       name: 'steps',
       component: steps,
