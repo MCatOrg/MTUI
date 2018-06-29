@@ -62,45 +62,61 @@ export default {
       console.log('data', vm);
       console.log('value', value);
     },
-    jsPicker(){
-      this.$picker([{
-        label: '飞机票',
-        value: 0
-      }, {
-        label: '火车票',
-        value: 1
-      }, {
-        label: '的士票',
-        value: 2
-      },{
-        label: '公交票 (disabled)',
-        disabled: true,
-        value: 3
-      }, {
-        label: '其他',
-        value: 4
-      }], {
-        onChange: function (result) {
-            console.log(result);
+    jsPicker() {
+      this.$picker([
+        {
+          label: '1',
+          value: '1',
+        }, {
+          label: '2',
+          value: '2',
+        }, {
+          label: '3',
+          value: '3',
         },
-        onConfirm: function (result) {
-            console.log(result);
+      ], [
+        {
+          label: 'A',
+          value: 'A',
+        }, {
+          label: 'B',
+          value: 'B',
+        }, {
+          label: 'C',
+          value: 'C',
         },
-        search: true,
-      })
+      ], [
+        {
+          label: 'A',
+          value: 'A',
+        }, {
+          label: 'B',
+          value: 'B',
+        }, {
+          label: 'C',
+          value: 'C',
+        },
+      ], {
+        onChange(result) {
+          console.log(result);
+        },
+        onConfirm(result) {
+          console.log(result);
+        },
+      });
     },
-    jsDatePicker(){
+    jsDatePicker() {
       this.$datePicker({
-          start: 1990,
-          end: new Date().getFullYear(),
-          onChange: function (result) {
-              console.log(result);
-          },
-          onConfirm: function (result) {
-              console.log(result);
-          }
-      })
-    }
+        start: 1990,
+        end: new Date().getFullYear(),
+        onChange(result) {
+          console.log(result);
+        },
+        onConfirm(result) {
+          console.log(result);
+        },
+      });
+    },
   },
 };
 </script>

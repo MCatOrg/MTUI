@@ -11,7 +11,7 @@
           v-model="currentValue"
           :value="item.value||item"
           :name="name">
-          <i class="mtui-icon-checked"></i>
+          <i class="mtui-icon-select"></i>
           </template>
           <img :src="item.icon" alt="列表图标" v-if="item.icon">
         </div>
@@ -22,7 +22,7 @@
           v-model="currentValue"
           :value="item.value||item"
           :name="name">
-          <i class="mtui-icon-checked"></i>
+          <i class="mtui-icon-select"></i>
         </div>
         <mt-touch-ripple v-if="!item.disabled"></mt-touch-ripple>
       </label>

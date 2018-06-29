@@ -14,7 +14,7 @@
             </div>
             <!-- close icon -->
             <div class="mtui-search_icon" @click="searchKey = ''" v-if="!!searchKey">
-                <i class="mtui-icon-close"></i>
+                <i class="mtui-icon-deleteApply"></i>
             </div>
         </div>
         <div v-if="hasAction"

@@ -24,6 +24,7 @@ import steps from '@/pages/steps';
 import search from '@/pages/search';
 import tabs from '@/pages/tabs';
 import tabbar from '@/pages/tabbar';
+import icon from '@/pages/icon';
 
 Vue.use(Router);
 
@@ -186,6 +187,11 @@ const router = new Router({
       path: '/tabbar',
       name: 'tabbar',
       component: tabbar,
+    },
+    {
+      path: '/icon',
+      name: 'icon',
+      component: icon,
     },
   ],
 });
