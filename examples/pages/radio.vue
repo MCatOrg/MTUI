@@ -2,6 +2,7 @@
   <div id="radioPage">
     <mt-radio v-model="value" :options="options" title="单选框按钮"></mt-radio>
     <mt-radio v-model="valueIcon" :options="optionsIcon" title="带图标的单选框"></mt-radio>
+    <mt-radio v-model="payType" :options="payTypeList" title="带字体图标的单选框"></mt-radio>
   </div>
 </template>
 <script>
@@ -26,9 +27,30 @@ export default {
           icon: 'https://avatars1.githubusercontent.com/u/8280645?s=64&v=4',
         },
       ],
+      payType: 1,
+      payTypeList: [
+        {
+          label: '微信支付',
+          value: 1,
+          iconClass: 'mtui-icon-weChatPay',
+        },
+        {
+          label: '支付宝支付',
+          value: 2,
+          iconClass: 'mtui-icon-alipay',
+        },
+      ],
     };
   },
   watch: {
   },
 };
 </script>
+<style lang="less">
+.mtui-icon-weChatPay{
+      color:#09BB07;
+    }
+    .mtui-icon-alipay{
+      color:#19A0E5;
+    }
+</style>
