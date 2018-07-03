@@ -29,11 +29,13 @@
 <template>
     <div style="padding-left:.3rem; padding-right: .3rem; text-align: left;">
         <p>默认</p>
-        <mt-searchbar @onsearch="search"></mt-searchbar>
+        <mt-searchbar @onsearch="search" @onclear="onclear"></mt-searchbar>
          <br>
         <p>圆角</p>
         <mt-searchbar @onsearch="search" :circle="true"></mt-searchbar>
         <br>
+        <p>onclear事件和oninput事件判断搜索条为空</p>
+        <mt-searchbar @onsearch="search" @onclear="onclear" @onsearchInput="oninputss"></mt-searchbar>
         <p>除去action</p>
         <mt-searchbar @onsearch="search" :hasAction="false"></mt-searchbar>
         <br>
@@ -88,6 +90,12 @@ export default {
     };
   },
   methods: {
+    onclear(){
+      console.log("清空了")
+    },
+    oninputss(value){
+      if(value == '') console.log("清空了哈哈")
+    },
     search(value) {
       console.log(value);
       this.$Toast(`你搜索了: ${value}`);

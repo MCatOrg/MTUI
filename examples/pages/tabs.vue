@@ -3,7 +3,7 @@
 </style>
 <template>
     <div>
-        <mt-tabs :list="list" @onclick="onclick"></mt-tabs>
+        <mt-tabs :list="list" :active="1" @onclick="onclick"></mt-tabs>
         <br />
         <mt-tabs :list="list2" color="#DFB559" @onclick="onclick2"></mt-tabs>
     </div>
