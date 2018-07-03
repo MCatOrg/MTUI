@@ -32,6 +32,7 @@ import mtTabBar from './components/tabbar';
 import mtSteps from './components/steps';
 import mtSearchbar from './components/searchbar';
 import mtTabs from './components/tabs';
+import mtNothing from './components/nothing';
 import datePicker from './components/js-picker/datePicker';
 import picker from './components/js-picker/picker';
 import './styles/mtui.less';
@@ -69,6 +70,7 @@ const components = [
   mtSteps,
   mtSearchbar,
   mtTabs,
+  mtNothing,
 ];
 const version = '1.0.0';
 const install = (Vue, config = {}) => {
@@ -129,6 +131,7 @@ const MTUI = {
   mtSearchbar,
   mtTabs,
   mtDirectives,
+  mtNothing,
 };
 export default MTUI;
 export {
@@ -165,4 +168,5 @@ export {
   mtSearchbar,
   mtTabs,
   mtDirectives,
+  mtNothing,
 };

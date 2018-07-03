@@ -138,12 +138,6 @@ export default {
       type: String,
       default: '#111',
     },
-    beforeUpload: { // 文件上传前的钩子，,显式返回false的话，则中断上传，若要修改上传的数据，则需要显示返回需要上传的数据，目前只支出 base64
-      type: Function,
-      default() {
-        return function () {};
-      },
-    },
     beforeChange: { // 更换文件前的钩子，,显式返回false的话，则中断上传
       type: Function,
       default() {
@@ -602,9 +596,6 @@ export default {
       this.onSuccess({ status: 'success', data: url });
     },
     Base64StringToImage(base64) {
-      const beforeUploadResult = this.beforeUpload(base64);
-      if (beforeUploadResult === false) return; // 放置钩子,显式返回false的话，则中断上传
-      base64 = beforeUploadResult || base64;
       const form = new FormData();
       form.append('action', 'base64stringtoimage'); // 方法
       form.append('ImgDirectory', this.ImgDirectory); // 目录

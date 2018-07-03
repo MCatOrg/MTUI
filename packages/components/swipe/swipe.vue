@@ -279,7 +279,7 @@ export default {
       setTimeout(() => {
         if (towards === 'next') {
           this.isDone = true;
-          this.before(currentPage);
+          this.before({ currentPage, newIndex });
           if (speedX) {
             this.rafTranslate(currentPage, offsetLeft, -pageWidth, callback, nextPage);
           } else {
@@ -290,7 +290,7 @@ export default {
           }
         } else if (towards === 'prev') {
           this.isDone = true;
-          this.before(currentPage);
+          this.before({ currentPage, newIndex });
           if (speedX) {
             this.rafTranslate(currentPage, offsetLeft, pageWidth, callback, prevPage);
           } else {
@@ -346,8 +346,8 @@ export default {
       }
       animationLoop.call(this);
     },
-    before() {
-      this.$emit('before', this.index);
+    before(obj) {
+      this.$emit('before', obj);
     },
     end() {
       this.$emit('end', this.index);

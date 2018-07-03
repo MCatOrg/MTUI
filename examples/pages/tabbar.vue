@@ -1,6 +1,6 @@
 <template>
-  <div id="stepper">
-    <h1>stepper</h1>
+  <div id="tabbar">
+    <h1>tabbar</h1>
     <div class="wrapper">
       <!-- <h3>tabBarData</h3>
       <p>img: 图片  String default http://192.168.3.93/img/icon_tabbar.png</p>
@@ -23,7 +23,7 @@
       <br>
       <br>
       <mt-tabBar :fixed="false" :tabBarData="tabBarData2"
-      color="#666" activeColor="red"></mt-tabBar>
+      color="#666" activeColor="red" :index="2"></mt-tabBar>
     </div>
 
 
@@ -39,7 +39,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '',
         },
         {
@@ -47,7 +47,7 @@ export default {
           imgWidth: 50,
           imgHeight: 50,
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '分类',
         },
         {
@@ -55,7 +55,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '购物车',
         },
         {
@@ -63,7 +63,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '个人中心',
         },
       ],
@@ -73,7 +73,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '',
         },
         {
@@ -81,7 +81,7 @@ export default {
           imgWidth: 50,
           imgHeight: 50,
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '分类',
         },
         {
@@ -89,7 +89,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '购物车',
         },
         {
@@ -97,7 +97,7 @@ export default {
           imgHeight: 50,
           fontIcon: '',
           fontIconSize: '',
-          to: '/tabbar',
+          to: 'tabbar',
           text: '个人中心',
         },
       ],

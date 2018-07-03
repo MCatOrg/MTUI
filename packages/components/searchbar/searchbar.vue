@@ -13,8 +13,8 @@
                 class="mtui-search_input" :placeholder="placeholder" type="text">
             </div>
             <!-- close icon -->
-            <div class="mtui-search_icon" @click="searchKey = ''" v-if="!!searchKey">
-                <i class="mtui-icon-close"></i>
+            <div class="mtui-search_icon" @click="onclear" v-if="!!searchKey">
+                <i class="mtui-icon-deleteApply"></i>
             </div>
         </div>
         <div v-if="hasAction"
@@ -80,6 +80,10 @@ export default {
     },
   },
   methods: {
+    onclear(){
+      this.searchKey = '';
+      this.$emit('onclear');
+    },
     historyClick(ev) {
       this.searchKey = ev.target.innerText;
     },
