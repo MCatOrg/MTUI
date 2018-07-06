@@ -76,18 +76,3 @@ export default {
   },
 };
 </script>
-<style>
-.translate-enter-active,
-.translate-leave-active {
-  transition: all 0.3s ease;
-}
-.translate-enter{
-  transform: translate(-50%, -300%);
-  opacity: 0;
-}
-
-.translate-leave-to {
-  transform: translate(-50%, 300%);
-  opacity: 0;
-}
-</style>

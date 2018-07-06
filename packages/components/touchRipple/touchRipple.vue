@@ -1,5 +1,6 @@
 <template>
   <div
+  @click="clickEvent"
   @mousedown="handleMouseDown" @mouseup="end()" @mouseleave="end()"
   @touchstart="handleTouchStart"  @touchend="end()" @touchcancel="end()">
     <div class="mt-ripple-wrapper" :class="rippleWrapperClass" ref="holder">
@@ -48,6 +49,9 @@ export default {
     this.ignoreNextMouseDown = false;
   },
   methods: {
+    clickEvent(event) {
+      this.$emit('click', event);
+    },
     start(event, isRippleTouchGenerated) {
       if (this.ignoreNextMouseDown && !isRippleTouchGenerated) {
         this.ignoreNextMouseDown = false;
