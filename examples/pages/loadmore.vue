@@ -66,6 +66,7 @@ export default {
     this.wrapperHeight = DW - this.$refs.wrapper.getBoundingClientRect().top;
     console.dir(this.$refs.wrapper.style.height);
     setTimeout(() => {
+      console.log(111);
       this.proList = this.source.slice(0); // 模拟异步
     }, 200);
   },
@@ -80,6 +81,7 @@ export default {
     translateChange() {
     },
     bottomMethod() {
+      console.log(222);
       setTimeout(() => {
         if (this.proList.length > 30) {
           this.bottomAllLoaded = true;

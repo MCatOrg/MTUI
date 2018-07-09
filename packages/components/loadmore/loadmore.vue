@@ -175,14 +175,14 @@ export default {
     onBottomLoaded() {
       this.bottomStatus = 'pull';
       this.bottomDropped = false;
-      this.$nextTick(() => {
-        if (this.scrollEventTarget === window) {
-          document.body.scrollTop += 50;
-        } else {
-          this.scrollEventTarget.scrollTop += 50;
-        }
-        this.translate = 0;
-      });
+      // this.$nextTick(() => {
+      //   if (this.scrollEventTarget === window) {
+      //     document.body.scrollTop += 50;
+      //   } else {
+      //     this.scrollEventTarget.scrollTop += 50;
+      //   }
+      //   this.translate = 0;
+      // });
       if (!this.bottomAllLoaded && !this.containerFilled) {
         this.$nextTick(() => {
           this.fillContainer();
@@ -202,6 +202,7 @@ export default {
       return window;
     },
     fillContainer() {
+      console.log('fill');
       if (this.autoFill && typeof this.bottomMethod === 'function') {
         if (this.scrollEventTarget === window) {
           this.containerFilled = this.$el.getBoundingClientRect().bottom >=

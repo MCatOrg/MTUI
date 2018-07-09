@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" v-on:after-leave="afterLeave">
     <div class="mtui-toast-box" :class="className" v-show="visible">
-      <div class="mtui-mask_transparent"></div>
+      <div class="mtui-mask_transparent" @click="closeToast"></div>
       <div class="mtui-toast">
           <i class="mtui-icon_toast mtui-icon-success-no-circle"></i>
           <p class="mtui-toast__content">{{content}}</p>
@@ -26,6 +26,9 @@ export default {
       this.time = 2 * 1000;
       this.className = '';
       this.content = '';
+    },
+    closeToast() {
+      this.close();
     },
   },
 };

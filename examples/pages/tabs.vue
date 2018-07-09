@@ -35,7 +35,7 @@ export default {
           badeg: 100,
         },
         {
-          text: '选项2', // tabs选项的文字
+          text: '选项2333333', // tabs选项的文字
           badeg: 12,
         },
         {
