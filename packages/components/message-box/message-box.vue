@@ -1,7 +1,7 @@
 <template>
     <div :class="className">
       <div class="mtui-mask" v-show="isShowMark" @click="close(closeOnClickModal)"></div>
-      <transition name="translate" v-on:after-leave="afterLeave" v-on:before-enter="beforeEnter">
+      <transition name="updown" v-on:after-leave="afterLeave" v-on:before-enter="beforeEnter">
         <div class="mtui-dialog" v-show="isShow">
             <div class="mtui-dialog__hd" v-if="!!title">
               <strong class="mtui-dialog__title">{{title}}</strong>
@@ -76,3 +76,18 @@ export default {
   },
 };
 </script>
+<style lang="less">
+.updown-enter-active,
+.updown-leave-active {
+  transition: all 0.3s ease;
+}
+.updown-enter{
+  transform: translate(-50%, -300%);
+  opacity: 0;
+}
+
+.updown-leave-to {
+  transform: translate(-50%, 300%);
+  opacity: 0;
+}
+</style>
