@@ -28,8 +28,8 @@
                 <div @click="historyClick($event)" class="lists-item"
                 v-for="(v,i) in historyList" :key="i">
                     <router-link class="lists-item_cont"
-                    v-if="v.url" :to="v.url">{{v.title}}</router-link>
-                    <span class="lists-item_cont" v-else>{{v.title}}</span>
+                    v-if="v.url" :to="v.url">{{v[historysLabel]}}</router-link>
+                    <span class="lists-item_cont" v-else>{{v[historysLabel]}}</span>
                 </div>
             </div>
         </div>
@@ -66,12 +66,16 @@ export default {
         return [];
       },
     },
+    historysLabel: {
+      type: String,
+      default: 'title',
+    }
   },
   computed: {
     historyList() {
       const result = [];
       this.historys.map((i) => {
-        if (i.title.indexOf(this.searchKey) !== -1 && this.searchKey !== '') {
+        if (i[this.historysLabel].indexOf(this.searchKey) !== -1 && this.searchKey !== '') {
           result.push(i);
         }
         return i;

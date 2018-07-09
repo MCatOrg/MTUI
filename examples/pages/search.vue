@@ -51,13 +51,13 @@
                 @onsearchFocus="onsearchFocus"
                 @onsearchInput="onsearchInput"
                 placeholder="输入你想要的水果"
-                @oncancle="oncancle" :historys="historys"></mt-searchbar>
+                @oncancle="oncancle" :historys="historys" historysLabel="aaaa"></mt-searchbar>
             </div>
             <div v-if="searchFocus" @click="searchFocus = false" class="mt-search-close">关闭</div>
         </div>
         <br>
         <p>history功能</p>
-        <mt-searchbar @onsearch="search" :historys="historys" placeholder="输入你想要的水果"></mt-searchbar>
+        <mt-searchbar @onsearch="search" :historys="historys" historysLabel="aaaa" placeholder="输入你想要的水果"></mt-searchbar>
     </div>
 </template>
 <script>
@@ -68,22 +68,22 @@ export default {
       searchFocus: false,
       historys: [
         {
-          title: '苹果',
+          aaaa: '苹果',
           url: '###',
         }, {
-          title: '香蕉',
+          aaaa: '香蕉',
           url: '###',
         }, {
-          title: '柠檬',
+          aaaa: '柠檬',
           url: '###',
         }, {
-          title: '火龙果',
+          aaaa: '火龙果',
           url: '###',
         }, {
-          title: '雪梨',
+          aaaa: '雪梨',
           url: '###',
         }, {
-          title: '菠萝',
+          aaaa: '菠萝',
           url: '###',
         },
       ],
