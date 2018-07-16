@@ -1,16 +1,30 @@
 <template>
   <div id="accordionPa">
     <mt-accordion :options="options">
-
+      <div slot="title-0">
+        hello
+      </div>
       <mt-cell-g :slot="0">
         <mt-cell title="标题" value="卢大师" to="/cell"></mt-cell>
         <mt-cell title="标题" value="卢大师" to="/cell" :showLoading="true"></mt-cell>
         <mt-cell title="标题" tips="带说明、跳转的列表项" to="/cell"></mt-cell>
       </mt-cell-g>
-
       <mt-radio :slot="1" v-model="valueIcon" :options="optionsIcon"></mt-radio>
       <mt-checklist :slot="2" v-model="value3" :options="options3" align="right"></mt-checklist>
     </mt-accordion>
+    <br>
+    <hr>
+    <br>
+    <mt-accordion :options="priceList">
+        <template v-for="(item,i) in priceList">
+        <div  :key="i+'t'" :slot="`title-${i}`" class="demoItem">
+          sdfsd
+        </div>
+        <div :key="i" :slot="i">
+          sdfsf
+        </div>
+        </template>
+      </mt-accordion>
   </div>
 </template>
 <script>
@@ -29,6 +43,7 @@ export default {
           title: '三级',
         },
       ],
+      priceList: [1, 2, 2, 2, 2, 22],
       valueIcon: '芋头',
       optionsIcon: [
         {
@@ -67,3 +82,8 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+.demoItem{
+  height: 0.88rem;
+}
+</style>

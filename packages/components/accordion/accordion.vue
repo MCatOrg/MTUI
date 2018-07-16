@@ -4,14 +4,14 @@
     v-for="(item,i) in list" :key="i"
     :class="{'mtui-collapse__active':item.show}">
       <a class="mtui-cell mtui-collapse__title" @click="handleClick(i)">
-        <div class="mtui-cell__bd">{{item.title}}</div>
+        <div class="mtui-cell__bd">
+          <slot :name="`title-${i}`">{{item.title}}</slot>
+        </div>
         <div class="mtui-cell__ft"></div>
       </a>
-      <transition name="scale">
         <div class="mtui-cells mtui-collapse__content" v-show="item.show">
           <slot :name="i"></slot>
         </div>
-      </transition>
     </li>
   </ul>
 </template>
