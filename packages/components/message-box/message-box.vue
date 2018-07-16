@@ -12,7 +12,7 @@
               <input type="text"  v-model="inputVal"
               :placeholder="promptPlaceholder" class="mtui-prompt" v-else>
             </div>
-            <div class="mtui-dialog__bd" v-else>{{message}}</div>
+            <div class="mtui-dialog__bd" v-else v-html="message"></div>
             <div class="mtui-dialog__ft">
                 <a href="javascript:void(0)" v-if="showCancelButton"
                 :class="['mtui-dialog__btn',cancelButtonClass]"
