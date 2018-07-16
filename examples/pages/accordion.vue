@@ -34,16 +34,27 @@ export default {
       options: [
         {
           title: '一级',
+          show: false,
         },
         {
           title: '二级',
-          show: true,
+          show: false,
         },
         {
           title: '三级',
+          show: false,
         },
       ],
-      priceList: [1, 2, 2, 2, 2, 22],
+      priceList: [{
+        title: '123',
+        show: false,
+      }, {
+        title: '123',
+        show: false,
+      }, {
+        title: '123',
+        show: false,
+      }],
       valueIcon: '芋头',
       optionsIcon: [
         {
@@ -79,6 +90,14 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.priceList.push({
+        title: '123213',
+        show: false,
+      });
+    }, 5000);
   },
 };
 </script>
