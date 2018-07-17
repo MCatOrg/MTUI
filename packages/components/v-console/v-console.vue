@@ -1,5 +1,5 @@
 <template>
-  <div id="openVconsole" @click="openVconsole"></div>
+  <div id="openVconsole" @click="openVconsole" ref="vconsole"></div>
 </template>
 <script>
 let openVconsoleCount = 0;
@@ -25,8 +25,14 @@ export default {
         openVconsoleCount++;
         const script = document.createElement('script');
         document.body.appendChild(script);
+        const that = this;
         script.onload = function () {
           const vc = new window.VConsole();
+          if (that.$refs.vconsole.parentElement) {
+            that.$refs.vconsole.parentElement.removeChild(that.$refs.vconsole);
+          } else {
+            document.body.removeChild(that.$refs.vconsole);
+          }
           console.dir(vc);
         };
         script.src = this.vconsoleUrl;
@@ -45,7 +51,7 @@ export default {
 <style>
 #openVconsole{
   width: 7.5rem;
-  height: 0.88rem;
+  height: 1.2rem;
 }
 #openVconsole,#openVconsole:focus,#openVconsole:active,#openVconsole:hover{
   background-color: transparent !important;
