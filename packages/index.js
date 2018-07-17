@@ -21,7 +21,7 @@ import mtInput from './components/input';
 import mtSlider from './components/slider';
 import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
-// import Vconsole from './components/v-console';
+import Vconsole from './components/v-console';
 import mtDirectives from './components/directives';
 import mtPicker from './components/picker';
 import mtBadge from './components/badge';
@@ -60,7 +60,7 @@ const components = [
   mtSlider,
   mtUploader,
   mtBigPicture,
-  // Vconsole,
+  Vconsole,
   mtPicker,
   mtBadge,
   mtGrid,
@@ -120,7 +120,7 @@ const MTUI = {
   mtSlider,
   mtUploader,
   mtBigPicture,
-  // Vconsole,
+  Vconsole,
   mtPicker,
   mtBadge,
   mtGrid,
@@ -157,7 +157,7 @@ export {
   mtSlider,
   mtUploader,
   mtBigPicture,
-  // Vconsole,
+  Vconsole,
   mtPicker,
   mtBadge,
   mtGrid,

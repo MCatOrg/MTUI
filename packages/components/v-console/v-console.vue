@@ -2,8 +2,6 @@
   <div id="openVconsole" @click="openVconsole"></div>
 </template>
 <script>
-import  './plugs/vconsole.min.js';
-console.log(window)
 let openVconsoleCount = 0;
 let timeVconsole;
 export default {
@@ -13,15 +11,25 @@ export default {
       type: Number,
       default: 5,
     },
+    vconsoleUrl: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     openVconsole() {
+      if (typeof window.VConsole !== 'undefined') return;
       if (openVconsoleCount === this.time) {
         clearTimeout(timeVconsole);
         timeVconsole = null;
         openVconsoleCount++;
-        const vc = new VConsole();
-        console.dir(vc);
+        const script = document.createElement('script');
+        document.body.appendChild(script);
+        script.onload = function () {
+          const vc = new window.VConsole();
+          console.dir(vc);
+        };
+        script.src = this.vconsoleUrl;
       } else if (timeVconsole === undefined || typeof timeVconsole === 'number') {
         openVconsoleCount++;
         clearTimeout(timeVconsole);
