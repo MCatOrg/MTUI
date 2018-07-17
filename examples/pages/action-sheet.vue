@@ -16,8 +16,8 @@
         :close-on-click-modal="false"
       >
       </mt-actionsheet>
-      <button @click="showAS=!showAS">{{showAS?'隐藏带取消按钮的':'显示带取消按钮的'}}</button>
-      <button @click="showUnCancel=!showUnCancel">{{showUnCancel?'隐藏无取消按钮的':'显示无取消按钮的'}}</button>
+      <mt-button @click="showAS=!showAS" type="primary">{{showAS?'隐藏带取消按钮的':'显示带取消按钮的'}}</mt-button>
+      <mt-button @click="showUnCancel=!showUnCancel" type="primary">{{showUnCancel?'隐藏无取消按钮的':'显示无取消按钮的'}}</mt-button>
     </div>
 </template>
 <script>
