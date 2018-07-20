@@ -21,6 +21,11 @@
 import { mtMessageBox } from '~/index';
 
 export default {
+  created() {
+    document.body.addEventListener('click', () => {
+      console.log('我是全局点击事件');
+    });
+  },
   methods: {
     showMsg(msg, title) {
       this.$messagebox(msg, title).then((action) => {

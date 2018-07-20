@@ -16,11 +16,11 @@
             <div class="mtui-dialog__ft">
                 <a href="javascript:void(0)" v-if="showCancelButton"
                 :class="['mtui-dialog__btn',cancelButtonClass]"
-                @click.prevent="handleAction('cancel')"
+                @click.prevent.stop="handleAction('cancel')"
                 >{{cancelButtonText}}</a>
                 <a href="javascript:void(0)" v-if="showConfirmButton"
                 :class="['mtui-dialog__btn',confirmButtonClass]"
-                @click.prevent="handleAction('confirm')"
+                @click.prevent.stop="handleAction('confirm')"
                 >{{confirmButtonText}}</a>
             </div>
         </div>
