@@ -83,26 +83,26 @@ export default {
     init() {
       if (this.index) {
         this.tabBarIndex = this.index;
-        this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
+        this.$refs.tabBar[this.tabBarIndex].children[0].style = `color:${this.activeColor}`;
       } else {
         if (this.$refs.tabBar && this.$refs.tabBar.length) {
           this.$refs.tabBar.forEach((item) => {
-            item.style = `color:${this.color}`;
+            item.children[0].style = `color:${this.color}`;
           });
         }
-        this.$refs.tabBar[0].style = `color:${this.activeColor}`;
+        this.$refs.tabBar[0].children[0].style = `color:${this.activeColor}`;
       }
     },
     changeItem(index) {
       if (this.$refs.tabBar && this.$refs.tabBar.length) {
         this.$refs.tabBar.forEach((item) => {
-          item.style = `color:${this.color}`;
+          item.children[0].style = `color:${this.color}`;
         });
       }
       if (this.index) {
-        this.$refs.tabBar[this.tabBarIndex].style = `color:${this.activeColor}`;
+        this.$refs.tabBar[this.tabBarIndex].children[0].style = `color:${this.activeColor}`;
       } else {
-        this.$refs.tabBar[index].style = `color:${this.activeColor}`;
+        this.$refs.tabBar[index].children[0].style = `color:${this.activeColor}`;
       }
     },
     itemClick(index) {
@@ -165,6 +165,7 @@ export default {
   text-align: center;
   height: 0.36rem;
   line-height: 0.36rem;
+  color: inherit;
 }
 .mt-tabbar_icon {
   overflow: hidden;
