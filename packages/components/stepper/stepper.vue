@@ -88,7 +88,7 @@ export default {
     },
 
     handleValue(event) {
-      const value = Number(event.target.value.trim());
+      const value = parseInt(Number(event.target.value.trim()), 10);
       const min = this.min;
       const max = this.max;
 
