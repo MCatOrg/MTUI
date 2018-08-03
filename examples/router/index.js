@@ -25,11 +25,17 @@ import search from '@/pages/search';
 import tabs from '@/pages/tabs';
 import tabbar from '@/pages/tabbar';
 import icon from '@/pages/icon';
+import test from '@/pages/test';
 
 Vue.use(Router);
 
 const router = new Router({
   routes: [
+    {
+      path: '/test',
+      name: 'test',
+      component: test,
+    },
     {
       path: '/',
       name: 'home',

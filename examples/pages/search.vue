@@ -56,7 +56,7 @@
             <div v-if="searchFocus" @click="searchFocus = false" class="mt-search-close">关闭</div>
         </div>
         <br>
-        <p>history功能</p>
+        <p>history功能+自定义过滤关键词变量名</p>
         <mt-searchbar @onsearch="search" :historys="historys" historysLabel="aaaa" placeholder="输入你想要的水果"></mt-searchbar>
     </div>
 </template>

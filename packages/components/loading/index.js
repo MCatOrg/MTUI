@@ -4,7 +4,6 @@ import loading from './loading';
 const Loading = Vue.extend(loading);
 let singleLoading;
 
-
 export default {
   name: 'mt-loading',
   open(options = {}) {
@@ -20,7 +19,7 @@ export default {
         return key;
       });
     }
-    const vm = singleLoading.$mount();
+    var vm = singleLoading.$mount();
     document.body.appendChild(vm.$el);
     Vue.nextTick(() => {
       singleLoading.visible = true;

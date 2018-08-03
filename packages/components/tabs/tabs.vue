@@ -15,7 +15,7 @@
         <!-- tabsitem数量超过5个的 -->
         <div class="mtui-tabs overflow" v-else>
             <div class="mtui-tab_acbox"><div class="mtui-tab_action"></div></div>
-            <input type="checkbox" id="inputID">
+            <input type="checkbox" id="inputID" ref="inputID" />
             <label class="mtui-tab_arrow" for="inputID"></label>
 
             <div class="mtui-tabs_list">
@@ -84,6 +84,7 @@ export default {
   },
   methods: {
     tab(i) {
+      this.$refs.inputID.checked = false;
       this.activeIndex = i;
       this.$emit('onclick', this.list[i]);
     },
