@@ -175,6 +175,14 @@ const router = new Router({
       component: () => import('../pages/nothing.vue'),
     },
     {
+      path: '/vconsole',
+      name: 'vconsole',
+      meta: {
+        title: 'Vconsole',
+      },
+      component: () => import('../pages/Vconsole.vue'),
+    },
+    {
       path: '/steps',
       name: 'steps',
       component: steps,

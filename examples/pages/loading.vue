@@ -1,10 +1,15 @@
 <template>
   <div id="loading">
-    <button @click="showLoading">默认Loading</button>
+    <mt-button @click="showLoading" type="primary">默认Loading</mt-button>
+    <mt-button @click="showRainbowLoading" type="primary">（rainbow）Loading</mt-button>
+    <mt-button @click="showPeeekLoading" type="primary">（peeek）Loading</mt-button>
+    <mt-button @click="showSnakeLoading" type="primary">（snake）Loading</mt-button>
+    <mt-button @click="toast" type="primary">toast</mt-button>
+    <!-- <button @click="showLoading">默认Loading</button>
     <button @click="showRainbowLoading">（rainbow）Loading</button>
     <button @click="showPeeekLoading">（peeek）Loading</button>
     <button @click="showSnakeLoading">（snake）Loading</button>
-    <button @click="toast">toast</button>
+    <button @click="toast">toast</button> -->
   </div>
 </template>
 <script>
