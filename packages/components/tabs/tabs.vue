@@ -18,7 +18,7 @@
             <input type="checkbox" id="inputID" ref="inputID" />
             <label class="mtui-tab_arrow" for="inputID"></label>
 
-            <div class="mtui-tabs_list">
+            <div class="mtui-tabs_list" ref="box">
                 <div class="mtui-tab_title">全部</div>
                 <div class="mtui-tab_box" :style="{width : computedList.length * 1.5 + 'rem'}">
                     <div v-for="(v, i) in computedList"
@@ -85,6 +85,38 @@ export default {
   methods: {
     tab(i) {
       this.$refs.inputID.checked = false;
+
+      let width = document.documentElement.getBoundingClientRect().width;
+      width>750 && (width=750);
+      let rem = width * 100 / 750;
+
+      let endLeft = ((i - 2) * rem * 1.5) > 0 ? ((i - 2) * rem * 1.5) : 0;
+      let startLeft = (this.$refs.box.scrollLeft);
+      let distance = endLeft - startLeft;
+
+      let scrollWidth = this.$refs.box.scrollWidth;
+      let offsetWidth = this.$refs.box.offsetWidth;
+      //activeIndex * 1.5
+      if(distance < 0){
+        let timer = setInterval(()=>{
+          if(this.$refs.box.scrollLeft <= endLeft){
+            clearInterval(timer)
+          }else{
+            this.$refs.box.scrollLeft = this.$refs.box.scrollLeft -2;
+          }
+        },(3000 / Math.abs(distance)) / 6)
+      }else{
+        let timer = setInterval(()=>{
+          if(this.$refs.box.scrollLeft >= endLeft || ((scrollWidth - this.$refs.box.scrollLeft) == offsetWidth)){
+            clearInterval(timer)
+          }else{
+            this.$refs.box.scrollLeft = this.$refs.box.scrollLeft + 2;
+          }
+        },(3000 / Math.abs(distance)) / 10)
+      }
+
+
+      // this.$refs.box.scrollLeft = (i - 2) * rem * 1.5;
       this.activeIndex = i;
       this.$emit('onclick', this.list[i]);
     },
