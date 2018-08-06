@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-// import MTUI from '~/index';
-import MTUI from '../lib/mtui';
+import MTUI from '~/index';
+// import MTUI from '../lib/mtui';
 import '../lib/index.css';
 
 Vue.use(MTUI); // 载入MTUI

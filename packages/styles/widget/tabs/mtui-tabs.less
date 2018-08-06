@@ -3,14 +3,14 @@
     .mtui-tab{font-size: .26rem; border-color: transparent;
         .mtui-tab_text{padding-right: .15rem; padding-left: .15rem; line-height: .82rem; height: .82rem; display: inline-block; border-bottom: .06rem solid transparent; border-color: inherit; position: relative;}
         &.active{color: @mtuiColorPrimary; border-color: @mtuiColorPrimary;}
-        .mtui-tab_badeg{position: absolute; display: inline-block; font-size: .2rem; background-color: white; border-radius: .2rem; padding-left: .08rem; padding-right: .08rem; top: 0; right: -20%; line-height: .3rem; border: 1px solid @mtuiColorPrimary; color: @mtuiColorPrimary;}
+        .mtui-tab_badeg{position: absolute; display: inline-block; font-size: .2rem; background-color: white; border-radius: .2rem; padding-left: .08rem; padding-right: .08rem; top: 0; right: -20%; line-height: .3rem; border: .02rem solid @mtuiColorPrimary; color: @mtuiColorPrimary;}
     }
 
     .mtui-tab{flex: 1; text-align: center;}
 
     &.overflow{display: block; width: 100%; position: relative;
         .mtui-tabs_list{width: 6.62rem; overflow-x: scroll; position: relative; padding-bottom: .06rem;
-            .mtui-tab_title{line-height: .81rem; font-size: .28rem; padding-left: .3rem; display: none; border-bottom: 0.01rem solid #E5E5E5;}
+            .mtui-tab_title{line-height: .81rem; font-size: .28rem; padding-left: .3rem; display: none; border-bottom: 0.02rem solid #E5E5E5;}
             .mtui-tab_box{overflow: hidden; width: 10.5rem;
                 .mtui-tab{width: 1.5rem; float: left; line-height: .82rem; box-sizing: border-box; position: relative;}
                 .mtui-tab_badeg{right: 0;}
@@ -26,9 +26,9 @@
         input + .mtui-tab_arrow:after{.setArrow(down, .14rem, #666, .02rem); content: " ";}
 
         input:checked + .mtui-tab_arrow + .mtui-tabs_list{width: 7.5rem; overflow: visible;}
-        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_box{width: auto !important; position: absolute; border-bottom: 0.01rem solid #E5E5E5; padding-bottom: .2rem; background-color: white;}
-        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab{line-height: .64rem; background-color: #f8f8f8; border-radius: .64rem; margin: .2rem .1875rem 0; border: 0.01rem solid #F8F8F8; border-color: #F8F8F8;
-            &.active{background-color: transparent; border: 0.01rem solid; border-color: @mtuiColorPrimary;}
+        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_box{width: auto !important; position: absolute; border-bottom: 0.02rem solid #E5E5E5; padding-bottom: .2rem; background-color: white;}
+        input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab{line-height: .64rem; background-color: #f8f8f8; border-radius: .64rem; margin: .2rem .1875rem 0; border: 0.02rem solid #F8F8F8; border-color: #F8F8F8;
+            &.active{background-color: transparent; border: 0.02rem solid; border-color: @mtuiColorPrimary;}
             .mtui-tab_badeg{top: -10%; right: -10%;}
         }
         input:checked + .mtui-tab_arrow + .mtui-tabs_list .mtui-tab_title{display: block; text-align: left;}
