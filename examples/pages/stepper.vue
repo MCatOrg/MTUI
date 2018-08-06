@@ -8,11 +8,11 @@
       </div>
       <div>
         <p>最大数6</p>
-        <mt-stepper :max="6" @on-change="chagneStepper" />
+        <mt-stepper :max="6" @on-change="chagneStepper" maxTip="啦啦啦" />
       </div>
       <div>
         <p>最小数3</p>
-        <mt-stepper :value="value" :min="3" @on-change="chagneStepper" />
+        <mt-stepper :value="value" :min="3" @on-change="chagneStepper" minTip="突突突" />
       </div>
       <div>
         <p>步长2</p>
