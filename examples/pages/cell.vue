@@ -5,6 +5,7 @@
     </mt-cell-g>
     <mt-cell-g title="带图标、说明、跳转的列表项">
       <mt-cell title="单项跳转列表" value="详情信息" icon="https://avatars0.githubusercontent.com/u/8280645?s=88&v=4" to="/cell"></mt-cell>
+      <mt-cell title="单项跳转列表" value="详情信息" icon="mtui-icon-inventoryInfo" iconColor="red" iconFont to="/cell"></mt-cell>
     </mt-cell-g>
 
     <mt-cell-g title="跳转,带加载状态">
@@ -47,6 +48,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.red{color: red;}
 #cellPage{
 }
 </style>

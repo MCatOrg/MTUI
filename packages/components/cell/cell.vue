@@ -5,7 +5,10 @@
   :class="{'mtui-cell__link':setArrow}">
     <div class="mtui-cell__hd" v-if="showHead">
       <slot name="head">
-        <img :src="icon" alt="图标" v-if="icon">
+        <template v-if="icon">
+          <i v-if="iconFont" :style="{'color': iconColor, fontSize: iconSize || '.48rem'}" :class="['icon',icon]"></i>
+          <img v-else :src="icon" alt="图标">
+        </template>
       </slot>
     </div>
     <div class="mtui-cell__bd">
@@ -47,6 +50,12 @@ export default {
     to: [String, Number, Object],
     tips: [String, Number],
     icon: String,
+    iconColor: String,
+    iconSize: String,
+    iconFont: {
+      type: Boolean,
+      default: false,
+    },
     loadingColor: {
       type: String,
       default: '#e6e6e6',
