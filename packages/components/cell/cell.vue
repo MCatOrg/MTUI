@@ -6,7 +6,7 @@
     <div class="mtui-cell__hd" v-if="showHead">
       <slot name="head">
         <template v-if="icon">
-          <i v-if="iconFont" :style="{'color': iconColor, fontSize: iconSize || '.48rem'}" :class="['icon',icon]"></i>
+          <i v-if="iconFont" :style="{'color': iconColor, fontSize: iconSize || '.56rem'}" :class="['icon',icon]"></i>
           <img v-else :src="icon" alt="图标">
         </template>
       </slot>
