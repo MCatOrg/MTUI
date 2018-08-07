@@ -1,11 +1,16 @@
 <template>
   <div :class="['mtui-stepper', disable ? 'dark' : '']" >
-    <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button>
-    <input v-model="currentValue" @change="handleValue" type="number" class="mtui-stepper_input" >
-    <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button>
+    <!-- <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button> -->
+    <div :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''}`"  @click="reduce"></div>
+    <input v-model="currentValue" @change="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
+    <div :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''}`"  @click="add"></div>
+    <!-- <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button> -->
   </div>
 </template>
 <script>
+
+import toast from '../toast/';
+
 export default {
   name: 'mt-stepper',
   data() {
@@ -27,10 +32,12 @@ export default {
       type: Number,
       default: 1,
     },
+    minTip: String,
     max: {
       type: Number,
       default: Infinity,
     },
+    maxTip: String,
     disable: {
       type: Boolean,
       default: false,
@@ -49,9 +56,9 @@ export default {
     reduce() {
       if (this.disable) return;
       if (this.min > 1) {
-        console.log(`我有最小值:${this.min}`);
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
+          if (this.minTip) toast(`${this.minTip}:${this.min}`);
         } else {
           this.currentValue -= this.step;
         }
@@ -65,10 +72,11 @@ export default {
     },
     add() {
       if (this.disable) return;
+
       if (this.max !== Infinity) {
-        console.log(`我有最大值:${this.max}`);
         if (this.currentValue >= this.max) {
           this.currentValue = this.max;
+          if (this.maxTip) toast(`${this.maxTip}:${this.max}`);
         } else {
           this.currentValue += this.step;
         }
@@ -163,7 +171,11 @@ export default {
     vertical-align: top;
     line-height: 0.48rem;
   }
-
+  .disable {
+    background-color: #fafafb;
+    border: 0.01rem solid #fafafb;
+    color: #e6e6e6;
+  }
   //disable
   &.dark {
     .mtui-stepper_reduce,
