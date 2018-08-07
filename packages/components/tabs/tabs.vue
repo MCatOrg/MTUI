@@ -84,37 +84,37 @@ export default {
   },
   methods: {
     tab(i) {
-      if(this.computedList.length > 5) this.$refs.inputID.checked = false;
+      if(this.$refs.inputID){
+        this.$refs.inputID.checked = false;
+        let width = document.documentElement.getBoundingClientRect().width;
+        width>750 && (width=750);
+        let rem = width * 100 / 750;
 
-      let width = document.documentElement.getBoundingClientRect().width;
-      width>750 && (width=750);
-      let rem = width * 100 / 750;
+        let endLeft = ((i - 2) * rem * 1.5) > 0 ? ((i - 2) * rem * 1.5) : 0;
+        let startLeft = (this.$refs.box.scrollLeft);
+        let distance = endLeft - startLeft;
 
-      let endLeft = ((i - 2) * rem * 1.5) > 0 ? ((i - 2) * rem * 1.5) : 0;
-      let startLeft = (this.$refs.box.scrollLeft);
-      let distance = endLeft - startLeft;
-
-      let scrollWidth = this.$refs.box.scrollWidth;
-      let offsetWidth = this.$refs.box.offsetWidth;
-      //activeIndex * 1.5
-      if(distance < 0){
-        let timer = setInterval(()=>{
-          if(this.$refs.box.scrollLeft <= endLeft){
-            clearInterval(timer)
-          }else{
-            this.$refs.box.scrollLeft = this.$refs.box.scrollLeft -2;
-          }
-        },(3000 / Math.abs(distance)) / 6)
-      }else{
-        let timer = setInterval(()=>{
-          if(this.$refs.box.scrollLeft >= endLeft || ((scrollWidth - this.$refs.box.scrollLeft) == offsetWidth)){
-            clearInterval(timer)
-          }else{
-            this.$refs.box.scrollLeft = this.$refs.box.scrollLeft + 2;
-          }
-        },(3000 / Math.abs(distance)) / 10)
+        let scrollWidth = this.$refs.box.scrollWidth;
+        let offsetWidth = this.$refs.box.offsetWidth;
+        //activeIndex * 1.5
+        if(distance < 0){
+          let timer = setInterval(()=>{
+            if(this.$refs.box.scrollLeft <= endLeft){
+              clearInterval(timer)
+            }else{
+              this.$refs.box.scrollLeft = this.$refs.box.scrollLeft -2;
+            }
+          },(3000 / Math.abs(distance)) / 6)
+        }else{
+          let timer = setInterval(()=>{
+            if(this.$refs.box.scrollLeft >= endLeft || ((scrollWidth - this.$refs.box.scrollLeft) == offsetWidth)){
+              clearInterval(timer)
+            }else{
+              this.$refs.box.scrollLeft = this.$refs.box.scrollLeft + 2;
+            }
+          },(3000 / Math.abs(distance)) / 10)
+        }
       }
-
 
       // this.$refs.box.scrollLeft = (i - 2) * rem * 1.5;
       this.activeIndex = i;
