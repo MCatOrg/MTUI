@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     tab(i) {
-      this.$refs.inputID.checked = false;
+      if(this.computedList.length > 5) this.$refs.inputID.checked = false;
 
       let width = document.documentElement.getBoundingClientRect().width;
       width>750 && (width=750);
