@@ -12,11 +12,12 @@
       </div>
       <div>
         <p>最小数3</p>
-        <mt-stepper :value="value" :min="3" @on-change="chagneStepper" minTip="突突突" />
+        <mt-stepper :value="value" :min="0" @on-change="chagneStepper" minTip="突突突" />
       </div>
       <div>
         <p>步长2</p>
-        <mt-stepper :step="2" @on-change="chagneStepper" />
+        <mt-stepper :step="2" @on-change="chagneStepper" v-model="vvv" />
+        <p>{{vvv}}</p>
       </div>
       <div>
         <p>禁用</p>
@@ -31,7 +32,8 @@
 export default {
   data() {
     return {
-      value: 3,
+      value: 0,
+      vvv: 0,
     };
   },
   methods: {

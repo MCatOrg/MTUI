@@ -67,7 +67,7 @@ export default {
   computed: {
     computedList() {
       return this.list.map((value, index) => {
-        if (!value.value) value.value = index;
+        if (!value.value && value.value !== 0) value.value = index;
         if (value.badeg && typeof Number(value.badeg) === 'number' && value.badeg > 99) value.badeg = '99+';
         return value;
       });
