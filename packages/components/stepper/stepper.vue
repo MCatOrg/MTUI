@@ -91,7 +91,10 @@ export default {
         if (val >= this.max) val = this.max;
         this.currentValue = val;
       } else {
-        this.currentValue = 1;
+        if(val === 0){
+          this.min =  0;
+          this.currentValue = val;
+        }else this.currentValue = 1;
       }
     },
 
