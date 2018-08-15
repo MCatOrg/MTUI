@@ -58,7 +58,7 @@ export default {
       if (this.min > 1) {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
-          if (this.minTip) toast(`${this.minTip}:${this.min}`);
+          if (this.minTip) toast(`${this.minTip}`);
         } else {
           this.currentValue -= this.step;
         }
@@ -76,7 +76,7 @@ export default {
       if (this.max !== Infinity) {
         if (this.currentValue >= this.max) {
           this.currentValue = this.max;
-          if (this.maxTip) toast(`${this.maxTip}:${this.max}`);
+          if (this.maxTip) toast(`${this.maxTip}`);
         } else {
           this.currentValue += this.step;
         }
@@ -99,6 +99,7 @@ export default {
     },
 
     handleValue(event) {
+      // if(event.target.value === '') return;
       const value = parseInt(Number(event.target.value.trim()), 10);
       const min = this.min;
       const max = this.max;

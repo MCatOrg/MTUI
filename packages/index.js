@@ -142,6 +142,7 @@ export {
   version,
   Toast,
   loading,
+  mtLazyload,
   mtActionsheet,
   mtMessageBox,
   mtLoadMore,
