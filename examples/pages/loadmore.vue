@@ -8,6 +8,7 @@
       :bottom-method="bottomMethod"
       @translate-change="translateChange"
       :bottom-all-loaded="bottomAllLoaded"
+      :autoFill="false"
       top-loading-text="">
         <div class="proList">
           <div v-for="(pro,i) of proList" :key="i" class="item">

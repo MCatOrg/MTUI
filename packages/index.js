@@ -103,6 +103,7 @@ const MTUI = {
   version,
   Toast,
   loading,
+  mtLazyload,
   mtActionsheet,
   mtMessageBox,
   mtSpinner,

@@ -58,7 +58,7 @@ export default {
       if (this.min > 1) {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
-          if (this.minTip) toast(`${this.minTip}`);
+          if (this.minTip) toast(this.minTip);
         } else {
           this.currentValue -= this.step;
         }
@@ -76,7 +76,7 @@ export default {
       if (this.max !== Infinity) {
         if (this.currentValue >= this.max) {
           this.currentValue = this.max;
-          if (this.maxTip) toast(`${this.maxTip}`);
+          if (this.maxTip) toast(this.maxTip);
         } else {
           this.currentValue += this.step;
         }
