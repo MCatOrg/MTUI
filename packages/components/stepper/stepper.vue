@@ -2,7 +2,7 @@
   <div :class="['mtui-stepper', disable ? 'dark' : '']" >
     <!-- <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button> -->
     <div :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''}`"  @click="reduce"></div>
-    <input v-model="currentValue" @change="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
+    <input :value="currentValue" @blur="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
     <div :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''}`"  @click="add"></div>
     <!-- <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button> -->
   </div>
@@ -30,7 +30,7 @@ export default {
     },
     min: {
       type: Number,
-      default: 1,
+      default: 0,
     },
     minTip: String,
     max: {
@@ -55,7 +55,7 @@ export default {
   methods: {
     reduce() {
       if (this.disable) return;
-      if (this.min > 1) {
+      if (this.min || this.min == 0) {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
           if (this.minTip) toast(this.minTip);
@@ -91,14 +91,12 @@ export default {
         if (val >= this.max) val = this.max;
         this.currentValue = val;
       } else {
-        if(val === 0){
-          this.min =  0;
-          this.currentValue = val;
-        }else this.currentValue = 1;
+        this.currentValue = this.min;
       }
     },
 
     handleValue(event) {
+      // if(event.target.value === '') return;
       const value = parseInt(Number(event.target.value.trim()), 10);
       const min = this.min;
       const max = this.max;
@@ -109,13 +107,9 @@ export default {
       }
       if (this.isValueNumber(value)) {
         this.currentValue = value;
-
-        if (value >= max) {
-          this.currentValue = max;
-        }
-        if (value <= min) {
-          this.currentValue = min;
-        }
+        event.target.value = value;
+        if (value >= max) this.currentValue = max;
+        if (value <= min) this.currentValue = min;
       } else {
         event.target.value = this.currentValue;
       }
@@ -186,6 +180,7 @@ export default {
     .mtui-stepper_input {
       background-color: #fafafb;
       border: 0.01rem solid #fafafb;
+      color: #e6e6e6;
     }
   }
 }
