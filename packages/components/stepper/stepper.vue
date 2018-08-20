@@ -2,7 +2,7 @@
   <div :class="['mtui-stepper', disable ? 'dark' : '']" >
     <!-- <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button> -->
     <div :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''}`"  @click="reduce"></div>
-    <input v-model="currentValue" @change="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
+    <input :value="currentValue" @blur="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
     <div :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''}`"  @click="add"></div>
     <!-- <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button> -->
   </div>
@@ -90,12 +90,10 @@ export default {
         if (val <= this.min) val = this.min;
         if (val >= this.max) val = this.max;
         this.currentValue = val;
-      } else {
-        if(val === 0){
-          this.min =  0;
-          this.currentValue = val;
-        }else this.currentValue = 1;
-      }
+      } else if (val === 0) {
+        this.min = 0;
+        this.currentValue = val;
+      } else this.currentValue = 1;
     },
 
     handleValue(event) {
@@ -187,6 +185,7 @@ export default {
     .mtui-stepper_input {
       background-color: #fafafb;
       border: 0.01rem solid #fafafb;
+      color: #e6e6e6;
     }
   }
 }
