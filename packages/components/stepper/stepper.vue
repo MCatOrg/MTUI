@@ -30,7 +30,7 @@ export default {
     },
     min: {
       type: Number,
-      default: 1,
+      default: 0,
     },
     minTip: String,
     max: {
@@ -55,7 +55,7 @@ export default {
   methods: {
     reduce() {
       if (this.disable) return;
-      if (this.min > 1) {
+      if (this.min || this.min == 0) {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
           if (this.minTip) toast(this.minTip);
@@ -90,10 +90,9 @@ export default {
         if (val <= this.min) val = this.min;
         if (val >= this.max) val = this.max;
         this.currentValue = val;
-      } else if (val === 0) {
-        this.min = 0;
-        this.currentValue = val;
-      } else this.currentValue = 1;
+      } else {
+        this.currentValue = this.min;
+      }
     },
 
     handleValue(event) {
@@ -108,13 +107,9 @@ export default {
       }
       if (this.isValueNumber(value)) {
         this.currentValue = value;
-
-        if (value >= max) {
-          this.currentValue = max;
-        }
-        if (value <= min) {
-          this.currentValue = min;
-        }
+        event.target.value = value;
+        if (value >= max) this.currentValue = max;
+        if (value <= min) this.currentValue = min;
       } else {
         event.target.value = this.currentValue;
       }
