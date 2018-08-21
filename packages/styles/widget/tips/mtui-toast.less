@@ -1,19 +1,15 @@
 @import "../../base/fn";
 
 .mtui-toast {
-    position: fixed;
-    z-index: 5000;
-    width: 2.4rem;
+    padding: 0.1rem 0.3rem;
     min-height: 0.72rem;
-    top: 50%;
-    left: 50%;
-    margin-left: -1.2rem;
-    margin-top: -0.46rem;
+    max-width: 6rem;
     background: rgba(0,0,0,0.7);
     text-align: center;
     border-radius: 0.1rem;
     color: #FFFFFF;
-    z-index: 99;
+    display: flex;
+    align-items: center;
 }
 .mtui-icon_toast {
     margin: 0.3rem 0 0;
@@ -33,6 +29,5 @@
 }
 
 .mtui-toast__content {
-    margin: 0 0 0.15rem;
-    margin-bottom: 0.3rem;
+  font-size: 0.3rem;
 }

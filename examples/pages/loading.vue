@@ -58,7 +58,7 @@ export default {
       }, 3000);
     },
     toast() {
-      this.$Toast('hello');
+      this.$Toast('操作失败咯操作失败咯');
     },
   },
 };
