@@ -18,7 +18,7 @@
 .fadeIn-enter-active ,.fade-leave-active {
   transition: opacity 0.5s;
 }
-.fadeIn-enter, .fadeIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fadeIn-enter, .fadeIn-leave-to{
   opacity: 0;
 }
 .swipeBox{

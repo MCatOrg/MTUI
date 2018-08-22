@@ -3,8 +3,8 @@
     <div class="mtui-toast-box" :class="className" v-show="visible">
       <div class="mtui-mask_transparent" @click="closeToast"></div>
       <div class="mtui-toast">
-          <i class="mtui-icon_toast mtui-icon-success-no-circle"></i>
-          <p class="mtui-toast__content">{{content}}</p>
+          <!-- <i class="mtui-icon_toast mtui-icon-success-no-circle"></i> -->
+          <p class="mtui-toast__content" v-html="content"></p>
       </div>
     </div>
   </transition>
@@ -35,7 +35,14 @@ export default {
 </script>
 <style lang="less">
 .mtui-toast-box{
-  position: relative;
+  position: fixed;
   z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
