@@ -16,7 +16,8 @@
       </div>
       <div>
         <p>步长2</p>
-        <mt-stepper :step="2" @on-change="chagneStepper" v-model="vvv" minTip="突突突"/>
+        <mt-stepper :step="999" @on-change="chagneStepper" v-model="vvv" minTip="突突突"/>
+        <mt-stepper :step="999" @on-change="chagneStepper" :value="vvv" minTip="突突突"/>
         <p>{{vvv}}</p>
       </div>
       <div>

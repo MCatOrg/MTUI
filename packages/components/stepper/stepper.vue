@@ -59,12 +59,14 @@ export default {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
           if (this.minTip) toast(this.minTip);
+        } else if (this.currentValue <= this.step) {
+          this.currentValue = this.min;
         } else {
           this.currentValue -= this.step;
         }
         return;
       }
-      if (this.currentValue <= 1) {
+      if (this.currentValue <= this.min) {
         this.currentValue = this.min;
       } else {
         this.currentValue -= this.step;
