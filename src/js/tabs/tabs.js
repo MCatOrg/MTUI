@@ -64,8 +64,8 @@ function tabs(options){
     $tab.on('click',function(){
         $tab.removeClass(colorClass);
         $(this).addClass(colorClass);
-        let box = $mtuiTabBox[0];
         if($inputID){
+            let box = $mtuiTabBox && $mtuiTabBox[0];
             console.log(123456)
             $inputID[0].checked = false
             let width = document.documentElement.getBoundingClientRect().width;
