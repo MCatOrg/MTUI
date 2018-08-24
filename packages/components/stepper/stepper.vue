@@ -22,7 +22,7 @@ export default {
     color: String,
     value: {
       type: Number,
-      default: 1,
+      default: 0,
     },
     step: {
       type: Number,
@@ -92,9 +92,8 @@ export default {
         if (val <= this.min) val = this.min;
         if (val >= this.max) val = this.max;
         this.currentValue = val;
-      } else {
-        this.currentValue = this.min;
-      }
+      } else if (val == 0) this.currentValue = 0;
+      else this.currentValue = this.min;
     },
 
     handleValue(event) {
