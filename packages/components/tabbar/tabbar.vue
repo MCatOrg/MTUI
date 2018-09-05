@@ -3,7 +3,8 @@
     <div class="mt-tabbar"
     v-for="(item,index) in tabBarData" :key="index"
     @click="itemClick(index)"  ref="tabBar">
-      <router-link :to="item.to">
+      <!-- <router-link :to="item.to"> -->
+        <div @click="toView(item)">
           <div class="mt-tabbar_icon">
             <i
               v-if="item.fontIcon"
@@ -17,7 +18,8 @@
           </div>
           <div
           class="mt-tabbar_label">{{item.text}}</div>
-      </router-link>
+        </div>
+      <!-- </router-link> -->
     </div>
   </div>
 </template>
@@ -108,6 +110,15 @@ export default {
     itemClick(index) {
       this.tabBarIndex = index;
       this.changeItem(index);
+    },
+    toView(item) {
+      if (item.path) {
+        window.location.href = item.path;
+      } else {
+        this.$router.push({
+          name: item.to,
+        });
+      }
     },
   },
   mounted() {

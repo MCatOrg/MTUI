@@ -41,6 +41,7 @@ export default {
           fontIconSize: '',
           to: 'tabbar',
           text: '',
+          path: 'http://baidu.com',
         },
         {
           fontIcon: 'mtui-icon-search',
