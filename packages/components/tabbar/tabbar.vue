@@ -115,9 +115,7 @@ export default {
       if (item.path) {
         window.location.href = item.path;
       } else {
-        this.$router.push({
-          name: item.to,
-        });
+        this.$router.push(item.to);
       }
     },
   },
