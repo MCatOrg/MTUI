@@ -142,6 +142,11 @@ export default {
     line-height: 0.48rem;
     text-align: center;
     background-color: white;
+    -moz-appearance: textfield; //去除默认上下小按钮
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button{
+      -webkit-appearance: none !important;
+    }
   }
 
   .mtui-stepper_reduce,
