@@ -2,7 +2,7 @@
   <div :class="['mtui-stepper', disable ? 'dark' : '']" >
     <!-- <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button> -->
     <div :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''}`"  @click="reduce"></div>
-    <input :value="currentValue" @blur="handleValue" type="number" class="mtui-stepper_input" :readonly="disable">
+    <input :value="currentValue" @blur="handleValue" type="number" class="mtui-stepper_input" :readonly="disable" ref="inputBox">
     <div :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''}`"  @click="add"></div>
     <!-- <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button> -->
   </div>
@@ -96,9 +96,9 @@ export default {
       else this.currentValue = this.min;
     },
 
-    handleValue(event) {
+    handleValue() {
       // if(event.target.value === '') return;
-      const value = parseInt(Number(event.target.value.trim()), 10);
+      const value = parseInt(Number(this.$refs.inputBox.value.trim()), 10);
       const min = this.min;
       const max = this.max;
 
@@ -108,11 +108,11 @@ export default {
       }
       if (this.isValueNumber(value)) {
         this.currentValue = value;
-        event.target.value = value;
+        this.$refs.inputBox.value = value;
         if (value >= max) this.currentValue = max;
         if (value <= min) this.currentValue = min;
       } else {
-        event.target.value = this.currentValue;
+        this.$refs.inputBox.value = this.currentValue;
       }
     },
 
