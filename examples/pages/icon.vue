@@ -891,31 +891,6 @@
                     <div class="name">addressManage</div>
                     <div class="fontclass">.mtui-icon-addressManage</div>
                 </li>
-
-                <li>
-                <i class="icon  mtui-icon-left"></i>
-                    <div class="name">left</div>
-                    <div class="fontclass">.mtui-icon-left</div>
-                </li>
-
-                <li>
-                <i class="icon  mtui-icon-right"></i>
-                    <div class="name">right</div>
-                    <div class="fontclass">.mtui-icon-right</div>
-                </li>
-
-                <li>
-                <i class="icon  mtui-icon-up"></i>
-                    <div class="name">up</div>
-                    <div class="fontclass">.mtui-icon-up</div>
-                </li>
-
-                <li>
-                <i class="icon  mtui-icon-down"></i>
-                    <div class="name">down</div>
-                    <div class="fontclass">.mtui-icon-down</div>
-                </li>
-
         </ul>
     </div>
   </div>
@@ -956,11 +931,11 @@ export default {
   -moz-transition: font-size 0.25s ease-out 0s;
   transition: font-size 0.25s ease-out 0s;
 }
-.fontclass,.name{
-    font-size: 0.28rem;
-  }
+.fontclass,
+.name {
+  font-size: 0.28rem;
+}
 .icon_lists .icon:hover {
   font-size: 2rem;
 }
-
 </style>
