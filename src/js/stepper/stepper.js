@@ -47,11 +47,15 @@ function stepper(options = {}){
             let $input = $(e.target.nextElementSibling),
                 quantity = Number($input.val())
                 ;
-            if(quantity > this.mtmin){
+            if((quantity - this.mtinterval) < this.mtmin){
+                $input.val(this.mtmin)
+                $(this).addClass('disable')
+            }else{
                 $input.val(quantity - this.mtinterval)
-                if(quantity <= this.mtmin+this.mtinterval){
-                    $(this).addClass('disable')
-                }
+                
+                // if(quantity <= this.mtmin+this.mtinterval){
+                //     $(this).addClass('disable')
+                // }
             }
         }
         function add(e){
@@ -59,7 +63,7 @@ function stepper(options = {}){
                 quantity = Number($(input).val()),
                 addQuantity = quantity + this.mtinterval
                 ;
-            if(this.mtmax){                  //设置最大值
+            if(this.mtmax !== false){                  //设置最大值
                 if(addQuantity > this.mtmax){
                     toast('数量已达到最大值了')
                 }else{
@@ -68,7 +72,7 @@ function stepper(options = {}){
             }else{                      //不限制最大值
                 $(input).val(addQuantity)
             }
-            if(addQuantity >= this.mtmin){
+            if(addQuantity > this.mtmin){
                 $(input.previousElementSibling).removeClass('disable')
             }
         }
@@ -89,7 +93,7 @@ function stepper(options = {}){
                 $(this.previousElementSibling).addClass('disable')
             }else{              //增加的
                 this.onblur = null;
-                if(this.mtmax){
+                if(this.mtmax !== false){
                     if(quantity > this.mtmax) {
                         toast('数量已达到最大值了');
                         $(this).val(this.mtmax)
@@ -101,10 +105,11 @@ function stepper(options = {}){
         for(let i=0; i<$aSteppers.length; i++){
             if($aSteppers[i].innerHTML == ''){
                 interval = Number(mtAttr[i].interval) || 1;
-                max = Number(mtAttr[i].max) || false;
-                min = Number(mtAttr[i].min) || interval;
+                max = mtAttr[i].max != '' ? Number(mtAttr[i].max) : false;
+                min = mtAttr[i].min != '' ? Number(mtAttr[i].min) : -32768;
+                console.log(max)
                 tplOption = {
-                    value: mtAttr[i].value || 1
+                    value: mtAttr[i].value ? (mtAttr[i].value > max ? max : mtAttr[i].value ): 1
                 }
                 
                 $tpl = $($.render(chart, tplOption));

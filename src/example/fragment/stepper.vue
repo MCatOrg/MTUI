@@ -69,7 +69,7 @@
                 <div class="group-header">最大值为99</div>
                 <div class="group-body_pad3">
                     <div class="stepperBox s3">
-                        <div class="mtui-stepper" mt-value="98" mt-max="99"></div>
+                        <div class="mtui-stepper" mt-value="98" mt-min="0" mt-max="0"></div>
                     </div>
                 </div>
             </div>
