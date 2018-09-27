@@ -7,10 +7,11 @@
     :canDeteleImg="false"
     :prefix="`fileData`"
     :maxCount="5"
+    :maxSize="1024*1024*10"
     :afterWidth="1000"
     :IsBase64StringToImage="true"
     :ImageUpdateTimeout="70000"
-    :quality="0.8"
+    :quality="0.6"
     :ImgDirectory="undefined"
     ImageServer=""
     :IsImageServer="false"
@@ -21,6 +22,7 @@
     :defaultFileList="defaultFileList"
     :setWatermark="false"
     :waterMarkConfig="waterMarkConfig"
+    :clientType="0"
     ></mt-uploader>
   </div>
 </template>

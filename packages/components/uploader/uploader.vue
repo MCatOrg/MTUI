@@ -55,6 +55,10 @@ export default {
     mtActionsheet,
   },
   props: {
+    clientType:{
+      type:Number,
+      default:0
+    },//上传图片时，优先使用哪一种压缩图片的方式 1：IOS  2：Android  3:web  默认：0  根据客户端自动识别
     canChangeImg: { // 查看图片是是否显示更换图片按钮
       type: Boolean,
       default: true,
@@ -466,13 +470,19 @@ export default {
     createBase64(img) {
       const androidVersion = get_android_version();
       const iosVersion = get_ios_version();
-      if (iosVersion && iosVersion < 7.1) {
-        this.createBase64 = this.createIOSBase64;
-      } else if (androidVersion && androidVersion < 4.1) {
-        this.createBase64 = this.createAndroidBase64;
-      } else {
-        this.createBase64 = this.createWebBase64;
-      }
+        if(this.clientType === 1){
+          this.createBase64 = this.createIOSBase64;
+        }else if(this.clientType === 2){
+          this.createBase64 = this.createAndroidBase64;
+        }else if(this.clientType === 3){
+          this.createBase64 = this.createWebBase64;
+        } else if (iosVersion && iosVersion < 7.1) {
+          this.createBase64 = this.createIOSBase64;
+        } else if (androidVersion && androidVersion < 4.1) {
+          this.createBase64 = this.createAndroidBase64;
+        } else {
+          this.createBase64 = this.createWebBase64;
+        }
       return this.createBase64(img);
     },
     checkListHandle(argObj) {
@@ -616,7 +626,7 @@ export default {
     },
     ErrorEvent(event) {
       this.hideLoading();
-      this.onError({ status: 'fail', data: event.messages || event });
+      this.onError({ status: 'fail', data:  event });
     },
     xhrProgressEvent(event) {
       console.log(event.loaded, event.total);
@@ -653,7 +663,7 @@ export default {
         this.addUpImg(href);
       } else {
         this.hideLoading();
-        this.onError({ status: 'fail', data: event.messages });
+        this.onError({ status: 'fail', data: event });
       }
     },
     deleteImg() {

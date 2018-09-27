@@ -25,7 +25,7 @@
 </template>
 <script>
 export default {
-  name: 'mt-tabBar',
+  name: 'mt-tab-bar',
   props: {
     color: {
       type: String,
