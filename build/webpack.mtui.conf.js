@@ -80,7 +80,7 @@ module.exports = {
     ].join('\n')),
     // 生成mtui.css
     new ExtractTextPlugin({
-      filename: './index.css',
+      filename: './mtui.css',
       disable: false,
       allChunks: true,
     }),

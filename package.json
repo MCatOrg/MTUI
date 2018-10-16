@@ -1,6 +1,6 @@
 {
   "name": "imcat-ui",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "description": "Mobile UI for Vue2.0",
   "keyword": [
     "component",
@@ -16,7 +16,7 @@
     "url": "https://github.com/MCatOrg/MTUI/issues"
   },
   "main": "lib/mtui.js",
-  "style": "lib/index.css",
+  "style": "lib/mtui.css",
   "author": "mt",
   "homepage": "https://github.com/MCatOrg/MTUI/blob/dev-vue/README.md",
   "license": "MIT",
