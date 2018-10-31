@@ -178,6 +178,9 @@ export default {
         return function () {};
       },
     },
+    ImgDirectory:{
+      type:String
+    }
   },
   data() {
     const loadingImg = new LoadingConstructor({
@@ -197,7 +200,7 @@ export default {
       showBigImg: false,
       isShowLoading: false,
       loadingSrc: '',
-      ImgDirectory: undefined,
+      currentImgDirectory: this.ImgDirectory,
       XHRhanldeMehodsList: [], // 操作xhr对象的队列
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
@@ -255,7 +258,7 @@ export default {
       return `${(bytes / (k ** i)).toPrecision(3)} ${sizes[i]}`;
     },
     GetImgDirectory() {
-      if (this.ImgDirectory === undefined) {
+      if (this.currentImgDirectory === undefined||this.currentImgDirectory === '') {
         let dir = '';
         if (window.location.pathname) {
           const arr = window.location.pathname.split('/');
@@ -266,9 +269,9 @@ export default {
             dir = dir.replace('.html', '');
           }
         }
-        this.ImgDirectory = dir;
+        this.currentImgDirectory = dir;
       }
-      return this.ImgDirectory;
+      return this.currentImgDirectory;
     },
     showBigImgEvent(img, index) {
       this.bigImgSrc = img.url;
@@ -606,9 +609,10 @@ export default {
       this.onSuccess({ status: 'success', data: url });
     },
     Base64StringToImage(base64) {
+      this.GetImgDirectory();
       const form = new FormData();
       form.append('action', 'base64stringtoimage'); // 方法
-      form.append('ImgDirectory', this.ImgDirectory); // 目录
+      form.append('ImgDirectory', this.currentImgDirectory); // 目录
       form.append('ImageDataBase64', base64); // 数据
       if (!this.xhr) {
         this.xhr = new XMLHttpRequest();

@@ -18,7 +18,10 @@ export default {
   },
   methods: {
     openVconsole() {
-      if (typeof window.VConsole !== 'undefined') return;
+      if (typeof window.VConsole !== 'undefined'){
+        new window.VConsole();
+        return;
+      };
       if (openVconsoleCount === this.time) {
         clearTimeout(timeVconsole);
         timeVconsole = null;
