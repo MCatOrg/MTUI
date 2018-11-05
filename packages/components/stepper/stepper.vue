@@ -138,10 +138,12 @@ export default {
   .mtui-stepper_input {
     float: left;
     height: 0.48rem;
-    border: 0.01rem solid #e5e5e5;
     line-height: 0.48rem;
+    border: 0.01rem solid #e5e5e5;
     text-align: center;
     background-color: white;
+    appearance: none;
+    outline: none;
     -moz-appearance: textfield; //去除默认上下小按钮
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button{
