@@ -7,7 +7,8 @@
 	tid;
 
 	function refreshRem() {
-		var width = docEl.getBoundingClientRect().width;
+    var width = docEl.getBoundingClientRect().width;
+    console.log(1233,width)
 		maxWidth = maxWidth || 540;
 		width>maxWidth && (width=maxWidth);
 		var rem = width * 100 / designWidth;

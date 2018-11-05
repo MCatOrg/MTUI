@@ -1,7 +1,7 @@
 <template>
   <div id="index">
     <header>
-      <h1>{{ msg }}</h1>
+      <h1 id="testRem">{{ msg }}</h1>
     </header>
     <main>
       <div class="group">
@@ -57,3 +57,12 @@ export default {
 };
 </script>
 
+<style lang="less" scoped>
+#testRem{
+  width: 7.5rem;
+  height: 1rem;
+  line-height: 1rem;
+  background-color: red;
+  color: #fff;
+}
+</style>

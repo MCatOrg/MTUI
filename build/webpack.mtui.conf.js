@@ -7,6 +7,40 @@ const vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+let plugins = [
+  // 注释头
+  new webpack.BannerPlugin([
+    pkg.name + ' v' + pkg.version + ' (' + pkg.homepage + ')',
+    'Copyright ' + new Date().getFullYear() + ', ' + pkg.author,
+    pkg.license + ' license'
+  ].join('\n')),
+  // 生成mtui.css
+  new ExtractTextPlugin({
+    filename: './mtui.css',
+    disable: false,
+    allChunks: true,
+  }),
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: '"production"'
+    }
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+      warnings: false,
+      drop_console: true
+    }
+  }),
+  new webpack.LoaderOptionsPlugin({
+    minimize: true
+  })
+];
+// 运行 `npm run build --report` 查看打包大小分布状况
+if(process.env.npm_config_report){
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  plugins.push(new BundleAnalyzerPlugin())
+}
 module.exports = {
   entry: path.resolve(__dirname, '../packages/index.js'),
   output: {
@@ -71,33 +105,8 @@ module.exports = {
     }
   },
   // devtool: '#source-map',
-  plugins: [
-    // 注释头
-    new webpack.BannerPlugin([
-      pkg.name + ' v' + pkg.version + ' (' + pkg.homepage + ')',
-      'Copyright ' + new Date().getFullYear() + ', ' + pkg.author,
-      pkg.license + ' license'
-    ].join('\n')),
-    // 生成mtui.css
-    new ExtractTextPlugin({
-      filename: './index.css',
-      disable: false,
-      allChunks: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-        drop_console: true
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ]
+  plugins,
+  externals:{
+    vue:'Vue'
+  }
 }
