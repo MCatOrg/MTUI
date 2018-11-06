@@ -1280,6 +1280,11 @@
                     <div class="name">setting</div>
                     <div class="fontclass">.mtui-icon-setting</div>
                 </li>
+                <li>
+                <i class="icon  mtui-icon-notice"></i>
+                    <div class="name">notice</div>
+                    <div class="fontclass">.mtui-icon-notice</div>
+                </li>
         </ul>
     </div>
   </div>
