@@ -1275,6 +1275,11 @@
                     <div class="name">thlb_o</div>
                     <div class="fontclass">.mtui-icon-thlb_o</div>
                 </li>
+                <li>
+                <i class="icon  mtui-icon-setting"></i>
+                    <div class="name">setting</div>
+                    <div class="fontclass">.mtui-icon-setting</div>
+                </li>
         </ul>
     </div>
   </div>
