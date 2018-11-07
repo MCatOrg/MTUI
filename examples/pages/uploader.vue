@@ -23,6 +23,8 @@
     :setWatermark="false"
     :waterMarkConfig="waterMarkConfig"
     :clientType="0"
+    :IsWeixinClientRequest="true"
+    :IsUseWeiXinSDKUpdatePic="true"
     ></mt-uploader>
   </div>
 </template>

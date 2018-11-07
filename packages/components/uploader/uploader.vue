@@ -14,7 +14,7 @@
         <li class="mtui-uploader__file"
         :style="{'background-image':`url(${loadingSrc})`}" v-show="isShowLoading"></li>
       <li class="mtui-uploader__input-box" v-show="uploadList.length<maxCount">
-        <input class="mtui-uploader__input"
+        <input class="mtui-uploader__input" readonly
         type='text' v-if="useWx" @click="wxcompress"/>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
@@ -180,6 +180,12 @@ export default {
     },
     ImgDirectory:{
       type:String
+    },
+    IsUseWeiXinSDKUpdatePic:{ //是否使用微信SDK 上传图片 默认否 默认false-
+      type:Boolean
+    },
+    IsWeixinClientRequest:{ // 是否是微信客户端请求
+      type:Boolean
     }
   },
   data() {
@@ -208,7 +214,8 @@ export default {
   },
   computed: {
     useWx() {
-      if (typeof wx === 'object' && this.IsWinWechat() && this.getWxVision() > '6.5.0') {
+      console.log(typeof wx === 'object',this.IsWinWechat(),this.getWxVision())
+      if (typeof wx === 'object' && this.IsWinWechat() && this.getWxVision() > '6.5.0' && this.IsUseWeiXinSDKUpdatePic && this.IsWeixinClientRequest) {
         return true;
       }
       return false;
@@ -241,9 +248,11 @@ export default {
     this.checkList.push(this.checkMax, this.createCanvas, this.checkFile);
   },
   methods: {
-    IsWinWechat() {
+    IsWinWechat() {//手机微信客户端
       const agent = navigator.userAgent.toLowerCase();
-      return agent.match(/windowswechat/i) === 'windowswechat' && agent.match(/micromessenger/i) === 'micromessenger';
+      var wc = agent.match(/windowswechat/i);
+      var mm = agent.match(/micromessenger/i);
+      return  !wc && mm;
     },
     getWxVision() {
       const agent = navigator.userAgent.toLowerCase();
