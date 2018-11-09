@@ -14,8 +14,9 @@
         <li class="mtui-uploader__file"
         :style="{'background-image':`url(${loadingSrc})`}" v-show="isShowLoading"></li>
       <li class="mtui-uploader__input-box" v-show="uploadList.length<maxCount">
-        <input class="mtui-uploader__input" readonly
-        type='text' v-if="useWx" @click="wxcompress"/>
+        <!-- <input class="mtui-uploader__input" readonly
+        type='text' v-if="useWx" @click="wxcompress"/> -->
+        <span class="mtui-uploader__input"  v-if="useWx" @click="wxcompress"></span>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
         type='file' accept="image/*" multiple v-else ref="uploader__input"/>
@@ -745,5 +746,8 @@ export default {
       margin-right: 0.2rem;
     }
   }
+}
+span.mtui-uploader__input{
+  cursor: pointer;
 }
 </style>
