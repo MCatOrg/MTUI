@@ -1,6 +1,6 @@
 <template>
-  <div class="mtui-uploader">
-    <ul class="mtui-uploader__files" id="uploaderCustomFiles1">
+  <div class="mtui-uploader" :id="ID">
+    <ul class="mtui-uploader__files">
         <li v-for="(img,i) in uploadList" :key="i"
         class="mtui-uploader__file"
         :style="{'background-image':`url(${img.url})`}"
@@ -56,6 +56,10 @@ export default {
     mtActionsheet,
   },
   props: {
+    ID:{
+      type:String,
+      default:''
+    },
     clientType:{
       type:Number,
       default:0
