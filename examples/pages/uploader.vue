@@ -22,9 +22,9 @@
     :defaultFileList="defaultFileList"
     :setWatermark="false"
     :waterMarkConfig="waterMarkConfig"
-    :clientType="0"
-    :IsWeixinClientRequest="true"
-    :IsUseWeiXinSDKUpdatePic="true"
+    :clientType="3"
+    :IsWeixinClientRequest="false"
+    :IsUseWeiXinSDKUpdatePic="false"
     ></mt-uploader>
   </div>
 </template>

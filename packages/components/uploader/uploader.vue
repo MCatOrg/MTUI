@@ -19,7 +19,7 @@
         <span class="mtui-uploader__input"  v-if="useWx" @click="wxcompress"></span>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
-        type='file' accept="image/*" multiple v-else ref="uploader__input"/>
+        type='file' accept="image/*" v-else ref="uploader__input"/>
       </li>
     </ul>
     <!-- 大图 -->
@@ -226,6 +226,16 @@ export default {
       return false;
     },
   },
+  watch:{
+    defaultFileList:{
+      deep:true,
+      handler(val){
+        if(Object.prototype.toString.call(val) === "[object Array]"){
+          this.uploadList.push(...val);
+        }
+      }
+    }
+  },
   created() {
     this.uploadList.push(...this.defaultFileList);
     this.XHRhanldeMehodsList.push({
@@ -250,7 +260,7 @@ export default {
       key: 'onload',
       value: this.xhrLoadEvent,
     });
-    this.checkList.push(this.checkMax, this.createCanvas, this.checkFile);
+    this.checkList.push({name:'checkMax',handler:this.checkMax},{name:'createCanvas',handler:this.createCanvas},{name:'checkFile',handler:this.checkFile});
   },
   methods: {
     IsWinWechat() {//手机微信客户端
@@ -371,6 +381,7 @@ export default {
     },
     wxcompress() {
       console.log('微信接口');
+      if(!this.createCanvas())return false;
       const wx = window.wx;
       wx.chooseImage({
         count: 1, // 默认9
@@ -477,8 +488,7 @@ export default {
     },
     createAndroidBase64() {
       const encoder = new JPEGEncoder();
-      const imgData = this.loadingCtx.getImageData(0, 0, this.afterWidth, this.afterHeight);
-      return encoder.encode(imgData, this.quality * 100 || 80);
+      return encoder.encode(this.loadingCtx.getImageData(0, 0, this.afterWidth, this.afterHeight), this.quality * 100 || 80);
     },
     createWebBase64() {
       console.log('base64', this.file, this.file.type);
@@ -493,9 +503,9 @@ export default {
           this.createBase64 = this.createAndroidBase64;
         }else if(this.clientType === 3){
           this.createBase64 = this.createWebBase64;
-        } else if (iosVersion && iosVersion < 7.1) {
+        } else if (iosVersion||androidVersion) {
           this.createBase64 = this.createIOSBase64;
-        } else if (androidVersion && androidVersion < 4.1) {
+        } else if (androidVersion&&androidVersion<4.1) {
           this.createBase64 = this.createAndroidBase64;
         } else {
           this.createBase64 = this.createWebBase64;
@@ -506,8 +516,9 @@ export default {
       const len = this.checkList.length;
       let key;
       for (let i = 0; i < len; i++) {
-        key = this.checkList[i].name.split(' ')[1];
-        if (!this.checkList[i](argObj[key])) return false;
+        console.log(2222,this.checkList[i].name)
+        key = this.checkList[i].name;
+        if (!this.checkList[i].handler(argObj[key])) return false;
       }
       return true;
     },
