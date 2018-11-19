@@ -73,7 +73,7 @@ export default {
     afterLeave() {
       this.isShowMark = false;
     },
-  },
+  }
 };
 </script>
 <style lang="less">

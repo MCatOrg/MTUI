@@ -61,7 +61,7 @@ export default {
     showMessageBox(msg, title) {
       mtMessageBox(msg, title);
     },
-  },
+  }
 };
 </script>
 <style lang="less" scoped>
