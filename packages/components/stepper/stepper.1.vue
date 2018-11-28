@@ -1,77 +1,56 @@
 <template>
-  <div class="mtui-stepper">
-    <div
-      :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''} ${ disable ? 'disable' : ''}`"
-      @click="reduce"
-    ></div>
-    <input
-      type="tel"
-      :value="currentValue"
-      @blur="handleValue"
-      @focus="focusFn"
-      :maxlength="maxLength"
-      :class="`mtui-stepper_input ${disableInput ? 'disable' : ''}`"
-      :readonly="disableInput"
-      ref="inputBox"
-    >
-    <div
-      :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''} ${disable ? 'disable' : ''}`"
-      @click="add"
-    ></div>
+  <div :class="['mtui-stepper', disable ? 'dark' : '']" >
+    <!-- <button class="mtui-stepper_reduce" :disabled="currentValue <= min"  @click="reduce"></button> -->
+    <div :class="`mtui-stepper_reduce ${currentValue <= min ? 'disable' : ''}`"  @click="reduce"></div>
+    <input :value="currentValue" @blur="handleValue" type="number" class="mtui-stepper_input" :readonly="disable" ref="inputBox">
+    <div :class="`mtui-stepper_add ${currentValue >= max ? 'disable' : ''}`"  @click="add"></div>
+    <!-- <button class="mtui-stepper_add" :disabled="currentValue >= max"  @click="add"></button> -->
   </div>
 </template>
 <script>
-import toast from "../toast/";
+
+import toast from '../toast/';
 
 export default {
-  name: "mt-stepper",
+  name: 'mt-stepper',
   data() {
     return {
-      currentValue: this.value
+      currentValue: this.value,
     };
   },
   props: {
     color: String,
     value: {
       type: Number,
-      default: 0
+      default: 0,
     },
     step: {
       type: Number,
-      default: 1
+      default: 1,
     },
     min: {
       type: Number,
-      default: 0
+      default: 0,
     },
     minTip: String,
     max: {
       type: Number,
-      default: 999999
+      default: Infinity,
     },
     maxTip: String,
     disable: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    disableInput: {
-      type: Boolean,
-      default: false
-    }
   },
   watch: {
     currentValue(val) {
-      this.$emit("input", val);
-      this.$emit("on-change", val);
+      this.$emit('input', val);
+      this.$emit('on-change', val);
     },
     value(val) {
       this.updateValue(val);
-    }
-  },
-  computed: {
-    maxLength() {
-      return parseInt(this.max.toString().length);
-    }
+    },
   },
   methods: {
     reduce() {
@@ -79,9 +58,7 @@ export default {
       if (this.min || this.min == 0) {
         if (this.currentValue <= this.min) {
           this.currentValue = this.min;
-          if (this.minTip) {
-            toast(this.minTip);
-          }
+          if (this.minTip) toast(this.minTip);
         } else if (this.currentValue <= this.step) {
           this.currentValue = this.min;
         } else {
@@ -97,63 +74,55 @@ export default {
     },
     add() {
       if (this.disable) return;
-      if (this.currentValue >= this.max) {
-        this.currentValue = this.max;
-        if (this.maxTip) {
-          toast(this.maxTip);
+
+      if (this.max !== Infinity) {
+        if (this.currentValue >= this.max) {
+          this.currentValue = this.max;
+          if (this.maxTip) toast(this.maxTip);
+        } else {
+          this.currentValue += this.step;
         }
-      } else {
-        this.currentValue += this.step;
+        return;
       }
+      this.currentValue += this.step;
     },
     updateValue(val) {
+      console.log(val);
       if (val) {
         if (val <= this.min) val = this.min;
         if (val >= this.max) val = this.max;
         this.currentValue = val;
-      } else if (val == 0) {
-        this.currentValue = 0;
-      } else {
-        this.currentValue = this.min;
-      }
+      } else if (val == 0) this.currentValue = 0;
+      else this.currentValue = this.min;
     },
 
     handleValue() {
-      let val = this.$refs.inputBox.value.trim().replace(/-/g, "");
-      const value = parseInt(val);
+      // if(event.target.value === '') return;
+      const value = parseInt(Number(this.$refs.inputBox.value.trim()), 10);
       const min = this.min;
       const max = this.max;
 
-      if (this.disableInput) {
+      if (this.disable) {
         this.currentValue = this.value;
         return;
       }
       if (this.isValueNumber(value)) {
         this.currentValue = value;
         this.$refs.inputBox.value = value;
-        if (value >= max) {
-          this.currentValue = max;
-        }
-        if (value <= min) {
-          this.currentValue = min;
-        }
+        if (value >= max) this.currentValue = max;
+        if (value <= min) this.currentValue = min;
       } else {
         this.$refs.inputBox.value = this.currentValue;
       }
-      this.$emit("on-blur", this.currentValue);
-    },
-
-    focusFn() {
-      this.$emit("on-focus", this.currentValue);
     },
 
     isValueNumber(val) {
       return /(^-?[0-9]+\.{1}\d+$)|(^-?[1-9][0-9]*$)|(^-?0{1}$)/.test(`${val}`);
-    }
+    },
   },
   mounted() {
     this.updateValue(this.value);
-  }
+  },
 };
 </script>
 
@@ -177,7 +146,7 @@ export default {
     outline: none;
     -moz-appearance: textfield; //去除默认上下小按钮
     &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
+    &::-webkit-inner-spin-button{
       -webkit-appearance: none !important;
     }
   }
@@ -212,6 +181,7 @@ export default {
     border: 0.01rem solid #fafafb;
     color: #e6e6e6;
   }
+  //disable
   &.dark {
     .mtui-stepper_reduce,
     .mtui-stepper_add,
