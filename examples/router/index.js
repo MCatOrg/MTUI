@@ -27,10 +27,19 @@ import tabbar from '@/pages/tabbar';
 import icon from '@/pages/icon';
 import test from '@/pages/test';
 
+import popup from '@/pages/popup';
+
+import newloadmore from '@/pages/load-more';
+
 Vue.use(Router);
 
 const router = new Router({
   routes: [
+    {
+      path: '/newloadmore',
+      name: 'newloadmore',
+      component: newloadmore,
+    },
     {
       path: '/test',
       name: 'test',
@@ -206,6 +215,11 @@ const router = new Router({
       path: '/icon',
       name: 'icon',
       component: icon,
+    },
+    {
+      path: '/popup',
+      name: 'popup',
+      component: popup,
     },
   ],
 });
