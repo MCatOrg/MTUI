@@ -1,9 +1,11 @@
 <style lang="less" scoped>
 @import '../../styles/base/variable/color.less';
 .fixed{position: fixed; width: 100%; height: 100%;}
-.mask{background-color: black; z-index: 50; opacity: .4; top: 0; left: 0;}
+.mask{background-color: black; z-index: 1; opacity: .4; top: 0; left: 0;}
 .flex-between{display: flex; justify-content: space-between;}
 .flex1{flex: 1;}
+
+.popup{position: relative; z-index: 50;}
 
 .pointer{cursor: pointer;}
 .color-primary{color: @mtuiColorPrimary !important;}
@@ -12,7 +14,7 @@
 .color-black{color: black !important;}
 .color-gray{color: #666 !important;}
 
-.main{width: 6rem; background-color: white; border-radius: .08rem; position: absolute; z-index: 51; top: 50%; left: 50%; transform: translate(-50%,-50%);
+.main{width: 6rem; background-color: white; border-radius: .08rem; position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%,-50%);
     .title{line-height: .88rem; border-bottom: 1px solid #EEE; text-align: center; padding-left: .2rem; padding-right: .2rem;}
     .content{padding-top: .3rem; padding-bottom: .3rem; padding-left: .2rem; padding-right: .2rem;}
     .tip{color: #666; font-size: .26rem; text-align: center; line-height: .44rem;}
@@ -104,7 +106,7 @@ export default {
             this.$emit("oncancel")
         },
         submit(){
-            this.$emit("update:visible",false)
+            // this.$emit("update:visible",false)
             this.$emit('onsubmit')
         },
     }
