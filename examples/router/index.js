@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { mtMessageBox } from '~/index';
 import Router from 'vue-router';
 import index from '@/pages/index';
 import actionSheet from '@/pages/action-sheet';
@@ -222,6 +223,10 @@ const router = new Router({
       component: popup,
     },
   ],
+});
+router.beforeEach((to, from, next) => {
+  console.log(mtMessageBox.close());
+  next();
 });
 
 export default router;

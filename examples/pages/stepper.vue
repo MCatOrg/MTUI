@@ -8,7 +8,7 @@
       </div>
       <div>
         <p>最大数6</p>
-        <mt-stepper :min="0" :value="value" :max="6" @on-change="chagneStepper" maxTip="啦啦啦" minTip="突突突" />
+        <mt-stepper :min="0" :value="value" :max="6999" @on-change="chagneStepper" maxTip="啦啦啦" minTip="突突突" />
       </div>
       <div>
         <p>最小数3</p>
@@ -22,8 +22,12 @@
       </div>
       <div>
         <p>禁用</p>
-        <mt-stepper :disable="true" @on-change="chagneStepper" />
+        <mt-stepper disable disableInput :value="123" @on-change="chagneStepper" />
       </div>
+
+      
+      <mt-stepper :value="0" @on-change="chagneStepper":min="0" :max="9" minTip="最小数为0" />
+
     </div>
 
 

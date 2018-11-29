@@ -13,6 +13,7 @@ const CANCEL_TEXT = '取消';
 // MessageBox.alert(message, title);
 // MessageBox.confirm(message, title);
 // MessageBox.prompt(message, title);
+// MessageBox.close()
 // this.$messagebox 同上
 const MessageBoxConstructor = Vue.extend(msgboxVue);
 let msgbox;
@@ -118,6 +119,11 @@ MessageBox.prompt = function (message, title, options) {
     showCancelButton: true,
     prompt: true,
   }, options));
+};
+MessageBox.close = function () {
+  if (msgbox) {
+    msgbox.isShow = false;
+  }
 };
 export default MessageBox;
 export { MessageBox };
