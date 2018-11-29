@@ -40,6 +40,11 @@
             </div>
         </mt-popup>
 
+        <p>出现动画</p>
+        <button @click="downDisible = true">down</button>
+        <mt-popup :visible.sync="downDisible" animate="down"></mt-popup>
+
+
 
     </div>
 </template>
@@ -50,6 +55,8 @@ export default {
             visible: false,
             delVisible: false,
             passVisible:  false,
+
+            downDisible: false,
 
             TargetRemark: '',
             operate: [
