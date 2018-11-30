@@ -140,25 +140,10 @@ export default {
 
                 this.topStatus = 'loading';
 
-                if(!this.hasHttp){
-                    this.hasHttp = true
+                // if(!this.hasHttp){
+                //     this.hasHttp = true
                     this.$emit("topLoadMethod")
-                    
-
-
-                    // setTimeout(_=>{
-                    //     if(this.topStatus == 'loading'){
-                    //         this.$Toast('刷新成功')
-                    //         this.hasTransition = true
-                    //         this.topStatus = 'pull'
-                    //         setTimeout(_=>{
-                    //             this.hasTransition = false
-                    //         }, 300)
-                    //     }
-                    //     this.hasHttp = false
-                    //     this.len = 0
-                    // },10000)
-                }
+                // }
             }else{
                 if(this.topStatus == 'loading'){
                     this.hasTransition = true
@@ -169,6 +154,7 @@ export default {
 
                     if(this.len == 0){
                         this.topStatus = 'pull'
+                        // this.hasHttp = false
                         this.$emit("onTopCancel")
                     }
                 }else {
@@ -187,7 +173,7 @@ export default {
             setTimeout(_=>{
                 this.hasTransition = false
             }, 300)
-            this.hasHttp = false
+            // this.hasHttp = false
         },
         offBottomLoad(){
             this.bottomStatus = 'pull'
