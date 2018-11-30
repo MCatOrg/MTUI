@@ -18,57 +18,59 @@
   </div>
 </template>
 <script>
-import { mtMessageBox } from '~/index';
+import { mtMessageBox } from "~/index";
 
 export default {
   created() {
-    document.body.addEventListener('click', () => {
-      console.log('我是全局点击事件');
+    document.body.addEventListener("click", () => {
+      console.log("我是全局点击事件");
     });
   },
   methods: {
     showMsg(msg, title) {
-      this.$messagebox(msg, title).then((action) => {
+      this.$messagebox(msg, title).then(action => {
         console.log(action);
       });
     },
     alert() {
-      this.$messagebox.alert('我是普通的alert').then((action) => {
+      this.$messagebox.alert("我是普通的alert").then(action => {
         console.log(action);
       });
     },
     confirm() {
-      this.$messagebox.confirm('我是普通的confirm').then((action) => {
+      this.$messagebox.confirm("我是普通的confirm").then(action => {
         console.log(action);
       });
     },
     prompt() {
-      this.$messagebox.prompt('我是普通的confirm').then((action) => {
+      this.$messagebox.prompt("我是普通的confirm").then(action => {
         console.log(action);
       });
     },
     objMsg() {
       this.$messagebox({
-        confirmButtonText: '提交',
-        cancelButtonText: '关闭',
-        title: '我是提示',
+        confirmButtonText: "提交",
+        cancelButtonText: "关闭",
+        className: "msgClass",
+        title: "我是提示",
         textarea: true,
         callback(action) {
           console.log(action);
-        },
+        }
       });
     },
     showMessageBox(msg, title) {
       mtMessageBox(msg, title);
-    },
+    }
   }
 };
 </script>
 <style lang="less" scoped>
-#dialog{
-  button{
+#dialog {
+  button {
     margin: 0.2rem;
   }
 }
 </style>
+
 
