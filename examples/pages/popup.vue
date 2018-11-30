@@ -40,11 +40,20 @@
             </div>
         </mt-popup>
 
-        <p>出现动画</p>
+        <p>出现动画 默认是由下往上 up</p>
         <button @click="downDisible = true">down</button>
         <mt-popup :visible.sync="downDisible" animate="down"></mt-popup>
+        <button @click="leftDisible = true">left</button>
+        <mt-popup :visible.sync="leftDisible" animate="left"></mt-popup>
+        <button @click="rightDisible = true">right</button>
+        <mt-popup :visible.sync="rightDisible" animate="right"></mt-popup>
+        <button @click="opacityDisible = true">opacity</button>
+        <mt-popup :visible.sync="opacityDisible" animate="opacity"></mt-popup>
 
 
+        <p>点击mask不可关闭 和 mask点击事件</p>
+        <button @click="maskDisible = true">down</button>
+        <mt-popup :visible.sync="maskDisible" @onClickMask="onClickMask" :closeByMask="false" animate="down"></mt-popup>
 
     </div>
 </template>
@@ -57,6 +66,11 @@ export default {
             passVisible:  false,
 
             downDisible: false,
+            leftDisible: false,
+            rightDisible: false,
+            opacityDisible: false,
+
+            maskDisible: false,
 
             TargetRemark: '',
             operate: [
@@ -98,6 +112,10 @@ export default {
                 TargetRemark: this.TargetRemark,
                 operate: this.operate[this.operateIndex].label
             })
+        },
+
+        onClickMask(){
+            this.$Toast("点击了mask")
         }
     }
 }

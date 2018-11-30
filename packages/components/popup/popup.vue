@@ -5,7 +5,7 @@
 .flex-between{display: flex; justify-content: space-between;}
 .flex1{flex: 1;}
 
-.popup{position: relative; z-index: 50;}
+.popup{position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 100%;}
 
 .pointer{cursor: pointer;}
 .color-primary{color: @mtuiColorPrimary !important;}
@@ -41,9 +41,9 @@
 .right-enter, .right-leave-to {left: 100%; opacity: 0;}
 </style>
 <template>
-    <div class="popup">
+    <div class="popup" v-show="visible">
         <transition name="fade">
-            <div class="mask fixed" v-if="visible" @click="cancel"></div>
+            <div class="mask fixed" v-if="visible" @click="onClickMask"></div>
         </transition>
         <transition :name="animate">
             <div class="main" v-if="visible">
@@ -93,6 +93,10 @@ export default {
                 return ['up', 'down', 'left', 'right', 'opacity'].indexOf(value) !== -1
             },
             default: 'up',
+        },
+        closeByMask: {
+            type: Boolean,
+            default: true
         }
     },
     data(){
@@ -101,6 +105,10 @@ export default {
         }
     },
     methods: {
+        onClickMask(){
+            if(this.closeByMask) this.$emit("update:visible",false)
+            this.$emit("onClickMask")
+        },
         cancel(){
             this.$emit("update:visible",false)
             this.$emit("oncancel")

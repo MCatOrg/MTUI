@@ -78,6 +78,7 @@ export default {
                 this.$refs.myLoadMore.offTopLoad()          //重要，用于关闭上加载动画
             },3000)
         },
+        //当loading的时候，用户上推，会关闭loading，这时应该停止http请求，或不执行刷新
         onTopCancel(){
             console.log("取消刷新")
             if(this.timer) clearTimeout(this.timer)
