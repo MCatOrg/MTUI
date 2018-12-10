@@ -2,7 +2,7 @@
   <div id="mtLoadMore">
     <!-- 父组件高度必须固定，且overflow-y:scroll -->
     <div class="page-loadmore-wrapper" ref="wrapper" :style="{height:`${wrapperHeight}px`}">
-      <mt-loadmore
+      <load-more
        ref="loadmore"
       :top-method="topMethod"
       :bottom-method="bottomMethod"
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-      </mt-loadmore>
+      </load-more>
       <p v-if="bottomAllLoaded">已经到底部</p>
     </div>
   </div>
@@ -74,6 +74,7 @@ export default {
   methods: {
     topMethod() {
       setTimeout(() => {
+        console.log(123)
         this.proList = this.source.slice(0);
         this.bottomAllLoaded = false;
         this.$refs.loadmore.onTopLoaded();

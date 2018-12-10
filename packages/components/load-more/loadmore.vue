@@ -1,9 +1,9 @@
 <style lang="less" scoped>
-.box{position: relative; overflow: hidden;}
+.box{position: relative;}
 .container{position: relative;}
 .flex-center{display: flex; justify-content: center; align-items: center;}
 .flex-center.column{flex-direction: column;}
-.container.transition{transition: all .3s;}
+.transition{transition: all .3s;}
 .top{position: absolute; line-height: .88rem; width: 100%; top: 0; transform: translateY(-100%);}
 .tipss{height: .88rem; color: #666; font-size: .26rem; line-height: .88rem;}
 .bottom, .load__all{bottom: 0; line-height: 1rem;}
@@ -21,8 +21,8 @@
                 </slot>
             </div>
             <slot></slot>
-            <div class="tipss" v-if="loadAll || loadAllPower">
-                <slot name="loadAll">
+            <div class="tipss" v-if="bottomAllLoaded || loadAllPower">
+                <slot name="bottomAllLoaded">
                     <div>没有更多数据了</div>
                 </slot>
             </div>
@@ -68,7 +68,7 @@ export default {
         }
     },
     props: {
-        loadAll: {
+        bottomAllLoaded: {
             type: Boolean,
             default: false,
         },
@@ -80,6 +80,13 @@ export default {
         topColor: String,
         bottomBg: String,
         bottomColor: String,
+
+        topMethod: {
+            type: Function,
+        },
+        bottomMethod: {
+            type: Function
+        },
     },
     mounted() {
         let box = this.$refs.box;
@@ -142,8 +149,10 @@ export default {
 
                 // if(!this.hasHttp){
                 //     this.hasHttp = true
-                    this.$emit("topLoadMethod")
+                    // this.$emit("topMethod")
                 // }
+
+                if(this.topMethod) this.topMethod()
             }else{
                 if(this.topStatus == 'loading'){
                     this.hasTransition = true
@@ -166,7 +175,7 @@ export default {
                 }
             }
         },
-        offTopLoad(){
+        onTopLoaded(){
             this.hasTransition = true
             this.topStatus = 'pull'
             this.len = 0
@@ -175,14 +184,15 @@ export default {
             }, 300)
             // this.hasHttp = false
         },
-        offBottomLoad(){
+        onBottomLoaded(){
             this.bottomStatus = 'pull'
         },
 
         //点击加载更多
         loadMoreBottom(){
             this.bottomStatus = 'loading'
-            this.$emit("bottomLoadMethod")
+            // this.$emit("bottomMethod")
+            if(this.bottomMethod) this.bottomMethod()
         },
     }
 }
