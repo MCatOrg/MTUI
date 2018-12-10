@@ -19,11 +19,11 @@
       <p>activeColor: 选中的颜色 String default #4A87D6</p>
       <br> -->
 
-      <mt-tabBar :fixed="false" :tabBarData="tabBarData1"></mt-tabBar>
+      <mt-tab-bar :fixed="false" :tabBarData="tabBarData1"></mt-tab-bar>
       <br>
       <br>
-      <mt-tabBar :fixed="false" :tabBarData="tabBarData2"
-      color="#666" activeColor="red" :index="2"></mt-tabBar>
+      <mt-tab-bar :fixed="true" :tabBarData="tabBarData2"
+      color="#666" activeColor="red" :index="2"></mt-tab-bar>
     </div>
 
 

@@ -198,5 +198,11 @@ export default {
   right: 0;
   z-index: 9;
 }
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .fixed {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
 </style>
 

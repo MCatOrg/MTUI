@@ -1285,6 +1285,41 @@
                     <div class="name">notice</div>
                     <div class="fontclass">.mtui-icon-notice</div>
                 </li>
+                <li>
+                <i class="icon  mtui-icon-notice"></i>
+                    <div class="name">notice</div>
+                    <div class="fontclass">.mtui-icon-notice</div>
+                </li>
+
+                <li>
+                <i class="icon  mtui-icon-goldUpgrade"></i>
+                    <div class="name">goldUpgrade</div>
+                    <div class="fontclass">.mtui-icon-goldUpgrade</div>
+                </li>
+
+                <li>
+                <i class="icon  mtui-icon-add_o"></i>
+                    <div class="name">add_o</div>
+                    <div class="fontclass">.mtui-icon-add_o</div>
+                </li>
+
+                <li>
+                <i class="icon  mtui-icon-minus_o"></i>
+                    <div class="name">minus_o</div>
+                    <div class="fontclass">.mtui-icon-minus_o</div>
+                </li>
+
+                <li>
+                <i class="icon  mtui-icon-add_o1"></i>
+                    <div class="name">add_o</div>
+                    <div class="fontclass">.mtui-icon-add_o1</div>
+                </li>
+
+                <li>
+                <i class="icon  mtui-icon-minusfull_o"></i>
+                    <div class="name">minusfull_o</div>
+                    <div class="fontclass">.mtui-icon-minusfull_o</div>
+                </li>
         </ul>
     </div>
   </div>

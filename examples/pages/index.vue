@@ -1,6 +1,9 @@
 <template>
   <div id="index">
     <header>
+      <h1 id="testEm">{{ msg }}</h1>
+    </header>
+    <header>
       <h1 id="testRem">{{ msg }}</h1>
     </header>
     <main>
@@ -53,16 +56,25 @@ export default {
   },
   mounted() {
     console.log(this.$router);
+    var testRem = document.getElementById('testRem').getBoundingClientRect().width;
+    var testEm = document.getElementById('testEm').getBoundingClientRect().width;
+    alert(testRem)
+    alert(testEm)
   },
 };
 </script>
 
 <style lang="less" scoped>
-#testRem{
-  width: 7.5rem;
+#testRem,#testEm{
+  width: 1em;
   height: 1rem;
   line-height: 1rem;
   background-color: red;
   color: #fff;
+  font-size: 24px;
+}
+#testRem{
+  width: 6rem;
+  background-color: blue;
 }
 </style>

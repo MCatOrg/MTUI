@@ -215,6 +215,7 @@ export default {
       XHRhanldeMehodsList: [], // 操作xhr对象的队列
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
+      fileType:undefined // 用于微信图片上传记录图片类型
     };
   },
   computed: {
@@ -263,6 +264,11 @@ export default {
     this.checkList.push({name:'checkMax',handler:this.checkMax},{name:'createCanvas',handler:this.createCanvas},{name:'checkFile',handler:this.checkFile});
   },
   methods: {
+    getBase64Type(base64){
+      var resultArr = base64.match(/\/\w+\;/);
+      if(!resultArr)return undefined;
+      return resultArr[0].replace(/\/|\;/g,'');
+    },
     IsWinWechat() {//手机微信客户端
       const agent = navigator.userAgent.toLowerCase();
       var wc = agent.match(/windowswechat/i);
@@ -415,6 +421,7 @@ export default {
               arr.unshift('data:image/jpeg;base64');
             }
             result.localData = arr.join(',');
+            vm.fileType = vm.getBase64Type(result.localData);
             if (vm.waterMarkConfig) {
               vm.proxySetWatermark(result.localData);
             } else if (vm.IsBase64StringToImage) {
@@ -484,15 +491,15 @@ export default {
         quality: this.quality,
         orientation: this.orientation || 1,
       });
-      return this.loadingCanvas.toDataURL(this.file.type, this.quality);
+      return this.loadingCanvas.toDataURL(this.fileType||this.file.type, this.quality);
     },
     createAndroidBase64() {
       const encoder = new JPEGEncoder();
       return encoder.encode(this.loadingCtx.getImageData(0, 0, this.afterWidth, this.afterHeight), this.quality * 100 || 80);
     },
     createWebBase64() {
-      console.log('base64', this.file, this.file.type);
-      return this.loadingCanvas.toDataURL(this.file.type, this.quality * 1);
+      console.log('base64', this.file, this.fileType);
+      return this.loadingCanvas.toDataURL(this.fileType||this.file.type, this.quality * 1);
     },
     createBase64(img) {
       const androidVersion = get_android_version();
