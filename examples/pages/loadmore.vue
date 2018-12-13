@@ -1,9 +1,10 @@
 <template>
   <div id="mtLoadMore">
     <!-- 父组件高度必须固定，且overflow-y:scroll -->
-    <div class="page-loadmore-wrapper" ref="wrapper" :style="{height:`${wrapperHeight}px`}">
+    <div class="page-loadmore-wrapper" ref="wrapper">
       <mt-loadmore
        ref="loadmore"
+       :wrapperHeight="wrapperHeight"
       :top-method="topMethod"
       :bottom-method="bottomMethod"
       @translate-change="translateChange"
@@ -63,9 +64,9 @@ export default {
   },
   mounted() {
     // 必须先设置高度
-    const DW = document.documentElement.clientHeight;
-    this.wrapperHeight = DW - this.$refs.wrapper.getBoundingClientRect().top;
-    console.dir(this.$refs.wrapper.style.height);
+    // const DW = document.documentElement.clientHeight;
+    // this.wrapperHeight = DW - this.$refs.wrapper.getBoundingClientRect().top;
+    // console.dir(this.$refs.wrapper.style.height);
     setTimeout(() => {
       console.log(111);
       this.proList = this.source.slice(0); // 模拟异步
@@ -74,6 +75,7 @@ export default {
   methods: {
     topMethod() {
       setTimeout(() => {
+        console.log(123)
         this.proList = this.source.slice(0);
         this.bottomAllLoaded = false;
         this.$refs.loadmore.onTopLoaded();
