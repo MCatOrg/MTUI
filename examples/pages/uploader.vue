@@ -2,6 +2,7 @@
   <div>
     <h2>图片上传</h2>
     <mt-uploader
+    ref="uploader"
     serverUrl="/ServiceAPI/usercenter/Manager.aspx"
     :canChangeImg="false"
     :canDeteleImg="false"
@@ -26,6 +27,33 @@
     :IsWeixinClientRequest="false"
     :IsUseWeiXinSDKUpdatePic="false"
     ></mt-uploader>
+    <mt-uploader
+    ref="uploader2"
+    serverUrl="http://localhost:3011/upData"
+    :canChangeImg="false"
+    :canDeteleImg="false"
+    :prefix="`fileData`"
+    :maxCount="5"
+    :maxSize="1024*1024*10"
+    :afterWidth="1000"
+    :IsBase64StringToImage="true"
+    :ImageUpdateTimeout="70000"
+    :quality="0.6"
+    :ImgDirectory="undefined"
+    ImageServer=""
+    :IsImageServer="false"
+    :onError="onError"
+    :onSuccess="success"
+    :onDelete="deleteEvent"
+    :onUploadListChange="onChange"
+    :defaultFileList="defaultFileList"
+    :setWatermark="false"
+    :waterMarkConfig="waterMarkConfig"
+    :clientType="3"
+    :IsWeixinClientRequest="false"
+    :IsUseWeiXinSDKUpdatePic="false"
+    ></mt-uploader>
+    <mt-button @click="clearImgList" type="warn">清空图片上传队列</mt-button>
   </div>
 </template>
 <script>
@@ -58,6 +86,9 @@ export default {
     onChange(index) {
       console.log(index);
     },
+    clearImgList(){//清空上传列表
+      this.$refs.uploader.resetImgList();
+    }
   },
 };
 </script>

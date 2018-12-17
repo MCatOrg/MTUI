@@ -97,6 +97,8 @@ export default {
           value: 'C',
         },
       ], {
+        search: true,
+        searchPlaceholder:'选择',
         onChange(result) {
           console.log(result);
         },
