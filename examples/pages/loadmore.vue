@@ -2,7 +2,7 @@
   <div id="mtLoadMore">
     <!-- 父组件高度必须固定，且overflow-y:scroll -->
     <div class="page-loadmore-wrapper" ref="wrapper" :style="{height:`${wrapperHeight}px`}">
-      <load-more
+      <mt-loadmore
        ref="loadmore"
       :top-method="topMethod"
       :bottom-method="bottomMethod"
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-      </load-more>
+      </mt-loadmore>
       <p v-if="bottomAllLoaded">已经到底部</p>
     </div>
   </div>
