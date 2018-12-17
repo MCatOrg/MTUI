@@ -1,5 +1,8 @@
 <style lang="less" scoped>
 .container{background-color: #f5f5f5;}
+
+.title{line-height: 1rem; background-color: white; position: relative; z-index: 2;}
+
 .list{background-color: white;}
 
 </style>
@@ -7,30 +10,10 @@
 
 <template>
     <div class="container">
-        <p>load more pages</p>
+        <p class="title">load more pages</p>
 
-        <load-more class="list" ref="myLoadMore" @topLoadMethod="topLoadMethod" @onTopCancel="onTopCancel" @bottomLoadMethod="bottomLoadMethod">
+        <load-more class="list" ref="myLoadMore" :top-method="topLoadMethod" @onTopCancel="onTopCancel" :bottom-all-loaded="bottomAllLoaded" :bottom-method="bottomLoadMethod">
             <div>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
-                <p>lalala</p>
                 <p>lalala</p>
                 <p>lalala</p>
                 <p>lalala</p>
@@ -57,6 +40,7 @@ export default {
 
             topRefushLock: false,               //顶部刷新的事务锁，为防止重复刷新
             canRefush: true,                    //控制是否需要刷新
+            bottomAllLoaded: false,
         }
     },
     methods: {
@@ -73,7 +57,7 @@ export default {
                     //重要操作
                     this.canRefush = true                       //开锁
                     this.topRefushLock = false                  //开锁
-                    this.$refs.myLoadMore.offTopLoad()          //重要，用于关闭上加载动画
+                    this.$refs.myLoadMore.onTopLoaded()          //重要，用于关闭上加载动画
                 },3000)
             }else this.canRefush = true                       //由于还在http请求耗时中，用户又开启了刷新，应该开锁
         },
@@ -86,7 +70,8 @@ export default {
             this.timer = setTimeout(_=>{
                 this.$Toast("加载完成")
 
-                this.$refs.myLoadMore.offBottomLoad()          //重要，用于关闭下加载动画
+                this.$refs.myLoadMore.onBottomLoaded()          //重要，用于关闭下加载动画
+                this.bottomAllLoaded = true
             },3000)
         },
     }
