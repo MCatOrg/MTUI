@@ -665,7 +665,6 @@ export default {
       this.onError({ status: 'fail', data:  event });
     },
     xhrProgressEvent(event) {
-      console.log(event.loaded, event.total);
       this.showLoading(Math.round((event.loaded / event.total) * 100));
     },
     xhrLoadstartEvent() {
@@ -732,6 +731,11 @@ export default {
       }
       return true;
     },
+    resetImgList(){//清空上传队列
+      if(this.uploadList.length>0){
+        this.uploadList = [];
+      }
+    }
   },
   filters: {
     removeOrigin(val) {

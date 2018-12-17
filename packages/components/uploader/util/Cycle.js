@@ -33,8 +33,6 @@ class Cycle {
     this.context.arc(w / 2, h / 2, cradius, 0, 2 * Math.PI);
     // 绘制到画板中
     this.context.stroke();
-    // 计算一个角度对应弧度是多少
-    const d = (deg * 3.6) / (180 * Math.PI);
     // 重新绘制
     this.context.beginPath();
     // 设置圆的边框
@@ -42,7 +40,7 @@ class Cycle {
     // 绘制边框的颜色
     this.context.strokeStyle = this.pcolor;
     // 绘制圆
-    this.context.arc(w / 2, h / 2, cradius, -Math.PI / 2, d - (Math.PI / 2));
+    this.context.arc(w / 2, h / 2, cradius, 1.5*Math.PI, (deg/100*2+1.5)*Math.PI);
     // 绘制到画板中
     this.context.stroke();
     // 文字
