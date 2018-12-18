@@ -37,6 +37,7 @@ import datePicker from './components/js-picker/datePicker';
 import picker from './components/js-picker/picker';
 import loadMore from './components/load-more';
 import mtPopup from './components/popup';
+import mtRefresh from './components/refresh';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/img.svg');
@@ -75,6 +76,7 @@ const components = [
   mtNothing,
   loadMore,
   mtPopup,
+  mtRefresh,
 ];
 console.log(1231123)
 const version = '1.0.0';
@@ -140,6 +142,7 @@ const MTUI = {
   mtNothing,
   loadMore,
   mtPopup,
+  mtRefresh,
 };
 export default MTUI;
 export {
@@ -180,4 +183,5 @@ export {
   mtNothing,
   loadMore,
   mtPopup,
+  mtRefresh,
 };

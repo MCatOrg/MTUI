@@ -32,10 +32,17 @@ import popup from '@/pages/popup';
 
 import newloadmore from '@/pages/load-more';
 
+import refresh from '@/pages/refresh';
+
 Vue.use(Router);
 
 const router = new Router({
   routes: [
+    {
+      path: '/refresh',
+      name: 'refresh',
+      component: refresh,
+    },
     {
       path: '/newloadmore',
       name: 'newloadmore',
