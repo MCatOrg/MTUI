@@ -69,7 +69,8 @@ export default {
     console.log(ss)
     var testRem = document.getElementById('testRem').getBoundingClientRect().width;
     var testEm = document.getElementById('testEm').getBoundingClientRect().width;
-    console.log(testRem,testEm)
+    console.log('测试em&rem',testRem,testEm)
+    console.log(navigator.userAgent)
   },
 };
 </script>

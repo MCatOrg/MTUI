@@ -25,8 +25,8 @@
         <mt-stepper disable disableInput :value="123" @on-change="chagneStepper" />
       </div>
 
-      
-      <mt-stepper :value="0" @on-change="chagneStepper":min="0" :max="9" minTip="最小数为0" />
+
+      <mt-stepper :value="0" @on-change="chagneStepper" :min="0" :max="9" minTip="最小数为0" />
 
     </div>
 
