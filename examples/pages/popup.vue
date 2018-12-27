@@ -1,78 +1,63 @@
-<style lang="less" scoped>
-
-//审核
-.flex-between{display: flex; justify-content: space-between;}
-.pass{font-size: .26rem; line-height: .6rem; padding: .1rem .3rem;}
-.pass-item{border-bottom: 1px solid #eee; padding-bottom: .1rem; padding-top: .1rem;}
-.pass-item:last-child{border-bottom: 0;}
-.TargetRemark{height: 2rem; padding: .2rem; resize: none; border: 1px solid #e5e5e5; width: 100%; box-sizing: border-box;}
-.pass_status{padding-left: .3rem; text-align: right;}
-</style>
 <template>
-    <div class="container">
-        <p>基本使用</p>
-        <button @click="visible = true">popup</button>
-        <mt-popup :visible.sync="visible"></mt-popup>
-
-        <p>自定义标题和内容 和 监听事件</p>
-        <button @click="delVisible = true">自定义标题和内容</button>
-        <mt-popup :visible.sync="delVisible" :title="'系统提示'" :content="'操作将永久删除数据，是否继续？'" @oncancel="onDelCancel" @onsubmit="onDelSubmit"></mt-popup>
-
-        <p>自定义内容</p>
-        <button @click="passVisible = true">自定义标题和内容</button>
-        <mt-popup :visible.sync="passVisible" :title="'审核'" @oncancel="onPassCancel" @onsubmit="onPassSubmit">
-            <div slot="content">
-                <div class="pass">
-                    <div class="pass-item flex-between">
-                        <div class="flex-between_hd">操作状态</div>
-                        <div class="flex1 pass_status" @click="selectOperate">
-                            <span>{{operate[operateIndex].label}}</span>
-                            <i class="mtui-icon-right"></i>
-                        </div>
+    <div class="popup-demo">
+        <!-- 中部弹出 -->
+        <mt-button type="primary" @click="showPopUp('center')">中部弹出</mt-button>
+        <mt-popup v-model="isPopupShow.center" position="center">
+            <div class="mt-example-popup-center">
+               <div class="mt-example-center-item flex-between">
+                   <div class="flex-between_hd">操作状态</div>
+                   <div class="flex1 pass_status" @click="selectOperate">
+                        <span>{{operate[operateIndex].label}}</span>
+                        <i class="mtui-icon-right"></i>
                     </div>
-                    <div class="pass-item">
-                        <div style="text-align: left;">操作备注</div>
-                        <div>
-                            <textarea class="TargetRemark" v-model="TargetRemark"></textarea>
-                        </div>
+               </div>
+               <div class="mt-example-center-item">
+                    <div style="text-align: left;">操作备注</div>
+                    <div>
+                        <textarea class="targetRemark" v-model="targetRemark"></textarea>
                     </div>
                 </div>
             </div>
         </mt-popup>
-
-        <p>出现动画 默认是由下往上 up</p>
-        <button @click="downDisible = true">down</button>
-        <mt-popup :visible.sync="downDisible" animate="down"></mt-popup>
-        <button @click="leftDisible = true">left</button>
-        <mt-popup :visible.sync="leftDisible" animate="left"></mt-popup>
-        <button @click="rightDisible = true">right</button>
-        <mt-popup :visible.sync="rightDisible" animate="right"></mt-popup>
-        <button @click="opacityDisible = true">opacity</button>
-        <mt-popup :visible.sync="opacityDisible" animate="opacity"></mt-popup>
-
-
-        <p>点击mask不可关闭 和 mask点击事件</p>
-        <button @click="maskDisible = true">down</button>
-        <mt-popup :visible.sync="maskDisible" @onClickMask="onClickMask" :closeByMask="false" animate="down"></mt-popup>
-
+        <!-- 顶部弹出 -->
+        <mt-button type="primary" @click="showPopUp('top')">顶部弹出</mt-button>
+        <mt-popup v-model="isPopupShow.top" position="top" :hasMask="false">
+            <div class="mt-example-popup-top">
+                Popup top
+            <i class="icon mtui-icon-close" @click="hidePopUp('top')"></i>
+            </div>
+        </mt-popup>
+        <!-- 底部弹出 -->
+        <mt-button type="primary" @click="showPopUp('bottom')">底部弹出</mt-button>
+        <mt-popup v-model="isPopupShow.bottom" position="bottom">
+            <div class="mt-example-popup-bottom">
+                Popup bottom
+            </div>
+        </mt-popup>
+        <!-- 左侧弹出 -->
+        <mt-button type="primary" @click="showPopUp('left')">左侧弹出</mt-button>
+        <mt-popup v-model="isPopupShow.left" position="left" :hasMask="false">
+            <div class="mt-example-popup-left">
+                Popup Left
+                <i class="icon mtui-icon-close" @click="hidePopUp('left')"></i>
+            </div>
+        </mt-popup>
+        <!-- 右侧弹出 -->
+        <mt-button type="primary" @click="showPopUp('right')">右侧弹出</mt-button>
+        <mt-popup v-model="isPopupShow.right" position="right">
+            <div class="mt-example-popup-right">
+                Popup right
+            </div>
+        </mt-popup>
     </div>
 </template>
+
 <script>
 export default {
-    data(){
+    name: 'popup-demo',
+    data() {
         return {
-            visible: false,
-            delVisible: false,
-            passVisible:  false,
-
-            downDisible: false,
-            leftDisible: false,
-            rightDisible: false,
-            opacityDisible: false,
-
-            maskDisible: false,
-
-            TargetRemark: '',
+            isPopupShow: {},
             operate: [
                 {
                     label: '审核通过',
@@ -83,40 +68,100 @@ export default {
                 }
             ],
             operateIndex: 0,
+            targetRemark: '',
         }
     },
     methods: {
-        onDelCancel(){
-            this.$Toast('您点击了取消')
+        showPopUp(type) {
+            this.$set(this.isPopupShow, type, true)
         },
-        onDelSubmit(){
-            this.$Toast('您点击了确定')
+        hidePopUp(type) {
+            this.$set(this.isPopupShow, type, false)
         },
-
-        //审核
-        //选择通过还是失败
-        selectOperate(){
+        selectOperate() {
             this.$picker(this.operate, {
                 id: 'selectOperate',
                 onConfirm: value => {
                     this.operateIndex = value[0].value
+                    this.$Toast(value[0].label)
                 }
             })
-        },
-        onPassCancel(){
-            this.$Toast('您点击了取消')
-        },
-        onPassSubmit(){
-            this.$Toast('您点击了确定：'+this.operate[this.operateIndex].label)
-            console.log({
-                TargetRemark: this.TargetRemark,
-                operate: this.operate[this.operateIndex].label
-            })
-        },
-
-        onClickMask(){
-            this.$Toast("点击了mask")
         }
     }
 }
 </script>
+
+<style lang="less" scoped>
+.popup-demo {
+    width: 100%;
+    height: 100%;
+}
+.mt-example-popup-center {
+    width: 6rem;
+    line-height: .6rem;
+    background: #FFFFFF;
+    font-size: .26rem;
+    padding: .1rem .3rem;
+    .mt-example-center-item{
+        border-bottom: 1px solid #eee;
+        padding-bottom: .1rem;
+        padding-top: .1rem;
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    .flex-between{
+        display: flex;
+        justify-content: space-between;
+    }
+    .targetRemark{
+        height: 2rem;
+        padding: .2rem;
+        resize: none; border: 1px solid #e5e5e5;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-appearance:none;
+    }
+}
+.mt-example-popup-left, .mt-example-popup-right {
+    height: 100%;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mt-example-popup-left {
+    width: 7.5rem;
+    .mtui-icon-close {
+        position: absolute;
+        right: 0.2rem;
+        top: 0.2rem;
+    }
+}
+.mt-example-popup-right {
+    padding: 0 1.5rem;
+}
+.mt-example-popup-top {
+    width: 100%;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    text-align: center;
+    background: rgba(74,144,226,0.8);
+    color: #FFFFFF;
+    .mtui-icon-close {
+        position: absolute;
+        right: 0.2rem;
+        top: 50%;
+        transform: translateY(-50%)
+    }
+}
+.mt-example-popup-bottom {
+    width: 100%;
+    height: 6rem;
+    line-height: 6rem;
+    text-align: center;
+    background: #FFFFFF;
+}
+</style>
+
+
