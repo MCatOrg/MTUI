@@ -41,7 +41,7 @@ import mtNumberKeybord from './components/numberKeyboard'
 import mtCodebox from './components/codebox'
 import './styles/mtui.less';
 
-const loadingImg = require('./assets/img.svg');
+const loadingImg = require('./assets/svg/puff.svg');
 const errorImg = require('./assets/error-sign.svg');
 
 const components = [

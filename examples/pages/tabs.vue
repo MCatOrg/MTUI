@@ -26,6 +26,11 @@ export default {
         },
         {
           text: '选项4', // tabs选项的文字
+          badeg: 11,
+        },
+        {
+          text: '选项选项', // tabs选项的文字
+          badeg: 11,
         },
       ],
       list2: [
