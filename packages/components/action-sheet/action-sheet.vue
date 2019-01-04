@@ -7,7 +7,7 @@
                   <p class="mtui-actionsheet__title-text">{{title}}</p>
               </div>
               <div class="mtui-actionsheet__menu">
-                <div class="mtui-actionsheet__cell" v-for="(menu,i) in menus" :key="i"
+                <div class="mtui-actionsheet__cell" :class="{'mtui-actionsheet__active': currentIndex == i}" v-for="(menu,i) in menus" :key="i"
                 @click.stop="itemClick(menu,i)" :style="{color:menu.color?menu.color:'initial'}">
                   {{menu.text}}
                 </div>
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       currentValue: false,
+      currentIndex: -1
     };
   },
   props: {
@@ -59,6 +60,7 @@ export default {
         item.fn(item, i);
       }
       this.currentValue = false;
+      this.currentIndex = i;
     },
   },
   watch: {
