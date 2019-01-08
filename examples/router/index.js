@@ -32,6 +32,7 @@ import numberKeyboard from '@/pages/numberKeyboard'
 import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
+import toast from '@/pages/toast';
 
 Vue.use(Router);
 
@@ -232,6 +233,14 @@ const router = new Router({
       path: '/codebox',
       name: 'codebox',
       component: codebox
+    },
+    {
+      path: '/toast',
+      name: 'toast',
+      meta: {
+        title: 'toast',
+      },
+      component: () => import('../pages/toast.vue'),
     }
   ],
 });
