@@ -61,7 +61,7 @@ export default {
     },
     animate: {
       type: String,
-      default: 'opacity',
+      default: 'back',
       validator(value) {
         return ['opacity', 'back'].indexOf(value) !== -1;
       },

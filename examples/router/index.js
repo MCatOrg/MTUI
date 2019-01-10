@@ -27,8 +27,9 @@ import tabs from '@/pages/tabs';
 import tabbar from '@/pages/tabbar';
 import icon from '@/pages/icon';
 import test from '@/pages/test';
-
 import popup from '@/pages/popup';
+import numberKeyboard from '@/pages/numberKeyboard'
+import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
 
@@ -222,6 +223,16 @@ const router = new Router({
       name: 'popup',
       component: popup,
     },
+    {
+      path: '/numberKeyboard',
+      name: 'numberKeyboard',
+      component: numberKeyboard
+    },
+    {
+      path: '/codebox',
+      name: 'codebox',
+      component: codebox
+    }
   ],
 });
 router.beforeEach((to, from, next) => {
