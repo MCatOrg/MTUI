@@ -1,6 +1,19 @@
 import Vue from 'vue';
 import Toast from './toast';
 
+/**
+ * 设置默认属性
+ * @param {[type]} target [description]
+ * @param {[type]} source [description]
+ */
+function setDefault(target,source){
+  for(let k in source){
+    if(source.hasOwnProperty(k)){
+      target[k] = target[k]? target[k]: source[k];
+    }
+  }
+}
+
 // this.$Toast('操作成功', 3000);
 function configOptions(ag) {
   let options = {};
@@ -10,6 +23,8 @@ function configOptions(ag) {
   }
   if (len === 2) {
     if (typeof ag[1] === 'object') {
+      setDefault(ag[1],{showMask:false})
+      console.log(ag[1].showMask);
       options = {
         ...ag[1],
         content: ag[0],
@@ -36,6 +51,7 @@ ToastConstructor.prototype.close = function () {
   this.visible = false;
 };
 function config(options) {
+  setDefault(options,{showMask:false})
   Object.keys(options).forEach((key) => {
     tc[key] = options[key];
   });

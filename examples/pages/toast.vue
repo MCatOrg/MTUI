@@ -26,7 +26,7 @@ export default {
 		},
 
 		maskToast(){
-			this.$Toast('有遮罩Toast',{showMask: true});
+			this.$Toast('有遮罩Toast',{showMask: true}); 
 		}
 	}
 }
