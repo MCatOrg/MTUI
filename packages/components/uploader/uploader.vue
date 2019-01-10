@@ -377,6 +377,9 @@ export default {
     localChangeEvent(event) {
       const files = event.target.files;
       if (files.length === 0) return false;
+      if (this.isChangeImg&&this.beforeChange(event) === false) {//显式返回false则中断传输
+        return false;
+      }
       if (!this.checkListHandle({ checkFile: files })) return false;
       this.file = files[0];
       this.showLoading(0); // 显示loading
@@ -412,6 +415,9 @@ export default {
           cancel: this.wxCancelEvent,
           fail: this.ErrorEvent,
           success(result) {
+            if (vm.isChangeImg&&vm.beforeChange(res) === false) {//显式返回false则中断传输
+              return false;
+            }
             const arr = result.localData.split(',');
             // IPhone
             if (arr.length === 2) {
@@ -719,9 +725,6 @@ export default {
       return true;
     },
     changeImg() {
-      if (this.beforeChange() === false) {
-        return false;
-      }
       this.isChangeImg = true;
       if (this.useWx) {
         this.wxcompress();

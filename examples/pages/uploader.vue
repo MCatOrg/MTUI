@@ -3,9 +3,9 @@
     <h2>图片上传</h2>
     <mt-uploader
     ref="uploader1"
-    serverUrl="/ServiceAPI/usercenter/Manager.aspx"
-    :canChangeImg="false"
-    :canDeteleImg="false"
+    serverUrl="http://localhost:3011/upData"
+    :canChangeImg="true"
+    :canDeteleImg="true"
     :prefix="`fileData`"
     :maxCount="5"
     :maxSize="1024*1024*10"
@@ -22,6 +22,7 @@
     :onUploadListChange="onChange"
     :defaultFileList="defaultFileList"
     :setWatermark="false"
+    :beforeChange="beforeChange"
     :waterMarkConfig="waterMarkConfig"
     :clientType="1"
     :IsWeixinClientRequest="false"
@@ -114,6 +115,10 @@ export default {
     },
     clearImgList(){//清空上传列表
       this.$refs.uploader.resetImgList();
+    },
+    beforeChange(){
+      console.log('执行');
+      return true;
     }
   },
 };

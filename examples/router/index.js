@@ -32,7 +32,6 @@ import numberKeyboard from '@/pages/numberKeyboard'
 import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
-import toast from '@/pages/toast';
 
 Vue.use(Router);
 
