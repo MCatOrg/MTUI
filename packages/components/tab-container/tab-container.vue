@@ -40,6 +40,7 @@ export default {
       this.currentActive = +val;
     },
     currentActive(val, oldValue) {
+      console.log(val,oldValue)
       this.$emit('input', +val);
       if (!this.swipeable) return;
       const lastIndex = [].findIndex.call(this.$children, item => +item.id === oldValue);
@@ -59,9 +60,9 @@ export default {
   methods: {
     swipeLeaveTransition(lastIndex = 0) {
       if (typeof this.index !== 'number') {
-        this.index = [].findIndex.call(this.$children, item => +item.id === this.currentActive);
-        this.swipeMove(-lastIndex * this.pageWidth);
+        // this.swipeMove(-lastIndex * this.pageWidth);
       }
+      this.index = [].findIndex.call(this.$children, item => +item.id === this.currentActive);
       setTimeout(() => {
         this.wrap.classList.add('swipe-transition');
         this.swipeMove(-this.index * this.pageWidth);
@@ -70,12 +71,13 @@ export default {
     },
     transitionEndFn() {
       this.wrap.classList.remove('swipe-transition');
-      this.transformX = 0;
+      // this.transformX = 0;
       this.swiping = false;
-      this.index = null;
+      // this.index = null;
       this.wrap.removeEventListener('transitionend', this.transitionEndFn);
     },
     swipeMove(offset) {
+      console.log(offset);
       this.transformX = offset;
       this.swiping = true;
     },

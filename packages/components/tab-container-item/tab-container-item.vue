@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-tab-container-item" v-show="$parent.swiping || id==$parent.currentActive">
+  <div class="mt-tab-container-item">
     <slot></slot>
   </div>
 </template>
