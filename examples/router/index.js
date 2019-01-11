@@ -36,6 +36,7 @@ import newloadmore from '@/pages/load-more';
 Vue.use(Router);
 
 const router = new Router({
+  mode:'history',
   routes: [
     {
       path: '/newloadmore',
