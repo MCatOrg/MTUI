@@ -1,7 +1,7 @@
 <template>
   <div class="mt-grids">
     <!-- <slot></slot> -->
-    <router-link :to="item.to" tag="div" class="mt-grid"
+    <div class="mt-grid"
       v-for="(item,index) in gridData"
       :key="index">
       <div class="mt-grid_icon">
@@ -18,7 +18,7 @@
       <div
       class="mt-grid_label"
       :style="{color: item.textColor}">{{item.text}}</div>
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
@@ -54,6 +54,17 @@ export default {
       deep: true,
     },
   },
+  methods:{
+    toView(item){
+      if(item.to){
+        this.$router.push(item.to);
+      }else if(item.url){
+        location.href = item.url;
+      }else{
+        this.$emit('click',item);
+      }
+    }
+  }
 
 };
 </script>
