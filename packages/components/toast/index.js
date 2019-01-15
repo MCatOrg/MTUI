@@ -14,6 +14,32 @@ function setDefault(target,source){
   }
 }
 
+let timer = null;
+
+/**
+ * 开启定时器
+ */
+function SetInterval(){
+  ClearInterval();
+  let oldUrl = window.location.href;
+  let newUrl;
+  timer = setInterval(function(){
+    newUrl = window.location.href;
+    // console.log(oldUrl, newUrl)
+    if(newUrl!==oldUrl){
+      tc&&tc.close();
+    }
+  },200)
+}
+
+/**
+ * 关闭定时器
+ */
+function ClearInterval(){
+  clearInterval(timer);
+  timer = null;
+}
+
 // this.$Toast('操作成功', 3000);
 function configOptions(ag) {
   let options = {};
@@ -49,6 +75,7 @@ ToastConstructor.prototype.close = function () {
     this.timeOut = undefined;
   }
   this.visible = false;
+  ClearInterval();
 };
 function config(options) {
   setDefault(options,{showMask:false})
@@ -64,43 +91,12 @@ function show(options) {
   const vm = tc.$mount();
   document.body.appendChild(vm.$el);
   tc.visible = true;
+  SetInterval(); //开启定时器监听路径变化
   tc.timeOut = setTimeout(() => {
     tc.close();
     tc.callback();
     removeEvent();
   }, tc.time);
-}
-
-/*
- * 当vue-router使用 hsitory的api时，监听 hashchange 是没用的 ,
- * 而 popstate 只能监听浏览器前进后退按钮，对pushState是没法监听的
- * 目前的解决方法是：劫持原生的 pushState, replaceState事件
- * 
- */
-(function(history){
-    var pushState = history.pushState;
-    var replaceState = history.replaceState;
-    history.pushState = function(state) {
-        if (typeof history.onpushstate == "function") {
-            history.onpushstate({state: state});
-        }
-        // ... whatever else you want to do
-        // maybe call onhashchange e.handler
-        return pushState.apply(history, arguments);
-    };
-
-    history.replaceState = function(state) {
-        if (typeof history.onreplaceState == "function") {
-            history.onreplaceState({state: state});
-        }
-        // ... whatever else you want to do
-        // maybe call onhashchange e.handler
-        return replaceState.apply(history, arguments);
-    };
-})(window.history);
-
-history.onpushstate = history.onreplaceState = function(e){
-  routerChange();
 }
 
 function bindEvent(){
@@ -117,7 +113,7 @@ function removeEvent(){
 
 function routerChange(){
   // console.log('change');
-  tc.close();
+  tc&&tc.close();
 }
 
 function MtToast(...ag) {
