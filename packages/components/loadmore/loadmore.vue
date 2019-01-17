@@ -106,6 +106,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    wrapperHeight: {
+      type: Number,
+      default: 0
+    }
   },
   data() {
     return {
@@ -161,6 +165,9 @@ export default {
           break;
       }
     },
+    wrapperHeight(val){
+      this.setStyle();
+    }
   },
   methods: {
     onTopLoaded() {
@@ -327,11 +334,53 @@ export default {
       this.$emit('translate-change', this.translate);
       this.direction = '';
     },
+    setStyle(){
+      /**
+       * 自动设置父级高度并添加-webkit-overflow-scrolling样式
+       * 问题1：
+       * 当遇到一下页面结构时，建议手动设置高度：
+       * 1. 滚动的上方(top)有着脱离文档流的元素结构
+       * 2. 滚动的下方(bottom)有着其他结构
+       * 3. 元素的内容是异步获取的(图片或者ajax)
+       * 问题2：
+       * 在单页面应用中，路由跳转是scrollTop是保留上一个页面的，这对自动计算高度是有很大影响的；建议在路由跳转后调整scrollTop:0,例如在vue-router的路由添加以下配置：
+       * scrollBehavior (to, from, savedPosition) {
+       *    if (savedPosition) {
+       *      return savedPosition
+       *    } else {
+       *      return { x: 0, y: 0 }
+       *    }
+       *  }
+       *  问题3：
+       *  -webkit-overflow-scrolling使移动端滚动更流畅， 但是非标准的，在某些浏览器中有兼容性问题
+       * @type {[type]}
+       */
+      let DW = document.documentElement.clientHeight;
+      let wrapperHeight;
+      if(this.wrapperHeight){
+        wrapperHeight = this.wrapperHeight;
+      }else{
+        wrapperHeight = DW - this.scrollEventTarget.getBoundingClientRect().top;
+      }
+      let cssStyle = `height: ${wrapperHeight}px;-webkit-overflow-scrolling: touch;`;
+      this.scrollEventTarget.setAttribute('style',cssStyle);
+
+    },
     init() {
       this.topStatus = 'pull';
       this.bottomStatus = 'pull';
       this.topText = this.topPullText;
       this.scrollEventTarget = this.getScrollEventTarget(this.$el);
+      let _this = this;
+      this.$nextTick(()=>{
+        this.setStyle();
+      })
+      document.addEventListener('readystatechange', function(){
+        console.log(`state: ${document.readyState}`);
+        if(document.readyState === "complete"){
+            _this.setStyle();
+        }
+      });
       if (typeof this.bottomMethod === 'function') {
         this.$nextTick(() => {
           this.fillContainer();

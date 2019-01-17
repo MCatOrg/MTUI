@@ -36,6 +36,7 @@ import newloadmore from '@/pages/load-more';
 Vue.use(Router);
 
 const router = new Router({
+  mode:'history',
   routes: [
     {
       path: '/newloadmore',
@@ -232,6 +233,14 @@ const router = new Router({
       path: '/codebox',
       name: 'codebox',
       component: codebox
+    },
+    {
+      path: '/toast',
+      name: 'toast',
+      meta: {
+        title: 'toast',
+      },
+      component: () => import('../pages/toast.vue'),
     }
   ],
 });

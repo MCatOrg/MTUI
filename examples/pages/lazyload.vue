@@ -1,6 +1,6 @@
 <template>
   <div id="lazyload">
-    <img v-for="(imgSrc,i) of list" :key="i" v-lazy="imgSrc" alt="">
+    <img v-for="(imgSrc,i) of list" v-lazy="imgSrc" :key="imgSrc" alt="">
   </div>
 </template>
 <script>
