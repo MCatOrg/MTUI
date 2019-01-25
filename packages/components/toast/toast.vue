@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" v-on:after-leave="afterLeave">
     <div class="mtui-toast-box" :class="className" v-show="visible">
-      <div class="mtui-mask_transparent" @click="closeToast"></div>
+      <div class="mtui-mask_transparent" :class="{'mtui-hide':!showMask}" @click="closeToast"></div>
       <div class="mtui-toast">
           <!-- <i class="mtui-icon_toast mtui-icon-success-no-circle"></i> -->
           <p class="mtui-toast__content" v-html="content"></p>
@@ -18,6 +18,7 @@ export default {
       className: '',
       content: '',
       visible: false,
+      showMask: false
     };
   },
   methods: {
@@ -34,15 +35,15 @@ export default {
 };
 </script>
 <style lang="less">
-.mtui-toast-box{
+.mtui-toast{
   position: fixed;
-  z-index: 50;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.mtui-hide {
+  display: none;
 }
 </style>

@@ -27,14 +27,16 @@ import tabs from '@/pages/tabs';
 import tabbar from '@/pages/tabbar';
 import icon from '@/pages/icon';
 import test from '@/pages/test';
-
 import popup from '@/pages/popup';
+import numberKeyboard from '@/pages/numberKeyboard'
+import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
 
 Vue.use(Router);
 
 const router = new Router({
+  mode:'history',
   routes: [
     {
       path: '/newloadmore',
@@ -222,6 +224,24 @@ const router = new Router({
       name: 'popup',
       component: popup,
     },
+    {
+      path: '/numberKeyboard',
+      name: 'numberKeyboard',
+      component: numberKeyboard
+    },
+    {
+      path: '/codebox',
+      name: 'codebox',
+      component: codebox
+    },
+    {
+      path: '/toast',
+      name: 'toast',
+      meta: {
+        title: 'toast',
+      },
+      component: () => import('../pages/toast.vue'),
+    }
   ],
 });
 router.beforeEach((to, from, next) => {
