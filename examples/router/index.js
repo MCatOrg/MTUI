@@ -33,11 +33,18 @@ import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
 
+import refresh from '@/pages/refresh';
+
 Vue.use(Router);
 
 const router = new Router({
   mode:'history',
   routes: [
+    {
+      path: '/refresh',
+      name: 'refresh',
+      component: refresh,
+    },
     {
       path: '/newloadmore',
       name: 'newloadmore',
@@ -243,6 +250,13 @@ const router = new Router({
       component: () => import('../pages/toast.vue'),
     }
   ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 });
 router.beforeEach((to, from, next) => {
   console.log(mtMessageBox.close());

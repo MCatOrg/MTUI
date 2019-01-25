@@ -64,13 +64,7 @@ export default {
     };
   },
   mounted() {
-    console.log(document.documentElement.style.fontSize)
-    var ss = window.getComputedStyle(document.getElementById('testHead'))
-    console.log(ss)
-    var testRem = document.getElementById('testRem').getBoundingClientRect().width;
-    var testEm = document.getElementById('testEm').getBoundingClientRect().width;
-    console.log('测试em&rem',testRem,testEm)
-    console.log(navigator.userAgent)
+    // console.log(this.$router);
   },
 };
 </script>
