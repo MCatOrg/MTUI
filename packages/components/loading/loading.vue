@@ -49,7 +49,7 @@ export default {
   height: 2rem;
   margin: auto;
   border-radius: 0.1rem;
-  z-index: 4000;
+  z-index: 39;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -62,7 +62,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 3999;
+  z-index: 38;
 }
 .mt-loading-span{
   text-align: center;
@@ -72,4 +72,3 @@ export default {
   margin-top: 0.3rem;
 }
 </style>
-

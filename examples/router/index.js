@@ -33,18 +33,11 @@ import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
 
-import refresh from '@/pages/refresh';
-
 Vue.use(Router);
 
 const router = new Router({
   mode:'history',
   routes: [
-    {
-      path: '/refresh',
-      name: 'refresh',
-      component: refresh,
-    },
     {
       path: '/newloadmore',
       name: 'newloadmore',

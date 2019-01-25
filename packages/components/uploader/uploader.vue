@@ -757,7 +757,7 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 99;
+  z-index: 19;
   height: 0.88rem;
   display: flex;
   align-items: center;

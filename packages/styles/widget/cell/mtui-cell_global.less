@@ -17,11 +17,11 @@ z-index:
   position: relative;
   &:before {
     .setTopLine(@mtuiCellBorderColor);
-    z-index: 15;
+    z-index: 5;
   }
   &:after {
     .setBottomLine(@mtuiCellBorderColor);
-    z-index: 20;
+    z-index: 5;
   }
   >.mtui-cells{
     &:after{
@@ -44,7 +44,7 @@ z-index:
   &:before {
     .setTopLine(@mtuiCellBorderColor);
     left: @mtuiCellLeft;
-    z-index: 15;
+    z-index: 5;
   }
   & + .mtui-cells {
     margin-bottom: 0;
@@ -62,7 +62,7 @@ z-index:
   &:after {
     .setBottomLine(@mtuiCellBorderColor);
     left: @mtuiCellLeft;
-    z-index: 15;
+    z-index: 5;
   }
 }
 .mtui-cells__title{

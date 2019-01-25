@@ -1,5 +1,5 @@
 @import '../../base/fn';
-.mtui-tabs{display: flex;
+.mtui-tabs{display: flex;position: relative;z-index: 20;
     .mtui-tab{font-size: .26rem; border-color: transparent;
         .mtui-tab_text{padding-right: .15rem; padding-left: .15rem; line-height: .82rem; height: .82rem; display: inline-block; border-bottom: .06rem solid transparent; border-color: inherit; position: relative;}
         &.active{color: @mtuiColorPrimary; border-color: @mtuiColorPrimary;}
@@ -21,7 +21,7 @@
         .mtui-tab_action{width: .88rem; height: .88rem; position: absolute; right: 0; top: 0; background-color: white; box-shadow: -.06rem 0 .4rem #E5E5E5; }
 
         input{display: none;}
-        input + .mtui-tab_arrow{transition: all .3s; transform:rotate(0deg); display: block; width: .88rem; height: .88rem; position: absolute; right: 0; top: 0; text-align: center; line-height: .88rem; z-index: 99;}
+        input + .mtui-tab_arrow{transition: all .3s; transform:rotate(0deg); display: block; width: .88rem; height: .88rem; position: absolute; right: 0; top: 0; text-align: center; line-height: .88rem; z-index: 2;}
         input:checked + .mtui-tab_arrow{transform: rotate(180deg);}
         input + .mtui-tab_arrow:after{.setArrow(down, .14rem, #666, .02rem); content: " ";}
 

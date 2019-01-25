@@ -8,13 +8,13 @@
 				<div class="refresh-loading" v-show="state==='loading'">
 					<mt-spinner  type="rectangle" :size="0.8" ></mt-spinner>
 				</div>
-				
+
 				<div class="refresh-end" v-show="state==='end'">
 					<i class="icon mtui-icon-select-o"></i>
 					<span>刷新完成!</span>
 				</div>
 			</div>
-			
+
 		</div>
 	</transition>
 </template>
@@ -105,16 +105,16 @@ export default {
 		},
 		touchMove(e){
 			let firstTop=0,  currentTop=0;
-			if(this.firstNode){ 
+			if(this.firstNode){
 				firstTop = this.firstNode.getBoundingClientRect().top;
-			 	currentTop = this.currentNode.getBoundingClientRect().top;	
+			 	currentTop = this.currentNode.getBoundingClientRect().top;
 			}
 			 let range = (e.touches[0].clientY - this.startY);
 			if(!this.allow || document.documentElement.scrollTop>0 || this.state === 'loading' || firstTop-currentTop <0 || range<0) return;
-			
+
 
 			range = range*0.75 > this.maxRange? this.maxRange : range;
-			
+
 			this.translate = range;
 			this.rotate = range;
 			this.changeView();
@@ -122,10 +122,10 @@ export default {
 		},
 		touchEnd(e){
 			if(this.state === 'loading') return;
-			
+
 			if(this.translate && this.translate >= this.maxRange){
 				this.translate = this.maxRange/2;
-				
+
 				this.refresh();
 			}else{
 				this.translate = 0;
@@ -155,7 +155,7 @@ export default {
 			setTimeout(()=>{
 				_this.state = 'pull';
 			},1300)
-			
+
 			console.log('更新完成...');
 		},
 
@@ -165,7 +165,7 @@ export default {
 			}else{
 				document.body.style.transform = `translate3d(0,${this.translate}px,0)`;
 			}
-			
+
 		}
 	},
 
@@ -185,7 +185,7 @@ export default {
 		height: 200px;
 		text-align: center;
 		background: #f5f5f5;
-		z-index: 999;
+		z-index: 19;
 		transition: all 0.3s linear;
 
 		.refresh-inner {
