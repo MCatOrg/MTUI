@@ -5,7 +5,7 @@
 .flex-center.column{flex-direction: column;}
 .transition{transition: all .3s;}
 .top{position: absolute; line-height: .88rem; width: 100%; top: 0; transform: translateY(-100%);}
-.tipss{height: .88rem; color: #666; font-size: .26rem; line-height: .88rem;}
+.tipss{height: .88rem; color: #666; font-size: .26rem; line-height: .88rem; text-align: center;}
 .bottom, .load__all{bottom: 0; line-height: 1rem;}
 </style>
 <template>
