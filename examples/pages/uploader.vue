@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div id="uploaderPage">
     <h2>图片上传</h2>
     <mt-uploader
+    id="uploader1"
     ref="uploader1"
     serverUrl="http://localhost:3011/upData"
     :canChangeImg="true"
     :canDeteleImg="true"
     :prefix="`fileData`"
-    :maxCount="5"
+    :isOpenMultiple="true"
+    :maxCount="2"
     :maxSize="1024*1024*10"
     :afterWidth="1000"
     :IsBase64StringToImage="true"
@@ -27,7 +29,9 @@
     :clientType="1"
     :IsWeixinClientRequest="false"
     :IsUseWeiXinSDKUpdatePic="false"
-    ></mt-uploader>
+    >
+      <img src="../assets/logo.png" alt="">
+    </mt-uploader>
     <mt-uploader
     ref="uploader2"
     serverUrl="/ServiceAPI/usercenter/Manager.aspx"
@@ -123,4 +127,29 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+#uploader1{
+  /deep/.mtui-uploader{
+    align-items: center;
+    justify-content: center;
+  }
+  /deep/.mtui-uploader__input-box,/deep/.mtui-uploader__file{
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0;
+    img{
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    &::before{
+      display: none;
+    }
+    &::after{
+      display: none;
+    }
+  }
+}
+</style>
+
 
