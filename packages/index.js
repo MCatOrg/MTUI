@@ -4,10 +4,6 @@ import loading from './components/loading';
 import mtActionsheet from './components/action-sheet';
 import mtMessageBox from './components/message-box';
 import mtSpinner from './components/spinner';
-import mtLoadMore from './components/loadmore';
-import mtTabContainer from './components/tab-container';
-import mtTabContainerItem from './components/tab-container-item';
-import mtLazyload from './components/lazyload';
 import mtSwipe from './components/swipe';
 import mtSwipeItem from './components/swipe-item';
 import mtTouchRipple from './components/touchRipple';
@@ -21,15 +17,11 @@ import mtInput from './components/input';
 import mtSlider from './components/slider';
 import mtUploader from './components/uploader';
 import mtBigPicture from './components/bigPicture';
-import Vconsole from './components/v-console';
 import mtDirectives from './components/directives';
-import mtPicker from './components/picker';
 import mtBadge from './components/badge';
-import mtGrid from './components/grid';
 import mtStepper from './components/stepper';
 import mtSwitch from './components/switch';
 import mtTabBar from './components/tabbar';
-import mtSteps from './components/steps';
 import mtSearchbar from './components/searchbar';
 import mtTabs from './components/tabs';
 import mtNothing from './components/nothing';
@@ -37,20 +29,20 @@ import datePicker from './components/js-picker/datePicker';
 import picker from './components/js-picker/picker';
 import loadMore from './components/load-more';
 import mtPopup from './components/popup';
-import mtNumberKeybord from './components/numberKeyboard'
-import mtCodebox from './components/codebox'
-import './styles/mtui.less';
 
-const loadingImg = require('./assets/svg/puff.svg');
-const errorImg = require('./assets/error-sign.svg');
+import mtGrid from './components/grid'
+import mtSteps from './components/steps'
+import mtNumberKeyboard from './components/numberKeyboard'
+import mtCodebox from './components/codebox'
+import mtTabContainer from './components/tab-container'
+import mtTabContainerItem from './components/tab-container-item'
+
+import './styles/mtui.less';
 
 const components = [
   mtActionsheet,
   mtSpinner,
   loading,
-  mtLoadMore,
-  mtTabContainer,
-  mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
@@ -64,35 +56,30 @@ const components = [
   mtSlider,
   mtUploader,
   mtBigPicture,
-  Vconsole,
-  mtPicker,
   mtBadge,
-  mtGrid,
   mtStepper,
   mtSwitch,
   mtTabBar,
-  mtSteps,
   mtSearchbar,
   mtTabs,
   mtNothing,
   loadMore,
   mtPopup,
-  mtNumberKeybord,
+
+  mtGrid,
+  mtSteps,
+  mtNumberKeyboard,
   mtCodebox,
+  mtTabContainer,
+  mtTabContainerItem,
 ];
-console.log(1231123)
-const version = '1.0.0';
+const version = '2.0.0';
 const install = (Vue, config = {}) => {
   if (install.installed) return;
   components.map((component) => {
     Vue.component(component.name, component);
     return component;
   });
-  Vue.use(mtLazyload, Object.assign({
-    loading: loadingImg,
-    attempt: 3,
-    error: errorImg,
-  }, config.lazyload));
   Vue.prototype.$messagebox = mtMessageBox;
   Vue.prototype.$Toast = Toast;
   Vue.prototype.$loading = loading;
@@ -110,13 +97,9 @@ const MTUI = {
   version,
   Toast,
   loading,
-  mtLazyload,
   mtActionsheet,
   mtMessageBox,
   mtSpinner,
-  mtLoadMore,
-  mtTabContainer,
-  mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
@@ -130,22 +113,23 @@ const MTUI = {
   mtSlider,
   mtUploader,
   mtBigPicture,
-  Vconsole,
-  mtPicker,
   mtBadge,
-  mtGrid,
   mtStepper,
   mtSwitch,
   mtTabBar,
-  mtSteps,
   mtSearchbar,
   mtTabs,
   mtDirectives,
   mtNothing,
   loadMore,
   mtPopup,
-  mtNumberKeybord,
+  
+  mtGrid,
+  mtSteps,
+  mtNumberKeyboard,
   mtCodebox,
+  mtTabContainer,
+  mtTabContainerItem,
 };
 export default MTUI;
 export {
@@ -153,12 +137,8 @@ export {
   version,
   Toast,
   loading,
-  mtLazyload,
   mtActionsheet,
   mtMessageBox,
-  mtLoadMore,
-  mtTabContainer,
-  mtTabContainerItem,
   mtSwipeItem,
   mtSwipe,
   mtTouchRipple,
@@ -172,20 +152,21 @@ export {
   mtSlider,
   mtUploader,
   mtBigPicture,
-  Vconsole,
-  mtPicker,
   mtBadge,
-  mtGrid,
   mtStepper,
   mtSwitch,
   mtTabBar,
-  mtSteps,
   mtSearchbar,
   mtTabs,
   mtDirectives,
   mtNothing,
   loadMore,
   mtPopup,
-  mtNumberKeybord,
+  
+  mtGrid,
+  mtSteps,
+  mtNumberKeyboard,
   mtCodebox,
+  mtTabContainer,
+  mtTabContainerItem,
 };

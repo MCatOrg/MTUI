@@ -6,9 +6,7 @@ import actionSheet from '@/pages/action-sheet';
 import messageBox from '@/pages/message-box';
 import spinner from '@/pages/spinner';
 import loading from '@/pages/loading';
-import loadmore from '@/pages/loadmore';
-import tabContainer from '@/pages/tab-container';
-import lazyload from '@/pages/lazyload';
+// import tabContainer from '@/pages/tab-container';
 import swipe from '@/pages/swipe';
 import touchRipple from '@/pages/touchRipple';
 import button from '@/pages/button';
@@ -26,7 +24,6 @@ import search from '@/pages/search';
 import tabs from '@/pages/tabs';
 import tabbar from '@/pages/tabbar';
 import icon from '@/pages/icon';
-import test from '@/pages/test';
 import popup from '@/pages/popup';
 import numberKeyboard from '@/pages/numberKeyboard'
 import codebox from '@/pages/codebox'
@@ -42,11 +39,6 @@ const router = new Router({
       path: '/newloadmore',
       name: 'newloadmore',
       component: newloadmore,
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: test,
     },
     {
       path: '/',
@@ -73,21 +65,11 @@ const router = new Router({
       name: 'loading',
       component: loading,
     },
-    {
-      path: '/loadmore',
-      name: 'loadmore',
-      component: loadmore,
-    },
-    {
-      path: '/tabContainer',
-      name: 'tabContainer',
-      component: tabContainer,
-    },
-    {
-      path: '/lazyload',
-      name: 'lazyload',
-      component: lazyload,
-    },
+    // {
+    //   path: '/tabContainer',
+    //   name: 'tabContainer',
+    //   component: tabContainer,
+    // },
     {
       path: '/swipe',
       name: 'swipe',
@@ -152,11 +134,6 @@ const router = new Router({
       path: '/badge',
       name: 'badge',
       component: () => import('../pages/badge.vue'),
-    },
-    {
-      path: '/grid',
-      name: 'grid',
-      component: () => import('../pages/grid.vue'),
     },
     {
       path: '/stepper',
