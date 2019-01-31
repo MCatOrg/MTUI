@@ -65,9 +65,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.mt-example-wrapper {
-    padding: 0 0.3rem;
-}
 .mt-example-title {
     text-align: left;
     font-size: 0.28rem;

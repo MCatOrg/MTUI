@@ -38,7 +38,7 @@ export default {
 
 <style lang="less" scoped>
 #tab-container{
-  width: 7.5rem;
+  width: 100%;
   >ul{
     display: flex;
     justify-content: space-around;
