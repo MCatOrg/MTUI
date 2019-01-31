@@ -67,7 +67,6 @@ function SetRouter(arr){
 }
 
 const router = new Router({
-    mode:'history',
     routes: SetRouter(RouterArr)
 });
 
