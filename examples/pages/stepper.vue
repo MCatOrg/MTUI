@@ -10,10 +10,12 @@
         <p>最大数6</p>
         <mt-stepper :min="0" :value="value" :max="6999" @on-change="chagneStepper" maxTip="啦啦啦" minTip="突突突" />
       </div>
+      <router-link :to="{name: 'home'}">
       <div>
         <p>最小数3</p>
         <mt-stepper :value="value" :min="3" @on-change="chagneStepper" minTip="突突突" />
       </div>
+      </router-link>
       <div>
         <p>步长2</p>
         <mt-stepper :step="999" @on-change="chagneStepper" v-model="vvv" minTip="突突突"/>
