@@ -7,6 +7,7 @@ class Cycle {
     this.pcolor = opts.pcolor;
     this.textcolor = opts.textcolor;
     this.percent = opts.percent;
+    this.fontSize=opts.fontSize;
     this.canvas = document.createElement('canvas');
     this.context = this.canvas.getContext('2d');
   }
@@ -48,7 +49,7 @@ class Cycle {
     // 字体颜色
     this.context.fillStyle = this.textcolor;
     // 字体样式
-    this.context.font = '0.26rem 微软雅黑';
+    this.context.font = this.fontSize+' 微软雅黑';
     let text = '压缩中';
     if (deg < 2) {
       text = '压缩中';

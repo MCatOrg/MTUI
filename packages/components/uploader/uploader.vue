@@ -12,13 +12,14 @@
           class="mtui-uploader__file-content" v-if="IsBase64StringToImage">
         </li>
         <li class="mtui-uploader__file"
-        :style="{'background-image':`url(${loadingSrc})`}" v-show="isShowLoading"></li>
-      <li class="mtui-uploader__input-box" v-show="uploadList.length<maxCount">
-        <!-- <input class="mtui-uploader__input" readonly
-        type='text' v-if="useWx" @click="wxcompress"/> -->
-        <span class="mtui-uploader__input"  v-if="useWx" @click="wxcompress"></span>
+        :style="{'background-image':`url(${loadingSrc})`,'background-size': 'contain','background-repeat':'no-repeat'}" v-show="isShowLoading"></li>
+      <li ref="mtuiUploaderInputBox" class="mtui-uploader__input-box" v-show="isShowUploaderBox">
+        <!-- 用于改变上传组件的初始样式 -->
+        <slot></slot>
+        <span class="mtui-uploader__input"  v-if="useWx" @click="wxCompress"></span>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
+        :multiple="isOpenMultiple"
         type='file' accept="image/*" v-else ref="uploader__input"/>
       </li>
     </ul>
@@ -85,6 +86,10 @@ export default {
     prefix: { // input:hidden的name属性的前缀。String，默认'fileData'
       type: String,
       default: 'fileData',
+    },
+    isOpenMultiple:{//是否开启多张照片上传，如果开启，则wx.chooimg
+      type: Boolean,
+      default: false,
     },
     maxCount: { // 上传图片的最大数量
       type: Number,
@@ -194,17 +199,17 @@ export default {
     }
   },
   data() {
-    const loadingImg = new LoadingConstructor({
-      width: 80,
-      height: 80,
-      border: 10,
-      percent: 0,
-      bgcolor: this.loadingFgColor,
-      pcolor: this.loadingColor,
-      textcolor: this.loadingFontColor,
-    });
+    // const loadingImg = new LoadingConstructor({
+    //   width: 80,
+    //   height: 80,
+    //   border: 10,
+    //   percent: 0,
+    //   bgcolor: this.loadingFgColor,
+    //   pcolor: this.loadingColor,
+    //   textcolor: this.loadingFontColor,
+    // });
     return {
-      loadingImg,
+      loadingImg:null,
       bigImgSrc: '',
       bigImgIndex: 0,
       uploadList: [],
@@ -215,10 +220,18 @@ export default {
       XHRhanldeMehodsList: [], // 操作xhr对象的队列
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
-      fileType:undefined // 用于微信图片上传记录图片类型
+      fileType:undefined, // 用于微信图片上传记录图片类型
+      isShowUploaderBtn:true //正在上传的过程中，隐藏上传按钮
     };
   },
   computed: {
+    isShowUploaderBox(){
+      if(this.isShowUploaderBtn&&this.uploadList.length<this.maxCount){
+        return true;
+      }else{
+        return false;
+      }
+    },
     useWx() {
       console.log(typeof wx === 'object',this.IsWinWechat(),this.getWxVision())
       if (typeof wx === 'object' && this.IsWinWechat() && this.getWxVision() > '6.5.0' && this.IsUseWeiXinSDKUpdatePic && this.IsWeixinClientRequest) {
@@ -226,6 +239,13 @@ export default {
       }
       return false;
     },
+    chooseImageCount(){
+      if(this.isOpenMultiple){
+        return this.maxCount<=9?this.maxCount:9;
+      }else{
+        return 1;
+      }
+    }
   },
   watch:{
     defaultFileList:{
@@ -262,6 +282,20 @@ export default {
       value: this.xhrLoadEvent,
     });
     this.checkList.push({name:'checkMax',handler:this.checkMax},{name:'createCanvas',handler:this.createCanvas},{name:'checkFile',handler:this.checkFile});
+  },
+  mounted(){
+    var uploadBoxStyle = this.$refs.mtuiUploaderInputBox.getBoundingClientRect();
+    var width = Math.max(uploadBoxStyle.width,uploadBoxStyle.height);
+    this.loadingImg = new LoadingConstructor({
+      width: width,
+      height: width,
+      border: width*0.016+8.71,
+      percent: 0,
+      bgcolor: this.loadingFgColor,
+      pcolor: this.loadingColor,
+      textcolor: this.loadingFontColor,
+      fontSize:`${width*0.00042+0.2264}rem`
+    });
   },
   methods: {
     getBase64Type(base64){
@@ -381,6 +415,7 @@ export default {
         return false;
       }
       if (!this.checkListHandle({ checkFile: files })) return false;
+      !this.isChangeImg&&(this.isShowUploaderBtn = false);
       this.file = files[0];
       this.showLoading(0); // 显示loading
       this.getImgPosition(files[0]); // 获取图像的方位信息
@@ -388,12 +423,12 @@ export default {
       this.transformStart(imgUrl);
       return true;
     },
-    wxcompress() {
+    wxCompress() {
       console.log('微信接口');
       if(!this.createCanvas())return false;
       const wx = window.wx;
       wx.chooseImage({
-        count: 1, // 默认9
+        count: this.chooseImageCount, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: this.wxSuccessEvent,
@@ -410,13 +445,14 @@ export default {
           this.onError({ status: 'fail', data: `您的微信不支持,请升级您的微信${navigator.userAgent}` });
           return false;
         }
+        !this.isChangeImg&&(this.isShowUploaderBtn = false);
         wx.getLocalImgData({
           localId: res.localIds[0], // 图片的localID
           cancel: this.wxCancelEvent,
           fail: this.ErrorEvent,
           success(result) {
             if (vm.isChangeImg&&vm.beforeChange(res) === false) {//显式返回false则中断传输
-              return false;
+              return vm.restConfig();
             }
             const arr = result.localData.split(',');
             // IPhone
@@ -444,8 +480,13 @@ export default {
       }
       return true;
     },
+    restConfig(){
+      this.isShowUploaderBtn = true;
+      return false;
+    },
     wxCancelEvent(res) {
       this.hideLoading();
+      this.restConfig()
       this.onError({ status: 'cancel', data: res });
     },
     compressConfig(img) {
@@ -539,7 +580,7 @@ export default {
       const img = new Image();
       img.src = imgUrl;
       img.onload = () => {
-        if (!this.checkImgWH(img)) return false;
+        if (!this.checkImgWH(img)) return this.restConfig();
         this.compressConfig(img);
         if (this.waterMarkConfig) {
           this.proxySetWatermark(img);
@@ -641,6 +682,7 @@ export default {
           url,
           name: `${this.prefix}${this.uploadList.length}`,
         });
+        this.restConfig();
       }
       this.hideLoading();
       this.loadingCtx.clearRect(0, 0, this.loadingCanvas.width, this.loadingCanvas.height);
@@ -668,7 +710,12 @@ export default {
     },
     ErrorEvent(event) {
       this.hideLoading();
-      this.onError({ status: 'fail', data:  event });
+      this.restConfig()
+      if(event.errMsg === "chooseImage:permission denied"||event.errMsg==="getLocalImgData:fail, the permission value is offline verifying"){//没有权限
+        this.$refs.uploader__input.click();
+      }else{
+        this.onError({ status: 'fail', data:  event });
+      }
     },
     xhrProgressEvent(event) {
       this.showLoading(Math.round((event.loaded / event.total) * 100));
@@ -703,6 +750,7 @@ export default {
         }
         this.addUpImg(href);
       } else {
+        this.restConfig()
         this.hideLoading();
         this.onError({ status: 'fail', data: event });
       }
@@ -727,7 +775,7 @@ export default {
     changeImg() {
       this.isChangeImg = true;
       if (this.useWx) {
-        this.wxcompress();
+        this.wxCompress();
       } else {
         this.$refs.uploader__input.click();
         this.hideBigImg();
