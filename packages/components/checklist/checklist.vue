@@ -11,7 +11,8 @@
           v-model="currentValue"
           :value="item.value||item"
           :name="name">
-          <i class="mtui-icon-select"></i>
+          <i class="mtui-icon-select" v-if="currentValue.indexOf(item.value) > -1 || currentValue.indexOf(item) > -1" :style="{backgroundColor: activeColor, borderColor: activeColor}"></i>
+          <i class="mtui-icon-select" v-else></i>
           </template>
           <img :src="item.icon" alt="列表图标" v-if="item.icon">
         </div>
@@ -22,7 +23,8 @@
           v-model="currentValue"
           :value="item.value||item"
           :name="name">
-          <i class="mtui-icon-select"></i>
+          <i class="mtui-icon-select" v-if="currentValue.indexOf(item.value) > -1 || currentValue.indexOf(item) > -1" :style="{backgroundColor: activeColor, borderColor: activeColor}"></i>
+          <i class="mtui-icon-select" v-else></i>
         </div>
         <mt-touch-ripple v-if="!item.disabled"></mt-touch-ripple>
       </label>
@@ -56,6 +58,12 @@ export default {
       type: String,
       default: 'left',
     },
+    activeColor: {
+      type: String,
+      default() {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
+    }
   },
   data() {
     return {

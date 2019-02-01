@@ -76,6 +76,8 @@ const components = [
 const version = '2.0.0';
 const install = (Vue, config = {}) => {
   if (install.installed) return;
+  Vue.prototype.$MTUI_CONFIG = config
+  // Vue.prototype.$config.ColorPrimary = config.ColorPrimary || 'red'
   components.map((component) => {
     Vue.component(component.name, component);
     return component;

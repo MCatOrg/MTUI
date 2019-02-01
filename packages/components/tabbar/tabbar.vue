@@ -33,7 +33,9 @@ export default {
     },
     activeColor: {
       type: String,
-      default: '#4A87D6',
+      default: function(){
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      },
     },
     tabBarData: {
       type: Array,

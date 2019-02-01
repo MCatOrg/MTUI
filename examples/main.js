@@ -5,7 +5,9 @@ import MTUI from '~/index';
 // import MTUI from '../lib/mtui';
 // import '../lib/mtui.css';
 
-Vue.use(MTUI); // 载入MTUI
+Vue.use(MTUI, {
+  ColorPrimary: 'green'
+});
 
 Vue.config.productionTip = false;
 

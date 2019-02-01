@@ -40,7 +40,9 @@ export default {
     },
     color: {
       type: String,
-      default: '#4A87D6',
+      default() {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
     },
   },
   created() {

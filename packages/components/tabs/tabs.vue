@@ -54,7 +54,9 @@ export default {
     },
     color: {
       type: String,
-      default: window.MTtheme && window.MTtheme.primary || '',
+      default: function(){
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || ''
+      },
     },
     active: {
       type: Number,
@@ -63,6 +65,9 @@ export default {
   },
   mounted() {
     this.activeIndex = this.active;
+    if(this.activeIndex > 3){
+      this.tab(this.activeIndex)
+    }
   },
   computed: {
     computedList() {

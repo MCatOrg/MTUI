@@ -50,7 +50,9 @@ export default {
     },
     color: {
       type: String,
-      default: window.MTtheme && window.MTtheme.primary || ''
+      default() {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
     },
     orient: {
       type: String,
