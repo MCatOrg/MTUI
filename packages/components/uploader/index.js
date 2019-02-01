@@ -1,1 +1,1 @@
-export { default } from './uploader';
+export { default } from './uploader.more';
