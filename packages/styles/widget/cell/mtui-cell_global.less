@@ -30,8 +30,9 @@ z-index:
   }
 }
 .mtui-disabled{
-  background-color: #d5d5d5;
+  background-color: #eaeaea;
   cursor: not-allowed;
+  color: #999 !important;
 }
 .mtui-cell {
   padding: @mtuiCellGapH @mtuiCellLeft;
@@ -53,7 +54,7 @@ z-index:
     }
   }
 }
-.mtui-cells .mtui-cell:first-child,.mtui-cells .mtui-cell:last-child{
+.mtui-cells .mtui-cell:first-child{
   &:before {
     display: none;
   }
@@ -65,9 +66,14 @@ z-index:
     z-index: 5;
   }
 }
+.mtui-cells .mtui-cell:last-child{
+  &:after {
+    display: none;
+  }
+}
 .mtui-cells__title{
-    margin-top: 0.16rem;
-    margin-bottom: 0.2rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
     padding-left: @mtuiCellLeft;
     padding-right: @mtuiCellLeft;
     color: @mtuiTextColorGray;
@@ -112,7 +118,7 @@ z-index:
 
 .mtui-cell__ft {
   text-align: right;
-  color: @mtuiTextColorGray;
+  color: @mtuiTextColorTips;
   position: relative;
 }
 .mtui-cell-error{

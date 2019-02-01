@@ -7,11 +7,13 @@
         <mt-swipe-item class="slide3">3</mt-swipe-item>
       </mt-swipe>
     </div>
-    <transition-group name="fadeIn">
-        <div class="swipeBox" v-for="i in 3" :key="i"
-        :class="`slide${i}`" v-show="bannerIndex === i-1"
-        style="position: absolute;top: 0;left: 0;">{{i}}</div>
+    <div style="position: relative;">
+      <transition-group name="fadeIn">
+          <div class="swipeBox" v-for="i in 3" :key="i"
+          :class="`slide${i}`" v-show="bannerIndex === i-1"
+          style="position: absolute;top: 0;left: 0;">{{i}}</div>
       </transition-group>
+    </div>
   </div>
 </template>
 <style lang="less" scoped>

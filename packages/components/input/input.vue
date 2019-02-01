@@ -32,7 +32,7 @@
     </div>
     <div class="mtui-cell__ft">
       <div v-if="getCode">
-        <button class="mtui-vcode-btn" v-if="getCode" @click="clickHandleEvent">获取验证码</button>
+        <button class="mtui-vcode-btn" v-if="getCode" :style="{color: activeColor}" @click="clickHandleEvent">获取验证码</button>
         <img v-if="showCode" :src="codeImg" class="mtui-vcode-img" @click="clickHandleEvent"/>
       </div>
       <slot name="footer" v-else></slot>
@@ -93,6 +93,12 @@ export default {
     isType: { // 内置格式检查器 ['email','china-name','china-mobile','number','idCard']
       type: [String, Function], // 若为Function时  需要同步返回一个对象{valid:true}或者{valid:false, msg:错误信息}
     },
+    activeColor: {
+      type: String,
+      default() {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
+    }
   },
   data() {
     return {

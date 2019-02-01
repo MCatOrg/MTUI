@@ -15,7 +15,7 @@
           v-model="currentValue"
           :value="item.value||item"
           :name="name">
-          <i class="mtui-icon-select"></i>
+          <i class="mtui-icon-select" :style="{color: activeColor}"></i>
         </div>
         <mt-touch-ripple v-if="!item.disabled"></mt-touch-ripple>
       </label>
@@ -45,6 +45,12 @@ export default {
         return `${Date.now()}`;
       },
     },
+    activeColor: {
+      type: String,
+      default: function () {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
+    }
   },
   data() {
     return {

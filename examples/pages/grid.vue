@@ -44,12 +44,12 @@ export default {
     return {
       gridData: [
         {
-          img: 'http://192.168.3.93/img/icon_tabbar.png',
+          // img: 'http://192.168.3.93/img/icon_tabbar.png',
           fontIcon: 'mtui-icon-search',
           fontIconColor: 'red',
           fontIconSize: '48',
           to: '/badge',
-          text: 'badge',
+          text: 'badges',
           textColor: '#666dcd',
         },
         {

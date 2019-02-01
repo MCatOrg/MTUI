@@ -16,10 +16,10 @@
       <li ref="mtuiUploaderInputBox" class="mtui-uploader__input-box" v-show="isShowUploaderBox">
         <!-- 用于改变上传组件的初始样式 -->
         <slot></slot>
-        <span class="mtui-uploader__input"  v-if="useWx" @click="wxCompress"></span>
+        <span class="mtui-uploader__input"  v-if="!forceCloseWx&&useWx" @click="wxCompress"></span>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
-        :multiple="isOpenMultiple"
+        :multiple="isOpenMultiple&&!isChangeImg"
         type='file' accept="image/*" v-else ref="uploader__input"/>
       </li>
     </ul>
@@ -42,19 +42,17 @@
 <script>
 import JPEGEncoder from './Plug/jpeg_encoder_basic';
 import MegaPixImage from './Plug/MegaPixImage';
+import EXIF from './Plug/exif';
 import LoadingConstructor from './util/Cycle';
 import { get_android_version, get_ios_version } from '../../util/navigatorUtil';
 import toast from '../toast';
 import mtBigPicture from '../bigPicture';
-import mtActionsheet from '../action-sheet';
 import mtMessageBox from '../message-box';
-import EXIF from './Plug/exif';
-
+const POSITIONCODE = [1,2,3,4,5,6,7,8,9];
 export default {
   name: 'mt-uploader',
   components: {
-    mtBigPicture,
-    mtActionsheet,
+    mtBigPicture
   },
   props: {
     ID:{
@@ -81,6 +79,12 @@ export default {
       type: Array,
       default() {
         return [];
+      },
+    },
+    postOptions:{// post请求的字段配置
+      type: Object,
+      default() {
+        return {};
       },
     },
     prefix: { // input:hidden的name属性的前缀。String，默认'fileData'
@@ -199,15 +203,6 @@ export default {
     }
   },
   data() {
-    // const loadingImg = new LoadingConstructor({
-    //   width: 80,
-    //   height: 80,
-    //   border: 10,
-    //   percent: 0,
-    //   bgcolor: this.loadingFgColor,
-    //   pcolor: this.loadingColor,
-    //   textcolor: this.loadingFontColor,
-    // });
     return {
       loadingImg:null,
       bigImgSrc: '',
@@ -221,12 +216,15 @@ export default {
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
       fileType:undefined, // 用于微信图片上传记录图片类型
-      isShowUploaderBtn:true //正在上传的过程中，隐藏上传按钮
+      isShowUploaderBtn:true, //正在上传的过程中，隐藏上传按钮
+      filesList:[],//多张图片上传时的队列
+      successResultList:[],//保存结果URL的队列
+      forceCloseWx:false //强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
     };
   },
   computed: {
     isShowUploaderBox(){
-      if(this.isShowUploaderBtn&&this.uploadList.length<this.maxCount){
+      if(this.isShowUploaderBtn&&this.uploadList.length<this.maxCount&&this.filesList.length===0&&!this.isShowLoading){
         return true;
       }else{
         return false;
@@ -352,7 +350,7 @@ export default {
       this.loadingCanvas = document.createElement('canvas');
       if (!this.loadingCanvas.getContext) {
         toast('对不起，您的浏览器不支持图片压缩及上传功能，请换个浏览器试试~');
-        return false;
+        return this.restConfig();
       }
       this.loadingCtx = this.loadingCanvas.getContext('2d');
       return true;
@@ -364,6 +362,10 @@ export default {
           return false;
         }
       } else if (this.uploadList.length === this.maxCount) {
+        toast(`最多只能上传${this.maxCount}张图片`);
+        return false;
+      }
+      if(this.filesList.length>=this.maxCount){
         toast(`最多只能上传${this.maxCount}张图片`);
         return false;
       }
@@ -409,19 +411,51 @@ export default {
       }
     },
     localChangeEvent(event) {
-      const files = event.target.files;
-      if (files.length === 0) return false;
+      this.filesList = [].slice.call(event.target.files);
+      if (this.filesList.length === 0) return false;
       if (this.isChangeImg&&this.beforeChange(event) === false) {//显式返回false则中断传输
-        return false;
+        return this.restConfig();
       }
-      if (!this.checkListHandle({ checkFile: files })) return false;
+      if (!this.checkListHandle({ checkFile: this.filesList })) return this.restConfig();
       !this.isChangeImg&&(this.isShowUploaderBtn = false);
-      this.file = files[0];
-      this.showLoading(0); // 显示loading
-      this.getImgPosition(files[0]); // 获取图像的方位信息
-      const imgUrl = this.getImgBlob(files[0]);
-      this.transformStart(imgUrl);
+      this.centralizedProcessing();//统一对file操作的函数
       return true;
+    },
+    centralizedProcessing(){
+      if(this.filesList.length === 0)return;
+      this.file = this.filesList.shift();
+      if(this.isWxApi){
+        var vm = this;
+        window.wx.getLocalImgData({
+          localId: this.file, // 图片的localID
+          cancel: this.wxCancelEvent,
+          fail: this.ErrorEvent,
+          success(result) {
+            const arr = result.localData.split(',');
+            // IPhone
+            if (arr.length === 2) {
+              arr[0] = 'data:image/jpeg;base64';
+            } else if (arr.length === 1) {
+              // Android
+              arr.unshift('data:image/jpeg;base64');
+            }
+            result.localData = arr.join(',');
+            vm.fileType = vm.getBase64Type(result.localData);
+            if (vm.waterMarkConfig) {
+              vm.proxySetWatermark(result.localData);
+            } else if (vm.IsBase64StringToImage) {
+              vm.Base64StringToImage(result.localData);
+            } else {
+              vm.addUpImg(result.localData);
+            }
+          },
+        });
+      }else{
+        this.showLoading(0); // 显示loading
+        this.getImgPosition(this.file); // 获取图像的方位信息
+        const imgUrl = this.getImgBlob(this.file);
+        this.transformStart(imgUrl);
+      }
     },
     wxCompress() {
       console.log('微信接口');
@@ -446,37 +480,16 @@ export default {
           return false;
         }
         !this.isChangeImg&&(this.isShowUploaderBtn = false);
-        wx.getLocalImgData({
-          localId: res.localIds[0], // 图片的localID
-          cancel: this.wxCancelEvent,
-          fail: this.ErrorEvent,
-          success(result) {
-            if (vm.isChangeImg&&vm.beforeChange(res) === false) {//显式返回false则中断传输
-              return vm.restConfig();
-            }
-            const arr = result.localData.split(',');
-            // IPhone
-            if (arr.length === 2) {
-              arr[0] = 'data:image/jpeg;base64';
-            } else if (arr.length === 1) {
-              // Android
-              arr.unshift('data:image/jpeg;base64');
-            }
-            result.localData = arr.join(',');
-            vm.fileType = vm.getBase64Type(result.localData);
-            if (vm.waterMarkConfig) {
-              vm.proxySetWatermark(result.localData);
-            } else if (vm.IsBase64StringToImage) {
-              vm.Base64StringToImage(result.localData);
-            } else {
-              vm.addUpImg(result.localData);
-            }
-          },
-        });
+        if (this.isChangeImg&&this.beforeChange(res) === false) {//显式返回false则中断传输
+          return this.restConfig();
+        }
+        this.filesList = [].slice.call(res.localIds);
+        this.isWxApi = true;
+        this.centralizedProcessing();
       } catch (err) {
         console.error(err);
         this.hideLoading();
-        this.onError({ status: 'fail', data: err });
+        this.onError({ status: 'fail', data: err ,file:res});
       }
       return true;
     },
@@ -545,7 +558,6 @@ export default {
       return encoder.encode(this.loadingCtx.getImageData(0, 0, this.afterWidth, this.afterHeight), this.quality * 100 || 80);
     },
     createWebBase64() {
-      console.log('base64', this.file, this.fileType);
       return this.loadingCanvas.toDataURL(this.fileType||this.file.type, this.quality * 1);
     },
     createBase64(img) {
@@ -609,28 +621,120 @@ export default {
       if (!this.waterMarkConfig) return;
       const waterMarkConfig = Object.assign({
         watermarkType: 'str', // 水印的类型，图片img 或者 文字str
-        fontSize: '20px',
+        fontSize: 20,
         strColor: 'rgba(102, 102, 102, 0.3)', // 当水印为文字是，可设置字体颜色 ，默认 rgba(102, 102, 102, 0.3)
-        position: 'br', // 位置 tl tr bl br 默认 br
+        fontStyle:"microsoft yahei",
+        position: POSITIONCODE[8], // 矩形九宫格位置排序 1 2 3 4 5 6 7 8 9 默认 9
         multiple: 0.1,
+        rotate:0, //水印旋转的角度 0~359 默认为0，超过这个范围则取0
+        isRepeat:false,//是否重复，如果为true 属性position则无效
+        marginY:50,//当isRepeat为true的时候生效，水印之间的垂直间隙，单位像素
+        marginX:200//当isRepeat为true的时候生效，水印之间的水平间隙，单位像素
       }, this.waterMarkConfig);
       this.loadingCanvas.width = img.width;
       this.loadingCanvas.height = img.height;
+      this.loadingCtx.beginPath();
       this.loadingCtx.drawImage(img, 0, 0);
+      var rotate = 0;
+      if(waterMarkConfig.rotate>=-90&&waterMarkConfig.rotate<=90){
+        rotate = waterMarkConfig.rotate*Math.PI/180;
+      }
       if (waterMarkConfig.watermarkType === 'str') { // 文字
-        this.loadingCtx.font = `${waterMarkConfig.fontSize} microsoft yahei`;
+        var fontSize = parseFloat(waterMarkConfig.fontSize)||20;
+        this.loadingCtx.font = `${fontSize}px ${waterMarkConfig.fontStyle}`;
         this.loadingCtx.fillStyle = waterMarkConfig.strColor;
-        if (waterMarkConfig.position === 'tl') {
-          this.loadingCtx.fillText(waterMarkConfig.watermark, 5, 20);
-        } else if (waterMarkConfig.position === 'tr') {
-          this.loadingCtx.fillText(waterMarkConfig.watermark, 5, img.height - 5);
-        } else if (waterMarkConfig.position === 'bl') {
-          this.loadingCtx.fillText(waterMarkConfig.watermark, img.width - 80 - 5, 20);
-        } else {
-          this.loadingCtx.fillText(waterMarkConfig.watermark, img.width - 80 - 5,
-            img.height - 5);
+        var fontlengt = waterMarkConfig.watermark.length;
+        let x=-fontSize*fontlengt,y=-fontSize*fontlengt;
+        if(waterMarkConfig.isRepeat){
+          var maxWidth = this.loadingCanvas.width+fontSize*fontlengt
+          var maxHeight = this.loadingCanvas.height+fontSize*fontlengt;
+          for(;x<maxWidth;x+=waterMarkConfig.marginX){
+            y=-fontSize*fontlengt;
+            for(;y<maxHeight;y+=waterMarkConfig.marginY){
+              this.loadingCtx.save();
+              this.loadingCtx.translate(x, y);
+              this.loadingCtx.rotate(rotate);
+              this.loadingCtx.fillText(waterMarkConfig.watermark,0, 0);
+              this.loadingCtx.restore();
+            }
+          }
+        }else{
+          if (waterMarkConfig.position === POSITIONCODE[0]) {
+            x = fontSize/4;
+            y = fontSize;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[1]) {
+            x = (img.width - (fontSize*fontlengt))/2;
+            y = fontSize;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[2]) {
+            x = img.width - (fontSize*fontlengt) - (fontSize/4);
+            y = fontSize;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[3]) {
+            x = fontSize/4;
+            y = img.height/2;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[4]) {
+            x = (img.width - (fontSize*fontlengt))/2;
+            y = img.height/2;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[5]) {
+            x = img.width - (fontSize*fontlengt) - (fontSize/4);
+            y = img.height/2;
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[6]) {
+            x = fontSize/4;
+            y = img.height - (fontSize/4);
+          }
+          else if (waterMarkConfig.position === POSITIONCODE[7]) {
+            x = (img.width - (fontSize*fontlengt))/2;
+            y = img.height - (fontSize/4);
+          }
+          else {
+            x = img.width - (fontSize*fontlengt) - (fontSize/4);
+            y = img.height - (fontSize/4);
+          }
+          // 根据角度调整x和y
+          if(waterMarkConfig.rotate>0&&waterMarkConfig.rotate<90){//1~89度
+            if([POSITIONCODE[6],POSITIONCODE[7],POSITIONCODE[8]].includes(waterMarkConfig.position)){
+              y = y - (fontSize*fontlengt*Math.sin(rotate))
+            }
+            else if([POSITIONCODE[3],POSITIONCODE[4],POSITIONCODE[5]].includes(waterMarkConfig.position)){
+              y = y - (fontSize*fontlengt/2*Math.sin(rotate))
+            }
+            if([POSITIONCODE[1],POSITIONCODE[2],POSITIONCODE[4],POSITIONCODE[5],POSITIONCODE[7],POSITIONCODE[8]].includes(waterMarkConfig.position)){
+              x = x + (fontSize*fontlengt-(fontSize*fontlengt*Math.cos(rotate)))/2-fontSize/4
+            }
+          }
+          else if(waterMarkConfig.rotate===90){
+            y = y - (fontSize*fontlengt/2)
+            x = x + (fontSize*fontlengt/2)-fontSize/2
+          }
+          else if(waterMarkConfig.rotate>-90&&waterMarkConfig.rotate<0){//91~179度
+            if([POSITIONCODE[0],POSITIONCODE[1],POSITIONCODE[2]].includes(waterMarkConfig.position)){
+              y = y + (fontSize*fontlengt*Math.sin(Math.abs(rotate)))-fontSize/2
+            }
+            else if([POSITIONCODE[3],POSITIONCODE[4],POSITIONCODE[5]].includes(waterMarkConfig.position)){
+              y = y + (fontSize*fontlengt/2*Math.sin(Math.abs(rotate)))
+            }
+            if([POSITIONCODE[1],POSITIONCODE[2],POSITIONCODE[4],POSITIONCODE[5],POSITIONCODE[7],POSITIONCODE[8]].includes(waterMarkConfig.position)){
+              x = x + (fontSize*fontlengt/2)-fontSize
+            }else{
+              x = x + fontSize/2;
+            }
+          }
+          else if(waterMarkConfig.rotate===-90){
+            y = y + (fontSize*fontlengt/2)
+            x = x + (fontSize*fontlengt/2)+fontSize/4
+          }
+          this.loadingCtx.save();
+          this.loadingCtx.translate(x, y);
+          this.loadingCtx.rotate(rotate);
+          this.loadingCtx.fillText(waterMarkConfig.watermark,0, 0);
+          this.loadingCtx.restore();
         }
-        const base64 = this.createBase64(img);
+        const base64 = this.loadingCanvas.toDataURL(this.fileType||this.file.type, this.quality * 1);
         if (this.IsBase64StringToImage) {
           this.Base64StringToImage(base64);
         } else {
@@ -645,19 +749,64 @@ export default {
           const beishu = (watermark.width / this.loadingCanvas.width) / waterMarkConfig.multiple;
           const watermarkWidth = watermark.width * beishu;
           const watermarkHeight = watermark.height * beishu;
-          if (waterMarkConfig.position === 'tl') {
+          let x=-watermarkWidth,y=0;
+          if(waterMarkConfig.isRepeat){
+            var maxWidth = this.loadingCanvas.width+watermarkWidth
+            var maxHeight = this.loadingCanvas.height+watermarkHeight;
+            for(;x<maxWidth;x+=waterMarkConfig.marginX){
+              y=-watermarkHeight;
+              for(;y<maxHeight;y+=waterMarkConfig.marginY){
+                this.loadingCtx.save();
+                this.loadingCtx.translate(x, y);
+                this.loadingCtx.rotate(rotate);
+                this.loadingCtx.drawImage(watermark, 0, 0, watermarkWidth, watermarkHeight);
+                this.loadingCtx.restore();
+              }
+            }
+          }else{
+            if (waterMarkConfig.position === POSITIONCODE[0]) {
+              x=0
+              y=0
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[1]) {
+              x=(this.loadingCanvas.width - watermarkWidth)/2
+              y=0
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[2]) {
+              x=this.loadingCanvas.width - watermarkWidth
+              y=0
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[3]) {
+              x=0
+              y=(this.loadingCanvas.height - watermarkHeight)/2
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[4]) {
+              x=(this.loadingCanvas.width - watermarkWidth)/2
+              y=(this.loadingCanvas.height - watermarkHeight)/2
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[5]) {
+              x=this.loadingCanvas.width - watermarkWidth
+              y=(this.loadingCanvas.height - watermarkHeight)/2
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[6]) {
+              x=0
+              y=this.loadingCanvas.height - watermarkHeight
+            }
+            else if (waterMarkConfig.position === POSITIONCODE[7]) {
+              x=(this.loadingCanvas.width - watermarkWidth)/2
+              y=this.loadingCanvas.height - watermarkHeight
+            }
+            else {
+              x=this.loadingCanvas.width - watermarkWidth
+              y=this.loadingCanvas.height - watermarkHeight
+            }
+            this.loadingCtx.save();
+            this.loadingCtx.translate(x, y);
+            this.loadingCtx.rotate(rotate);
             this.loadingCtx.drawImage(watermark, 0, 0, watermarkWidth, watermarkHeight);
-          } else if (waterMarkConfig.position === 'tr') {
-            this.loadingCtx.drawImage(watermark, 0, this.loadingCanvas.height - watermarkHeight,
-              watermarkWidth, watermarkHeight);
-          } else if (waterMarkConfig.position === 'bl') {
-            this.loadingCtx.drawImage(watermark, this.loadingCanvas.width - watermarkWidth, 0,
-              watermarkWidth, watermarkHeight);
-          } else {
-            this.loadingCtx.drawImage(watermark, this.loadingCanvas.width - watermarkWidth,
-              this.loadingCanvas.height - watermarkHeight, watermarkWidth, watermarkHeight);
+            this.loadingCtx.restore();
           }
-          const base64 = this.createBase64(img);
+          const base64 = this.loadingCanvas.toDataURL(this.fileType||this.file.type, this.quality * 1);
           if (this.IsBase64StringToImage) {
             this.Base64StringToImage(base64);
           } else {
@@ -686,13 +835,25 @@ export default {
       }
       this.hideLoading();
       this.loadingCtx.clearRect(0, 0, this.loadingCanvas.width, this.loadingCanvas.height);
-      this.onSuccess({ status: 'success', data: url });
+      if(this.filesList.length === 0){
+        if(this.successResultList.length===1){
+          this.onSuccess({ status: 'success', data: this.successResultList[0] });
+        }else{
+          this.onSuccess({ status: 'success', data: this.successResultList });
+        }
+      }else{
+        this.centralizedProcessing();
+        this.successResultList.push(url);
+      }
     },
     Base64StringToImage(base64) {
       this.GetImgDirectory();
       const form = new FormData();
-      form.append('action', 'base64stringtoimage'); // 方法
-      form.append('ImgDirectory', this.currentImgDirectory); // 目录
+      // form.append('action', 'base64stringtoimage'); // 方法
+      // form.append('ImgDirectory', this.currentImgDirectory); // 目录
+      for(let key in this.postOptions){
+        form.append(key,this.postOptions[key])
+      }
       form.append('ImageDataBase64', base64); // 数据
       if (!this.xhr) {
         this.xhr = new XMLHttpRequest();
@@ -706,15 +867,23 @@ export default {
       this.xhr.abort();
       this.hideLoading();
       this.onError({ status: 'fail',
-        data: '超时' });
+        data: '超时',file:this.file ,file:this.file});
     },
     ErrorEvent(event) {
       this.hideLoading();
       this.restConfig()
-      if(event.errMsg === "chooseImage:permission denied"||event.errMsg==="getLocalImgData:fail, the permission value is offline verifying"){//没有权限
-        this.$refs.uploader__input.click();
-      }else{
-        this.onError({ status: 'fail', data:  event });
+      try{
+        if(event.errMsg === "chooseImage:permission denied"||event.errMsg==="getLocalImgData:fail, the permission value is offline verifying"){//没有权限
+          this.forceCloseWx = true;
+          this.$nextTick(()=>{
+            this.$refs.uploader__input.click();
+          });
+        }else{
+          this.onError({ status: 'fail', data:  event,file:this.file });
+        }
+      }catch(err){
+        console.error(err);
+        this.restConfig();
       }
     },
     xhrProgressEvent(event) {
@@ -752,7 +921,7 @@ export default {
       } else {
         this.restConfig()
         this.hideLoading();
-        this.onError({ status: 'fail', data: event });
+        this.onError({ status: 'fail', data: event ,file:this.file});
       }
     },
     deleteImg() {
@@ -774,7 +943,7 @@ export default {
     },
     changeImg() {
       this.isChangeImg = true;
-      if (this.useWx) {
+      if (!this.forceCloseWx&&this.useWx) {
         this.wxCompress();
       } else {
         this.$refs.uploader__input.click();
@@ -805,7 +974,7 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 19;
+  z-index: 99;
   height: 0.88rem;
   display: flex;
   align-items: center;

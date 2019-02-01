@@ -43,7 +43,9 @@ export default {
     },
     color: {
       type: String,
-      default: '#4a87d6',
+      default() {
+        return this.$MTUI_CONFIG && this.$MTUI_CONFIG.ColorPrimary || '#4A87D6'
+      }
     },
     height: {
       type: Number,

@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import App from './App';
-import router from './router';
+import router from './router/router';
 import MTUI from '~/index';
 // import MTUI from '../lib/mtui';
 // import '../lib/mtui.css';
 
-Vue.use(MTUI); // 载入MTUI
+Vue.use(MTUI, {
+  ColorPrimary: 'green'
+});
 
 Vue.config.productionTip = false;
 
