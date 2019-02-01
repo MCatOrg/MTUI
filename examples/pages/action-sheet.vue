@@ -4,12 +4,14 @@
         title="我是带取消按钮的"
         :menus="menus"
         v-model="showAS"
+        @changeEvent="changeEvent"
         class-name=""
         title-class-name="">
       </mt-actionsheet>
       <mt-actionsheet
-        title="我是无取消按钮的"
+        @changeEvent="changeEvent"
         cancel-text=""
+        title="我是不带取消按钮的"
         :menus="menus"
         v-model="showUnCancel"
         title-class-name=""
@@ -26,23 +28,24 @@ export default {
     return {
       menus: [{
         text: '菜单一',
-        fn: this.oneMenu,
       }, {
         text: '菜单二',
-        fn: this.twoMenu,
         color: 'red',
+      },{
+        text: '菜单三',
+        color: 'blue',
+      },{
+        text: '菜单666',
+        color: 'green'
       }],
       showAS: false,
       showUnCancel: false,
     };
   },
   methods: {
-    oneMenu(item, index) {
-      console.log('菜单一', index, item);
-    },
-    twoMenu(item, index) {
-      console.log('菜单二', index, item);
-    },
+    changeEvent(item, index){
+      console.log(index, item);
+    }
   },
 };
 </script>
