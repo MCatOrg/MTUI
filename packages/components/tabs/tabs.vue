@@ -13,10 +13,10 @@
             </div>
         </div>
         <!-- tabsitem数量超过5个的 -->
-        <div class="mtui-tabs overflow" v-else>
+        <div :class="['mtui-tabs', 'overflow', inputIDChecked?'inputIDChecked':'']" v-else>
             <div class="mtui-tab_acbox"><div class="mtui-tab_action"></div></div>
-            <input type="checkbox" id="inputID" ref="inputID" />
-            <label class="mtui-tab_arrow" for="inputID"></label>
+            <!-- <input type="checkbox" id="inputID" ref="inputID" /> -->
+            <label class="mtui-tab_arrow" @click="inputIDChecked = !inputIDChecked"></label>
 
             <div class="mtui-tabs_list" ref="box">
                 <div class="mtui-tab_title">全部</div>
@@ -41,6 +41,7 @@ export default {
   name: 'mtTabs',
   data() {
     return {
+      inputIDChecked: false,
       activeIndex: 0,
     };
   },
@@ -89,36 +90,38 @@ export default {
   },
   methods: {
     tab(i) {
-      if(this.$refs.inputID){
-        this.$refs.inputID.checked = false;
-        let width = document.documentElement.getBoundingClientRect().width;
-        width>750 && (width=750);
-        let rem = width * 100 / 750;
-
-        let endLeft = ((i - 2) * rem * 1.5) > 0 ? ((i - 2) * rem * 1.5) : 0;
-        let startLeft = (this.$refs.box.scrollLeft);
-        let distance = endLeft - startLeft;
-
-        let scrollWidth = this.$refs.box.scrollWidth;
-        let offsetWidth = this.$refs.box.offsetWidth;
-        //activeIndex * 1.5
-        if(distance < 0){
-          let timer = setInterval(()=>{
-            if(this.$refs.box.scrollLeft <= endLeft){
-              clearInterval(timer)
-            }else{
-              this.$refs.box.scrollLeft = this.$refs.box.scrollLeft -2;
-            }
-          },(3000 / Math.abs(distance)) / 6)
-        }else{
-          let timer = setInterval(()=>{
-            if(this.$refs.box.scrollLeft >= endLeft || ((scrollWidth - this.$refs.box.scrollLeft) == offsetWidth)){
-              clearInterval(timer)
-            }else{
-              this.$refs.box.scrollLeft = this.$refs.box.scrollLeft + 2;
-            }
-          },(3000 / Math.abs(distance)) / 10)
-        }
+      if(this.list.length > 5){
+        this.inputIDChecked = false;
+        setTimeout(()=>{
+          let width = document.documentElement.getBoundingClientRect().width;
+          width>750 && (width=750);
+          let rem = width * 100 / 750;
+  
+          let endLeft = ((i - 2) * rem * 1.5) > 0 ? ((i - 2) * rem * 1.5) : 0;
+          let startLeft = (this.$refs.box.scrollLeft);
+          let distance = endLeft - startLeft;
+  
+          let scrollWidth = this.$refs.box.scrollWidth;
+          let offsetWidth = this.$refs.box.offsetWidth;
+          //activeIndex * 1.5
+          if(distance < 0){
+            let timer = setInterval(()=>{
+              if(this.$refs.box.scrollLeft <= endLeft){
+                clearInterval(timer)
+              }else{
+                this.$refs.box.scrollLeft = this.$refs.box.scrollLeft -2;
+              }
+            },(3000 / Math.abs(distance)) / 6)
+          }else{
+            let timer = setInterval(()=>{
+              if(this.$refs.box.scrollLeft >= endLeft || ((scrollWidth - this.$refs.box.scrollLeft) == offsetWidth)){
+                clearInterval(timer)
+              }else{
+                this.$refs.box.scrollLeft = this.$refs.box.scrollLeft + 2;
+              }
+            },(3000 / Math.abs(distance)) / 10)
+          }
+        }, 0)
       }
 
       // this.$refs.box.scrollLeft = (i - 2) * rem * 1.5;
