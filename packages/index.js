@@ -36,6 +36,7 @@ import mtNumberKeyboard from './components/numberKeyboard'
 import mtCodebox from './components/codebox'
 import mtTabContainer from './components/tab-container'
 import mtTabContainerItem from './components/tab-container-item'
+import mtuiButton from './components/mtButton'
 
 import './styles/mtui.less';
 
@@ -72,6 +73,7 @@ const components = [
   mtCodebox,
   mtTabContainer,
   mtTabContainerItem,
+  mtuiButton,
 ];
 const version = '2.0.0';
 const install = (Vue, config = {}) => {
@@ -132,6 +134,7 @@ const MTUI = {
   mtCodebox,
   mtTabContainer,
   mtTabContainerItem,
+  mtuiButton,
 };
 export default MTUI;
 export {
@@ -171,4 +174,5 @@ export {
   mtCodebox,
   mtTabContainer,
   mtTabContainerItem,
+  mtuiButton,
 };

@@ -12,6 +12,7 @@ let RouterArr = [
     {name: 'touchRipple', path: '/touchRipple', page: 'touchRipple', title: '涟漪'},
     {name: 'nothing', path: '/nothing', page: 'nothing', title: '缺省页'},
     {name: 'icon', path: '/icon', page: 'icon', title: '图标'},
+    {name: 'mtButton', path: '/mtButton', page: 'mtButton', title: '新按钮'}
   ]},
   {name: 'action', path: '/action', page: 'component', title: '交互组件', children: [
     {name: 'actionsheet', path: '/actionsheet', page: 'action-sheet', title: '操作弹层'},
