@@ -1,9 +1,8 @@
 <template>
     <button type="button" class="mtui-button" :class="[`mtui-button--${type}`, 
-    size === '' ? '' : `mtui-button--${size}`, plain ? 'is-plain' : '',
-    round ? 'is-round' : '', circle ? 'is-circle' : '',
-    disabled || loading ? 'is-disabled' : '' ]" :disabled="disabled || loading"
-    :style="btnStyle" @click="btnClickEvent">
+    `mtui-button--${size}`, plain ? 'is-plain' : '', round ? 'is-round' : '', 
+    circle ? 'is-circle' : '', disabled || loading ? 'is-disabled' : '' ]" 
+    :disabled="disabled || loading" :style="btnStyle" @click="btnClickEvent">
         <!-- <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? colorRgba(colors[type], 0.4) : (btnTextColor ? colorRgba(btnTextColor, 0.6) : loadingColor)" :size="loadingSize"></mt-spinner> -->
         <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? (btnTextColor ? colorRgba(btnTextColor, 0.4) : colorRgba(colors[type], 0.4)) : loadingColor" :size="loadingSize"></mt-spinner>
         <i class="mtui-button__icon" :class="icon" v-if="icon && !right"></i>
@@ -193,7 +192,7 @@ export default {
 
         // 十六进制颜色/rgb转为rgba
         colorRgba(strHexColor, alpha=1) {
-            console.log(strHexColor, alpha);
+            // console.log(strHexColor, alpha);
             let regColor = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/; // 十六进制颜色正则表达式
             if (!strHexColor) {
                 return;
@@ -218,7 +217,8 @@ export default {
                 let strRgbValue = lowerCaseColor.replace(/rgb|\(|\)/g, "");
                 return "rgba(" + strRgbValue + "," + alpha + ")"; 
             } else {
-                return lowerCaseColor;
+                // return lowerCaseColor;
+                console.log("请设置成16进制或RGB格式的颜色！");
             }
         }
     }
