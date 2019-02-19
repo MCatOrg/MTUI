@@ -35,6 +35,8 @@ import newloadmore from '@/pages/load-more';
 
 import refresh from '@/pages/refresh';
 
+import datePicker from '@/pages/datePicker';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -248,6 +250,14 @@ const router = new Router({
         title: 'toast',
       },
       component: () => import('../pages/toast.vue'),
+    },
+    {
+      path: '/datePicker',
+      name: 'datePicker',
+      meta: {
+        title: 'datePicker',
+      },
+      component: datePicker,
     }
   ],
   scrollBehavior (to, from, savedPosition) {

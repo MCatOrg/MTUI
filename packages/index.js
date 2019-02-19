@@ -37,8 +37,9 @@ import datePicker from './components/js-picker/datePicker';
 import picker from './components/js-picker/picker';
 import loadMore from './components/load-more';
 import mtPopup from './components/popup';
-import mtNumberKeybord from './components/numberKeyboard'
-import mtCodebox from './components/codebox'
+import mtNumberKeybord from './components/numberKeyboard';
+import mtCodebox from './components/codebox';
+import mtDatePicker from './components/datePicker';
 import './styles/mtui.less';
 
 const loadingImg = require('./assets/svg/puff.svg');
@@ -79,6 +80,7 @@ const components = [
   mtPopup,
   mtNumberKeybord,
   mtCodebox,
+  mtDatePicker
 ];
 console.log(1231123)
 const version = '1.0.0';
@@ -146,6 +148,7 @@ const MTUI = {
   mtPopup,
   mtNumberKeybord,
   mtCodebox,
+  mtDatePicker
 };
 export default MTUI;
 export {
@@ -188,4 +191,5 @@ export {
   mtPopup,
   mtNumberKeybord,
   mtCodebox,
+  mtDatePicker
 };
