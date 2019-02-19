@@ -198,7 +198,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9;
+  z-index: 20;
 }
 @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
   .fixed {
@@ -207,4 +207,3 @@ export default {
   }
 }
 </style>
-

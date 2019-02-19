@@ -37,7 +37,7 @@ export default {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0.1rem;
-  z-index: 4000;
+  z-index: 19;
 }
 .peeek-loader {
   position: absolute;
