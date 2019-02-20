@@ -38,6 +38,7 @@ import mtTabContainer from './components/tab-container'
 import mtTabContainerItem from './components/tab-container-item'
 import mtuiButton from './components/mtButton'
 
+import mtDatePicker from './components/datePicker'
 import './styles/mtui.less';
 
 const components = [
@@ -74,6 +75,7 @@ const components = [
   mtTabContainer,
   mtTabContainerItem,
   mtuiButton,
+  mtDatePicker,
 ];
 const version = '2.0.0';
 const install = (Vue, config = {}) => {
@@ -135,6 +137,8 @@ const MTUI = {
   mtTabContainer,
   mtTabContainerItem,
   mtuiButton,
+
+  mtDatePicker,
 };
 export default MTUI;
 export {
@@ -175,4 +179,5 @@ export {
   mtTabContainer,
   mtTabContainerItem,
   mtuiButton,
+  mtDatePicker,
 };
