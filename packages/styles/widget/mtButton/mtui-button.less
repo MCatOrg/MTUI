@@ -1,0 +1,222 @@
+.mtui-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0.24rem 0.4rem;
+    white-space: nowrap;
+    background-color: #fff;
+    border: 0.01rem solid #dcdfe6;
+    border-radius: 0.08rem;
+    color: #606266;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 0.28rem;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+
+    &.is-round {
+        border-radius: 0.8rem;
+        // padding: 0.24rem 0.46rem;
+        .mt-ripple-wrapper {
+            border-radius: 0.8rem;
+        }
+    }
+
+    &.is-circle {
+        padding: 0.2rem;
+        border-radius: 50%;
+        .mt-ripple-wrapper {
+            border-radius: 50%;
+        }
+
+        .mtui-button__icon {
+            font-size: 0.32rem;
+            max-width: 0.32rem;
+            max-height: 0.32rem;
+        }
+    }
+
+    &.mtui-button--default {
+        border-color: #dcdfe6;
+        color: #606266;
+        // 移动端没有以下效果
+        // &:hover, &:focus {
+        //     background-color: #ecf5ff;
+        //     border-color: #c6e2ff;
+        //     color: #409EFF;
+        // }
+
+        // &:active {
+        //     border-color: #3a8ee6;
+        //     color: #3a8ee6;
+        //     // outline: none;
+        // }
+        &.is-disabled {
+            border-color: #ebeef5;
+            color: #c0c4cc;
+        }
+        &.is-plain {
+            &.is-disabled {
+                border-color: #ebeef5;
+                color: #c0c4cc; 
+            }
+        }
+    }
+
+    &.mtui-button--primary {
+        background-color: #409EFF;
+        border-color: #409EFF;
+        color: #fff;
+        &.is-disabled {
+            background-color: #a0cfff;
+            border-color: #a0cfff;
+        }
+        &.is-plain {
+            background-color: #ecf5ff;
+            border-color: #b3d8ff;
+            color: #409EFF;
+            &.is-disabled {
+                background-color: #ecf5ff;
+                border-color: #d9ecff;
+                color: #8cc5ff;
+            }
+        }
+    }
+
+    &.mtui-button--success {
+        background-color: #67C23A;
+        border-color: #67C23A;
+        color: #fff;
+        &.is-disabled {
+            background-color: #b3e19d;
+            border-color: #b3e19d;
+        }
+        &.is-plain {
+            background-color: #f0f9eb;
+            border-color: #c2e7b0;
+            color: #67C23A;
+            &.is-disabled {
+                background-color: #f0f9eb;
+                border-color: #e1f3d8;
+                color: #a4da89;
+            }
+        }
+    }
+
+    &.mtui-button--info {
+        background-color: #909399;
+        border-color: #909399;
+        color: #fff;
+        &.is-disabled {
+            background-color: #c8c9cc;
+            border-color: #c8c9cc;
+        }
+        &.is-plain {
+            background-color: #f4f4f5;
+            border-color: #d3d4d6;
+            color: #909399;
+            &.is-disabled {
+                background-color: #f4f4f5;
+                border-color: #e9e9eb;
+                color: #bcbec2;
+            }
+        }
+    }
+
+    &.mtui-button--warning {
+        background-color: #E6A23C;
+        border-color: #E6A23C;
+        color: #fff;
+        &.is-disabled {
+            background-color: #f3d19e;
+            border-color: #f3d19e;
+        }
+        &.is-plain {
+            background-color: #fdf6ec;
+            border-color: #f5dab1;
+            color: #E6A23C;
+            &.is-disabled {
+                background-color: #fdf6ec;
+                border-color: #faecd8;
+                color: #f0c78a;
+            }
+        }
+    }
+
+    &.mtui-button--danger {
+        background-color: #F56C6C;
+        border-color: #F56C6C;
+        color: #fff;
+        &.is-disabled {
+            background-color: #fab6b6;
+            border-color: #fab6b6;
+        }
+        &.is-plain {
+            background-color: #fef0f0;
+            border-color: #fbc4c4;
+            color: #F56C6C;
+            &.is-disabled {
+                background-color: #fef0f0;
+                border-color: #fde2e2;
+                color: #f9a7a7;
+            }
+        }
+    }
+
+    &.mtui-button--text {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: transparent;
+        border-color: transparent;
+        color: #409EFF;
+        &.is-disabled {
+            color: #c0c4cc;
+        }
+    }
+
+    &.mtui-button--medium {
+        padding: 0.2rem 0.4rem;
+    }
+
+    &.mtui-button--small {
+        padding: 0.16rem 0.3rem;
+        font-size: 0.24rem;
+    }
+
+    &.mtui-button--mini {
+        padding: 0.12rem 0.25rem;
+        font-size: 0.24rem;
+    }
+
+    .mtui-button__icon {
+        // font-size: 0.32rem;
+        // max-width: 0.28rem;
+        // max-height: 0.28rem;
+
+        &::before {
+            margin: 0 auto;
+        }
+
+        & + .mtui-button__label {
+            margin-left: 0.1rem;
+        }
+    }
+    // [class^="mtui-icon-"]:before, 
+    // [class*=" mtui-icon-"]:before {
+    //     margin: 0 auto;
+    // }
+
+    .mtui-button__label + .mtui-button__icon,
+    .mt-spinner + .mtui-button__label {
+        margin-left: 0.1rem;
+    }
+}
+
+@media only screen and (max-width: 321px) {
+    .mtui-button {
+        border-width: 0.02rem;
+    }
+}
