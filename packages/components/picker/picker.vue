@@ -83,10 +83,25 @@ export default {
   data() {
     return {
       keyWord: '',
+      values: []
     };
+  },
+  created(){
+    
+       const slots = this.slots || [];
+        const values = [];
+        let valueIndexCount = 0;
+        slots.forEach((slot) => {
+          if (!slot.divider) {
+            slot.valueIndex = valueIndexCount++;
+            values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
+          }
+        });
+        this.values = values;
   },
   methods: {
     slotValueChange() {
+        //console.log(this.values)
       this.$emit('change', this, this.values);
     },
     getSlot(slotIndex) {
@@ -146,22 +161,30 @@ export default {
       });
     },
   },
-
+  watch: {
+      values: function(data){
+      }
+  },
   computed: {
-    values: {
-      get() {
-        const slots = this.slots || [];
-        const values = [];
-        let valueIndexCount = 0;
-        slots.forEach((slot) => {
-          if (!slot.divider) {
-            slot.valueIndex = valueIndexCount++;
-            values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
-          }
-        });
-        return values;
-      },
-    },
+   // values: {
+     // get() {
+       // const slots = this.slots || [];
+      //  const values = [];
+       // let valueIndexCount = 0;
+        //slots.forEach((slot) => {
+         // if (!slot.divider) {
+           // slot.valueIndex = valueIndexCount++;
+            //values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
+          //}
+        //});
+        //console.log(slots);
+        //console.log(values);
+        //return values;
+      //},
+      //set(value) {
+        //console.log(value)
+      //}
+   // },
     slotCount() {
       const slots = this.slots || [];
       let result = 0;

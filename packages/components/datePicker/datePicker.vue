@@ -6,7 +6,8 @@
 
         <transition name="translate">
           <div class="picker-popup" v-show="showPicker">
-            <picker :slots="list" @change="onValuesChange" selectedColor="#DFB559"
+            <picker :slots="list" @change="onValuesChange"
+                selectedColor="selectedColor"
             :showToolbar="true">
             <!-- showToolbar -->
             <div class="pickerBar">
@@ -35,6 +36,10 @@ export default {
     endTime: {
       type: String,
       default:'2150'
+    },
+    selectedColor: {
+        type: String,
+        default: '#DFB559'
     }
   },
   data(){
@@ -96,7 +101,7 @@ export default {
       // 计算天数
       let days = [];
       let counts = new Date(this.currentYear,this.currentMonth,0).getDate();
-      console.log(counts);
+      //console.log(counts);
       for(let i=1;i<=counts;i++){
         days.push(i);
       }
@@ -106,10 +111,23 @@ export default {
     },
     onValuesChange(vm,value){
       // 拖动改变数据
-      console.log(value);
-      this.currentYear = value[0];
-      this.currentMonth = value[1];
-      this.currentDay = value[2];
+        if(this.currentYear!=value[0] || this.currentMonth!=value[1]){
+            
+            // 动态修改天数
+            this.countDay()
+        }
+        if(this.currentYear != value[0]){
+
+        this.currentYear = value[0];
+        }
+        if(this.currentMonth!= value[1]){
+
+        this.currentMonth = value[1];
+        }
+        if(this.currentDay!= value[2]){
+
+            this.currentDay = value[2];
+        }
     },
     confirm(){
       // 确定
