@@ -13,7 +13,7 @@
             class="mt-popup-mask">
             </div>
         </transition>
-        <transition 
+        <transition
         :name="transition"
         @before-enter="$_onPopupTransitionStart"
         @before-leave="$_onPopupTransitionStart"
@@ -115,7 +115,7 @@ export default {
     },
     mounted() {
         this.value && this.$_showPopupBox()
-    },     
+    },
     methods: {
         $_showPopupBox() {
             this.isPopupShow = true
@@ -198,15 +198,15 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 50;
+        z-index: 30;
         .mt-popup-box {
             position: absolute;
-            z-index: 2;
+            z-index: 31;
         }
     }
     .mt-popup-box {
         position: fixed;
-        z-index: 50;
+        z-index: 31;
         max-width: 100%;
         max-height: 100%;
         overflow: auto;
@@ -221,7 +221,7 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 30;
         background-color:@popup-mask-bg;
     }
     &.center .mt-popup-box {

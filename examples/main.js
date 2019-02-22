@@ -6,7 +6,12 @@ import MTUI from '~/index';
 // import '../lib/mtui.css';
 
 Vue.use(MTUI, {
-  ColorPrimary: 'green'
+  ColorPrimary: 'rgb(65,105,225)',
+  ColorSuccess: '',
+  ColorInfo: '',
+  ColorWarning: '',
+  ColorDanger: '',
+  ColorText: ''
 });
 
 Vue.config.productionTip = false;
