@@ -235,6 +235,10 @@ function picker() {
         items = arguments[0];
     }
 
+    if(Object.prototype.toString.call(items[0])  === '[object Array]'){
+        defaults.search = false
+    }
+
     // 获取缓存
     temp[defaults.id] = temp[defaults.id] || [];
     const result = [];

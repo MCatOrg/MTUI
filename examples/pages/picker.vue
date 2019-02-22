@@ -5,6 +5,9 @@
     <br>
     <h4>js调用datePicker</h4>
     <button @click="jsDatePicker">js调用datePicker</button>
+    <br>
+    <h4>使用search</h4>
+    <button @click="jsSearchPicker">js调用datePicker</button>
   </div>
 </template>
 <script>
@@ -71,6 +74,29 @@ export default {
         },
       });
     },
+    jsSearchPicker(){
+      this.$picker([
+        {
+          label: '从化支行',
+          value: '1',
+        }, {
+          label: '越秀支行',
+          value: '2',
+        }, {
+          label: '荔湾支行',
+          value: '3',
+        },
+      ], {
+        search: true,
+        searchPlaceholder:'选择',
+        onChange(result) {
+          console.log(result);
+        },
+        onConfirm(result) {
+          console.log(result);
+        },
+      });
+    }
   },
 };
 </script>
