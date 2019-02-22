@@ -1,0 +1,2 @@
+webpackJsonp([2],{"+loE":function(e,t){},"1PgP":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={methods:{send:function(){alert("hello")}}},o={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("mt-touch-ripple",{attrs:{id:"mr",color:"#fff"},on:{click:this.send}},[this._v("\n    我就是我\n  ")])],1)},staticRenderFns:[]};var c=n("Z0/y")(r,o,!1,function(e){n("+loE")},"data-v-b71b61ec",null);t.default=c.exports}});
+//# sourceMappingURL=2.a5cc439629d979a2db26.js.map
