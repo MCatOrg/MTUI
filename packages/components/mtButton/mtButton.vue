@@ -3,8 +3,8 @@
     `mtui-button--${size}`, plain ? 'is-plain' : '', round ? 'is-round' : '', 
     circle ? 'is-circle' : '', disabled || loading ? 'is-disabled' : '' ]" 
     :disabled="disabled || loading" :style="btnStyle" @click="btnClickEvent">
-        <!-- <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? colorRgba(colors[type], 0.4) : (btnTextColor ? colorRgba(btnTextColor, 0.6) : loadingColor)" :size="loadingSize"></mt-spinner> -->
-        <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? (btnTextColor ? colorRgba(btnTextColor, 0.4) : colorRgba(colors[type], 0.4)) : loadingColor" :size="loadingSize"></mt-spinner>
+        <!-- <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? colorRgba(colors[type], 0.4) : (textColor ? colorRgba(textColor, 0.6) : loadingColor)" :size="loadingSize"></mt-spinner> -->
+        <mt-spinner v-if="loading" :type="loadingType" :color="(plain && type !== 'default') ? (textColor ? colorRgba(textColor, 0.4) : colorRgba(colors[type], 0.4)) : loadingColor" :size="loadingSize"></mt-spinner>
         <i class="mtui-button__icon" :class="icon" v-if="icon && !right"></i>
         <span class="mtui-button__label" v-if="label"><slot></slot></span>
         <i class="mtui-button__icon" :class="icon" v-if="icon && right"></i>
@@ -43,15 +43,15 @@ export default {
             if (this.plain) {
                 if (this.disabled || this.loading) {
                     result = {
-                        backgroundColor: this.btnBgColor ? this.colorRgba(this.btnBgColor, 0.25) : this.colorRgba(this.colors[this.type], 0.25),
-                        borderColor: this.btnBorderColor ? this.colorRgba(this.btnBorderColor, 0.4) : this.colorRgba(this.colors[this.type], 0.4),
-                        color: this.btnTextColor ? this.colorRgba(this.btnTextColor, 0.4) : this.colorRgba(this.colors[this.type], 0.4)
+                        backgroundColor: this.bgColor ? this.colorRgba(this.bgColor, 0.25) : this.colorRgba(this.colors[this.type], 0.25),
+                        borderColor: this.borderColor || this.bgColor ? this.colorRgba((this.borderColor || this.bgColor), 0.4) : this.colorRgba(this.colors[this.type], 0.4),
+                        color: this.textColor ? this.colorRgba(this.textColor, 0.4) : this.colorRgba(this.colors[this.type], 0.4)
                     }
                 } else {
                     result = {
-                        backgroundColor: this.btnBgColor ? this.colorRgba(this.btnBgColor, 0.25) : this.colorRgba(this.colors[this.type], 0.25),
-                        borderColor: this.btnBorderColor ? this.btnBorderColor : this.colors[this.type],
-                        color: this.btnTextColor ? this.btnTextColor : this.colors[this.type]
+                        backgroundColor: this.bgColor ? this.colorRgba(this.bgColor, 0.25) : this.colorRgba(this.colors[this.type], 0.25),
+                        borderColor: this.borderColor || this.bgColor ? (this.borderColor || this.bgColor) : this.colors[this.type],
+                        color: this.textColor ? this.textColor : this.colors[this.type]
                     }
                 }
             } else if (this.type === 'text') {
@@ -60,15 +60,15 @@ export default {
                 }
             } else if (this.disabled || this.loading) {
                 result = {
-                    backgroundColor: this.btnBgColor ? this.colorRgba(this.btnBgColor, 0.6) : this.colorRgba(this.colors[this.type], 0.6),
-                    borderColor: this.btnBorderColor ? this.colorRgba(this.btnBorderColor, 0.6) : this.colorRgba(this.colors[this.type], 0.6),
-                    color: this.type === 'default' ? this.colorRgba('#606266', 0.6) : (this.btnTextColor ? this.colorRgba(this.btnTextColor, 0.6) : '')
+                    backgroundColor: this.bgColor ? this.colorRgba(this.bgColor, 0.6) : this.colorRgba(this.colors[this.type], 0.6),
+                    borderColor: this.borderColor || this.bgColor ? this.colorRgba((this.borderColor || this.bgColor), 0.6) : this.colorRgba(this.colors[this.type], 0.6),
+                    color: this.type === 'default' ? this.colorRgba('#606266', 0.6) : (this.textColor ? this.colorRgba(this.textColor, 0.6) : '')
                 }
             } else {
                 result = {
-                    backgroundColor: this.btnBgColor ? this.btnBgColor : this.colors[this.type],
-                    borderColor: this.btnBorderColor ? this.btnBorderColor : this.colors[this.type],
-                    color: this.type === 'default' ? '#606266' : (this.btnTextColor ? this.btnTextColor : '')
+                    backgroundColor: this.bgColor ? this.bgColor : this.colors[this.type],
+                    borderColor: this.borderColor || this.bgColor ? (this.borderColor || this.bgColor) : this.colors[this.type],
+                    color: this.type === 'default' ? '#606266' : (this.textColor ? this.textColor : '')
                 }
             }
             return result;
@@ -164,19 +164,19 @@ export default {
         },
 
         // 自定义按钮背景色
-        btnBgColor: {
+        bgColor: {
             type: String,
             default: ''
         },
 
         // 自定义按钮边框颜色
-        btnBorderColor: {
+        borderColor: {
             type: String,
             default: ''
         },
 
         // 自定义按钮文本颜色
-        btnTextColor: {
+        textColor: {
             type: String,
             default: ''
         }

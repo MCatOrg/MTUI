@@ -158,32 +158,32 @@
             <h2 class="mt-btn_title">12.自定义颜色：</h2>
             <div class="mt-btn_list">
                 <mtui-button @click="btnClick">默认按钮</mtui-button>
-                <mtui-button btnBgColor="rgb(128,0,128)" btnBorderColor="rgb(128,0,128)" type="primary" @click="btnClick">紫色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF1493" btnBorderColor="#FF1493" type="success" @click="btnClick">深粉色按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" type="info" round @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#FF00FF" type="warning" icon="mtui-icon-revise" round @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" type="danger" round @click="btnClick">橙色按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" type="info" round disabled @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#F0F" type="warning" icon="mtui-icon-revise" disabled round @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" type="danger" round disabled @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="rgb(128,0,128)" borderColor="rgb(128,0,128)" type="primary" @click="btnClick">紫色按钮</mtui-button>
+                <mtui-button bgColor="#FF1493" borderColor="#FF1493" type="success" @click="btnClick">深粉色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" type="info" round @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" textColor="#FF00FF" type="warning" icon="mtui-icon-revise" round @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" type="danger" round @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" borderColor="#008B8B" type="info" round disabled @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" borderColor="#FFFF00" textColor="#F0F" type="warning" icon="mtui-icon-revise" disabled round @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" borderColor="#FF8C00" type="danger" round disabled @click="btnClick">橙色按钮</mtui-button>
                 <mtui-button round loading loadingColor="#c0c4cc" @click="btnClick">默认按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" type="info" round loading @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#F0F" type="warning" loading round loadingColor="rgba(255, 0, 255, 0.6)" @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" type="danger" round loading @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" type="info" round loading @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" textColor="#F0F" type="warning" loading round loadingColor="rgba(255, 0, 255, 0.6)" @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" type="danger" round loading @click="btnClick">橙色按钮</mtui-button>
 
                 <mtui-button plain @click="btnClick">朴素按钮</mtui-button>
-                <mtui-button btnBgColor="rgb(128,0,128)" btnBorderColor="rgb(128,0,128)" btnTextColor="rgb(128,0,128)" type="primary" plain @click="btnClick">紫色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF1493" btnBorderColor="#FF1493" btnTextColor="#FF1493" type="success" plain @click="btnClick">深粉色按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" btnTextColor="#008B8B" type="info" plain round @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#FFD21F" type="warning" plain round @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" btnTextColor="FF8C00" type="danger" plain round @click="btnClick">橙色按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" btnTextColor="#008B8B" type="info" plain round disabled @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#FFD21F" type="warning" plain round disabled @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" btnTextColor="FF8C00" type="danger" plain round disabled @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="rgb(128,0,128)" borderColor="rgb(128,0,128)" textColor="rgb(128,0,128)" type="primary" plain @click="btnClick">紫色按钮</mtui-button>
+                <mtui-button bgColor="#FF1493" borderColor="#FF1493" textColor="#FF1493" type="success" plain @click="btnClick">深粉色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" textColor="#008B8B" type="info" plain round @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" textColor="#FFD21F" type="warning" plain round @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" textColor="FF8C00" type="danger" plain round @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" borderColor="#008B8B" textColor="#008B8B" type="info" plain round disabled @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" borderColor="#FFFF00" textColor="#FFD21F" type="warning" plain round disabled @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" borderColor="#FF8C00" textColor="FF8C00" type="danger" plain round disabled @click="btnClick">橙色按钮</mtui-button>
                 <mtui-button plain round loading loadingColor="#c0c4cc" loadingType="rectangle" :loadingSize="0.4" @click="btnClick">朴素按钮</mtui-button>
-                <mtui-button btnBgColor="#008B8B" btnBorderColor="#008B8B" btnTextColor="#008B8B" type="info" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button btnBgColor="#FFFF00" btnBorderColor="#FFFF00" btnTextColor="#FFD21F" type="warning" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">黄色按钮</mtui-button>
-                <mtui-button btnBgColor="#FF8C00" btnBorderColor="#FF8C00" btnTextColor="#FF8C00" type="danger" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">橙色按钮</mtui-button>
+                <mtui-button bgColor="#008B8B" textColor="#008B8B" type="info" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" textColor="#FFD21F" type="warning" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">黄色按钮</mtui-button>
+                <mtui-button bgColor="#FF8C00" textColor="#FF8C00" type="danger" plain round loading loadingType="rectangle" :loadingSize="0.4" @click="btnClick">橙色按钮</mtui-button>
             </div>
         </div>
     </div>
