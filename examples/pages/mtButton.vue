@@ -200,7 +200,7 @@
                 <mtui-button borderColor="#008B8B" type="info" plain round @click="btnClick">深青色按钮</mtui-button>
                 <mtui-button borderColor="#008B8B" type="info" disabled plain round @click="btnClick">深青色按钮</mtui-button>
                 <mtui-button borderColor="#008B8B" type="info" loading plain round @click="btnClick">深青色按钮</mtui-button>
-                <mtui-button borderColor="#008B8B" type="info" loading plain round @click="btnClick">深青色按钮</mtui-button>
+                <mtui-button bgColor="#FFFF00" borderColor="#008B8B" type="info" loading plain round @click="btnClick">深青色按钮</mtui-button>
             </div>
         </div>
     </div>
