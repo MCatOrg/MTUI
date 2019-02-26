@@ -4,7 +4,8 @@ import Router from 'vue-router';
 let RouterArr = [
   {name: 'home', path: '/', page: 'index', title: '首页', hide: true},
   {name: 'base', path: '/base', page: 'component', title: '基础组件', children: [
-    {name: 'button', path: '/button', page: 'button', title: '按钮'},
+    {name: 'button', path: '/button', page: 'button', title: '按钮(将废弃)'},
+    {name: 'mtButton', path: '/mtButton', page: 'mtButton', title: '新按钮'},
     {name: 'cell', path: '/cell', page: 'cell', title: '单元'},
     {name: 'spinner', path: '/spinner', page: 'spinner', title: '等待动画'},
     {name: 'bigPicture', path: '/bigPicture', page: 'bigPicture', title: '图片放大'},
@@ -12,7 +13,6 @@ let RouterArr = [
     {name: 'touchRipple', path: '/touchRipple', page: 'touchRipple', title: '涟漪'},
     {name: 'nothing', path: '/nothing', page: 'nothing', title: '缺省页'},
     {name: 'icon', path: '/icon', page: 'icon', title: '图标'},
-    {name: 'mtButton', path: '/mtButton', page: 'mtButton', title: '新按钮'}
   ]},
   {name: 'action', path: '/action', page: 'component', title: '交互组件', children: [
     {name: 'actionsheet', path: '/actionsheet', page: 'action-sheet', title: '操作弹层'},
