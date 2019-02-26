@@ -1,3 +1,10 @@
+<style lang="less" scoped>
+.mybutton{
+    background: linear-gradient(45deg, rgba(0,255,0,1) 0, rgba(0,255,255,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%, rgba(0,0,255,1) 100%);
+    border: 0;
+}
+</style>
+
 <template>
     <div id="mtButton">
         <div class="mt-btn_wrapper">
@@ -201,6 +208,12 @@
                 <mtui-button borderColor="#008B8B" type="info" disabled plain round @click="btnClick">深青色按钮</mtui-button>
                 <mtui-button borderColor="#008B8B" type="info" loading plain round @click="btnClick">深青色按钮</mtui-button>
                 <mtui-button bgColor="#FFFF00" borderColor="#008B8B" type="info" loading plain round @click="btnClick">深青色按钮</mtui-button>
+            </div>
+        </div>
+        <div class="mt-btn_wrapper">
+            <h2 class="mt-btn_title">13.使用class调整按钮：</h2>
+            <div class="mt-btn_list">
+                <mtui-button class="mybutton" type="info">按钮</mtui-button>
             </div>
         </div>
     </div>
