@@ -16,7 +16,7 @@
       <li ref="mtuiUploaderInputBox" class="mtui-uploader__input-box" v-show="isShowUploaderBox">
         <!-- 用于改变上传组件的初始样式 -->
         <slot></slot>
-        <span class="mtui-uploader__input"  v-if="useWx" @click="wxCompress"></span>
+        <span class="mtui-uploader__input"  v-if="!forceCloseWx&&useWx" @click="wxCompress"></span>
         <input class="mtui-uploader__input"
         @change="localChangeEvent"
         :multiple="isOpenMultiple"
@@ -221,7 +221,8 @@ export default {
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
       fileType:undefined, // 用于微信图片上传记录图片类型
-      isShowUploaderBtn:true //正在上传的过程中，隐藏上传按钮
+      isShowUploaderBtn:true, //正在上传的过程中，隐藏上传按钮
+      forceCloseWx:false //强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
     };
   },
   computed: {
@@ -712,7 +713,10 @@ export default {
       this.hideLoading();
       this.restConfig()
       if(event.errMsg === "chooseImage:permission denied"||event.errMsg==="getLocalImgData:fail, the permission value is offline verifying"){//没有权限
-        this.$refs.uploader__input.click();
+        this.forceCloseWx = true;
+        this.$nextTick(()=>{
+          this.$refs.uploader__input.click();
+        });
       }else{
         this.onError({ status: 'fail', data:  event });
       }
@@ -774,7 +778,7 @@ export default {
     },
     changeImg() {
       this.isChangeImg = true;
-      if (this.useWx) {
+      if (!this.forceCloseWx&&this.useWx) {
         this.wxCompress();
       } else {
         this.$refs.uploader__input.click();
