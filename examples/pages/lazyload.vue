@@ -1,6 +1,6 @@
 <template>
   <div id="lazyload">
-    <img v-for="(imgSrc,i) of list" v-lazy="imgSrc" :key="imgSrc" alt="">
+    <img v-for="imgSrc of list" v-lazy="imgSrc" :key="imgSrc" alt="">
   </div>
 </template>
 <script>
@@ -20,6 +20,7 @@ export default {
         'https://avatars0.githubusercontent.com/u/26002161?s=64&v=4',
         'https://avatars1.githubusercontent.com/u/6436132?s=64&v=4',
         'https://avatars0.githubusercontent.com/u/3118295?s=64&v=4',
+        '111',
         'https://avatars0.githubusercontent.com/u/23147260?s=64&v=4',
         'https://avatars3.githubusercontent.com/u/25254?s=64&v=4',
         'https://avatars3.githubusercontent.com/u/26117697?s=64&v=4',
