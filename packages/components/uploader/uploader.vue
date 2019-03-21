@@ -49,7 +49,6 @@ import mtBigPicture from '../bigPicture';
 import mtActionsheet from '../action-sheet';
 import mtMessageBox from '../message-box';
 import EXIF from './Plug/exif';
-
 export default {
   name: 'mt-uploader',
   components: {
@@ -712,9 +711,11 @@ export default {
     ErrorEvent(event) {
       this.hideLoading();
       this.restConfig()
-      if(event.errMsg === "chooseImage:permission denied"||event.errMsg==="getLocalImgData:fail, the permission value is offline verifying"){//没有权限
+      if(typeof event.errMsg === 'string'&&event.errMsg.indexOf('getLocalImgData')!==-1||event.errMsg.indexOf('chooseImage')!==-1){//没有权限
         this.forceCloseWx = true;
+        console.log("强制转换为原生上传方式",this.forceCloseWx)
         this.$nextTick(()=>{
+          console.log("强制转换为原生上传方式",this.$refs,typeof this.$refs.uploader__input.click)
           this.$refs.uploader__input.click();
         });
       }else{
