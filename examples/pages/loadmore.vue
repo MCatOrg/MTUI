@@ -8,7 +8,7 @@
       :bottom-method="bottomMethod"
       @translate-change="translateChange"
       :bottom-all-loaded="bottomAllLoaded"
-      :autoFill="false"
+      :autoFill="true"
       top-loading-text="">
         <div class="proList">
           <div v-for="(pro,i) of proList" :key="i" class="item">
@@ -78,7 +78,7 @@ export default {
         this.proList = this.source.slice(0);
         this.bottomAllLoaded = false;
         this.$refs.loadmore.onTopLoaded();
-      }, 2000);
+      },50);
     },
     translateChange() {
     },
@@ -91,7 +91,7 @@ export default {
           this.proList = this.proList.concat(this.row);
         }
         this.$refs.loadmore.onBottomLoaded();
-      }, 2000);
+      }, 50);
     },
   },
 };

@@ -49,20 +49,24 @@
 </style>
 <script>
 import Spinner from '../spinner';
-
+let AnimationStarTime = 0,timeId=null;
 export default {
   name: 'mt-loadmore',
   components: {
     Spinner,
   },
   props: {
+    minAnimationTime:{//上拉加载更多动画和下拉刷新动画的至少持续的时间，如果onBottomLoaded或者onTopLoaded的执行的时间间隙没有达到这个时间，则延迟到这个时间结束
+      type:Number,
+      default:1*1000
+    },
     maxDistance: {
       type: Number,
       default: 0,
     },
     autoFill: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     distanceIndex: {
       type: Number,
@@ -171,25 +175,33 @@ export default {
   },
   methods: {
     onTopLoaded() {
-      this.translate = 0;
-      setTimeout(() => {
+      var time = Date.now() - AnimationStarTime;
+      if(timeId){
+        clearTimeout(timeId);
+        timeId = null;
+      }
+      AnimationStarTime=0;
+      if(time>=this.minAnimationTime){
+        this.translate = 0;
         this.topStatus = 'pull';
         this.$nextTick(() => {
           this.fillContainer();
         });
-      }, 500);
+      }else{
+        timeId = setTimeout(()=>{
+          this.translate = 0;
+          this.topStatus = 'pull';
+          this.$nextTick(() => {
+            this.fillContainer();
+          });
+          clearTimeout(timeId);
+          timeId = null;
+        },this.minAnimationTime-time);
+      }
     },
     onBottomLoaded() {
       this.bottomStatus = 'pull';
       this.bottomDropped = false;
-      // this.$nextTick(() => {
-      //   if (this.scrollEventTarget === window) {
-      //     document.body.scrollTop += 50;
-      //   } else {
-      //     this.scrollEventTarget.scrollTop += 50;
-      //   }
-      //   this.translate = 0;
-      // });
       if (!this.bottomAllLoaded && !this.containerFilled) {
         this.$nextTick(() => {
           this.fillContainer();
@@ -309,6 +321,7 @@ export default {
     handleTouchEnd() {
       if (this.direction === 'down' && this.getScrollTop(this.scrollEventTarget) === 0
       && this.translate > 0) {
+        AnimationStarTime = Date.now();//保存加载动画开始时间
         this.topDropped = true;
         if (this.topStatus === 'drop') {
           this.translate = '50';
