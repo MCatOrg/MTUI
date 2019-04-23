@@ -59,6 +59,9 @@ export default {
       if (item.fn && typeof item.fn === 'function') {
         item.fn(item, i);
       }
+      if(this.currentIndex != i) {
+        this.$emit('changeEvent', item, i)
+      }
       this.currentValue = false;
       this.currentIndex = i;
     },

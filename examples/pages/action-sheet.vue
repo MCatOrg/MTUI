@@ -5,6 +5,7 @@
         :menus="menus"
         v-model="showAS"
         class-name=""
+        @changeEvent="changeEvent"
         title-class-name="">
       </mt-actionsheet>
       <mt-actionsheet
@@ -12,6 +13,7 @@
         cancel-text=""
         :menus="menus"
         v-model="showUnCancel"
+        @changeEvent="changeEvent"
         title-class-name=""
         :close-on-click-modal="false"
       >
@@ -26,10 +28,8 @@ export default {
     return {
       menus: [{
         text: '菜单一',
-        fn: this.oneMenu,
       }, {
         text: '菜单二',
-        fn: this.twoMenu,
         color: 'red',
       }],
       showAS: false,
@@ -37,12 +37,9 @@ export default {
     };
   },
   methods: {
-    oneMenu(item, index) {
-      console.log('菜单一', index, item);
-    },
-    twoMenu(item, index) {
-      console.log('菜单二', index, item);
-    },
+    changeEvent(item, index) {
+      console.log(index, item);
+    }
   },
 };
 </script>
