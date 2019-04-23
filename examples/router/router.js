@@ -21,6 +21,7 @@ let RouterArr = [
     {name: 'swipe', path: '/swipe', page: 'swipe', title: '走马灯'},
     {name: 'accordion', path: '/accordion', page: 'accordion', title: '折叠面板'},
     {name: 'picker', path: '/picker', page: 'picker', title: '选择器'},
+    {name: 'datePicker', path: '/datePicker', page: 'datePicker', title: '时间选择器'},
     {name: 'tabbar', path: '/tabbar', page: 'tabbar', title: '导航'},
     {name: 'tabs', path: '/tabs', page: 'tabs', title: '标签栏'},
     {name: 'popup', path: '/popup', page: 'popup', title: '弹窗'},

@@ -30,6 +30,7 @@ import codebox from '@/pages/codebox'
 
 import newloadmore from '@/pages/load-more';
 
+import datePicker from '@/pages/datePicker';
 Vue.use(Router);
 
 const router = new Router({
@@ -218,6 +219,11 @@ const router = new Router({
       },
       component: () => import('../pages/toast.vue'),
     }
+    {
+      path: '/datePicker',
+      name: 'datePicker',
+      component: datePicker
+    },
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {

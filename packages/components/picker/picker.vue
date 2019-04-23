@@ -83,7 +83,21 @@ export default {
   data() {
     return {
       keyWord: '',
+      values: []
     };
+  },
+  created(){
+        // 显示默认值
+        const slots = this.slots || [];
+        const values = [];
+        let valueIndexCount = 0;
+        slots.forEach((slot) => {
+          if (!slot.divider) {
+            slot.valueIndex = valueIndexCount++;
+            values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
+          }
+        });
+        this.values = values;
   },
   methods: {
     slotValueChange() {
@@ -148,20 +162,20 @@ export default {
   },
 
   computed: {
-    values: {
-      get() {
-        const slots = this.slots || [];
-        const values = [];
-        let valueIndexCount = 0;
-        slots.forEach((slot) => {
-          if (!slot.divider) {
-            slot.valueIndex = valueIndexCount++;
-            values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
-          }
-        });
-        return values;
-      },
-    },
+    //values: {
+    //  get() {
+    //    const slots = this.slots || [];
+    //    const values = [];
+    //    let valueIndexCount = 0;
+    //    slots.forEach((slot) => {
+    //      if (!slot.divider) {
+    //        slot.valueIndex = valueIndexCount++;
+    //        values[slot.valueIndex] = (slot.values || [])[slot.defaultIndex || 0];
+    //      }
+    //    });
+    //    return values;
+    //  },
+    //},
     slotCount() {
       const slots = this.slots || [];
       let result = 0;
