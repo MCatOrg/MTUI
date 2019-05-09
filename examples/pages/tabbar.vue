@@ -17,16 +17,13 @@
       <br>
       <h3>activeColor</h3>
       <p>activeColor: 选中的颜色 String default #4A87D6</p>
-      <br> -->
+      <br>-->
 
-      <mt-tab-bar :fixed="false" :tabBarData="tabBarData1"></mt-tab-bar>
-      <br>
-      <br>
-      <mt-tab-bar :fixed="true" :tabBarData="tabBarData2"
-      color="#666" activeColor="red" :index="2"></mt-tab-bar>
+      <mt-tab-bar :fixed="false" :tabBarData="tabBarData1" :iconSize="28"></mt-tab-bar>
+      <mt-tab-bar :fixed="false" :tabBarData="tabBarData3" color="#666" activeColor="red" :index="2"></mt-tab-bar>
+      <mt-tab-bar fixed :tabBarData="tabBarData1" :iconSize="28" fixedDir="top"></mt-tab-bar>
+      <mt-tab-bar :fixed="true" :tabBarData="tabBarData2" color="#666" activeColor="red" :index="2"></mt-tab-bar>
     </div>
-
-
   </div>
 </template>
 <script>
@@ -35,71 +32,110 @@ export default {
     return {
       tabBarData1: [
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          fontIcon: 'mtui-icon-shopIndex-o',
+          fontIconSize: 38,
           to: 'tabbar',
-          text: '',
+          text: '首页',
           path: 'http://baidu.com',
         },
         {
-          fontIcon: 'mtui-icon-search',
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIconSize: '',
+          fontIcon: 'mtui-icon-shopClassify-o',
+          fontIconSize: 48,
           to: 'tabbar',
           text: '分类',
         },
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          fontIcon: 'mtui-icon-purchaseList-o',
+          fontIconSize: 58,
           to: 'tabbar',
           text: '购物车',
         },
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          fontIcon: 'mtui-icon-my-o',
           to: 'tabbar',
           text: '个人中心',
         },
       ],
-      tabBarData2: [
+      tabBarData3: [
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/198/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/153/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
           to: 'tabbar',
-          text: '',
+          text: '首页',
         },
         {
-          fontIcon: 'mtui-icon-search',
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIconSize: '',
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/185/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/178/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
           to: 'tabbar',
-          text: '分类',
+          text: 'tabbar',
         },
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/65/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojidex/112/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
           to: 'tabbar',
           text: '购物车',
         },
         {
-          imgWidth: 50,
-          imgHeight: 50,
-          fontIcon: '',
-          fontIconSize: '',
+          img: 'https://avatars3.githubusercontent.com/u/6128107?s=200&v=4',
+          // activeImg:
+          //   'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/146/grinning-face_1f600.png',
+          imgWidth: 60,
+          imgHeight: 58,
           to: 'tabbar',
-          text: '个人中心',
+          text: 'tabbar',
+        },
+      ],
+      tabBarData2: [
+        {
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/198/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/153/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
+          to: '/',
+          text: '首页',
+        },
+        {
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/185/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/178/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
+          to: 'icon',
+          text: 'icon',
+        },
+        {
+          img:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/65/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          activeImg:
+            'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojidex/112/smiling-face-with-heart-shaped-eyes_1f60d.png',
+          imgWidth: 44,
+          imgHeight: 42,
+          to: 'tabbar',
+          text: '购物车',
+        },
+        {
+          img: 'https://avatars3.githubusercontent.com/u/6128107?s=200&v=4',
+          // activeImg:
+          //   'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/146/grinning-face_1f600.png',
+          imgWidth: 60,
+          imgHeight: 58,
+          path: 'https://cn.vuejs.org/',
+          text: 'vue',
         },
       ],
     };
@@ -113,7 +149,7 @@ export default {
   margin: 0 auto;
 }
 h1 {
-  padding: .36rem;
+  padding: 0.36rem;
   color: #666;
 }
 .box {
@@ -121,10 +157,10 @@ h1 {
   height: 1rem;
   line-height: 1rem;
   position: relative;
-  margin: .2rem;
+  margin: 0.2rem;
   text-align: center;
   display: inline-block;
-  border: .01rem solid rgb(211, 65, 20);
+  border: 0.01rem solid rgb(211, 65, 20);
 }
 </style>
 

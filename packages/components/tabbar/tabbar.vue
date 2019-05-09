@@ -1,25 +1,23 @@
 <template>
-  <div class="mt-tabbars" :class="{ 'fixed' : fixed}">
-    <div class="mt-tabbar"
-    v-for="(item,index) in tabBarData" :key="index"
-    @click="itemClick(index)"  ref="tabBar">
-      <!-- <router-link :to="item.to"> -->
-        <div @click="toView(item)">
-          <div class="mt-tabbar_icon">
-            <i
-              v-if="item.fontIcon"
-              :class="item.fontIcon"
-              :style="{fontSize: item.fontIconSize}">
-            </i>
-            <img
-              v-else
-              :src="item.img"
-              :style="{width: item.imgWidth,height: item.imgHeight}" alt="">
-          </div>
-          <div
-          class="mt-tabbar_label">{{item.text}}</div>
-        </div>
-      <!-- </router-link> -->
+  <div class="mt-tabbars" :class="{ 'fixed' : fixed}" :style="fixedDirSty">
+    <div
+      class="mt-tabbar"
+      v-for="(item,index) in tabBarData"
+      :key="index"
+      @click="itemClick(item,index)"
+      :style="{ 'color': index == tabBarIndex ? activeColor :color }"
+      ref="tabBar"
+    >
+      <div class="mt-tabbar_icon">
+        <i v-if="item.fontIcon" :class="item.fontIcon" :style="{fontSize: item.fontIconSize}"></i>
+        <img
+          v-else
+          :src="index == tabBarIndex ? item.activeImg : item.img"
+          :style="item|imgSize"
+          alt
+        >
+      </div>
+      <div class="mt-tabbar_label">{{item.text}}</div>
     </div>
   </div>
 </template>
@@ -27,25 +25,45 @@
 export default {
   name: 'mt-tab-bar',
   props: {
+    // 颜色
     color: {
       type: String,
       default: '#B3B3B3',
     },
+    // 图标选择颜色
     activeColor: {
       type: String,
       default: '#4A87D6',
     },
+    // tabbar 数据
     tabBarData: {
       type: Array,
       default() {
         return [];
       },
     },
+    // 是否定位
     fixed: {
       type: Boolean,
       default: true,
     },
+    // 定位 位置 top bottom
+    fixedDir: {
+      type: String,
+      default: 'bottom',
+    },
+    // 点到第几个
     index: Number,
+    // 定位的z-index
+    zIndex: {
+      type: Number,
+      default: 9,
+    },
+    // 图标大小
+    iconSize: {
+      type: Number,
+      default: 38,
+    },
   },
   data() {
     return {
@@ -54,64 +72,32 @@ export default {
   },
   watch: {
     tabBarData: {
-      handler() {
-        if (this.tabBarData && this.tabBarData.length > 0) {
-          this.tabBarData.forEach((item, index) => {
-            this.tabBarData[index].img = item.img
-              ? item.img
-              : 'http://192.168.3.93/img/icon_tabbar.png';
-            this.tabBarData[index].imgWidth = item.imgWidth
-              ? `${item.imgWidth / 100}rem`
-              : `${50 / 100}rem`;
-            this.tabBarData[index].imgHeight = item.imgHeight
-              ? `${item.imgHeight / 100}rem`
-              : `${50 / 100}rem`;
-            this.tabBarData[index].fontIcon = item.fontIcon
-              ? item.fontIcon
-              : '';
-            this.tabBarData[index].fontIconSize = item.fontIconSize
-              ? `${item.fontIconSize / 100}rem`
-              : `${38 / 100}rem`;
-            this.tabBarData[index].text = item.text ? item.text : '首页';
-            this.tabBarData[index].to = item.to ? item.to : '/';
+      handler(n, o) {
+        if (n && n.length) {
+          n.forEach((item) => {
+            item.activeImg = item.activeImg || item.img;
+            item.fontIconSize = item.fontIconSize && `${item.fontIconSize / 100}rem` || `${this.iconSize / 100}rem`;
           });
         }
       },
       immediate: true,
-      deep: true,
+    },
+  },
+  computed: {
+    fixedDirSty() {
+      return `${this.fixedDir}:0;z-index:${this.zIndex}`;
+    },
+  },
+  filters: {
+    imgSize(obj) {
+      const w = obj.imgWidth || 50;
+      const h = obj.imgHeight || 50;
+      return `width: ${w / 100}rem;height: ${h / 100}rem`;
     },
   },
   methods: {
-    init() {
-      if (this.index) {
-        this.tabBarIndex = this.index;
-        this.$refs.tabBar[this.tabBarIndex].children[0].style = `color:${this.activeColor}`;
-      } else {
-        if (this.$refs.tabBar && this.$refs.tabBar.length) {
-          this.$refs.tabBar.forEach((item) => {
-            item.children[0].style = `color:${this.color}`;
-          });
-        }
-        this.$refs.tabBar[0].children[0].style = `color:${this.activeColor}`;
-      }
-    },
-    changeItem(index) {
-      if (this.$refs.tabBar && this.$refs.tabBar.length) {
-        this.$refs.tabBar.forEach((item) => {
-          item.children[0].style = `color:${this.color}`;
-        });
-      }
-      if (this.index) {
-        this.$refs.tabBar[this.tabBarIndex].children[0].style = `color:${this.activeColor}`;
-      } else {
-        this.$refs.tabBar[index].children[0].style = `color:${this.activeColor}`;
-      }
-    },
-    itemClick(index) {
+    itemClick(item, index) {
       this.tabBarIndex = index;
-      this.changeItem(index);
-    },
-    toView(item) {
       if (item.path) {
         window.location.href = item.path;
       } else {
@@ -120,7 +106,7 @@ export default {
     },
   },
   mounted() {
-    this.init();
+    this.tabBarIndex = this.index || 0;
   },
 };
 </script>
@@ -144,16 +130,7 @@ export default {
     width: 100%;
     top: 0;
     border-top: 0.01rem solid#E5E5E5;
-    // transform: scaleY(0.5);
   }
-  // &::after {
-  //   content: "";
-  //   position: absolute;
-  //   width: 100%;
-  //   bottom: 0;
-  //   border-bottom: 0.01rem solid#E5E5E5;
-  //   // transform: scaleY(0.5);
-  // }
 }
 .mt-tabbar {
   flex: 1;
@@ -164,7 +141,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  a{
+  a {
     width: 100%;
     height: 100%;
   }
@@ -193,12 +170,13 @@ export default {
 
 .fixed {
   position: fixed;
-  bottom: 0;
+  // bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9;
+  // z-index: 9;
 }
-@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+@supports (bottom: constant(safe-area-inset-bottom)) or
+  (bottom: env(safe-area-inset-bottom)) {
   .fixed {
     padding-bottom: constant(safe-area-inset-bottom);
     padding-bottom: env(safe-area-inset-bottom);
