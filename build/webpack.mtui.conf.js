@@ -16,7 +16,7 @@ let plugins = [
   ].join('\n')),
   // 生成mtui.css
   new ExtractTextPlugin({
-    filename: './mtui.css',
+    filename: `./mtui.min-${pkg.version}.css`,
     disable: false,
     allChunks: true,
   }),
@@ -46,7 +46,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../lib'),
     publicPath: './',
-    filename: 'mtui.js',
+    filename: `mtui.min-${pkg.version}.js`,
     library: {
       root: "mtui",
       amd: "mtui",
@@ -104,7 +104,7 @@ module.exports = {
       '~': resolve('packages')
     }
   },
-  // devtool: '#source-map',
+  devtool: '#source-map',
   plugins,
   externals:{
     vue:'Vue'
