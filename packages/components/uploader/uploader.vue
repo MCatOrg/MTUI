@@ -285,11 +285,11 @@ export default {
   },
   mounted(){
     var uploadBoxStyle = this.$refs.mtuiUploaderInputBox.getBoundingClientRect();
-    var width = Math.max(uploadBoxStyle.width,uploadBoxStyle.height);
+    var width = Math.max(uploadBoxStyle.width,uploadBoxStyle.height) || 80;
     this.loadingImg = new LoadingConstructor({
       width: width,
       height: width,
-      border: width*0.016+8.71,
+      border: 10,
       percent: 0,
       bgcolor: this.loadingFgColor,
       pcolor: this.loadingColor,

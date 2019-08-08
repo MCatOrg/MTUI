@@ -16,7 +16,10 @@ class Cycle {
     const w = this.width;
     const h = this.height;
     const deg = percent || this.percent;
-    const cradius = (w / 2) - this.border;
+    let cradius = (w / 2) - this.border;
+    if(cradius<=0){
+      cradius = 30;
+    }
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.context.fillStyle = 'rgba(255,255,255,0.5)';
