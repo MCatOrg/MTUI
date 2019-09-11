@@ -29,6 +29,9 @@
     :clientType="1"
     :IsWeixinClientRequest="false"
     :IsUseWeiXinSDKUpdatePic="false"
+    uploadType="base64"
+    uploadFormKey="ImageDataBase64"
+    :data="{token:2333333}"
     >
       <img src="../assets/logo.png" alt="">
     </mt-uploader>

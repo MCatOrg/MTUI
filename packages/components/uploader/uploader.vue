@@ -195,6 +195,20 @@ export default {
     },
     IsWeixinClientRequest:{ // 是否是微信客户端请求
       type:Boolean
+    },
+    data:{ // 额外需要上传的参数
+      type:Object,
+      default(){
+        return {}
+      }
+    },
+    uploadType:{ // 上传的实体类型 base64 或者 file，如果是 file 则无法使用水印、图片压缩、微信选择图片、图片宽度限制等功能
+      type:String,
+      default:'base64'
+    },
+    uploadFormKey:{
+      type:String,
+      default:'ImageDataBase64'
     }
   },
   data() {
@@ -234,7 +248,7 @@ export default {
     },
     useWx() {
       console.log(typeof wx === 'object',this.IsWinWechat(),this.getWxVision())
-      if (typeof wx === 'object' && this.IsWinWechat() && this.getWxVision() > '6.5.0' && this.IsUseWeiXinSDKUpdatePic && this.IsWeixinClientRequest) {
+      if (typeof wx === 'object' && this.IsWinWechat() && this.getWxVision() > '6.5.0' && this.IsUseWeiXinSDKUpdatePic && this.IsWeixinClientRequest && this.uploadType !== 'file') {
         return true;
       }
       return false;
@@ -298,6 +312,12 @@ export default {
     });
   },
   methods: {
+    // 手动触发原生上传图片
+    handClickInputFile(){
+      if(this.$refs.uploader__input){
+        this.$refs.uploader__input.click();
+      }
+    },
     getBase64Type(base64){
       var resultArr = base64.match(/\/\w+\;/);
       if(!resultArr)return undefined;
@@ -418,10 +438,24 @@ export default {
       !this.isChangeImg&&(this.isShowUploaderBtn = false);
       this.file = files[0];
       this.showLoading(0); // 显示loading
-      this.getImgPosition(files[0]); // 获取图像的方位信息
-      const imgUrl = this.getImgBlob(files[0]);
-      this.transformStart(imgUrl);
+      // 判断是以base64上传还是file直接上传
+      if(this.uploadType === 'file'){
+        this.uploadFileToServer();
+      }else{
+        this.getImgPosition(files[0]); // 获取图像的方位信息
+        const imgUrl = this.getImgBlob(files[0]);
+        this.transformStart(imgUrl);
+      }
       return true;
+    },
+    uploadFileToServer(){
+      const form = new FormData();
+      // 添加附加的参数
+      for(let key in this.data){
+        form.append(key, this.data[key]);
+      }
+      form.append(this.uploadFormKey, this.file); // 数据
+      this.sendXhr(form)
     },
     wxCompress() {
       console.log('微信接口');
@@ -570,7 +604,6 @@ export default {
       const len = this.checkList.length;
       let key;
       for (let i = 0; i < len; i++) {
-        console.log(2222,this.checkList[i].name)
         key = this.checkList[i].name;
         if (!this.checkList[i].handler(argObj[key])) return false;
       }
@@ -691,15 +724,22 @@ export default {
     Base64StringToImage(base64) {
       this.GetImgDirectory();
       const form = new FormData();
+      // 向后兼容，不删除
       form.append('action', 'base64stringtoimage'); // 方法
       form.append('ImgDirectory', this.currentImgDirectory); // 目录
-      form.append('ImageDataBase64', base64); // 数据
+      // 添加附加的参数
+      for(let key in this.data){
+        form.append(key, this.data[key]);
+      }
+      form.append(this.uploadFormKey, base64); // 数据
+      this.sendXhr(form)
+    },
+    sendXhr(form){
       if (!this.xhr) {
         this.xhr = new XMLHttpRequest();
       }
       this.xhrHanldeMehods(); // 集中处理 xhr 对象
       this.xhr.open('post', this.serverUrl, true);
-      console.log('this.xhr', this.xhr);
       this.xhr.send(form);
     },
     xhrTimeOutEvent() {
@@ -715,8 +755,7 @@ export default {
         this.forceCloseWx = true;
         console.log("强制转换为原生上传方式",this.forceCloseWx)
         this.$nextTick(()=>{
-          console.log("强制转换为原生上传方式",this.$refs,typeof this.$refs.uploader__input.click)
-          this.$refs.uploader__input.click();
+          this.handClickInputFile();
         });
       }else{
         this.onError({ status: 'fail', data:  event });
@@ -782,7 +821,7 @@ export default {
       if (!this.forceCloseWx&&this.useWx) {
         this.wxCompress();
       } else {
-        this.$refs.uploader__input.click();
+        this.handClickInputFile();
         this.hideBigImg();
       }
       return true;

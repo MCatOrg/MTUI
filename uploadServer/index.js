@@ -13,18 +13,22 @@ app.all('*', function(req, res, next) {
   else  next();
 });
 app.post('/upData',upload.single('file'),(req,res)=>{
-  var ext = "png";
-  var ImageDataBase64="";
-  if(req.body.ImageDataBase64.indexOf("/png")!==-1){
-    ImageDataBase64 = req.body.ImageDataBase64.replace(/^data:image\/png;base64,/,'');
-  }else if(req.body.ImageDataBase64.indexOf("/jpeg")!==-1){
-    ImageDataBase64 = req.body.ImageDataBase64.replace(/^data:image\/jpeg;base64,/,'');
-    ext = "jpg"
+  if(req.file){
+    res.send({id:1,url:'http://'+req.headers.host+'/'+req.file.path});//返回信息自己定义
+  }else{
+    var ext = "png";
+    var ImageDataBase64="";
+    if(req.body.ImageDataBase64.indexOf("/png")!==-1){
+      ImageDataBase64 = req.body.ImageDataBase64.replace(/^data:image\/png;base64,/,'');
+    }else if(req.body.ImageDataBase64.indexOf("/jpeg")!==-1){
+      ImageDataBase64 = req.body.ImageDataBase64.replace(/^data:image\/jpeg;base64,/,'');
+      ext = "jpg"
+    }
+    var imgPhath = `/public/Images/${Date.now()}.${ext}`;
+    fs.writeFile(path.join(__dirname, imgPhath),ImageDataBase64, "base64",(err)=>{
+      res.send({id:1,url:'http://'+req.headers.host+imgPhath});//返回信息自己定义
+    });
   }
-  var imgPhath = `/public/Images/${Date.now()}.${ext}`;
-  fs.writeFile(path.join(__dirname, imgPhath),ImageDataBase64, "base64",(err)=>{
-    res.send({id:1,url:'http://'+req.headers.host+imgPhath});//返回信息自己定义
-  });
 });
 app.listen(3011,()=>{
   console.log('上传文件服务启动于：3011 端口')
