@@ -26,7 +26,7 @@ app.post('/upData',upload.single('file'),(req,res)=>{
     }
     var imgPhath = `/public/Images/${Date.now()}.${ext}`;
     fs.writeFile(path.join(__dirname, imgPhath),ImageDataBase64, "base64",(err)=>{
-      res.send({id:1,url:'http://'+req.headers.host+imgPhath});//返回信息自己定义
+      res.send({id:1,data:{url:'http://'+req.headers.host+imgPhath}});//返回信息自己定义
     });
   }
 });
