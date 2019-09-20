@@ -26,12 +26,24 @@ const pickerTpl = '<div class="<%= className %>">\
 <div class="mtui-js-picker">\
     <div class="mtui-js-picker__hd">\
         <a href="javascript:;" data-action="cancel" class="mtui-js-picker__action">取消</a>\
+        <% if(!!dateRange){ %>\
+            <span class="mtui-js-picker__dataRange_title">选择时间</span>\
+        <% } %>\
         <a href="javascript:;" data-action="select" class="mtui-js-picker__action" id="mtui-js-picker-confirm">确定</a>\
     </div>\
     <% if(!!search){ %>\
     <div class="mtui-js-picker__searchBox">\
         <input class="mtui-js-picker__search" type="text" placeholder="<%= searchPlaceholder %>" />\
     </div>\
+    <% } %>\
+    <% if(!!dateRange){ %>\
+        <div class="mtui-js-picker__dateRangeInput_wrap">\
+            <input name="date" id="start" class="mtui-js-picker__dateRangeInput_start" type="radio"  />\
+            <label  for="start" class="mtui-js-picker__dateRangeInput_start_label radio"></label>\
+            <span>至</span>\
+            <input name="date" id="end" class="mtui-js-picker__dateRangeInput_end" type="radio" />\
+            <label  for="end" class="mtui-js-picker__dateRangeInput_end_label radio"></label>\
+        </div>\
     <% } %>\
     <div class="mtui-js-picker__bd"></div>\
 </div>\
@@ -216,6 +228,7 @@ function picker() {
         container: 'body',
         search: false,
         searchPlaceholder: '筛选',
+        dateRange: false,
         onChange: $.noop,
         onConfirm: $.noop,
         onClose: $.noop
@@ -238,6 +251,7 @@ function picker() {
     // 获取缓存
     temp[defaults.id] = temp[defaults.id] || [];
     const result = [];
+    const dateRangeResult = { start: [], end: [] }
     const lineTemp = temp[defaults.id];
     const $picker = $($.render(pickerTpl, defaults));
     let depth = options.depth || (isMulti ? items.length : util.depthOf(items[0])), groups = '';
@@ -332,6 +346,38 @@ function picker() {
                         defaults.onChange(result);
                     }
                 }
+                try {
+                    // 日期范围选择
+                    if (defaults.dateRange) {
+                        let valStr = '',
+                            tArr = [],
+                            flag = '';
+                        var dateRangeInput = $('.mtui-js-picker__dateRangeInput_wrap').find(':checked')
+                        
+                        if (dateRangeInput[0]) {
+                            if (dateRangeInput[0].className === 'mtui-js-picker__dateRangeInput_start') {
+                                flag = 'start'
+                            } else if (dateRangeInput[0].className === 'mtui-js-picker__dateRangeInput_end') {
+                                flag = 'end'
+                            }
+                            if (flag) {
+                                result.forEach(function (item) {
+                                    valStr += item.label
+                                    tArr.push(item.value)
+                                })
+                                dateRangeResult[flag] = tArr
+                                $('.mtui-js-picker__dateRangeInput_'+flag+'_label').html(valStr)
+                            }
+                        } else {
+                            if ($('.mtui-js-picker__dateRangeInput_start')[0]) {
+                                $('.mtui-js-picker__dateRangeInput_start')[0].checked = true;
+                            }
+                        }
+                    }
+                } catch (e) {
+
+                }
+
             },
             onConfirm: defaults.onConfirm
         });
@@ -377,7 +423,11 @@ function picker() {
         .on('click', '.mtui-mask', function () { hide(); })
         .on('click', '.mtui-js-picker__action', function () { hide(); })
         .on('click', '#mtui-js-picker-confirm', function () {
-            defaults.onConfirm(result);
+            if (defaults.dateRange) {
+                defaults.onConfirm(dateRangeResult);
+            } else {
+                defaults.onConfirm(result);
+            }
         });
 
     _sington = $picker[0];

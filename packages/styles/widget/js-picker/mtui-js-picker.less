@@ -59,6 +59,45 @@
 .mtui-js-picker__searchBox{background-color: white; padding: 5px 15px; border-bottom: 1px solid #F6F6F6;}
 .mtui-js-picker__search{width: 100%; border: 0; height: .4rem; text-align: center; line-height: .4rem;}
 
+.mtui-js-picker__dataRange_title {
+    font-size:0.28rem;
+    color:#333;
+    font-weight: 500;
+}
+.mtui-js-picker__dateRangeInput_wrap {
+    background-color: white; padding: 0.3rem 0.96rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:0.28rem;
+    color:#333;
+    font-weight: 500;
+    z-index:100;
+    span {
+        display: inline-block;
+        padding:0 0.5rem;
+    }
+    input[type="radio"] {
+        display: none;
+    }
+    label.radio {
+        display: inline-block;
+        padding:0.2rem 0;
+        box-sizing: border-box;
+        width:2.6rem;
+        flex:0 0 2.6rem;
+        text-align: center;
+        height:1rem;
+        border:none;
+        font-size:0.28rem;
+        border-bottom: 0.02rem solid #E5E5E5;
+    }
+    input[type="radio"]:checked + label {
+        color:#409EFF;
+        border-bottom: 0.02rem solid #409EFF;
+    }
+}
+
 .mtui-js-picker__bd {
     display: flex;
     position: relative;
