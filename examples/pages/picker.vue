@@ -23,6 +23,8 @@
     <br>
     <h4>js调用datePicker</h4>
     <button @click="jsDatePicker">js调用datePicker</button>
+    <h4>js调用dateRangePicker</h4>
+    <button @click="jsDateRangePicker">js调用dateRangePicker</button>
   </div>
 </template>
 <script>
@@ -119,6 +121,19 @@ export default {
         },
       });
     },
+    jsDateRangePicker() {
+      this.$datePicker({
+        start: 1990,
+        end: new Date().getFullYear(),
+        dateRange:true,
+        onChange(result) {
+          console.log(result);
+        },
+        onConfirm(result) {
+          console.log(result);
+        },
+      });
+    }
   },
 };
 </script>
