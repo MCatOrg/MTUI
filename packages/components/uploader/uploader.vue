@@ -53,6 +53,7 @@
 <script>
 import JPEGEncoder from "./Plug/jpeg_encoder_basic";
 import MegaPixImage from "./Plug/MegaPixImage";
+import EXIF from "./Plug/exif";
 import LoadingConstructor from "./util/Cycle";
 import { deepFind } from "../../util/lang.js";
 import { get_android_version, get_ios_version } from "../../util/navigatorUtil";
@@ -60,7 +61,6 @@ import toast from "../toast";
 import mtBigPicture from "../bigPicture";
 import mtActionsheet from "../action-sheet";
 import mtMessageBox from "../message-box";
-import EXIF from "./Plug/exif";
 export default {
   name: "mt-uploader",
   components: {

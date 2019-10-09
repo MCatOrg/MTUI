@@ -1,6 +1,6 @@
 {
   "name": "imcat-ui",
-  "version": "1.7.24",
+  "version": "1.8.0",
   "description": "Mobile UI for Vue2.0",
   "keyword": [
     "component",
@@ -31,7 +31,6 @@
     "pub": "npm run build&&npm publish"
   },
   "dependencies": {
-    "vue-lazyload": "^1.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

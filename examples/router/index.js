@@ -8,7 +8,6 @@ import spinner from '@/pages/spinner';
 import loading from '@/pages/loading';
 import loadmore from '@/pages/loadmore';
 import tabContainer from '@/pages/tab-container';
-import lazyload from '@/pages/lazyload';
 import swipe from '@/pages/swipe';
 import touchRipple from '@/pages/touchRipple';
 import button from '@/pages/button';
@@ -82,11 +81,6 @@ const router = new Router({
       path: '/tabContainer',
       name: 'tabContainer',
       component: tabContainer,
-    },
-    {
-      path: '/lazyload',
-      name: 'lazyload',
-      component: lazyload,
     },
     {
       path: '/swipe',
