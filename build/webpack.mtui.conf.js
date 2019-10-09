@@ -3,6 +3,7 @@ var webpack = require('webpack')
 const utils = require('./utils')
 const pkg = require('../package.json')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -34,7 +35,9 @@ let plugins = [
   }),
   new webpack.LoaderOptionsPlugin({
     minimize: true
-  })
+  }),
+  // 生成打包报告
+  new BundleAnalyzerPlugin()
 ];
 // 运行 `npm run build --report` 查看打包大小分布状况
 if(process.env.npm_config_report){
