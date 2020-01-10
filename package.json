@@ -1,6 +1,6 @@
 {
   "name": "imcat-ui",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Mobile UI for Vue2.0",
   "keyword": [
     "component",
@@ -30,8 +30,7 @@
     "vbuild": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.prod.conf.js",
     "pub": "npm run build&&npm publish"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",

@@ -2,11 +2,11 @@
   <div class="mtui-uploader" :id="ID">
     <ul class="mtui-uploader__files">
       <li
-        v-for="(img,i) in uploadList"
+        v-for="(img, i) in uploadList"
         :key="i"
         class="mtui-uploader__file"
-        :style="{'background-image':`url(${img.url})`}"
-        @click="showBigImgEvent(img,i)"
+        :style="{ 'background-image': `url(${img.url})` }"
+        @click="showBigImgEvent(img, i)"
       >
         <input
           type="hidden"
@@ -14,17 +14,29 @@
           :value="img.url | removeOrigin"
           class="mtui-uploader__file-content"
           v-if="IsBase64StringToImage"
-        >
+        />
       </li>
       <li
         class="mtui-uploader__file"
-        :style="{'background-image':`url(${loadingSrc})`,'background-size': 'contain','background-repeat':'no-repeat'}"
+        :style="{
+          'background-image': `url(${loadingSrc})`,
+          'background-size': 'contain',
+          'background-repeat': 'no-repeat'
+        }"
         v-show="isShowLoading"
       ></li>
-      <li ref="mtuiUploaderInputBox" class="mtui-uploader__input-box" v-show="isShowUploaderBox">
+      <li
+        ref="mtuiUploaderInputBox"
+        class="mtui-uploader__input-box"
+        v-show="isShowUploaderBox"
+      >
         <!-- 用于改变上传组件的初始样式 -->
         <slot></slot>
-        <span class="mtui-uploader__input" v-if="!forceCloseWx&&useWx" @click="wxCompress"></span>
+        <span
+          class="mtui-uploader__input"
+          v-if="!forceCloseWx && useWx"
+          @click="wxCompress"
+        ></span>
         <input
           class="mtui-uploader__input"
           @change="localChangeEvent"
@@ -33,18 +45,18 @@
           accept="image/*"
           v-else
           ref="uploader__input"
-        >
+        />
       </li>
     </ul>
     <!-- 大图 -->
-    <mt-big-picture :imgSrc="bigImgSrc" v-model="showBigImg"/>
+    <mt-big-picture :imgSrc="bigImgSrc" v-model="showBigImg" />
     <div class="mtui-img-handle" v-show="showBigImg">
       <div @click="deleteImg" v-if="canDeteleImg">
-        <img src="./images/delete_img_icon.png" alt="">
+        <img src="./images/delete_img_icon.png" alt="" />
         <span>删除图片</span>
       </div>
       <div @click="changeImg" v-if="canChangeImg">
-        <img src="./images/change_img_icon.png" alt="">
+        <img src="./images/change_img_icon.png" alt="" />
         <span>更换图片</span>
       </div>
     </div>
@@ -483,11 +495,18 @@ export default {
       return true;
     },
     getImgPosition(file) {
-      this.orientation = 1;
-      EXIF.getData(file, () => {
-        this.orientation = parseInt(EXIF.getTag(file, "Orientation"), 10);
-        this.orientation = this.orientation || 1;
-        console.log("orientation", this.orientation);
+      return new Promise((resolve, reject) => {
+        this.orientation = 1;
+        try {
+          EXIF.getData(file, () => {
+            this.orientation = parseInt(EXIF.getTag(file, "Orientation"), 10);
+            this.orientation = this.orientation || 1;
+            console.log("orientation", this.orientation);
+            resolve(this.orientation);
+          });
+        } catch (error) {
+          reject(error);
+        }
       });
     },
     getImgBlob(file) {
@@ -514,9 +533,14 @@ export default {
       if (this.uploadType === "file") {
         this.uploadFileToServer();
       } else {
-        this.getImgPosition(files[0]); // 获取图像的方位信息
-        const imgUrl = this.getImgBlob(files[0]);
-        this.transformStart(imgUrl);
+        this.getImgPosition(files[0]) // 获取图像的方位信息
+          .then(() => {
+            const imgUrl = this.getImgBlob(files[0]);
+            this.transformStart(imgUrl);
+          })
+          .catch(err => {
+            this.onError({ status: "fail", data: err });
+          });
       }
       return true;
     },
@@ -614,7 +638,7 @@ export default {
           break;
         case 7:
         case 8:
-          this.orientation56(this.afterWidth);
+          this.orientation78(this.afterWidth);
           break;
         default:
       }
@@ -699,7 +723,7 @@ export default {
       img.src = imgUrl;
       img.onload = () => {
         if (!this.checkImgWH(img)) return this.restConfig();
-        this.compressConfig(img);
+        this.compressConfig(img); // 设置图片宽高
         if (this.waterMarkConfig) {
           this.proxySetWatermark(img);
         } else if (this.IsBase64StringToImage) {
