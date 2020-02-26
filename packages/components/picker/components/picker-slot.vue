@@ -1,91 +1,99 @@
 <template>
-  <div class="picker-slot"
-  :class="classNames"
-  :style="flexStyle">
-    <div v-if="!delimiter" ref="wrapper" class="picker-slot-wrapper"
-    :class="{dragging:dragging}"
-    :style="{height:contentHeight+'px'}">
-      <div class="picker-item"
-      v-for="(itemValue ,index) in mutatingValues" :key="index"
-      :class="{'picker-selected':itemValue===currentValue}"
-      :style="{height: itemHeight+'px',
-      lineHeight: itemHeight + 'px',
-      color:itemValue===currentValue?selectedColor:''}">
-        {{itemValue|fItemValue}}
+  <div class="picker-slot" :class="classNames" :style="flexStyle">
+    <div
+      v-if="!delimiter"
+      ref="wrapper"
+      class="picker-slot-wrapper"
+      :class="{ dragging: dragging }"
+      :style="{ height: contentHeight + 'px' }"
+    >
+      <div
+        class="picker-item"
+        v-for="(itemValue, index) in mutatingValues"
+        :key="index"
+        :class="{ 'picker-selected': itemValue === currentValue }"
+        :style="{
+          height: itemHeight + 'px',
+          lineHeight: itemHeight + 'px',
+          color: itemValue === currentValue ? selectedColor : ''
+        }"
+      >
+        {{ itemValue | fItemValue }}
       </div>
     </div>
-    <div v-if="delimiter">{{content}}</div>
+    <div v-if="delimiter">{{ content }}</div>
   </div>
 </template>
 <script>
-import emitter from '~/util/emitter';
-import { once, addClass, removeClass } from '~/util/domUtil';
-import translateUtil from '../translate';
-import draggable from '../draggable';
+import emitter from "~/util/emitter";
+import { once, addClass, removeClass } from "~/util/domUtil";
+import translateUtil from "../translate";
+import draggable from "../draggable";
 
-const rotateElement = function (element, angle) {
+const rotateElement = function(element, angle) {
   if (!element) return;
   const transformProperty = translateUtil.transformProperty;
 
-  element.style[transformProperty] = `${element.style[transformProperty].replace(/rotateX\(.+?deg\)/gi, '')} rotateX(${angle}deg)`;
+  element.style[transformProperty] = `${element.style[
+    transformProperty
+  ].replace(/rotateX\(.+?deg\)/gi, "")} rotateX(${angle}deg)`;
 };
 const VISIBLE_ITEMS_ANGLE_MAP = {
   3: -45,
   5: -20,
-  7: -15,
+  7: -15
 };
 
-
 export default {
-  name: 'picker-slot',
+  name: "picker-slot",
   props: {
     values: {
       type: Array,
       default() {
         return [];
-      },
+      }
     },
     value: {},
     delimiter: {
       type: Boolean,
-      default: false,
+      default: false
     },
     rotateEffect: {
       type: Boolean,
-      default: false,
+      default: false
     },
     valueKey: String,
     content: {
-      type: [String, Number],
+      type: [String, Number]
     },
     flex: {
-      type: [String, Number],
+      type: [String, Number]
     },
     textAlign: String,
     className: String,
     itemHeight: {
       type: Number,
-      default: 30,
+      default: 30
     },
     defaultIndex: {
       type: Number,
-      default: 0,
+      default: 0
     },
     visibleItemCount: {
       type: Number,
-      default: 5,
+      default: 5
     },
     selectedColor: {
       type: String,
-      default: '#000',
-    },
+      default: "#000"
+    }
   },
   data() {
     return {
       dragging: false,
       currentValue: this.value,
       mutatingValues: this.values,
-      animationFrameId: null,
+      animationFrameId: null
     };
   },
   mixins: [emitter],
@@ -93,18 +101,18 @@ export default {
     flexStyle() {
       return {
         flex: this.flex,
-        '-webkit-box-flex': this.flex,
-        '-moz-box-flex': this.flex,
-        '-ms-flex': this.flex,
+        "-webkit-box-flex": this.flex,
+        "-moz-box-flex": this.flex,
+        "-ms-flex": this.flex
       };
     },
     classNames() {
-      const PREFIX = 'picker-slot-';
+      const PREFIX = "picker-slot-";
       const classArray = [];
       if (this.rotateEffect) {
         classArray.push(`${PREFIX}absolute`);
       }
-      const textAlign = this.textAlign || 'center';
+      const textAlign = this.textAlign || "center";
       classArray.push(PREFIX + textAlign);
 
       if (this.delimiter) {
@@ -114,7 +122,7 @@ export default {
       if (this.className) {
         classArray.push(this.className);
       }
-      return classArray.join(' ');
+      return classArray.join(" ");
     },
     contentHeight() {
       return this.itemHeight * this.visibleItemCount;
@@ -123,7 +131,9 @@ export default {
       const valueKey = this.valueKey;
       if (this.currentValue instanceof Object) {
         for (let i = 0, len = this.mutatingValues.length; i < len; i++) {
-          if (this.currentValue[valueKey] === this.mutatingValues[i][valueKey]) {
+          if (
+            this.currentValue[valueKey] === this.mutatingValues[i][valueKey]
+          ) {
             return i;
           }
         }
@@ -135,15 +145,20 @@ export default {
       const values = this.mutatingValues;
       const visibleItemCount = this.visibleItemCount;
       const itemHeight = this.itemHeight;
-      return [-itemHeight * (values.length - Math.ceil(visibleItemCount / 2)),
-        itemHeight * Math.floor(visibleItemCount / 2)];
+      return [
+        -itemHeight * (values.length - Math.ceil(visibleItemCount / 2)),
+        itemHeight * Math.floor(visibleItemCount / 2)
+      ];
     },
     minTranslateY() {
-      return this.itemHeight * (Math.ceil(this.visibleItemCount / 2) - this.mutatingValues.length);
+      return (
+        this.itemHeight *
+        (Math.ceil(this.visibleItemCount / 2) - this.mutatingValues.length)
+      );
     },
     maxTranslateY() {
       return this.itemHeight * Math.floor(this.visibleItemCount / 2);
-    },
+    }
   },
   methods: {
     value2Translate(value) {
@@ -159,8 +174,9 @@ export default {
     translate2Value(translate) {
       const itemHeight = this.itemHeight;
       translate = Math.round(translate / itemHeight) * itemHeight;
-      const index = -(translate - (Math.floor(this.visibleItemCount / 2) * itemHeight))
-      / itemHeight;
+      const index =
+        -(translate - Math.floor(this.visibleItemCount / 2) * itemHeight) /
+        itemHeight;
       return this.mutatingValues[index];
     },
     updateRotate(currentTranslate, pickerItems) {
@@ -169,7 +185,7 @@ export default {
       const wrapper = this.$refs.wrapper;
 
       if (!pickerItems) {
-        pickerItems = wrapper.querySelectorAll('.picker-item');
+        pickerItems = wrapper.querySelectorAll(".picker-item");
       }
 
       if (currentTranslate === undefined) {
@@ -192,9 +208,9 @@ export default {
         rotateElement(item, angle);
 
         if (Math.abs(percentage) > itemsFit) {
-          addClass(item, 'picker-item-far');
+          addClass(item, "picker-item-far");
         } else {
-          removeClass(item, 'picker-item-far');
+          removeClass(item, "picker-item-far");
         }
       });
     },
@@ -220,7 +236,7 @@ export default {
       let pickerItems;
 
       draggable(el, {
-        start: (event) => {
+        start: event => {
           cancelAnimationFrame(this.animationFrameId);
           this.animationFrameId = null;
           dragState = {
@@ -228,12 +244,12 @@ export default {
             start: new Date(),
             startLeft: event.pageX,
             startTop: event.pageY,
-            startTranslateTop: translateUtil.getElementTranslate(el).top,
+            startTranslateTop: translateUtil.getElementTranslate(el).top
           };
-          pickerItems = el.querySelectorAll('.picker-item');
+          pickerItems = el.querySelectorAll(".picker-item");
         },
 
-        drag: (event) => {
+        drag: event => {
           this.dragging = true;
 
           dragState.left = event.pageX;
@@ -253,12 +269,14 @@ export default {
           }
         },
 
-        end: (event) => {
+        end: event => {
           this.dragging = false;
           const momentumRatio = 7;
           let currentTranslate = translateUtil.getElementTranslate(el).top;
           const duration = new Date() - dragState.start;
-          const distance = Math.abs(dragState.startTranslateTop - currentTranslate);
+          const distance = Math.abs(
+            dragState.startTranslateTop - currentTranslate
+          );
           const itemHeight = this.itemHeight;
           const visibleItemCount = this.visibleItemCount;
 
@@ -266,8 +284,12 @@ export default {
           let offset;
           if (distance < 6) {
             rect = this.$el.getBoundingClientRect();
-            offset = Math.floor((event.clientY -
-            (rect.top + ((visibleItemCount - 1) * (itemHeight / 2)))) / itemHeight) * itemHeight;
+            offset =
+              Math.floor(
+                (event.clientY -
+                  (rect.top + (visibleItemCount - 1) * (itemHeight / 2))) /
+                  itemHeight
+              ) * itemHeight;
 
             if (offset > this.maxTranslateY) {
               offset = this.maxTranslateY;
@@ -279,7 +301,8 @@ export default {
 
           let momentumTranslate;
           if (duration < 300) {
-            momentumTranslate = currentTranslate + (velocityTranslate * momentumRatio);
+            momentumTranslate =
+              currentTranslate + velocityTranslate * momentumRatio;
           }
 
           const dragRange = dragState.range;
@@ -287,12 +310,17 @@ export default {
           this.$nextTick(() => {
             let translate;
             if (momentumTranslate) {
-              translate = Math.round(momentumTranslate / itemHeight) * itemHeight;
+              translate =
+                Math.round(momentumTranslate / itemHeight) * itemHeight;
             } else {
-              translate = Math.round(currentTranslate / itemHeight) * itemHeight;
+              translate =
+                Math.round(currentTranslate / itemHeight) * itemHeight;
             }
 
-            translate = Math.max(Math.min(translate, dragRange[1]), dragRange[0]);
+            translate = Math.max(
+              Math.min(translate, dragRange[1]),
+              dragRange[0]
+            );
 
             translateUtil.translateElement(el, null, translate);
 
@@ -304,24 +332,28 @@ export default {
           });
 
           dragState = {};
-        },
+        }
       });
     },
     doOnValueChange() {
       const value = this.currentValue;
       const wrapper = this.$refs.wrapper;
-      translateUtil.translateElement(wrapper, null, this.value2Translate(value));
+      translateUtil.translateElement(
+        wrapper,
+        null,
+        this.value2Translate(value)
+      );
     },
     doOnValuesChange() {
       const el = this.$el;
-      const items = el.querySelectorAll('.picker-item');
+      const items = el.querySelectorAll(".picker-item");
       [].forEach.call(items, (item, index) => {
         translateUtil.translateElement(item, null, this.itemHeight * index);
       });
       if (this.rotateEffect) {
         this.planUpdateRotate();
       }
-    },
+    }
   },
   mounted() {
     this.ready = true;
@@ -353,22 +385,26 @@ export default {
       if (this.rotateEffect) {
         this.planUpdateRotate();
       }
-      this.$emit('input', val);
-      this.$emit('slotValueChange', this);
+      this.$emit("input", val);
+      this.$emit("slotValueChange", this);
+      this.$emit("slot-value-change", this);
     },
     defaultIndex(val) {
-      if ((this.mutatingValues[val] !== undefined) && (this.mutatingValues.length >= val + 1)) {
+      if (
+        this.mutatingValues[val] !== undefined &&
+        this.mutatingValues.length >= val + 1
+      ) {
         this.currentValue = this.mutatingValues[val];
       }
-    },
+    }
   },
   filters: {
     fItemValue(val) {
-      if (typeof val === 'object' && (val[this.valueKey] !== undefined)) {
+      if (typeof val === "object" && val[this.valueKey] !== undefined) {
         return val[this.valueKey];
       }
       return val;
-    },
-  },
+    }
+  }
 };
 </script>
