@@ -21,7 +21,7 @@
         :style="{
           'background-image': `url(${loadingSrc})`,
           'background-size': 'contain',
-          'background-repeat': 'no-repeat'
+          'background-repeat': 'no-repeat',
         }"
         v-show="isShowLoading"
       ></li>
@@ -77,189 +77,201 @@ export default {
   name: "mt-uploader",
   components: {
     mtBigPicture,
-    mtActionsheet
+    mtActionsheet,
   },
   props: {
     ID: {
       type: String,
-      default: ""
+      default: "",
     },
     clientType: {
       type: Number,
-      default: 0
+      default: 0,
     }, //上传图片时，优先使用哪一种压缩图片的方式 1：IOS  2：Android  3:web  默认：0  根据客户端自动识别
     canChangeImg: {
       // 查看图片是是否显示更换图片按钮
       type: Boolean,
-      default: true
+      default: true,
     },
     canDeteleImg: {
       // 查看图片是是否显示删除图片按钮
       type: Boolean,
-      default: true
+      default: true,
     },
     serverUrl: {
       // 上传图片的URL（必选）
       type: String,
-      required: true
+      required: true,
     },
     defaultFileList: {
       // 默认的上传列表
       type: Array,
       default() {
         return [];
-      }
+      },
     },
     prefix: {
       // input:hidden的name属性的前缀。String，默认'fileData'
       type: String,
-      default: "fileData"
+      default: "fileData",
     },
     isOpenMultiple: {
       //是否开启多张照片上传，如果开启，则wx.chooimg
       type: Boolean,
-      default: false
+      default: false,
     },
     maxCount: {
       // 上传图片的最大数量
       type: Number,
-      default: 5
+      default: 5,
     },
     maxSize: {
       // 上传图片的最大值
       type: Number,
       default() {
         return 1024 * 1024 * 3.5; // 3.5M
-      }
+      },
     },
     isType: {
       // 支持的图片类型
       type: String,
       default:
-        "image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-png"
+        "image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-png",
     },
     minImgW: {
       // 上传的图片最小的宽度度
       type: Number,
-      default: 10
+      default: 10,
     },
     minImgH: {
       // 上传的图片最小的高度
       type: Number,
-      default: 10
+      default: 10,
     },
     afterWidth: {
       // 压缩换算后的图片的宽度,默认1000
       type: Number,
-      default: 1000
+      default: 1000,
     },
     quality: {
       // 图片压缩率，默认0.8
       type: Number,
-      default: 0.8
+      default: 0.8,
     },
     IsBase64StringToImage: {
       // 是否传到服务器保存
       type: Boolean,
-      default: true
+      default: true,
     },
     waterMarkConfig: {
       // 需要添加水印时的配置
-      type: Object
+      type: Object,
     },
     ImageServer: {
       type: String,
-      default: "" // 图片服务器的域名，默认为空
+      default: "", // 图片服务器的域名，默认为空
     },
     IsImageServer: {
       type: Boolean,
-      default: false // 是否上传至其它域名保存，默认为false
+      default: false, // 是否上传至其它域名保存，默认为false
     },
     ImageUpdateTimeout: {
       type: Number,
-      default: 60 * 1000
+      default: 60 * 1000,
     },
     loadingFgColor: {
       type: String,
-      default: "#e5e5e5"
+      default: "#e5e5e5",
     },
     loadingColor: {
       type: String,
-      default: "#41B883"
+      default: "#41B883",
     },
     loadingFontColor: {
       type: String,
-      default: "#111"
+      default: "#111",
     },
     beforeChange: {
       // 更换文件前的钩子，,显式返回false的话，则中断上传
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     beforeDelete: {
       // 删除文件前的钩子，,显式返回false的话，则中断上传
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     onSuccess: {
       // 文件上传成功钩子，返回一个对象，包含图片链接
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     onDelete: {
       // 删除已经上传的文件的钩子，返回被删除的文件在上传数组中的索引
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     onUploadListChange: {
       // 修改更换已经上传的文件的钩子，返回被删除的文件在上传数组中的索引
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     onError: {
       // 文件上传失败钩子，返回一个对象，包含错误信息
       type: Function,
       default() {
-        return function() {};
-      }
+        return function () {};
+      },
     },
     ImgDirectory: {
-      type: String
+      type: String,
     },
     IsUseWeiXinSDKUpdatePic: {
       //是否使用微信SDK 上传图片 默认否 默认false-
-      type: Boolean
+      type: Boolean,
     },
     IsWeixinClientRequest: {
       // 是否是微信客户端请求
-      type: Boolean
+      type: Boolean,
     },
     data: {
       // 额外需要上传的参数
       type: Object,
       default() {
         return {};
-      }
+      },
     },
     uploadType: {
       // 上传的实体类型 base64 或者 file，如果是 file 则无法使用水印、图片压缩、微信选择图片、图片宽度限制等功能
       type: String,
-      default: "base64"
+      default: "base64",
     },
     uploadFormKey: {
       type: String,
-      default: "ImageDataBase64"
-    }
+      default: "ImageDataBase64",
+    },
+    // 是否完整地返回后台返回的地址
+    isCompleteReturnURL: {
+      type: Boolean,
+      default: false,
+    },
+    // 程序默认会截取后端返回的url的域名，如果后端返回的url包含此数组的字符串片段，则不需要截取
+    allUrlHostList: {
+      type: Array,
+      default() {
+        return ["mt-1kx3vuab1583115501", "file.myqcloud.com"];
+      },
+    },
   },
   data() {
     // const loadingImg = new LoadingConstructor({
@@ -285,7 +297,7 @@ export default {
       isChangeImg: false,
       fileType: undefined, // 用于微信图片上传记录图片类型
       isShowUploaderBtn: true, //正在上传的过程中，隐藏上传按钮
-      forceCloseWx: false //强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
+      forceCloseWx: false, //强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
     };
   },
   computed: {
@@ -320,7 +332,7 @@ export default {
       } else {
         return 1;
       }
-    }
+    },
   },
   watch: {
     defaultFileList: {
@@ -329,37 +341,37 @@ export default {
         if (Object.prototype.toString.call(val) === "[object Array]") {
           this.uploadList.push(...val);
         }
-      }
-    }
+      },
+    },
   },
   created() {
     this.uploadList.push(...this.defaultFileList);
     this.XHRhanldeMehodsList.push(
       {
         key: "timeout",
-        value: this.ImageUpdateTimeout
+        value: this.ImageUpdateTimeout,
       },
       {
         key: "ontimeout",
-        value: this.xhrTimeOutEvent
+        value: this.xhrTimeOutEvent,
       },
       {
         key: "onerror",
-        value: this.ErrorEvent
+        value: this.ErrorEvent,
       },
       {
         parentKey: "upload",
         key: "onprogress",
-        value: this.xhrProgressEvent
+        value: this.xhrProgressEvent,
       },
       {
         parentKey: "upload",
         key: "onloadstart",
-        value: this.xhrLoadstartEvent
+        value: this.xhrLoadstartEvent,
       },
       {
         key: "onload",
-        value: this.xhrLoadEvent
+        value: this.xhrLoadEvent,
       }
     );
     this.checkList.push(
@@ -379,7 +391,7 @@ export default {
       bgcolor: this.loadingFgColor,
       pcolor: this.loadingColor,
       textcolor: this.loadingFontColor,
-      fontSize: `${width * 0.00042 + 0.2264}rem`
+      fontSize: `${width * 0.00042 + 0.2264}rem`,
     });
   },
   methods: {
@@ -538,7 +550,7 @@ export default {
             const imgUrl = this.getImgBlob(files[0]);
             this.transformStart(imgUrl);
           })
-          .catch(err => {
+          .catch((err) => {
             this.onError({ status: "fail", data: err });
           });
       }
@@ -561,9 +573,9 @@ export default {
         count: this.chooseImageCount, // 默认9
         sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
-        success: this.wxSuccessEvent,
+        success: this.wxSuccessEvent.bind(this),
         cancel: this.wxCancelEvent,
-        fail: this.ErrorEvent
+        fail: this.ErrorEvent.bind(this),
       });
     },
     wxSuccessEvent(res) {
@@ -574,7 +586,7 @@ export default {
           this.hideLoading();
           this.onError({
             status: "fail",
-            data: `您的微信不支持,请升级您的微信${navigator.userAgent}`
+            data: `您的微信不支持,请升级您的微信${navigator.userAgent}`,
           });
           return false;
         }
@@ -605,7 +617,7 @@ export default {
             } else {
               vm.addUpImg(result.localData);
             }
-          }
+          },
         });
       } catch (err) {
         console.error(err);
@@ -670,7 +682,7 @@ export default {
         maxWidth: this.afterWidth,
         maxHeight: this.afterHeight,
         quality: this.quality,
-        orientation: this.orientation || 1
+        orientation: this.orientation || 1,
       });
       return this.loadingCanvas.toDataURL(
         this.fileType || this.file.type,
@@ -755,7 +767,7 @@ export default {
           fontSize: "20px",
           strColor: "rgba(102, 102, 102, 0.3)", // 当水印为文字是，可设置字体颜色 ，默认 rgba(102, 102, 102, 0.3)
           position: "br", // 位置 tl tr bl br 默认 br
-          multiple: 0.1
+          multiple: 0.1,
         },
         this.waterMarkConfig
       );
@@ -851,17 +863,17 @@ export default {
       if (this.isChangeImg) {
         this.uploadList.splice(this.bigImgIndex, 1, {
           url,
-          name: `${this.prefix}${this.uploadList.length}`
+          name: `${this.prefix}${this.uploadList.length}`,
         });
         this.isChangeImg = false;
         this.onUploadListChange({
           index: this.bigImgIndex,
-          uploadList: this.uploadList
+          uploadList: this.uploadList,
         });
       } else {
         this.uploadList.push({
           url,
-          name: `${this.prefix}${this.uploadList.length}`
+          name: `${this.prefix}${this.uploadList.length}`,
         });
         this.restConfig();
       }
@@ -900,7 +912,7 @@ export default {
       this.hideLoading();
       this.onError({
         status: "fail",
-        data: "超时"
+        data: "超时",
       });
     },
     ErrorEvent(event) {
@@ -931,7 +943,7 @@ export default {
     },
     xhrHanldeMehods() {
       if (!this.xhr) return;
-      this.XHRhanldeMehodsList.map(item => {
+      this.XHRhanldeMehodsList.map((item) => {
         const key = item.key;
         if (item.parentKey) {
           this.xhr[item.parentKey][key] = item.value;
@@ -949,7 +961,6 @@ export default {
           typeof event.target.responseText === "string"
             ? JSON.parse(event.target.responseText)
             : event.target.responseText;
-
         // 递归查找与图片相关的链接
         const urlArray = deepFind(data, (key, val) => {
           if (typeof val === "string") {
@@ -961,19 +972,23 @@ export default {
               val.indexOf(".png"),
               val.indexOf(".jpeg"),
               val.indexOf(".gif"),
-              val.indexOf(".webp")
-            ].some(item => item !== -1);
+              val.indexOf(".webp"),
+            ].some((item) => item !== -1);
           }
         });
         if (urlArray && urlArray.length > 0) {
-          const URL = window.URL || window.webkitURL;
-          const url = new URL(urlArray[0]);
-          let href = url.href;
-          if (this.IsImageServer && this.ImageServer) {
-            href = this.ImageServer + url.pathname;
-            console.log("href", href);
+          // 判断返回的url是否包含 ALL_URL_HOST_LIST 里面是字符片段
+          var isExist = this.allUrlHostList.find(function (str) {
+            if (!str) return false;
+            str = str.toLocaleLowerCase();
+            return urlArray[0].toLocaleLowerCase().indexOf(str) !== -1;
+          });
+          if (!isExist && !this.isCompleteReturnURL) {
+            let href = this.getPathnameByURL(urlArray[0]);
+            this.addUpImg(href);
+          } else {
+            this.addUpImg(urlArray[0]);
           }
-          this.addUpImg(href);
         } else {
           this.onSuccess({ status: "success", data });
         }
@@ -983,16 +998,26 @@ export default {
         this.onError({ status: "fail", data: event });
       }
     },
+    // 对url进行截取
+    getPathnameByURL(url) {
+      const URL = window.URL || window.webkitURL;
+      const urlObj = new URL(url);
+      let href = urlObj.href;
+      if (this.IsImageServer && this.ImageServer) {
+        href = this.ImageServer + urlObj.pathname;
+      }
+      return href;
+    },
     deleteImg() {
       if (this.beforeDelete() === false) {
         return false;
       }
-      mtMessageBox.confirm("确定删除已上传的图片？").then(action => {
+      mtMessageBox.confirm("确定删除已上传的图片？").then((action) => {
         if (action === "confirm") {
           this.uploadList.splice(this.bigImgIndex, 1);
           this.onDelete({
             index: this.bigImgIndex,
-            uploadList: this.uploadList
+            uploadList: this.uploadList,
           });
           this.hideBigImg();
           toast("删除成功");
@@ -1015,7 +1040,7 @@ export default {
       if (this.uploadList.length > 0) {
         this.uploadList = [];
       }
-    }
+    },
   },
   filters: {
     removeOrigin(val) {
@@ -1023,8 +1048,8 @@ export default {
       const URL = window.URL || window.webkitURL;
       const url = new URL(val);
       return url.pathname;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less">

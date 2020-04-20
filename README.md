@@ -47,3 +47,7 @@ Vue.use(imcatUi)
 ### v1.8.3
 
 修改打包配置
+
+### v1.8.4
+
+修复 uoloader 组件上传图片，增加配置 isCompleteReturnURL 是否完整返回后端返回的 url，不截取；增加配置 allUrlHostList 判断返回的 url 是否包含 ALL_URL_HOST_LIST 里面是字符片段
