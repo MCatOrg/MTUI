@@ -859,7 +859,7 @@ export default {
         };
       }
     },
-    addUpImg(url) {
+    addUpImg(url, pathname) {
       if (this.isChangeImg) {
         this.uploadList.splice(this.bigImgIndex, 1, {
           url,
@@ -884,7 +884,7 @@ export default {
         this.loadingCanvas.width,
         this.loadingCanvas.height
       );
-      this.onSuccess({ status: "success", data: url });
+      this.onSuccess({ status: "success", data: pathname || url });
     },
     Base64StringToImage(base64) {
       this.GetImgDirectory();
@@ -985,7 +985,7 @@ export default {
           });
           if (!isExist && !this.isCompleteReturnURL) {
             let href = this.getPathnameByURL(urlArray[0]);
-            this.addUpImg(href);
+            this.addUpImg(urlArray[0], href);
           } else {
             this.addUpImg(urlArray[0]);
           }
@@ -1002,7 +1002,7 @@ export default {
     getPathnameByURL(url) {
       const URL = window.URL || window.webkitURL;
       const urlObj = new URL(url);
-      let href = urlObj.href;
+      let href = urlObj.pathname; // 去掉域名
       if (this.IsImageServer && this.ImageServer) {
         href = this.ImageServer + urlObj.pathname;
       }
