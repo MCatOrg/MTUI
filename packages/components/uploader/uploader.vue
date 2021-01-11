@@ -40,6 +40,7 @@
         <input
           class="mtui-uploader__input"
           @change="localChangeEvent"
+          @click="localInputClickEvent"
           :multiple="isOpenMultiple"
           type="file"
           accept="image/*"
@@ -63,18 +64,19 @@
   </div>
 </template>
 <script>
-import JPEGEncoder from "./Plug/jpeg_encoder_basic";
-import MegaPixImage from "./Plug/MegaPixImage";
-import EXIF from "./Plug/exif";
-import LoadingConstructor from "./util/Cycle";
-import { deepFind } from "../../util/lang.js";
-import { get_android_version, get_ios_version } from "../../util/navigatorUtil";
-import toast from "../toast";
-import mtBigPicture from "../bigPicture";
-import mtActionsheet from "../action-sheet";
-import mtMessageBox from "../message-box";
+import JPEGEncoder from './Plug/jpeg_encoder_basic';
+import MegaPixImage from './Plug/MegaPixImage';
+import EXIF from './Plug/exif';
+import LoadingConstructor from './util/Cycle';
+import { deepFind } from '../../util/lang.js';
+import { get_android_version, get_ios_version } from '../../util/navigatorUtil';
+import toast from '../toast';
+import mtBigPicture from '../bigPicture';
+import mtActionsheet from '../action-sheet';
+import mtMessageBox from '../message-box';
+
 export default {
-  name: "mt-uploader",
+  name: 'mt-uploader',
   components: {
     mtBigPicture,
     mtActionsheet,
@@ -82,12 +84,12 @@ export default {
   props: {
     ID: {
       type: String,
-      default: "",
+      default: '',
     },
     clientType: {
       type: Number,
       default: 0,
-    }, //上传图片时，优先使用哪一种压缩图片的方式 1：IOS  2：Android  3:web  默认：0  根据客户端自动识别
+    }, // 上传图片时，优先使用哪一种压缩图片的方式 1：IOS  2：Android  3:web  默认：0  根据客户端自动识别
     canChangeImg: {
       // 查看图片是是否显示更换图片按钮
       type: Boolean,
@@ -113,10 +115,10 @@ export default {
     prefix: {
       // input:hidden的name属性的前缀。String，默认'fileData'
       type: String,
-      default: "fileData",
+      default: 'fileData',
     },
     isOpenMultiple: {
-      //是否开启多张照片上传，如果开启，则wx.chooimg
+      // 是否开启多张照片上传，如果开启，则wx.chooimg
       type: Boolean,
       default: false,
     },
@@ -136,7 +138,7 @@ export default {
       // 支持的图片类型
       type: String,
       default:
-        "image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-png",
+        'image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-png',
     },
     minImgW: {
       // 上传的图片最小的宽度度
@@ -169,7 +171,7 @@ export default {
     },
     ImageServer: {
       type: String,
-      default: "", // 图片服务器的域名，默认为空
+      default: '', // 图片服务器的域名，默认为空
     },
     IsImageServer: {
       type: Boolean,
@@ -181,15 +183,15 @@ export default {
     },
     loadingFgColor: {
       type: String,
-      default: "#e5e5e5",
+      default: '#e5e5e5',
     },
     loadingColor: {
       type: String,
-      default: "#41B883",
+      default: '#41B883',
     },
     loadingFontColor: {
       type: String,
-      default: "#111",
+      default: '#111',
     },
     beforeChange: {
       // 更换文件前的钩子，,显式返回false的话，则中断上传
@@ -237,7 +239,7 @@ export default {
       type: String,
     },
     IsUseWeiXinSDKUpdatePic: {
-      //是否使用微信SDK 上传图片 默认否 默认false-
+      // 是否使用微信SDK 上传图片 默认否 默认false-
       type: Boolean,
     },
     IsWeixinClientRequest: {
@@ -254,11 +256,11 @@ export default {
     uploadType: {
       // 上传的实体类型 base64 或者 file，如果是 file 则无法使用水印、图片压缩、微信选择图片、图片宽度限制等功能
       type: String,
-      default: "base64",
+      default: 'base64',
     },
     uploadFormKey: {
       type: String,
-      default: "ImageDataBase64",
+      default: 'ImageDataBase64',
     },
     // 是否完整地返回后台返回的地址
     isCompleteReturnURL: {
@@ -269,8 +271,19 @@ export default {
     allUrlHostList: {
       type: Array,
       default() {
-        return ["mt-1kx3vuab1583115501", "file.myqcloud.com"];
+        return ['mt-1kx3vuab1583115501', 'file.myqcloud.com'];
       },
+    },
+    // 是否开启如果是微信小程序的webview页面则提示无法使用上传
+    // 因为小程序端目前使用图片上传会闪退回首页
+    disableInMiniProgram: {
+      type: Boolean,
+      default: true,
+    },
+    // 小程序不能打开上传图片时的提示语
+    disableInMiniProgramMessage: {
+      type: String,
+      default: '在小程序无法使用图片上传功能',
     },
   },
   data() {
@@ -285,42 +298,41 @@ export default {
     // });
     return {
       loadingImg: null,
-      bigImgSrc: "",
+      bigImgSrc: '',
       bigImgIndex: 0,
       uploadList: [],
       showBigImg: false,
       isShowLoading: false,
-      loadingSrc: "",
+      loadingSrc: '',
       currentImgDirectory: this.ImgDirectory,
       XHRhanldeMehodsList: [], // 操作xhr对象的队列
       checkList: [], // 一系列检查方法的队列
       isChangeImg: false,
       fileType: undefined, // 用于微信图片上传记录图片类型
-      isShowUploaderBtn: true, //正在上传的过程中，隐藏上传按钮
-      forceCloseWx: false, //强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
+      isShowUploaderBtn: true, // 正在上传的过程中，隐藏上传按钮
+      forceCloseWx: false, // 强制关闭微信上传，当使用微信上传时，报错的时候，则变为true，使用原生上传
     };
   },
   computed: {
     isShowUploaderBox() {
       if (this.isShowUploaderBtn && this.uploadList.length < this.maxCount) {
         return true;
-      } else {
-        return false;
       }
+      return false;
     },
     useWx() {
       console.log(
-        typeof wx === "object",
+        typeof wx === 'object',
         this.IsWinWechat(),
-        this.getWxVision()
+        this.getWxVision(),
       );
       if (
-        typeof wx === "object" &&
+        typeof wx === 'object' &&
         this.IsWinWechat() &&
-        this.getWxVision() > "6.5.0" &&
+        this.getWxVision() > '6.5.0' &&
         this.IsUseWeiXinSDKUpdatePic &&
         this.IsWeixinClientRequest &&
-        this.uploadType !== "file"
+        this.uploadType !== 'file'
       ) {
         return true;
       }
@@ -329,16 +341,15 @@ export default {
     chooseImageCount() {
       if (this.isOpenMultiple) {
         return this.maxCount <= 9 ? this.maxCount : 9;
-      } else {
-        return 1;
       }
+      return 1;
     },
   },
   watch: {
     defaultFileList: {
       deep: true,
       handler(val) {
-        if (Object.prototype.toString.call(val) === "[object Array]") {
+        if (Object.prototype.toString.call(val) === '[object Array]') {
           this.uploadList.push(...val);
         }
       },
@@ -348,43 +359,46 @@ export default {
     this.uploadList.push(...this.defaultFileList);
     this.XHRhanldeMehodsList.push(
       {
-        key: "timeout",
+        key: 'timeout',
         value: this.ImageUpdateTimeout,
       },
       {
-        key: "ontimeout",
+        key: 'ontimeout',
         value: this.xhrTimeOutEvent,
       },
       {
-        key: "onerror",
+        key: 'onerror',
         value: this.ErrorEvent,
       },
       {
-        parentKey: "upload",
-        key: "onprogress",
+        parentKey: 'upload',
+        key: 'onprogress',
         value: this.xhrProgressEvent,
       },
       {
-        parentKey: "upload",
-        key: "onloadstart",
+        parentKey: 'upload',
+        key: 'onloadstart',
         value: this.xhrLoadstartEvent,
       },
       {
-        key: "onload",
+        key: 'onload',
         value: this.xhrLoadEvent,
-      }
+      },
     );
     this.checkList.push(
-      { name: "checkMax", handler: this.checkMax },
-      { name: "createCanvas", handler: this.createCanvas },
-      { name: "checkFile", handler: this.checkFile }
+      { name: 'checkMax', handler: this.checkMax },
+      { name: 'createCanvas', handler: this.createCanvas },
+      { name: 'checkFile', handler: this.checkFile },
     );
+
+    // 判断是否是小程序环境
+    this.isMiniProgram = window.navigator.userAgent.includes('miniProgram');
   },
   mounted() {
-    var uploadBoxStyle = this.$refs.mtuiUploaderInputBox.getBoundingClientRect();
-    var width = Math.max(uploadBoxStyle.width, uploadBoxStyle.height) || 80;
+    const uploadBoxStyle = this.$refs.mtuiUploaderInputBox.getBoundingClientRect();
+    const width = Math.max(uploadBoxStyle.width, uploadBoxStyle.height) || 80;
     this.loadingImg = new LoadingConstructor({
-      width: width,
+      width,
       height: width,
       border: 10,
       percent: 0,
@@ -402,15 +416,15 @@ export default {
       }
     },
     getBase64Type(base64) {
-      var resultArr = base64.match(/\/\w+\;/);
+      const resultArr = base64.match(/\/\w+\;/);
       if (!resultArr) return undefined;
-      return resultArr[0].replace(/\/|\;/g, "");
+      return resultArr[0].replace(/\/|\;/g, '');
     },
     IsWinWechat() {
-      //手机微信客户端
+      // 手机微信客户端
       const agent = navigator.userAgent.toLowerCase();
-      var wc = agent.match(/windowswechat/i);
-      var mm = agent.match(/micromessenger/i);
+      const wc = agent.match(/windowswechat/i);
+      const mm = agent.match(/micromessenger/i);
       return !wc && mm;
     },
     getWxVision() {
@@ -418,28 +432,28 @@ export default {
       const a =
         agent.match(/micromessenger\/(\d+\.\d+\.\d+)/) ||
         agent.match(/micromessenger\/(\d+\.\d+)/);
-      return a ? a[1] : "";
+      return a ? a[1] : '';
     },
     bytesToSize(bytes) {
-      if (bytes === 0) return "0 B";
+      if (bytes === 0) return '0 B';
       const k = 1024; // or 1024
-      const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+      const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
       const i = Math.floor(Math.log(bytes) / Math.log(k));
       return `${(bytes / k ** i).toPrecision(3)} ${sizes[i]}`;
     },
     GetImgDirectory() {
       if (
         this.currentImgDirectory === undefined ||
-        this.currentImgDirectory === ""
+        this.currentImgDirectory === ''
       ) {
-        let dir = "";
+        let dir = '';
         if (window.location.pathname) {
-          const arr = window.location.pathname.split("/");
+          const arr = window.location.pathname.split('/');
           dir = arr[arr.length - 1];
-          if (dir.indexOf(".aspx") !== -1) {
-            dir = dir.replace(".aspx", "");
-          } else if (dir.indexOf(".html") !== -1) {
-            dir = dir.replace(".html", "");
+          if (dir.indexOf('.aspx') !== -1) {
+            dir = dir.replace('.aspx', '');
+          } else if (dir.indexOf('.html') !== -1) {
+            dir = dir.replace('.html', '');
           }
         }
         this.currentImgDirectory = dir;
@@ -458,12 +472,12 @@ export default {
       if (this.loadingCanvas && this.loadingCtx) {
         return true;
       }
-      this.loadingCanvas = document.createElement("canvas");
+      this.loadingCanvas = document.createElement('canvas');
       if (!this.loadingCanvas.getContext) {
-        toast("对不起，您的浏览器不支持图片压缩及上传功能，请换个浏览器试试~");
+        toast('对不起，您的浏览器不支持图片压缩及上传功能，请换个浏览器试试~');
         return false;
       }
-      this.loadingCtx = this.loadingCanvas.getContext("2d");
+      this.loadingCtx = this.loadingCanvas.getContext('2d');
       return true;
     },
     checkMax() {
@@ -483,7 +497,7 @@ export default {
       this.isShowLoading = true;
     },
     hideLoading() {
-      this.loadingSrc = "";
+      this.loadingSrc = '';
       this.isShowLoading = false;
     },
     checkFile(files) {
@@ -491,10 +505,10 @@ export default {
         if (files[i].size && files[i].size > this.maxSize) {
           toast(
             `对不起，您的图片${this.bytesToSize(
-              files[i].size
+              files[i].size,
             )}太大请把图片压缩在${this.bytesToSize(
-              this.maxSize
-            )}内再上传~(${i})`
+              this.maxSize,
+            )}内再上传~(${i})`,
           );
           this.hideLoading();
           return false;
@@ -511,9 +525,9 @@ export default {
         this.orientation = 1;
         try {
           EXIF.getData(file, () => {
-            this.orientation = parseInt(EXIF.getTag(file, "Orientation"), 10);
+            this.orientation = parseInt(EXIF.getTag(file, 'Orientation'), 10);
             this.orientation = this.orientation || 1;
-            console.log("orientation", this.orientation);
+            console.log('orientation', this.orientation);
             resolve(this.orientation);
           });
         } catch (error) {
@@ -534,7 +548,7 @@ export default {
       const files = event.target.files;
       if (files.length === 0) return false;
       if (this.isChangeImg && this.beforeChange(event) === false) {
-        //显式返回false则中断传输
+        // 显式返回false则中断传输
         return false;
       }
       if (!this.checkListHandle({ checkFile: files })) return false;
@@ -542,7 +556,7 @@ export default {
       this.file = files[0];
       this.showLoading(0); // 显示loading
       // 判断是以base64上传还是file直接上传
-      if (this.uploadType === "file") {
+      if (this.uploadType === 'file') {
         this.uploadFileToServer();
       } else {
         this.getImgPosition(files[0]) // 获取图像的方位信息
@@ -551,7 +565,7 @@ export default {
             this.transformStart(imgUrl);
           })
           .catch((err) => {
-            this.onError({ status: "fail", data: err });
+            this.onError({ status: 'fail', data: err });
           });
       }
       return true;
@@ -559,20 +573,28 @@ export default {
     uploadFileToServer() {
       const form = new FormData();
       // 添加附加的参数
-      for (let key in this.data) {
+      for (const key in this.data) {
         form.append(key, this.data[key]);
       }
       form.append(this.uploadFormKey, this.file); // 数据
       this.sendXhr(form);
     },
+    localInputClickEvent() {
+      if (this.isMiniProgram && this.disableInMiniProgram) {
+        return mtMessageBox.alert(this.disableInMiniProgramMessage);
+      }
+    },
     wxCompress() {
-      console.log("微信接口");
+      // 小程序
+      if (this.isMiniProgram && this.disableInMiniProgram) {
+        return mtMessageBox.alert(this.disableInMiniProgramMessage);
+      }
       if (!this.createCanvas()) return false;
       const wx = window.wx;
       wx.chooseImage({
         count: this.chooseImageCount, // 默认9
-        sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: this.wxSuccessEvent.bind(this),
         cancel: this.wxCancelEvent,
         fail: this.ErrorEvent.bind(this),
@@ -585,7 +607,7 @@ export default {
         if (!wx.getLocalImgData) {
           this.hideLoading();
           this.onError({
-            status: "fail",
+            status: 'fail',
             data: `您的微信不支持,请升级您的微信${navigator.userAgent}`,
           });
           return false;
@@ -597,18 +619,18 @@ export default {
           fail: this.ErrorEvent,
           success(result) {
             if (vm.isChangeImg && vm.beforeChange(res) === false) {
-              //显式返回false则中断传输
+              // 显式返回false则中断传输
               return vm.restConfig();
             }
-            const arr = result.localData.split(",");
+            const arr = result.localData.split(',');
             // IPhone
             if (arr.length === 2) {
-              arr[0] = "data:image/jpeg;base64";
+              arr[0] = 'data:image/jpeg;base64';
             } else if (arr.length === 1) {
               // Android
-              arr.unshift("data:image/jpeg;base64");
+              arr.unshift('data:image/jpeg;base64');
             }
-            result.localData = arr.join(",");
+            result.localData = arr.join(',');
             vm.fileType = vm.getBase64Type(result.localData);
             if (vm.waterMarkConfig) {
               vm.proxySetWatermark(result.localData);
@@ -622,7 +644,7 @@ export default {
       } catch (err) {
         console.error(err);
         this.hideLoading();
-        this.onError({ status: "fail", data: err });
+        this.onError({ status: 'fail', data: err });
       }
       return true;
     },
@@ -633,12 +655,12 @@ export default {
     wxCancelEvent(res) {
       this.hideLoading();
       this.restConfig();
-      this.onError({ status: "cancel", data: res });
+      this.onError({ status: 'cancel', data: res });
     },
     compressConfig(img) {
       this.afterHeight = (this.afterWidth * img.height) / img.width;
-      this.loadingCanvas.setAttribute("width", this.afterWidth);
-      this.loadingCanvas.setAttribute("height", this.afterHeight);
+      this.loadingCanvas.setAttribute('width', this.afterWidth);
+      this.loadingCanvas.setAttribute('height', this.afterHeight);
       switch (this.orientation) {
         case 3:
         case 4:
@@ -658,7 +680,7 @@ export default {
     },
     checkImgWH(img) {
       if (img.width < this.minImgW || img.height < this.minImgH) {
-        toast("请不要上传过小的图片");
+        toast('请不要上传过小的图片');
         this.hideLoading();
         return false;
       }
@@ -686,21 +708,21 @@ export default {
       });
       return this.loadingCanvas.toDataURL(
         this.fileType || this.file.type,
-        this.quality
+        this.quality,
       );
     },
     createAndroidBase64() {
       const encoder = new JPEGEncoder();
       return encoder.encode(
         this.loadingCtx.getImageData(0, 0, this.afterWidth, this.afterHeight),
-        this.quality * 100 || 80
+        this.quality * 100 || 80,
       );
     },
     createWebBase64() {
-      console.log("base64", this.file, this.fileType);
+      console.log('base64', this.file, this.fileType);
       return this.loadingCanvas.toDataURL(
         this.fileType || this.file.type,
-        this.quality * 1
+        this.quality * 1,
       );
     },
     createBase64(img) {
@@ -763,40 +785,40 @@ export default {
       if (!this.waterMarkConfig) return;
       const waterMarkConfig = Object.assign(
         {
-          watermarkType: "str", // 水印的类型，图片img 或者 文字str
-          fontSize: "20px",
-          strColor: "rgba(102, 102, 102, 0.3)", // 当水印为文字是，可设置字体颜色 ，默认 rgba(102, 102, 102, 0.3)
-          position: "br", // 位置 tl tr bl br 默认 br
+          watermarkType: 'str', // 水印的类型，图片img 或者 文字str
+          fontSize: '20px',
+          strColor: 'rgba(102, 102, 102, 0.3)', // 当水印为文字是，可设置字体颜色 ，默认 rgba(102, 102, 102, 0.3)
+          position: 'br', // 位置 tl tr bl br 默认 br
           multiple: 0.1,
         },
-        this.waterMarkConfig
+        this.waterMarkConfig,
       );
       this.loadingCanvas.width = img.width;
       this.loadingCanvas.height = img.height;
       this.loadingCtx.drawImage(img, 0, 0);
-      if (waterMarkConfig.watermarkType === "str") {
+      if (waterMarkConfig.watermarkType === 'str') {
         // 文字
         this.loadingCtx.font = `${waterMarkConfig.fontSize} microsoft yahei`;
         this.loadingCtx.fillStyle = waterMarkConfig.strColor;
-        if (waterMarkConfig.position === "tl") {
+        if (waterMarkConfig.position === 'tl') {
           this.loadingCtx.fillText(waterMarkConfig.watermark, 5, 20);
-        } else if (waterMarkConfig.position === "tr") {
+        } else if (waterMarkConfig.position === 'tr') {
           this.loadingCtx.fillText(
             waterMarkConfig.watermark,
             5,
-            img.height - 5
+            img.height - 5,
           );
-        } else if (waterMarkConfig.position === "bl") {
+        } else if (waterMarkConfig.position === 'bl') {
           this.loadingCtx.fillText(
             waterMarkConfig.watermark,
             img.width - 80 - 5,
-            20
+            20,
           );
         } else {
           this.loadingCtx.fillText(
             waterMarkConfig.watermark,
             img.width - 80 - 5,
-            img.height - 5
+            img.height - 5,
           );
         }
         const base64 = this.createBase64(img);
@@ -809,7 +831,7 @@ export default {
         // 图片
         const watermark = new Image();
         watermark.src = waterMarkConfig.watermark;
-        watermark.setAttribute("crossOrigin", "Anonymous");
+        watermark.setAttribute('crossOrigin', 'Anonymous');
         watermark.onload = () => {
           const beishu =
             watermark.width /
@@ -817,29 +839,29 @@ export default {
             waterMarkConfig.multiple;
           const watermarkWidth = watermark.width * beishu;
           const watermarkHeight = watermark.height * beishu;
-          if (waterMarkConfig.position === "tl") {
+          if (waterMarkConfig.position === 'tl') {
             this.loadingCtx.drawImage(
               watermark,
               0,
               0,
               watermarkWidth,
-              watermarkHeight
+              watermarkHeight,
             );
-          } else if (waterMarkConfig.position === "tr") {
+          } else if (waterMarkConfig.position === 'tr') {
             this.loadingCtx.drawImage(
               watermark,
               0,
               this.loadingCanvas.height - watermarkHeight,
               watermarkWidth,
-              watermarkHeight
+              watermarkHeight,
             );
-          } else if (waterMarkConfig.position === "bl") {
+          } else if (waterMarkConfig.position === 'bl') {
             this.loadingCtx.drawImage(
               watermark,
               this.loadingCanvas.width - watermarkWidth,
               0,
               watermarkWidth,
-              watermarkHeight
+              watermarkHeight,
             );
           } else {
             this.loadingCtx.drawImage(
@@ -847,7 +869,7 @@ export default {
               this.loadingCanvas.width - watermarkWidth,
               this.loadingCanvas.height - watermarkHeight,
               watermarkWidth,
-              watermarkHeight
+              watermarkHeight,
             );
           }
           const base64 = this.createBase64(img);
@@ -882,18 +904,18 @@ export default {
         0,
         0,
         this.loadingCanvas.width,
-        this.loadingCanvas.height
+        this.loadingCanvas.height,
       );
-      this.onSuccess({ status: "success", data: pathname || url });
+      this.onSuccess({ status: 'success', data: pathname || url });
     },
     Base64StringToImage(base64) {
       this.GetImgDirectory();
       const form = new FormData();
       // 向后兼容，不删除
-      form.append("action", "base64stringtoimage"); // 方法
-      form.append("ImgDirectory", this.currentImgDirectory); // 目录
+      form.append('action', 'base64stringtoimage'); // 方法
+      form.append('ImgDirectory', this.currentImgDirectory); // 目录
       // 添加附加的参数
-      for (let key in this.data) {
+      for (const key in this.data) {
         form.append(key, this.data[key]);
       }
       form.append(this.uploadFormKey, base64); // 数据
@@ -904,33 +926,33 @@ export default {
         this.xhr = new XMLHttpRequest();
       }
       this.xhrHanldeMehods(); // 集中处理 xhr 对象
-      this.xhr.open("post", this.serverUrl, true);
+      this.xhr.open('post', this.serverUrl, true);
       this.xhr.send(form);
     },
     xhrTimeOutEvent() {
       this.xhr.abort();
       this.hideLoading();
       this.onError({
-        status: "fail",
-        data: "超时",
+        status: 'fail',
+        data: '超时',
       });
     },
     ErrorEvent(event) {
       this.hideLoading();
       this.restConfig();
       if (
-        typeof event.errMsg === "string" &&
-        (event.errMsg.indexOf("getLocalImgData") !== -1 ||
-          event.errMsg.indexOf("chooseImage") !== -1)
+        typeof event.errMsg === 'string' &&
+        (event.errMsg.indexOf('getLocalImgData') !== -1 ||
+          event.errMsg.indexOf('chooseImage') !== -1)
       ) {
-        //没有权限
+        // 没有权限
         this.forceCloseWx = true;
-        console.log("强制转换为原生上传方式", this.forceCloseWx);
+        console.log('强制转换为原生上传方式', this.forceCloseWx);
         this.$nextTick(() => {
           this.handClickInputFile();
         });
       } else {
-        this.onError({ status: "fail", data: event });
+        this.onError({ status: 'fail', data: event });
       }
     },
     xhrProgressEvent(event) {
@@ -954,48 +976,48 @@ export default {
       });
     },
     xhrLoadEvent(event) {
-      console.log("event", event.target.status);
+      console.log('event', event.target.status);
       // 成功返回
       if (event.target.status === 200) {
         const data =
-          typeof event.target.responseText === "string"
+          typeof event.target.responseText === 'string'
             ? JSON.parse(event.target.responseText)
             : event.target.responseText;
         // 递归查找与图片相关的链接
         const urlArray = deepFind(data, (key, val) => {
-          if (typeof val === "string") {
+          if (typeof val === 'string') {
             val = val.toLocaleLowerCase();
             return [
-              val.indexOf("http"),
-              val.indexOf("https"),
-              val.indexOf(".jpg"),
-              val.indexOf(".png"),
-              val.indexOf(".jpeg"),
-              val.indexOf(".gif"),
-              val.indexOf(".webp"),
-            ].some((item) => item !== -1);
+              val.indexOf('http'),
+              val.indexOf('https'),
+              val.indexOf('.jpg'),
+              val.indexOf('.png'),
+              val.indexOf('.jpeg'),
+              val.indexOf('.gif'),
+              val.indexOf('.webp'),
+            ].some(item => item !== -1);
           }
         });
         if (urlArray && urlArray.length > 0) {
           // 判断返回的url是否包含 ALL_URL_HOST_LIST 里面是字符片段
-          var isExist = this.allUrlHostList.find(function (str) {
+          const isExist = this.allUrlHostList.find((str) => {
             if (!str) return false;
             str = str.toLocaleLowerCase();
             return urlArray[0].toLocaleLowerCase().indexOf(str) !== -1;
           });
           if (!isExist && !this.isCompleteReturnURL) {
-            let href = this.getPathnameByURL(urlArray[0]);
+            const href = this.getPathnameByURL(urlArray[0]);
             this.addUpImg(urlArray[0], href);
           } else {
             this.addUpImg(urlArray[0]);
           }
         } else {
-          this.onSuccess({ status: "success", data });
+          this.onSuccess({ status: 'success', data });
         }
       } else {
         this.restConfig();
         this.hideLoading();
-        this.onError({ status: "fail", data: event });
+        this.onError({ status: 'fail', data: event });
       }
     },
     // 对url进行截取
@@ -1012,15 +1034,15 @@ export default {
       if (this.beforeDelete() === false) {
         return false;
       }
-      mtMessageBox.confirm("确定删除已上传的图片？").then((action) => {
-        if (action === "confirm") {
+      mtMessageBox.confirm('确定删除已上传的图片？').then((action) => {
+        if (action === 'confirm') {
           this.uploadList.splice(this.bigImgIndex, 1);
           this.onDelete({
             index: this.bigImgIndex,
             uploadList: this.uploadList,
           });
           this.hideBigImg();
-          toast("删除成功");
+          toast('删除成功');
         }
       });
       return true;
@@ -1036,7 +1058,7 @@ export default {
       return true;
     },
     resetImgList() {
-      //清空上传队列
+      // 清空上传队列
       if (this.uploadList.length > 0) {
         this.uploadList = [];
       }
@@ -1044,7 +1066,7 @@ export default {
   },
   filters: {
     removeOrigin(val) {
-      if (val === undefined) return "";
+      if (val === undefined) return '';
       const URL = window.URL || window.webkitURL;
       const url = new URL(val);
       return url.pathname;
