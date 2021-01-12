@@ -55,3 +55,18 @@ Vue.use(imcatUi)
 ### v1.8.5
 
 修复 uoloader 组件上传图片的截取 URL 错误，修正后对于需要截取 url 只返回 pathname
+
+
+### v1.8.6
+
+规范相关代码
+
+
+### v1.8.7
+
+更新mtui icon
+
+
+### v1.8.8
+
+更新lib里面的mtui
